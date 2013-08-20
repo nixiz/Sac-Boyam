@@ -25,6 +25,7 @@
 		71328AF117C36E92007EE533 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71328AF017C36E92007EE533 /* MobileCoreServices.framework */; };
 		71328AF417C38162007EE533 /* OKMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 71328AF317C38162007EE533 /* OKMainViewController.m */; };
 		71328AF817C38BA5007EE533 /* MyCutomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 71328AF617C38ADB007EE533 /* MyCutomView.m */; };
+		71328AFA17C3A5B8007EE533 /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71328AF917C3A5B8007EE533 /* CoreImage.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,6 +55,7 @@
 		71328AF317C38162007EE533 /* OKMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKMainViewController.m; sourceTree = "<group>"; };
 		71328AF517C38ADB007EE533 /* MyCutomView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MyCutomView.h; path = ../../PhotoPixelDeneme/PhotoPixelDeneme/MyCutomView.h; sourceTree = "<group>"; };
 		71328AF617C38ADB007EE533 /* MyCutomView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = MyCutomView.m; path = ../../PhotoPixelDeneme/PhotoPixelDeneme/MyCutomView.m; sourceTree = "<group>"; };
+		71328AF917C3A5B8007EE533 /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +63,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				71328AFA17C3A5B8007EE533 /* CoreImage.framework in Frameworks */,
 				71328AF117C36E92007EE533 /* MobileCoreServices.framework in Frameworks */,
 				71328A9617C35FD7007EE533 /* UIKit.framework in Frameworks */,
 				71328A9817C35FD7007EE533 /* Foundation.framework in Frameworks */,
@@ -91,6 +94,7 @@
 		71328A9417C35FD7007EE533 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				71328AF917C3A5B8007EE533 /* CoreImage.framework */,
 				71328AF017C36E92007EE533 /* MobileCoreServices.framework */,
 				71328A9517C35FD7007EE533 /* UIKit.framework */,
 				71328A9717C35FD7007EE533 /* Foundation.framework */,

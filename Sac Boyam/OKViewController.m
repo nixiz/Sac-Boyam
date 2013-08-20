@@ -75,29 +75,47 @@ struct pixel {
   //UIImage *originalImage = (UIImage *) [info objectForKey:
   //                           UIImagePickerControllerOriginalImage];
   //[self.imageView setImage:originalImage];
+  
+  //UIImageWriteToSavedPhotosAlbum(photo, nil, nil, nil);
   [self.selectedImage setImage:photo];
 }
-/*
+
+
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
   UITouch *touch = [[touches allObjects] objectAtIndex:0];
   CGPoint point = [touch locationInView:self.view];
   
   if ([self.selectedImage pointInside:point withEvent:event])
   {
-    //CGPoint location = [touch locationInView:self.imageView];
-    //UIColor *color = [self getPixelColorAtLocation:point];
+    // Create a rectangle (10x10) from touched touched point
+    CGRect rect1 = CGRectMake(point.x - 5, point.y - 5, 10, 10);
+    // Crop a picture from given rectangle
+    CGImageRef imageRef = CGImageCreateWithImageInRect([self.selectedImage.image CGImage], rect1);
+    //DEBUG_ONLY//UIImage *tmp_img = [UIImage imageWithCGImage:imageRef];
+    //DEBUG_ONLY//[self.previewImage setImage:img];
+    // calculate average color for next steps
+    UIColor *color = [self getAverageColorOfCroppedImage:[UIImage imageWithCGImage:imageRef]];
+    //DEBUG_ONLY//NSLog(@"Average Color of Picture: %@", [CIColor colorWithCGColor:color.CGColor].stringRepresentation);
     
-    //CGFloat alpha, red, green, blue;
-    //[color getRed:&red green:&green blue:&blue alpha:&alpha];
+    // show average color for user interaction.
+    CGRect rect = self.previewImage.bounds;
+    UIGraphicsBeginImageContext(rect.size);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextSetFillColorWithColor(context, [color CGColor]);
+    CGContextFillRect(context, rect);
+    UIImage *img = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
     
+    [self.previewImage setImage:img];
     
-    //self.colorLabel.text = [CIColor colorWithCGColor:color.CGColor].stringRepresentation;
-    
+    self.myView.newPoint = point;
+    [self.view addSubview:self.myView];
+    [self.myView setNeedsDisplay];
   }
   
   [super touchesBegan:touches withEvent:event];
 }
-*/
+
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
   
   UITouch *touch = [[touches allObjects] objectAtIndex:0];
@@ -105,40 +123,33 @@ struct pixel {
   
   if ([self.selectedImage pointInside:point withEvent:event])
   {
+    /***--Crop photo from touched point and calculate average color of cropped photo.--***/
     
-    UIColor *color = [self getPixelColorAtLocation:point];
-
-    CGRect rect1 = CGRectMake(point.x - 25, point.y - 25, self.previewImage.bounds.size.width, self.previewImage.bounds.size.height);
+    // Create a rectangle (10x10) from touched touched point
+    CGRect rect1 = CGRectMake(point.x - 5, point.y - 5, 10, 10);
+    // Crop a picture from given rectangle
+    CGImageRef imageRef = CGImageCreateWithImageInRect([self.selectedImage.image CGImage], rect1);
+    //DEBUG_ONLY//UIImage *tmp_img = [UIImage imageWithCGImage:imageRef];
+    //DEBUG_ONLY//[self.previewImage setImage:img];
+    // calculate average color for next steps
+    UIColor *color = [self getAverageColorOfCroppedImage:[UIImage imageWithCGImage:imageRef]];
+    //DEBUG_ONLY//NSLog(@"Average Color of Picture: %@", [CIColor colorWithCGColor:color.CGColor].stringRepresentation);
+    
+    // show average color for user interaction.
     CGRect rect = self.previewImage.bounds;
-    
-    //NSLog(@"Preview Image Rectange: %@", NSStringFromCGRect(rect));
-    //NSLog(@"Touched Point Rectange: %@", NSStringFromCGRect(rect1));
-    
     UIGraphicsBeginImageContext(rect.size);
     CGContextRef context = UIGraphicsGetCurrentContext();
-/*
     CGContextSetFillColorWithColor(context, [color CGColor]);
     CGContextFillRect(context, rect);
     UIImage *img = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
-*/
-    CALayer *layer = self.selectedImage.layer;
-    CGContextClipToRect(context, rect);
-    [layer renderInContext:context];
-    //CGContextSetFillColorWithColor(context, [color CGColor]);
-    //CGContextFillRect(context, rect);
-    UIImage *img = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-
- 
-    //[self.previewImage setImage:[self captureScreenInRect:CGRectMake(point.x, point.y, self.previewImage.bounds.size.width, self.previewImage.bounds.size.height)]];
+    
     [self.previewImage setImage:img];
     
     self.myView.newPoint = point;
     [self.view addSubview:self.myView];
     [self.myView setNeedsDisplay];
     
-    //[self printLatestCoordinates:point andColour:[self getPixelColorAtLocation:point]];
   }
   [super touchesMoved:touches withEvent:event];
   
@@ -316,6 +327,7 @@ struct pixel {
   return context;
 }
 
+/*
 - (UIImage *)captureScreenInRect:(CGRect)captureFrame
 {
   
@@ -328,5 +340,5 @@ struct pixel {
   UIGraphicsEndImageContext();
   return screenImage;
 }
-
+*/
 @end
