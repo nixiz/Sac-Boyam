@@ -7,7 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "FDTakeController.h"
+#import "MyCutomView.h"
 
 @interface OKViewController : UIViewController
+@property (weak, nonatomic) IBOutlet UIImageView *selectedImage;
+@property (weak, nonatomic) IBOutlet UIImageView *previewImage;
+- (IBAction)SelectNewImage:(id)sender;
+
+@property FDTakeController *takeController;
 
 @end

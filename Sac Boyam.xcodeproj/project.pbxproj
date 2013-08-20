@@ -19,6 +19,12 @@
 		71328AAF17C35FD7007EE533 /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71328AAD17C35FD7007EE533 /* MainStoryboard_iPhone.storyboard */; };
 		71328AB217C35FD7007EE533 /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71328AB017C35FD7007EE533 /* MainStoryboard_iPad.storyboard */; };
 		71328AB517C35FD7007EE533 /* OKViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 71328AB417C35FD7007EE533 /* OKViewController.m */; };
+		71328ABF17C365F3007EE533 /* derpette_brown.png in Resources */ = {isa = PBXBuildFile; fileRef = 71328ABD17C365F3007EE533 /* derpette_brown.png */; };
+		71328AC017C365F3007EE533 /* derpette_blond.png in Resources */ = {isa = PBXBuildFile; fileRef = 71328ABE17C365F3007EE533 /* derpette_blond.png */; };
+		71328AE717C36BDA007EE533 /* FDTakeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 71328ACF17C36BDA007EE533 /* FDTakeController.m */; };
+		71328AF117C36E92007EE533 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71328AF017C36E92007EE533 /* MobileCoreServices.framework */; };
+		71328AF417C38162007EE533 /* OKMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 71328AF317C38162007EE533 /* OKMainViewController.m */; };
+		71328AF817C38BA5007EE533 /* MyCutomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 71328AF617C38ADB007EE533 /* MyCutomView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +45,15 @@
 		71328AB117C35FD7007EE533 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
 		71328AB317C35FD7007EE533 /* OKViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OKViewController.h; sourceTree = "<group>"; };
 		71328AB417C35FD7007EE533 /* OKViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OKViewController.m; sourceTree = "<group>"; };
+		71328ABD17C365F3007EE533 /* derpette_brown.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = derpette_brown.png; path = img/derpette_brown.png; sourceTree = "<group>"; };
+		71328ABE17C365F3007EE533 /* derpette_blond.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = derpette_blond.png; path = img/derpette_blond.png; sourceTree = "<group>"; };
+		71328ACE17C36BDA007EE533 /* FDTakeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FDTakeController.h; path = ../../FDTake/FDTakeExample/FDTakeController.h; sourceTree = "<group>"; };
+		71328ACF17C36BDA007EE533 /* FDTakeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FDTakeController.m; path = ../../FDTake/FDTakeExample/FDTakeController.m; sourceTree = "<group>"; };
+		71328AF017C36E92007EE533 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		71328AF217C38162007EE533 /* OKMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKMainViewController.h; sourceTree = "<group>"; };
+		71328AF317C38162007EE533 /* OKMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKMainViewController.m; sourceTree = "<group>"; };
+		71328AF517C38ADB007EE533 /* MyCutomView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MyCutomView.h; path = ../../PhotoPixelDeneme/PhotoPixelDeneme/MyCutomView.h; sourceTree = "<group>"; };
+		71328AF617C38ADB007EE533 /* MyCutomView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = MyCutomView.m; path = ../../PhotoPixelDeneme/PhotoPixelDeneme/MyCutomView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -46,6 +61,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				71328AF117C36E92007EE533 /* MobileCoreServices.framework in Frameworks */,
 				71328A9617C35FD7007EE533 /* UIKit.framework in Frameworks */,
 				71328A9817C35FD7007EE533 /* Foundation.framework in Frameworks */,
 				71328A9A17C35FD7007EE533 /* CoreGraphics.framework in Frameworks */,
@@ -75,6 +91,7 @@
 		71328A9417C35FD7007EE533 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				71328AF017C36E92007EE533 /* MobileCoreServices.framework */,
 				71328A9517C35FD7007EE533 /* UIKit.framework */,
 				71328A9717C35FD7007EE533 /* Foundation.framework */,
 				71328A9917C35FD7007EE533 /* CoreGraphics.framework */,
@@ -85,12 +102,15 @@
 		71328A9B17C35FD7007EE533 /* Sac Boyam */ = {
 			isa = PBXGroup;
 			children = (
+				71328AF717C38B07007EE533 /* SecondView */,
+				71328AEF17C36C9B007EE533 /* FDTake */,
+				71328AC117C365F7007EE533 /* images */,
 				71328AA417C35FD7007EE533 /* OKAppDelegate.h */,
 				71328AA517C35FD7007EE533 /* OKAppDelegate.m */,
 				71328AAD17C35FD7007EE533 /* MainStoryboard_iPhone.storyboard */,
 				71328AB017C35FD7007EE533 /* MainStoryboard_iPad.storyboard */,
-				71328AB317C35FD7007EE533 /* OKViewController.h */,
-				71328AB417C35FD7007EE533 /* OKViewController.m */,
+				71328AF217C38162007EE533 /* OKMainViewController.h */,
+				71328AF317C38162007EE533 /* OKMainViewController.m */,
 				71328A9C17C35FD7007EE533 /* Supporting Files */,
 			);
 			path = "Sac Boyam";
@@ -108,6 +128,35 @@
 				71328AAB17C35FD7007EE533 /* Default-568h@2x.png */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		71328AC117C365F7007EE533 /* images */ = {
+			isa = PBXGroup;
+			children = (
+				71328ABD17C365F3007EE533 /* derpette_brown.png */,
+				71328ABE17C365F3007EE533 /* derpette_blond.png */,
+			);
+			name = images;
+			sourceTree = "<group>";
+		};
+		71328AEF17C36C9B007EE533 /* FDTake */ = {
+			isa = PBXGroup;
+			children = (
+				71328ACE17C36BDA007EE533 /* FDTakeController.h */,
+				71328ACF17C36BDA007EE533 /* FDTakeController.m */,
+			);
+			name = FDTake;
+			sourceTree = "<group>";
+		};
+		71328AF717C38B07007EE533 /* SecondView */ = {
+			isa = PBXGroup;
+			children = (
+				71328AF517C38ADB007EE533 /* MyCutomView.h */,
+				71328AF617C38ADB007EE533 /* MyCutomView.m */,
+				71328AB317C35FD7007EE533 /* OKViewController.h */,
+				71328AB417C35FD7007EE533 /* OKViewController.m */,
+			);
+			name = SecondView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -146,6 +195,13 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				de,
+				fr,
+				nl,
+				ru,
+				tr,
+				"zh-Hans",
+				"zh-Hant",
 			);
 			mainGroup = 71328A8917C35FD7007EE533;
 			productRefGroup = 71328A9317C35FD7007EE533 /* Products */;
@@ -168,6 +224,8 @@
 				71328AAC17C35FD7007EE533 /* Default-568h@2x.png in Resources */,
 				71328AAF17C35FD7007EE533 /* MainStoryboard_iPhone.storyboard in Resources */,
 				71328AB217C35FD7007EE533 /* MainStoryboard_iPad.storyboard in Resources */,
+				71328ABF17C365F3007EE533 /* derpette_brown.png in Resources */,
+				71328AC017C365F3007EE533 /* derpette_blond.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -178,9 +236,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				71328AF817C38BA5007EE533 /* MyCutomView.m in Sources */,
 				71328AA217C35FD7007EE533 /* main.m in Sources */,
 				71328AA617C35FD7007EE533 /* OKAppDelegate.m in Sources */,
 				71328AB517C35FD7007EE533 /* OKViewController.m in Sources */,
+				71328AE717C36BDA007EE533 /* FDTakeController.m in Sources */,
+				71328AF417C38162007EE533 /* OKMainViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
