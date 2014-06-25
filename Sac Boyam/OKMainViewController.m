@@ -39,6 +39,13 @@
 
 - (IBAction)OnStartClicked:(id)sender {
 }
+
+
+-(IBAction)returned:(UIStoryboardSegue *)segue {
+  
+  [self.navigationController setNavigationBarHidden:YES animated:NO];
+  
+}
 /*
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {

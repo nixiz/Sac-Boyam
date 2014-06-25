@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		710735A217C4981400484D21 /* OKSonuclarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 710735A117C4981400484D21 /* OKSonuclarViewController.m */; };
+		710735A617C49E6800484D21 /* OKSonuclarCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 710735A517C49E6800484D21 /* OKSonuclarCell.m */; };
 		71328A9617C35FD7007EE533 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71328A9517C35FD7007EE533 /* UIKit.framework */; };
 		71328A9817C35FD7007EE533 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71328A9717C35FD7007EE533 /* Foundation.framework */; };
 		71328A9A17C35FD7007EE533 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71328A9917C35FD7007EE533 /* CoreGraphics.framework */; };
@@ -21,14 +23,18 @@
 		71328AB517C35FD7007EE533 /* OKViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 71328AB417C35FD7007EE533 /* OKViewController.m */; };
 		71328ABF17C365F3007EE533 /* derpette_brown.png in Resources */ = {isa = PBXBuildFile; fileRef = 71328ABD17C365F3007EE533 /* derpette_brown.png */; };
 		71328AC017C365F3007EE533 /* derpette_blond.png in Resources */ = {isa = PBXBuildFile; fileRef = 71328ABE17C365F3007EE533 /* derpette_blond.png */; };
-		71328AE717C36BDA007EE533 /* FDTakeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 71328ACF17C36BDA007EE533 /* FDTakeController.m */; };
 		71328AF117C36E92007EE533 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71328AF017C36E92007EE533 /* MobileCoreServices.framework */; };
 		71328AF417C38162007EE533 /* OKMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 71328AF317C38162007EE533 /* OKMainViewController.m */; };
 		71328AF817C38BA5007EE533 /* MyCutomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 71328AF617C38ADB007EE533 /* MyCutomView.m */; };
 		71328AFA17C3A5B8007EE533 /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71328AF917C3A5B8007EE533 /* CoreImage.framework */; };
+		71ECEF91195ABB3400872EBC /* FDTakeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 71ECEF90195ABB3400872EBC /* FDTakeController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		710735A017C4981400484D21 /* OKSonuclarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKSonuclarViewController.h; sourceTree = "<group>"; };
+		710735A117C4981400484D21 /* OKSonuclarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKSonuclarViewController.m; sourceTree = "<group>"; };
+		710735A417C49E6800484D21 /* OKSonuclarCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKSonuclarCell.h; sourceTree = "<group>"; };
+		710735A517C49E6800484D21 /* OKSonuclarCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKSonuclarCell.m; sourceTree = "<group>"; };
 		71328A9217C35FD7007EE533 /* Sac Boyam.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Sac Boyam.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		71328A9517C35FD7007EE533 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		71328A9717C35FD7007EE533 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -48,14 +54,14 @@
 		71328AB417C35FD7007EE533 /* OKViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OKViewController.m; sourceTree = "<group>"; };
 		71328ABD17C365F3007EE533 /* derpette_brown.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = derpette_brown.png; path = img/derpette_brown.png; sourceTree = "<group>"; };
 		71328ABE17C365F3007EE533 /* derpette_blond.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = derpette_blond.png; path = img/derpette_blond.png; sourceTree = "<group>"; };
-		71328ACE17C36BDA007EE533 /* FDTakeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FDTakeController.h; path = ../../FDTake/FDTakeExample/FDTakeController.h; sourceTree = "<group>"; };
-		71328ACF17C36BDA007EE533 /* FDTakeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FDTakeController.m; path = ../../FDTake/FDTakeExample/FDTakeController.m; sourceTree = "<group>"; };
 		71328AF017C36E92007EE533 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		71328AF217C38162007EE533 /* OKMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKMainViewController.h; sourceTree = "<group>"; };
 		71328AF317C38162007EE533 /* OKMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKMainViewController.m; sourceTree = "<group>"; };
 		71328AF517C38ADB007EE533 /* MyCutomView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MyCutomView.h; path = ../../PhotoPixelDeneme/PhotoPixelDeneme/MyCutomView.h; sourceTree = "<group>"; };
 		71328AF617C38ADB007EE533 /* MyCutomView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = MyCutomView.m; path = ../../PhotoPixelDeneme/PhotoPixelDeneme/MyCutomView.m; sourceTree = "<group>"; };
 		71328AF917C3A5B8007EE533 /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
+		71ECEF8F195ABB3400872EBC /* FDTakeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDTakeController.h; sourceTree = "<group>"; };
+		71ECEF90195ABB3400872EBC /* FDTakeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDTakeController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,6 +80,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		710735A317C49E4200484D21 /* ResultsPage */ = {
+			isa = PBXGroup;
+			children = (
+				710735A017C4981400484D21 /* OKSonuclarViewController.h */,
+				710735A117C4981400484D21 /* OKSonuclarViewController.m */,
+				710735A417C49E6800484D21 /* OKSonuclarCell.h */,
+				710735A517C49E6800484D21 /* OKSonuclarCell.m */,
+			);
+			name = ResultsPage;
+			sourceTree = "<group>";
+		};
 		71328A8917C35FD7007EE533 = {
 			isa = PBXGroup;
 			children = (
@@ -106,9 +123,10 @@
 		71328A9B17C35FD7007EE533 /* Sac Boyam */ = {
 			isa = PBXGroup;
 			children = (
-				71328AF717C38B07007EE533 /* SecondView */,
 				71328AEF17C36C9B007EE533 /* FDTake */,
 				71328AC117C365F7007EE533 /* images */,
+				71328AF717C38B07007EE533 /* SelectColourPage */,
+				710735A317C49E4200484D21 /* ResultsPage */,
 				71328AA417C35FD7007EE533 /* OKAppDelegate.h */,
 				71328AA517C35FD7007EE533 /* OKAppDelegate.m */,
 				71328AAD17C35FD7007EE533 /* MainStoryboard_iPhone.storyboard */,
@@ -146,13 +164,13 @@
 		71328AEF17C36C9B007EE533 /* FDTake */ = {
 			isa = PBXGroup;
 			children = (
-				71328ACE17C36BDA007EE533 /* FDTakeController.h */,
-				71328ACF17C36BDA007EE533 /* FDTakeController.m */,
+				71ECEF8F195ABB3400872EBC /* FDTakeController.h */,
+				71ECEF90195ABB3400872EBC /* FDTakeController.m */,
 			);
 			name = FDTake;
 			sourceTree = "<group>";
 		};
-		71328AF717C38B07007EE533 /* SecondView */ = {
+		71328AF717C38B07007EE533 /* SelectColourPage */ = {
 			isa = PBXGroup;
 			children = (
 				71328AF517C38ADB007EE533 /* MyCutomView.h */,
@@ -160,7 +178,7 @@
 				71328AB317C35FD7007EE533 /* OKViewController.h */,
 				71328AB417C35FD7007EE533 /* OKViewController.m */,
 			);
-			name = SecondView;
+			name = SelectColourPage;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -240,12 +258,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				71ECEF91195ABB3400872EBC /* FDTakeController.m in Sources */,
 				71328AF817C38BA5007EE533 /* MyCutomView.m in Sources */,
 				71328AA217C35FD7007EE533 /* main.m in Sources */,
 				71328AA617C35FD7007EE533 /* OKAppDelegate.m in Sources */,
 				71328AB517C35FD7007EE533 /* OKViewController.m in Sources */,
-				71328AE717C36BDA007EE533 /* FDTakeController.m in Sources */,
 				71328AF417C38162007EE533 /* OKMainViewController.m in Sources */,
+				710735A217C4981400484D21 /* OKSonuclarViewController.m in Sources */,
+				710735A617C49E6800484D21 /* OKSonuclarCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -378,6 +398,7 @@
 				71328ABA17C35FD7007EE533 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

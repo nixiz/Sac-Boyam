@@ -48,7 +48,7 @@ struct pixel {
 
 - (void)viewDidAppear:(BOOL)animated {
   
-  self.myView = [[MyCutomView alloc] initWithFrame:self.selectedImage.bounds andStartPoint:CGPointMake(0, 0)];
+  self.myView = [[MyCutomView alloc] initWithFrame:self.selectedImage.bounds andStartPoint:self.selectedImage.frame.origin];
   self.myView.backgroundColor = [UIColor clearColor];
   
 }
@@ -61,6 +61,8 @@ struct pixel {
 
 - (void)takeController:(FDTakeController *)controller didCancelAfterAttempting:(BOOL)madeAttempt
 {
+  [self.navigationController popToRootViewControllerAnimated:NO];
+  //[self dismissViewControllerAnimated:YES completion:nil];
   UIAlertView *alertView;
   if (madeAttempt)
     alertView = [[UIAlertView alloc] initWithTitle:@"Example app" message:@"The take was cancelled after selecting media" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
@@ -72,12 +74,27 @@ struct pixel {
 - (void)takeController:(FDTakeController *)controller gotPhoto:(UIImage *)photo withInfo:(NSDictionary *)info
 {
   //TODO: Ask if user wants to save original photo..
-  //UIImage *originalImage = (UIImage *) [info objectForKey:
-  //                           UIImagePickerControllerOriginalImage];
+  UIImage *originalImage = (UIImage *) [info objectForKey:
+                             UIImagePickerControllerOriginalImage];
+  
+  UIGraphicsBeginImageContext(self.selectedImage.bounds.size);
+  [photo drawInRect:self.selectedImage.bounds];
+  UIImage *smallImage = UIGraphicsGetImageFromCurrentImageContext();
+  UIGraphicsEndImageContext();
+  NSLog(@"Small Image Size: %@", NSStringFromCGSize(smallImage.size));
+
+  CGImageRef imagerRef = CGImageCreateWithImageInRect([smallImage CGImage], self.selectedImage.bounds);
+  UIImage *croppedImage = [UIImage imageWithCGImage:imagerRef];
+  
   //[self.imageView setImage:originalImage];
+  NSLog(@"Original Image Size: %@", NSStringFromCGSize(originalImage.size));
+  NSLog(@"Cropped  Image Size: %@", NSStringFromCGSize(croppedImage.size));
   
   //UIImageWriteToSavedPhotosAlbum(photo, nil, nil, nil);
-  [self.selectedImage setImage:photo];
+  [self.selectedImage setImage:croppedImage];
+  self.myView = [[MyCutomView alloc] initWithFrame:self.selectedImage.bounds andStartPoint:self.selectedImage.frame.origin];
+  self.myView.backgroundColor = [UIColor clearColor];
+  //[self.selectedImage sizeToFit];
 }
 
 
@@ -88,7 +105,7 @@ struct pixel {
   if ([self.selectedImage pointInside:point withEvent:event])
   {
     // Create a rectangle (10x10) from touched touched point
-    CGRect rect1 = CGRectMake(point.x - 5, point.y - 5, 10, 10);
+    CGRect rect1 = CGRectMake(point.x-5, point.y-5, 10, 10);
     // Crop a picture from given rectangle
     CGImageRef imageRef = CGImageCreateWithImageInRect([self.selectedImage.image CGImage], rect1);
     //DEBUG_ONLY//UIImage *tmp_img = [UIImage imageWithCGImage:imageRef];
@@ -126,25 +143,26 @@ struct pixel {
     /***--Crop photo from touched point and calculate average color of cropped photo.--***/
     
     // Create a rectangle (10x10) from touched touched point
-    CGRect rect1 = CGRectMake(point.x - 5, point.y - 5, 10, 10);
+    CGRect rect1 = CGRectMake(point.x-5, point.y-5, 10, 10);
     // Crop a picture from given rectangle
     CGImageRef imageRef = CGImageCreateWithImageInRect([self.selectedImage.image CGImage], rect1);
-    //DEBUG_ONLY//UIImage *tmp_img = [UIImage imageWithCGImage:imageRef];
-    //DEBUG_ONLY//[self.previewImage setImage:img];
+    UIImage *tmp_img = [UIImage imageWithCGImage:imageRef];
+    [self.previewImage setImage:tmp_img];
     // calculate average color for next steps
     UIColor *color = [self getAverageColorOfCroppedImage:[UIImage imageWithCGImage:imageRef]];
-    //DEBUG_ONLY//NSLog(@"Average Color of Picture: %@", [CIColor colorWithCGColor:color.CGColor].stringRepresentation);
+    NSLog(@"Average Color of Picture: %@", [CIColor colorWithCGColor:color.CGColor].stringRepresentation);
+    NSLog(@"Touched Point: %@", NSStringFromCGRect(rect1));
     
     // show average color for user interaction.
-    CGRect rect = self.previewImage.bounds;
-    UIGraphicsBeginImageContext(rect.size);
-    CGContextRef context = UIGraphicsGetCurrentContext();
-    CGContextSetFillColorWithColor(context, [color CGColor]);
-    CGContextFillRect(context, rect);
-    UIImage *img = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
+    //CGRect rect = self.previewImage.bounds;
+    //UIGraphicsBeginImageContext(rect.size);
+    //CGContextRef context = UIGraphicsGetCurrentContext();
+    //CGContextSetFillColorWithColor(context, [color CGColor]);
+    //CGContextFillRect(context, rect);
+    //UIImage *img = UIGraphicsGetImageFromCurrentImageContext();
+    //UIGraphicsEndImageContext();
     
-    [self.previewImage setImage:img];
+    //[self.previewImage setImage:img];
     
     self.myView.newPoint = point;
     [self.view addSubview:self.myView];
