@@ -28,6 +28,7 @@
 		71328AF817C38BA5007EE533 /* MyCutomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 71328AF617C38ADB007EE533 /* MyCutomView.m */; };
 		71328AFA17C3A5B8007EE533 /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71328AF917C3A5B8007EE533 /* CoreImage.framework */; };
 		71ECEF91195ABB3400872EBC /* FDTakeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 71ECEF90195ABB3400872EBC /* FDTakeController.m */; };
+		71ECEF95195AC2A600872EBC /* UIImage+AverageColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 71ECEF94195AC2A600872EBC /* UIImage+AverageColor.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -62,6 +63,8 @@
 		71328AF917C3A5B8007EE533 /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
 		71ECEF8F195ABB3400872EBC /* FDTakeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDTakeController.h; sourceTree = "<group>"; };
 		71ECEF90195ABB3400872EBC /* FDTakeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDTakeController.m; sourceTree = "<group>"; };
+		71ECEF93195AC2A600872EBC /* UIImage+AverageColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+AverageColor.h"; sourceTree = "<group>"; };
+		71ECEF94195AC2A600872EBC /* UIImage+AverageColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+AverageColor.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -133,6 +136,8 @@
 				71328AB017C35FD7007EE533 /* MainStoryboard_iPad.storyboard */,
 				71328AF217C38162007EE533 /* OKMainViewController.h */,
 				71328AF317C38162007EE533 /* OKMainViewController.m */,
+				71ECEF93195AC2A600872EBC /* UIImage+AverageColor.h */,
+				71ECEF94195AC2A600872EBC /* UIImage+AverageColor.m */,
 				71328A9C17C35FD7007EE533 /* Supporting Files */,
 			);
 			path = "Sac Boyam";
@@ -264,6 +269,7 @@
 				71328AA617C35FD7007EE533 /* OKAppDelegate.m in Sources */,
 				71328AB517C35FD7007EE533 /* OKViewController.m in Sources */,
 				71328AF417C38162007EE533 /* OKMainViewController.m in Sources */,
+				71ECEF95195AC2A600872EBC /* UIImage+AverageColor.m in Sources */,
 				710735A217C4981400484D21 /* OKSonuclarViewController.m in Sources */,
 				710735A617C49E6800484D21 /* OKSonuclarCell.m in Sources */,
 			);
