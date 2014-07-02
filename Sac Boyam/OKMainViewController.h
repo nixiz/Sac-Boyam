@@ -10,5 +10,4 @@
 #import "FDTakeController.h"
 
 @interface OKMainViewController : UIViewController
-- (IBAction)OnStartClicked:(id)sender;
 @end

@@ -27,6 +27,13 @@
 		71328AF417C38162007EE533 /* OKMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 71328AF317C38162007EE533 /* OKMainViewController.m */; };
 		71328AF817C38BA5007EE533 /* MyCutomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 71328AF617C38ADB007EE533 /* MyCutomView.m */; };
 		71328AFA17C3A5B8007EE533 /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71328AF917C3A5B8007EE533 /* CoreImage.framework */; };
+		71364338195C3B93006EF824 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71364337195C3B93006EF824 /* QuartzCore.framework */; };
+		7136433A195C4E3F006EF824 /* sacli.png in Resources */ = {isa = PBXBuildFile; fileRef = 71364339195C4E3F006EF824 /* sacli.png */; };
+		7136433D195C5E08006EF824 /* OKUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 7136433C195C5E08006EF824 /* OKUtils.m */; };
+		718986551963E59400C26297 /* OKZoomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 718986541963E59400C26297 /* OKZoomView.m */; };
+		718986581964186500C26297 /* UIImage+ImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = 718986571964186500C26297 /* UIImage+ImageEffects.m */; };
+		7189865A196419C100C26297 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71898659196419C100C26297 /* Accelerate.framework */; };
+		71898660196442D300C26297 /* gloss_effect.png in Resources */ = {isa = PBXBuildFile; fileRef = 7189865F196442D300C26297 /* gloss_effect.png */; };
 		71ECEF91195ABB3400872EBC /* FDTakeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 71ECEF90195ABB3400872EBC /* FDTakeController.m */; };
 		71ECEF95195AC2A600872EBC /* UIImage+AverageColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 71ECEF94195AC2A600872EBC /* UIImage+AverageColor.m */; };
 /* End PBXBuildFile section */
@@ -61,6 +68,16 @@
 		71328AF517C38ADB007EE533 /* MyCutomView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MyCutomView.h; path = ../../PhotoPixelDeneme/PhotoPixelDeneme/MyCutomView.h; sourceTree = "<group>"; };
 		71328AF617C38ADB007EE533 /* MyCutomView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = MyCutomView.m; path = ../../PhotoPixelDeneme/PhotoPixelDeneme/MyCutomView.m; sourceTree = "<group>"; };
 		71328AF917C3A5B8007EE533 /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
+		71364337195C3B93006EF824 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		71364339195C4E3F006EF824 /* sacli.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sacli.png; sourceTree = "<group>"; };
+		7136433B195C5E08006EF824 /* OKUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKUtils.h; sourceTree = "<group>"; };
+		7136433C195C5E08006EF824 /* OKUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKUtils.m; sourceTree = "<group>"; };
+		718986531963E59400C26297 /* OKZoomView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKZoomView.h; sourceTree = "<group>"; };
+		718986541963E59400C26297 /* OKZoomView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKZoomView.m; sourceTree = "<group>"; };
+		718986561964186500C26297 /* UIImage+ImageEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+ImageEffects.h"; sourceTree = "<group>"; };
+		718986571964186500C26297 /* UIImage+ImageEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ImageEffects.m"; sourceTree = "<group>"; };
+		71898659196419C100C26297 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
+		7189865F196442D300C26297 /* gloss_effect.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = gloss_effect.png; path = ../../../photoshop_files/gloss_effect.png; sourceTree = "<group>"; };
 		71ECEF8F195ABB3400872EBC /* FDTakeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDTakeController.h; sourceTree = "<group>"; };
 		71ECEF90195ABB3400872EBC /* FDTakeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDTakeController.m; sourceTree = "<group>"; };
 		71ECEF93195AC2A600872EBC /* UIImage+AverageColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+AverageColor.h"; sourceTree = "<group>"; };
@@ -72,6 +89,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7189865A196419C100C26297 /* Accelerate.framework in Frameworks */,
+				71364338195C3B93006EF824 /* QuartzCore.framework in Frameworks */,
 				71328AFA17C3A5B8007EE533 /* CoreImage.framework in Frameworks */,
 				71328AF117C36E92007EE533 /* MobileCoreServices.framework in Frameworks */,
 				71328A9617C35FD7007EE533 /* UIKit.framework in Frameworks */,
@@ -114,6 +133,8 @@
 		71328A9417C35FD7007EE533 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				71898659196419C100C26297 /* Accelerate.framework */,
+				71364337195C3B93006EF824 /* QuartzCore.framework */,
 				71328AF917C3A5B8007EE533 /* CoreImage.framework */,
 				71328AF017C36E92007EE533 /* MobileCoreServices.framework */,
 				71328A9517C35FD7007EE533 /* UIKit.framework */,
@@ -128,7 +149,7 @@
 			children = (
 				71328AEF17C36C9B007EE533 /* FDTake */,
 				71328AC117C365F7007EE533 /* images */,
-				71328AF717C38B07007EE533 /* SelectColourPage */,
+				71328AF717C38B07007EE533 /* SelectColorPage */,
 				710735A317C49E4200484D21 /* ResultsPage */,
 				71328AA417C35FD7007EE533 /* OKAppDelegate.h */,
 				71328AA517C35FD7007EE533 /* OKAppDelegate.m */,
@@ -139,6 +160,10 @@
 				71ECEF93195AC2A600872EBC /* UIImage+AverageColor.h */,
 				71ECEF94195AC2A600872EBC /* UIImage+AverageColor.m */,
 				71328A9C17C35FD7007EE533 /* Supporting Files */,
+				7136433B195C5E08006EF824 /* OKUtils.h */,
+				7136433C195C5E08006EF824 /* OKUtils.m */,
+				718986561964186500C26297 /* UIImage+ImageEffects.h */,
+				718986571964186500C26297 /* UIImage+ImageEffects.m */,
 			);
 			path = "Sac Boyam";
 			sourceTree = "<group>";
@@ -160,6 +185,8 @@
 		71328AC117C365F7007EE533 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				7189865F196442D300C26297 /* gloss_effect.png */,
+				71364339195C4E3F006EF824 /* sacli.png */,
 				71328ABD17C365F3007EE533 /* derpette_brown.png */,
 				71328ABE17C365F3007EE533 /* derpette_blond.png */,
 			);
@@ -175,15 +202,17 @@
 			name = FDTake;
 			sourceTree = "<group>";
 		};
-		71328AF717C38B07007EE533 /* SelectColourPage */ = {
+		71328AF717C38B07007EE533 /* SelectColorPage */ = {
 			isa = PBXGroup;
 			children = (
 				71328AF517C38ADB007EE533 /* MyCutomView.h */,
 				71328AF617C38ADB007EE533 /* MyCutomView.m */,
 				71328AB317C35FD7007EE533 /* OKViewController.h */,
 				71328AB417C35FD7007EE533 /* OKViewController.m */,
+				718986531963E59400C26297 /* OKZoomView.h */,
+				718986541963E59400C26297 /* OKZoomView.m */,
 			);
-			name = SelectColourPage;
+			name = SelectColorPage;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -250,9 +279,11 @@
 				71328AAA17C35FD7007EE533 /* Default@2x.png in Resources */,
 				71328AAC17C35FD7007EE533 /* Default-568h@2x.png in Resources */,
 				71328AAF17C35FD7007EE533 /* MainStoryboard_iPhone.storyboard in Resources */,
+				71898660196442D300C26297 /* gloss_effect.png in Resources */,
 				71328AB217C35FD7007EE533 /* MainStoryboard_iPad.storyboard in Resources */,
 				71328ABF17C365F3007EE533 /* derpette_brown.png in Resources */,
 				71328AC017C365F3007EE533 /* derpette_blond.png in Resources */,
+				7136433A195C4E3F006EF824 /* sacli.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -263,12 +294,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				718986551963E59400C26297 /* OKZoomView.m in Sources */,
 				71ECEF91195ABB3400872EBC /* FDTakeController.m in Sources */,
 				71328AF817C38BA5007EE533 /* MyCutomView.m in Sources */,
 				71328AA217C35FD7007EE533 /* main.m in Sources */,
+				7136433D195C5E08006EF824 /* OKUtils.m in Sources */,
 				71328AA617C35FD7007EE533 /* OKAppDelegate.m in Sources */,
 				71328AB517C35FD7007EE533 /* OKViewController.m in Sources */,
 				71328AF417C38162007EE533 /* OKMainViewController.m in Sources */,
+				718986581964186500C26297 /* UIImage+ImageEffects.m in Sources */,
 				71ECEF95195AC2A600872EBC /* UIImage+AverageColor.m in Sources */,
 				710735A217C4981400484D21 /* OKSonuclarViewController.m in Sources */,
 				710735A617C49E6800484D21 /* OKSonuclarCell.m in Sources */,
@@ -369,7 +403,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Sac Boyam/Sac Boyam-Prefix.pch";
 				INFOPLIST_FILE = "Sac Boyam/Sac Boyam-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -380,7 +416,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Sac Boyam/Sac Boyam-Prefix.pch";
 				INFOPLIST_FILE = "Sac Boyam/Sac Boyam-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

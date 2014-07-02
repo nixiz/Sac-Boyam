@@ -9,15 +9,16 @@
 #import "OKViewController.h"
 #import <QuartzCore/QuartzCore.h>
 #import "UIImage+AverageColor.h"
+#import "OKUtils.h"
+#import "OKZoomView.h"
 
-#define GetRectangleOfPoint(X,Y) CGRectMake((X)- 16, (Y)-16, 32, 32)
 
 struct pixel {
   unsigned char r,g,b,a;
 };
 
 @interface OKViewController () <FDTakeDelegate>
-@property (strong, nonatomic) MyCutomView *myView;
+@property (strong, nonatomic) OKZoomView *myView;
 
 @end
 
@@ -26,7 +27,8 @@ struct pixel {
 - (void)viewDidLoad
 {
   [super viewDidLoad];
-  [self.navigationController setNavigationBarHidden:NO animated:NO];
+//  [self.navigationController setNavigationBarHidden:NO animated:NO];
+  [self.view.layer insertSublayer:[OKUtils getBackgroundLayer:self.view.bounds] atIndex:0];
 
   self.takeController = [[FDTakeController alloc] init];
   self.takeController.delegate = self;
@@ -51,7 +53,8 @@ struct pixel {
 
 - (void)viewDidAppear:(BOOL)animated {
   
-  self.myView = [[MyCutomView alloc] initWithFrame:self.selectedImage.bounds andStartPoint:self.selectedImage.frame.origin];
+//  self.myView = [[MyCutomView alloc] initWithFrame:self.selectedImage.bounds andStartPoint:self.selectedImage.frame.origin];
+  self.myView = [[OKZoomView alloc] initWithFrame:self.selectedImage.bounds andStartPoint:self.selectedImage.frame.origin];
   self.myView.backgroundColor = [UIColor clearColor];
   
 }
@@ -65,12 +68,11 @@ struct pixel {
 - (void)takeController:(FDTakeController *)controller didCancelAfterAttempting:(BOOL)madeAttempt
 {
   [self.navigationController popToRootViewControllerAnimated:NO];
-  //[self dismissViewControllerAnimated:YES completion:nil];
   UIAlertView *alertView;
   if (madeAttempt)
-    alertView = [[UIAlertView alloc] initWithTitle:@"Example app" message:@"The take was cancelled after selecting media" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-  else
-    alertView = [[UIAlertView alloc] initWithTitle:@"Example app" message:@"The take was cancelled without selecting media" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    alertView = [[UIAlertView alloc] initWithTitle:@"Ooopps!!" message:@"The take was cancelled after selecting media" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+//  else
+//    alertView = [[UIAlertView alloc] initWithTitle:@"Example app" message:@"The take was cancelled without selecting media" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
   [alertView show];
 }
 
@@ -95,7 +97,9 @@ struct pixel {
   
   //UIImageWriteToSavedPhotosAlbum(photo, nil, nil, nil);
   [self.selectedImage setImage:croppedImage];
-  self.myView = [[MyCutomView alloc] initWithFrame:self.selectedImage.bounds andStartPoint:self.selectedImage.frame.origin];
+  self.myView = [[OKZoomView alloc] initWithFrame:self.selectedImage.bounds andStartPoint:self.selectedImage.frame.origin];
+
+//  self.myView = [[MyCutomView alloc] initWithFrame:self.selectedImage.bounds andStartPoint:self.selectedImage.frame.origin];
   self.myView.backgroundColor = [UIColor clearColor];
   //[self.selectedImage sizeToFit];
 }
@@ -150,36 +154,10 @@ struct pixel {
 
     // Crop a picture from given rectangle
     CGImageRef imageRef = CGImageCreateWithImageInRect([self.selectedImage.image CGImage], rect1);
-
-//    UIImage *tmp_img_1 = [UIImage imageWithCGImage:imageRef];
-//    UIColor *averageColor = [tmp_img_1 averageColor];
-//
-//    CGContextRef context = UIGraphicsGetCurrentContext();
-//    CGImageRef imageRef2 = CGImageCreateWithImageInRect([self.selectedImage.image CGImage], rect1);
-//    
-//    CGImageRef maskedImageRef;
-//    const CGFloat *colorComponents = CGColorGetComponents([averageColor CGColor]);
-//    const CGFloat *blackColorComp = CGColorGetComponents([[UIColor darkGrayColor] CGColor]);
-//    const CGFloat maskingColors[6] = {blackColorComp[0], colorComponents[0], blackColorComp[1], colorComponents[1], blackColorComp[2], colorComponents[2]};
-//
-//    maskedImageRef = CGImageCreateWithMaskingColors(imageRef2, maskingColors);
-////    UIImage *maskedImage = [UIImage imageWithCGImage:maskedImageRef];
-//    CGContextDrawImage(context, rect1, maskedImageRef);
-//    
-//    UIImage *img = UIGraphicsGetImageFromCurrentImageContext();
-//    UIGraphicsEndImageContext();
-//    [self.previewImage setImage:img];
-    
-    
     UIImage *tmp_img = [UIImage imageWithCGImage:imageRef];
-//    [self.previewImage setImage:tmp_img];
+
     // calculate average color for next steps
-    
     UIColor *color = [tmp_img averageColor];
-    UIColor *newcolor = [self getAverageColorOfCroppedImage:[UIImage imageWithCGImage:imageRef]];
-    NSLog(@"Average  Color of Picture: %@", [CIColor colorWithCGColor:color.CGColor].stringRepresentation);
-    NSLog(@"Average2 Color of Picture: %@", [CIColor colorWithCGColor:newcolor.CGColor].stringRepresentation);
-    NSLog(@"Touched Point: %@", NSStringFromCGRect(rect1));
     
     // show average color for user interaction.
     CGRect rect = self.previewImage.bounds;
@@ -191,14 +169,12 @@ struct pixel {
     UIGraphicsEndImageContext();
     [self.previewImage setImage:img];
     
-    
+    self.myView.previewImage = img;
     self.myView.newPoint = point;
     [self.view addSubview:self.myView];
     [self.myView setNeedsDisplay];
-    
   }
   [super touchesMoved:touches withEvent:event];
-  
 }
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
