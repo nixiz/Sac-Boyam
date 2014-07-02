@@ -13,6 +13,6 @@
 - (id)initWithFrame:(CGRect)frame andStartPoint:(CGPoint)point PreviewImage:(UIImage *)previewImage;
 
 @property CGPoint newPoint;
-@property (weak) UIImage *previewImage;
+@property (strong) UIImage *previewImage;
 @property (strong, nonatomic) UIImageView *imageView;
 @end

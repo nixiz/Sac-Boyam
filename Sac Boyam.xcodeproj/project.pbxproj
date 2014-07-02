@@ -33,7 +33,7 @@
 		718986551963E59400C26297 /* OKZoomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 718986541963E59400C26297 /* OKZoomView.m */; };
 		718986581964186500C26297 /* UIImage+ImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = 718986571964186500C26297 /* UIImage+ImageEffects.m */; };
 		7189865A196419C100C26297 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71898659196419C100C26297 /* Accelerate.framework */; };
-		71898660196442D300C26297 /* gloss_effect.png in Resources */ = {isa = PBXBuildFile; fileRef = 7189865F196442D300C26297 /* gloss_effect.png */; };
+		718986661964592B00C26297 /* final_effect_2.png in Resources */ = {isa = PBXBuildFile; fileRef = 718986651964592B00C26297 /* final_effect_2.png */; };
 		71ECEF91195ABB3400872EBC /* FDTakeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 71ECEF90195ABB3400872EBC /* FDTakeController.m */; };
 		71ECEF95195AC2A600872EBC /* UIImage+AverageColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 71ECEF94195AC2A600872EBC /* UIImage+AverageColor.m */; };
 /* End PBXBuildFile section */
@@ -77,7 +77,7 @@
 		718986561964186500C26297 /* UIImage+ImageEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+ImageEffects.h"; sourceTree = "<group>"; };
 		718986571964186500C26297 /* UIImage+ImageEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ImageEffects.m"; sourceTree = "<group>"; };
 		71898659196419C100C26297 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
-		7189865F196442D300C26297 /* gloss_effect.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = gloss_effect.png; path = ../../../photoshop_files/gloss_effect.png; sourceTree = "<group>"; };
+		718986651964592B00C26297 /* final_effect_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = final_effect_2.png; sourceTree = "<group>"; };
 		71ECEF8F195ABB3400872EBC /* FDTakeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDTakeController.h; sourceTree = "<group>"; };
 		71ECEF90195ABB3400872EBC /* FDTakeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDTakeController.m; sourceTree = "<group>"; };
 		71ECEF93195AC2A600872EBC /* UIImage+AverageColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+AverageColor.h"; sourceTree = "<group>"; };
@@ -147,8 +147,7 @@
 		71328A9B17C35FD7007EE533 /* Sac Boyam */ = {
 			isa = PBXGroup;
 			children = (
-				71328AEF17C36C9B007EE533 /* FDTake */,
-				71328AC117C365F7007EE533 /* images */,
+				7189866719645B7B00C26297 /* Utils */,
 				71328AF717C38B07007EE533 /* SelectColorPage */,
 				710735A317C49E4200484D21 /* ResultsPage */,
 				71328AA417C35FD7007EE533 /* OKAppDelegate.h */,
@@ -157,13 +156,8 @@
 				71328AB017C35FD7007EE533 /* MainStoryboard_iPad.storyboard */,
 				71328AF217C38162007EE533 /* OKMainViewController.h */,
 				71328AF317C38162007EE533 /* OKMainViewController.m */,
-				71ECEF93195AC2A600872EBC /* UIImage+AverageColor.h */,
-				71ECEF94195AC2A600872EBC /* UIImage+AverageColor.m */,
+				71328AC117C365F7007EE533 /* images */,
 				71328A9C17C35FD7007EE533 /* Supporting Files */,
-				7136433B195C5E08006EF824 /* OKUtils.h */,
-				7136433C195C5E08006EF824 /* OKUtils.m */,
-				718986561964186500C26297 /* UIImage+ImageEffects.h */,
-				718986571964186500C26297 /* UIImage+ImageEffects.m */,
 			);
 			path = "Sac Boyam";
 			sourceTree = "<group>";
@@ -185,7 +179,7 @@
 		71328AC117C365F7007EE533 /* images */ = {
 			isa = PBXGroup;
 			children = (
-				7189865F196442D300C26297 /* gloss_effect.png */,
+				718986651964592B00C26297 /* final_effect_2.png */,
 				71364339195C4E3F006EF824 /* sacli.png */,
 				71328ABD17C365F3007EE533 /* derpette_brown.png */,
 				71328ABE17C365F3007EE533 /* derpette_blond.png */,
@@ -213,6 +207,20 @@
 				718986541963E59400C26297 /* OKZoomView.m */,
 			);
 			name = SelectColorPage;
+			sourceTree = "<group>";
+		};
+		7189866719645B7B00C26297 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				71328AEF17C36C9B007EE533 /* FDTake */,
+				7136433B195C5E08006EF824 /* OKUtils.h */,
+				7136433C195C5E08006EF824 /* OKUtils.m */,
+				718986561964186500C26297 /* UIImage+ImageEffects.h */,
+				718986571964186500C26297 /* UIImage+ImageEffects.m */,
+				71ECEF93195AC2A600872EBC /* UIImage+AverageColor.h */,
+				71ECEF94195AC2A600872EBC /* UIImage+AverageColor.m */,
+			);
+			name = Utils;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -278,8 +286,8 @@
 				71328AA817C35FD7007EE533 /* Default.png in Resources */,
 				71328AAA17C35FD7007EE533 /* Default@2x.png in Resources */,
 				71328AAC17C35FD7007EE533 /* Default-568h@2x.png in Resources */,
+				718986661964592B00C26297 /* final_effect_2.png in Resources */,
 				71328AAF17C35FD7007EE533 /* MainStoryboard_iPhone.storyboard in Resources */,
-				71898660196442D300C26297 /* gloss_effect.png in Resources */,
 				71328AB217C35FD7007EE533 /* MainStoryboard_iPad.storyboard in Resources */,
 				71328ABF17C365F3007EE533 /* derpette_brown.png in Resources */,
 				71328AC017C365F3007EE533 /* derpette_blond.png in Resources */,

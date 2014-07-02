@@ -75,40 +75,19 @@
 {
   CGRect rec = [self getRectangleFromPoint:self.newPoint withDimensions:80];
 
-  UIImageView *glossImage = [[UIImageView alloc] initWithImage: [UIImage imageNamed:@"gloss_effect.png"]];
-  
-//  UIImage *lighterImage = [self.previewImage applyLightEffect];
-//  
-//  
-//  UIGraphicsBeginImageContextWithOptions(self.previewImage.size, NO, self.previewImage.scale);
-//  CGContextRef context = UIGraphicsGetCurrentContext();
-//  CGContextTranslateCTM(context, 0, self.previewImage.size.height);
-//  CGContextScaleCTM(context, 1.0, -1.0);
-//  
-//  CGContextSetBlendMode(context, kCGBlendModeNormal);
-//  
-//  // Create gradient
-//  NSArray *colors = [NSArray arrayWithObjects:(id)[lighterImage averageColor].CGColor, (id)[self.previewImage averageColor].CGColor, nil];
-//  CGColorSpaceRef space = CGColorSpaceCreateDeviceRGB();
-//  CGGradientRef gradient = CGGradientCreateWithColors(space, (__bridge CFArrayRef)colors, NULL);
-//  
-//  // Apply gradient
-//  CGContextClipToMask(context, rect, self.previewImage.CGImage);
-//  CGContextDrawLinearGradient(context, gradient, CGPointMake(0,0), CGPointMake(0, self.previewImage.size.height), kCGGradientDrawsAfterEndLocation);
-//  UIImage *gradientImage = UIGraphicsGetImageFromCurrentImageContext();
-//  UIGraphicsEndImageContext();
-//  
-//  CGGradientRelease(gradient);
-//  CGColorSpaceRelease(space);
-  
-  
-//  self.previewImage = [self.previewImage applyBlurWithRadius:10 tintColor:[UIColor whiteColor] saturationDeltaFactor:1.0 maskImage:self.previewImage];
-//  self.previewImage = [self.previewImage applyTintEffectWithColor:[UIColor whiteColor]];
-//  self.previewImage = [self.previewImage applyLightEffect];
+  UIImage *glossImage = [UIImage imageNamed:@"final_effect_2.png"];
+
+  CGRect drawingRect = CGRectMake(0, 0, rec.size.width, rec.size.height);
+  UIGraphicsBeginImageContext(drawingRect.size);
+  [self.previewImage drawInRect:drawingRect];
+  [glossImage drawInRect:drawingRect blendMode:kCGBlendModeScreen alpha:0.3];
+  UIImage *blendedImage = UIGraphicsGetImageFromCurrentImageContext();
+  UIGraphicsEndImageContext();
+
   [self.imageView setFrame:rec];
-  [self.imageView setImage:self.previewImage];
-  [self.imageView addSubview:glossImage];
-  
+  [self.imageView setImage:blendedImage];
+  self.imageView.layer.borderWidth = 3.0;
+  self.imageView.layer.borderColor = [[UIColor clearColor] CGColor];
 /*
  [self.view.layer insertSublayer:[OKUtils getBackgroundLayer:self.view.bounds] atIndex:0];
 */
