@@ -273,11 +273,11 @@
                         <viewControllerLayoutGuide type="bottom" id="885-tB-W9a"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="nxs-Rd-KbR">
-                        <rect key="frame" x="0.0" y="64" width="320" height="455"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="460"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" tag="4" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dHF-VK-IvN">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="207"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="212"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" tag="5" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="Default.png" translatesAutoresizingMaskIntoConstraints="NO" id="6KF-Ec-MCG">
@@ -288,7 +288,7 @@
                                     <constraint firstAttribute="height" constant="50" id="YK7-bd-hHZ"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Renk Kodu: #36fde44" lineBreakMode="headTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EaF-9X-rAQ">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Renk Kodu: #36fde44" textAlignment="center" lineBreakMode="headTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EaF-9X-rAQ">
                                 <rect key="frame" x="21" y="279" width="164" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <constraints>
@@ -313,48 +313,26 @@
                                     <segue destination="QEN-JS-ZP7" kind="push" id="1tN-Q2-9mB"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" tag="3" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lct-kH-L9C">
-                                <rect key="frame" x="20" y="338" width="280" height="60"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="60" id="y8M-Fy-AIs"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                <state key="normal" title="Tekrar Dene">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="SelectNewImage:" destination="EAa-oK-16g" eventType="touchUpInside" id="4YZ-VC-t6w"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="Lct-kH-L9C" firstAttribute="top" secondItem="CFL-A4-ee4" secondAttribute="bottom" constant="8" id="2Hp-Lm-MRF"/>
-                            <constraint firstItem="Lct-kH-L9C" firstAttribute="leading" secondItem="nxs-Rd-KbR" secondAttribute="leading" constant="20" id="88a-Ys-aZl"/>
                             <constraint firstItem="CFL-A4-ee4" firstAttribute="leading" secondItem="6KF-Ec-MCG" secondAttribute="trailing" constant="8" id="Bhg-7x-hwh"/>
                             <constraint firstItem="EaF-9X-rAQ" firstAttribute="leading" secondItem="nxs-Rd-KbR" secondAttribute="leading" id="Fv1-YR-gvx"/>
-                            <constraint firstItem="885-tB-W9a" firstAttribute="top" secondItem="Lct-kH-L9C" secondAttribute="bottom" constant="8" id="K1C-JQ-Lzd"/>
                             <constraint firstAttribute="trailing" secondItem="dHF-VK-IvN" secondAttribute="trailing" id="LaD-Fs-kuN"/>
-                            <constraint firstAttribute="trailing" secondItem="Lct-kH-L9C" secondAttribute="trailing" constant="20" id="RVr-nj-by1"/>
+                            <constraint firstItem="885-tB-W9a" firstAttribute="top" secondItem="6KF-Ec-MCG" secondAttribute="bottom" constant="25" id="QRs-hm-TCe"/>
                             <constraint firstItem="EaF-9X-rAQ" firstAttribute="top" secondItem="dHF-VK-IvN" secondAttribute="bottom" constant="12" id="bhG-d3-kFi"/>
                             <constraint firstAttribute="trailing" secondItem="CFL-A4-ee4" secondAttribute="trailing" id="bpC-M8-XSe"/>
                             <constraint firstItem="6KF-Ec-MCG" firstAttribute="top" secondItem="EaF-9X-rAQ" secondAttribute="bottom" constant="-22" id="dNp-9s-FKu"/>
                             <constraint firstItem="6KF-Ec-MCG" firstAttribute="leading" secondItem="nxs-Rd-KbR" secondAttribute="leading" id="gxH-Cw-Nfb"/>
                             <constraint firstItem="dHF-VK-IvN" firstAttribute="top" secondItem="Mgy-xc-duy" secondAttribute="bottom" id="qHn-EJ-EuW"/>
                             <constraint firstItem="dHF-VK-IvN" firstAttribute="leading" secondItem="nxs-Rd-KbR" secondAttribute="leading" id="quo-0k-nAJ"/>
-                            <constraint firstAttribute="centerX" secondItem="Lct-kH-L9C" secondAttribute="centerX" id="wYD-ZX-o9O"/>
-                            <constraint firstItem="Lct-kH-L9C" firstAttribute="top" secondItem="6KF-Ec-MCG" secondAttribute="bottom" constant="8" id="xtR-v8-zWD"/>
+                            <constraint firstItem="885-tB-W9a" firstAttribute="top" secondItem="CFL-A4-ee4" secondAttribute="bottom" constant="25" id="zxn-dE-OA8"/>
                         </constraints>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout"/>
-                    <navigationItem key="navigationItem" id="EXV-Tl-qd6">
-                        <barButtonItem key="rightBarButtonItem" systemItem="action" id="kYW-yd-hPp">
-                            <connections>
-                                <action selector="SelectNewImage:" destination="EAa-oK-16g" id="MQe-j4-OpX"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="EXV-Tl-qd6"/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <size key="freeformSize" width="320" height="568"/>
                     <connections>
                         <outlet property="lblRenkKodu" destination="EaF-9X-rAQ" id="507-N0-a1N"/>

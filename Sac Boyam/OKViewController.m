@@ -28,12 +28,29 @@ struct pixel {
 {
   [super viewDidLoad];
 //  [self.navigationController setNavigationBarHidden:NO animated:NO];
+  
+  
+//  UIView *customNavigationView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 180, 60)];
+//  UIButton *btn1 = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+//  [btn1 setFrame:CGRectMake(120, 0, 60, 60)];
+//  btn1 setTitle:@"<#string#>" forState:<#(UIControlState)#>
+
+  UIBarButtonItem *btn1 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(SelectNewImage:)];
+  UIBarButtonItem *fixedSpaceBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
+  [fixedSpaceBarButtonItem setWidth:8];
+  UIBarButtonItem *btn2 = [[UIBarButtonItem alloc] initWithTitle:@"Resim Sec" style:UIBarButtonItemStylePlain target:nil action:nil];
+//  [customNavigationView addSubview:btn1];
+  self.navigationItem.rightBarButtonItems = @[btn1, fixedSpaceBarButtonItem, btn2];
+  
+  
   [self.view.layer insertSublayer:[OKUtils getBackgroundLayer:self.view.bounds] atIndex:0];
 
   UIImage *img = [UIImage imageNamed:@"default_screen"];
   img = [img addTextToImageWithText:@"Baslamak Icin Resim Secin"];
   [self.selectedImage setImage: img];
-  
+  self.previewImage.layer.cornerRadius = self.selectedImage.bounds.size.height / 8;
+  self.previewImage.layer.masksToBounds = YES;
+
   self.takeController = [[FDTakeController alloc] init];
   self.takeController.delegate = self;
   
@@ -45,7 +62,7 @@ struct pixel {
   self.takeController.noSourcesText = @"No Photos Available";
   
   self.takeController.allowsEditingPhoto = YES;
-  [self SelectNewImage:nil];
+//  [self SelectNewImage:nil];
 	// Do any additional setup after loading the view, typically from a nib.
 }
 
@@ -71,13 +88,13 @@ struct pixel {
 
 - (void)takeController:(FDTakeController *)controller didCancelAfterAttempting:(BOOL)madeAttempt
 {
-  [self.navigationController popToRootViewControllerAnimated:NO];
-  UIAlertView *alertView;
-  if (madeAttempt)
-    alertView = [[UIAlertView alloc] initWithTitle:@"Ooopps!!" message:@"The take was cancelled after selecting media" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-//  else
-//    alertView = [[UIAlertView alloc] initWithTitle:@"Example app" message:@"The take was cancelled without selecting media" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-  [alertView show];
+//  [self.navigationController popToRootViewControllerAnimated:NO];
+//  UIAlertView *alertView;
+//  if (madeAttempt)
+//    alertView = [[UIAlertView alloc] initWithTitle:@"Ooopps!!" message:@"The take was cancelled after selecting media" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+////  else
+////    alertView = [[UIAlertView alloc] initWithTitle:@"Example app" message:@"The take was cancelled without selecting media" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+//  [alertView show];
 }
 
 - (void)takeController:(FDTakeController *)controller gotPhoto:(UIImage *)photo withInfo:(NSDictionary *)info
