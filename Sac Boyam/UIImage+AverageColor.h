@@ -10,4 +10,7 @@
 
 @interface UIImage (AverageColor)
 - (UIColor *)averageColor;
+- (UIImage *)addTextToImageWithText:(NSString *)text;
+- (UIImage *)addTextToImageWithText:(NSString *)text atPoint:(CGPoint)point;
+
 @end

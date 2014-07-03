@@ -30,6 +30,10 @@ struct pixel {
 //  [self.navigationController setNavigationBarHidden:NO animated:NO];
   [self.view.layer insertSublayer:[OKUtils getBackgroundLayer:self.view.bounds] atIndex:0];
 
+  UIImage *img = [UIImage imageNamed:@"default_screen"];
+  img = [img addTextToImageWithText:@"Baslamak Icin Resim Secin"];
+  [self.selectedImage setImage: img];
+  
   self.takeController = [[FDTakeController alloc] init];
   self.takeController.delegate = self;
   
@@ -41,7 +45,7 @@ struct pixel {
   self.takeController.noSourcesText = @"No Photos Available";
   
   self.takeController.allowsEditingPhoto = YES;
-  [self SelectNewImage:self];
+  [self SelectNewImage:nil];
 	// Do any additional setup after loading the view, typically from a nib.
 }
 
@@ -168,6 +172,7 @@ struct pixel {
     UIImage *img = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     [self.previewImage setImage:img];
+    self.lblRenkKodu.text = [NSString stringWithFormat:@"Renk Kodu: %@", [OKUtils colorToHexString:color]];    
     
     self.myView.previewImage = img;
     self.myView.newPoint = point;

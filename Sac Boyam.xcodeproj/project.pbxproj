@@ -34,6 +34,7 @@
 		718986581964186500C26297 /* UIImage+ImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = 718986571964186500C26297 /* UIImage+ImageEffects.m */; };
 		7189865A196419C100C26297 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71898659196419C100C26297 /* Accelerate.framework */; };
 		718986661964592B00C26297 /* final_effect_2.png in Resources */ = {isa = PBXBuildFile; fileRef = 718986651964592B00C26297 /* final_effect_2.png */; };
+		7193555C19654DFC0040F48D /* ImageAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7193555B19654DFC0040F48D /* ImageAssets.xcassets */; };
 		71ECEF91195ABB3400872EBC /* FDTakeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 71ECEF90195ABB3400872EBC /* FDTakeController.m */; };
 		71ECEF95195AC2A600872EBC /* UIImage+AverageColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 71ECEF94195AC2A600872EBC /* UIImage+AverageColor.m */; };
 /* End PBXBuildFile section */
@@ -78,6 +79,7 @@
 		718986571964186500C26297 /* UIImage+ImageEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ImageEffects.m"; sourceTree = "<group>"; };
 		71898659196419C100C26297 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		718986651964592B00C26297 /* final_effect_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = final_effect_2.png; sourceTree = "<group>"; };
+		7193555B19654DFC0040F48D /* ImageAssets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = ImageAssets.xcassets; sourceTree = "<group>"; };
 		71ECEF8F195ABB3400872EBC /* FDTakeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDTakeController.h; sourceTree = "<group>"; };
 		71ECEF90195ABB3400872EBC /* FDTakeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDTakeController.m; sourceTree = "<group>"; };
 		71ECEF93195AC2A600872EBC /* UIImage+AverageColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+AverageColor.h"; sourceTree = "<group>"; };
@@ -116,6 +118,7 @@
 		71328A8917C35FD7007EE533 = {
 			isa = PBXGroup;
 			children = (
+				7193555B19654DFC0040F48D /* ImageAssets.xcassets */,
 				71328A9B17C35FD7007EE533 /* Sac Boyam */,
 				71328A9417C35FD7007EE533 /* Frameworks */,
 				71328A9317C35FD7007EE533 /* Products */,
@@ -148,8 +151,8 @@
 			isa = PBXGroup;
 			children = (
 				7189866719645B7B00C26297 /* Utils */,
-				71328AF717C38B07007EE533 /* SelectColorPage */,
 				710735A317C49E4200484D21 /* ResultsPage */,
+				71328AF717C38B07007EE533 /* SelectColorPage */,
 				71328AA417C35FD7007EE533 /* OKAppDelegate.h */,
 				71328AA517C35FD7007EE533 /* OKAppDelegate.m */,
 				71328AAD17C35FD7007EE533 /* MainStoryboard_iPhone.storyboard */,
@@ -284,6 +287,7 @@
 			files = (
 				71328AA017C35FD7007EE533 /* InfoPlist.strings in Resources */,
 				71328AA817C35FD7007EE533 /* Default.png in Resources */,
+				7193555C19654DFC0040F48D /* ImageAssets.xcassets in Resources */,
 				71328AAA17C35FD7007EE533 /* Default@2x.png in Resources */,
 				71328AAC17C35FD7007EE533 /* Default-568h@2x.png in Resources */,
 				718986661964592B00C26297 /* final_effect_2.png in Resources */,

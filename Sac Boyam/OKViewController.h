@@ -13,6 +13,7 @@
 @interface OKViewController : UIViewController
 @property (weak, nonatomic) IBOutlet UIImageView *selectedImage;
 @property (weak, nonatomic) IBOutlet UIImageView *previewImage;
+@property (weak, nonatomic) IBOutlet UILabel *lblRenkKodu;
 - (IBAction)SelectNewImage:(id)sender;
 
 @property FDTakeController *takeController;

@@ -36,4 +36,34 @@
   }
 }
 
+- (UIImage *)addTextToImageWithText:(NSString *)text
+{
+  CGPoint point = CGPointMake(self.size.width/4, self.size.height/2);
+  UIFont *font = [UIFont boldSystemFontOfSize:12];
+  UIGraphicsBeginImageContext(self.size);
+  [self drawInRect:CGRectMake(0,0, self.size.width, self.size.height)];
+  CGRect rect = CGRectMake(point.x, point.y, self.size.width, self.size.height);
+  [[UIColor whiteColor] set];
+  [text drawInRect:CGRectIntegral(rect) withFont:font];
+  UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+  UIGraphicsEndImageContext();
+  
+  return newImage;
+}
+
+- (UIImage *)addTextToImageWithText:(NSString *)text atPoint:(CGPoint)point
+{
+  UIFont *font = [UIFont boldSystemFontOfSize:12];
+  UIGraphicsBeginImageContext(self.size);
+  [self drawInRect:CGRectMake(0,0, self.size.width, self.size.height)];
+  CGRect rect = CGRectMake(point.x, point.y, self.size.width, self.size.height);
+  [[UIColor whiteColor] set];
+  [text drawInRect:CGRectIntegral(rect) withFont:font];
+  UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+  UIGraphicsEndImageContext();
+  
+  return newImage;
+}
+
+
 @end
