@@ -42,6 +42,7 @@ struct pixel {
 //  [customNavigationView addSubview:btn1];
 //  self.navigationController.navigationBar.backgroundColor = [UIColor colorWithRed:7.0f/255.0f green:120.0f/255.0f blue:225.0f/255.0f alpha:1.0];
   self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:186.0f/255.0f green:209.0f/255.0f blue:232.0f/255.0f alpha:1.0];
+//  self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:193.0f/255.0f green:214.0f/255.0f blue:230.0f/255.0f alpha:1.0];
   self.navigationController.navigationBar.translucent = YES;
   
   self.navigationItem.rightBarButtonItems = @[btn1, fixedSpaceBarButtonItem, btn2];
@@ -67,7 +68,11 @@ struct pixel {
 //  self.imagePicker.cropSize = self.selectedImage.bounds.size;
 //  self.imagePicker.delegate = self;
   
-  self.previewImage.layer.cornerRadius = self.selectedImage.bounds.size.height / 16;
+//  self.previewImage.layer.cornerRadius = self.selectedImage.bounds.size.height / 16;
+  self.previewImage.layer.borderWidth = 1.0;
+  self.previewImage.layer.borderColor = [[UIColor colorWithRed:0.0f/255.0f green:181.0f/255.0f blue:231.0f/255.0f alpha:0.8] CGColor];
+
+  self.previewImage.layer.cornerRadius = 12.0;
   self.previewImage.layer.masksToBounds = YES;
 
   self.takeController = [[FDTakeController alloc] init];
@@ -257,7 +262,16 @@ struct pixel {
     UIImage *img = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     [self.previewImage setImage:img];
-    self.lblRenkKodu.text = [NSString stringWithFormat:@"Renk Kodu: %@", [OKUtils colorToHexString:color]];    
+    
+    //[UIColor colorWithRed:186.0f/255.0f green:209.0f/255.0f blue:232.0f/255.0f alpha:1.0]
+//    const CGFloat *components = CGColorGetComponents([color CGColor]);
+//    UIColor *inverseColor = [UIColor colorWithRed:fabsf(186.0f/255.0f - components[0]) green:fabsf(209.0f/255.0f - components[1]) blue:fabsf(232.0f/255.0f - components[2]) alpha:1.0];
+    
+//    CABasicAnimation *colorAnim = [CABasicAnimation animationWithKeyPath:@"borderColor"];
+//    colorAnim.fromValue = (id)self.previewImage.layer.borderColor;
+//    colorAnim.toValue = (id)[inverseColor CGColor];
+//    self.previewImage.layer.borderColor = [inverseColor CGColor];
+    self.lblRenkKodu.text = [NSString stringWithFormat:@"Renk Kodu: %@", [OKUtils colorToHexString:color]];
     
     self.myView.previewImage = img;
     self.myView.newPoint = point;

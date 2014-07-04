@@ -35,6 +35,7 @@
 		7189865A196419C100C26297 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71898659196419C100C26297 /* Accelerate.framework */; };
 		718986661964592B00C26297 /* final_effect_2.png in Resources */ = {isa = PBXBuildFile; fileRef = 718986651964592B00C26297 /* final_effect_2.png */; };
 		7193555C19654DFC0040F48D /* ImageAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7193555B19654DFC0040F48D /* ImageAssets.xcassets */; };
+		719BCE8C1966F0E9005F575C /* OKSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 719BCE8B1966F0E9005F575C /* OKSettingsViewController.m */; };
 		71ECEF91195ABB3400872EBC /* FDTakeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 71ECEF90195ABB3400872EBC /* FDTakeController.m */; };
 		71ECEF95195AC2A600872EBC /* UIImage+AverageColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 71ECEF94195AC2A600872EBC /* UIImage+AverageColor.m */; };
 /* End PBXBuildFile section */
@@ -79,7 +80,9 @@
 		718986571964186500C26297 /* UIImage+ImageEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ImageEffects.m"; sourceTree = "<group>"; };
 		71898659196419C100C26297 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		718986651964592B00C26297 /* final_effect_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = final_effect_2.png; sourceTree = "<group>"; };
-		7193555B19654DFC0040F48D /* ImageAssets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = ImageAssets.xcassets; sourceTree = "<group>"; };
+		7193555B19654DFC0040F48D /* ImageAssets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = ImageAssets.xcassets; path = ../ImageAssets.xcassets; sourceTree = "<group>"; };
+		719BCE8A1966F0E9005F575C /* OKSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OKSettingsViewController.h; path = ../OKSettingsViewController.h; sourceTree = "<group>"; };
+		719BCE8B1966F0E9005F575C /* OKSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OKSettingsViewController.m; path = ../OKSettingsViewController.m; sourceTree = "<group>"; };
 		71ECEF8F195ABB3400872EBC /* FDTakeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDTakeController.h; sourceTree = "<group>"; };
 		71ECEF90195ABB3400872EBC /* FDTakeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDTakeController.m; sourceTree = "<group>"; };
 		71ECEF93195AC2A600872EBC /* UIImage+AverageColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+AverageColor.h"; sourceTree = "<group>"; };
@@ -118,7 +121,6 @@
 		71328A8917C35FD7007EE533 = {
 			isa = PBXGroup;
 			children = (
-				7193555B19654DFC0040F48D /* ImageAssets.xcassets */,
 				71328A9B17C35FD7007EE533 /* Sac Boyam */,
 				71328A9417C35FD7007EE533 /* Frameworks */,
 				71328A9317C35FD7007EE533 /* Products */,
@@ -157,8 +159,11 @@
 				71328AA517C35FD7007EE533 /* OKAppDelegate.m */,
 				71328AAD17C35FD7007EE533 /* MainStoryboard_iPhone.storyboard */,
 				71328AB017C35FD7007EE533 /* MainStoryboard_iPad.storyboard */,
+				719BCE8A1966F0E9005F575C /* OKSettingsViewController.h */,
+				719BCE8B1966F0E9005F575C /* OKSettingsViewController.m */,
 				71328AF217C38162007EE533 /* OKMainViewController.h */,
 				71328AF317C38162007EE533 /* OKMainViewController.m */,
+				7193555B19654DFC0040F48D /* ImageAssets.xcassets */,
 				71328AC117C365F7007EE533 /* images */,
 				71328A9C17C35FD7007EE533 /* Supporting Files */,
 			);
@@ -316,6 +321,7 @@
 			files = (
 				718986551963E59400C26297 /* OKZoomView.m in Sources */,
 				71ECEF91195ABB3400872EBC /* FDTakeController.m in Sources */,
+				719BCE8C1966F0E9005F575C /* OKSettingsViewController.m in Sources */,
 				71328AF817C38BA5007EE533 /* MyCutomView.m in Sources */,
 				71328AA217C35FD7007EE533 /* main.m in Sources */,
 				7136433D195C5E08006EF824 /* OKUtils.m in Sources */,
