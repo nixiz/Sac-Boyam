@@ -182,6 +182,7 @@
 		71328AC117C365F7007EE533 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				71E02BCC1966C8D9005F3A34 /* GKImages */,
 				718986651964592B00C26297 /* final_effect_2.png */,
 				71364339195C4E3F006EF824 /* sacli.png */,
 				71328ABD17C365F3007EE533 /* derpette_brown.png */,
@@ -224,6 +225,13 @@
 				71ECEF94195AC2A600872EBC /* UIImage+AverageColor.m */,
 			);
 			name = Utils;
+			sourceTree = "<group>";
+		};
+		71E02BCC1966C8D9005F3A34 /* GKImages */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = GKImages;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

@@ -11,15 +11,15 @@
 #import "UIImage+AverageColor.h"
 #import "OKUtils.h"
 #import "OKZoomView.h"
-
+//#import "GKImagePicker.h"
 
 struct pixel {
   unsigned char r,g,b,a;
 };
 
-@interface OKViewController () <FDTakeDelegate>
+@interface OKViewController () <FDTakeDelegate/*, GKImagePickerDelegate, UIImagePickerControllerDelegate*/>
 @property (strong, nonatomic) OKZoomView *myView;
-
+//@property (strong, nonatomic) GKImagePicker *imagePicker;
 @end
 
 @implementation OKViewController
@@ -35,20 +35,39 @@ struct pixel {
 //  [btn1 setFrame:CGRectMake(120, 0, 60, 60)];
 //  btn1 setTitle:@"<#string#>" forState:<#(UIControlState)#>
 
-  UIBarButtonItem *btn1 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(SelectNewImage:)];
+  UIBarButtonItem *btn1 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(SelectNewImage:)];
   UIBarButtonItem *fixedSpaceBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
   [fixedSpaceBarButtonItem setWidth:8];
   UIBarButtonItem *btn2 = [[UIBarButtonItem alloc] initWithTitle:@"Resim Sec" style:UIBarButtonItemStylePlain target:nil action:nil];
 //  [customNavigationView addSubview:btn1];
+//  self.navigationController.navigationBar.backgroundColor = [UIColor colorWithRed:7.0f/255.0f green:120.0f/255.0f blue:225.0f/255.0f alpha:1.0];
+  self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:186.0f/255.0f green:209.0f/255.0f blue:232.0f/255.0f alpha:1.0];
+  self.navigationController.navigationBar.translucent = YES;
+  
   self.navigationItem.rightBarButtonItems = @[btn1, fixedSpaceBarButtonItem, btn2];
   
+//  [self.view.layer insertSublayer:[OKUtils getBackgroundLayer:self.view.bounds] atIndex:0];
+  self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"background_sacBoyasi"]];
   
-  [self.view.layer insertSublayer:[OKUtils getBackgroundLayer:self.view.bounds] atIndex:0];
-
+  
+  
+  
+//  [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
+//  self.navigationController.navigationBar.shadowImage = [UIImage new];
+//  [[UINavigationBar appearance] setTintColor:[UIColor colorWithRed:7.0f/255.0f green:120.0f/255.0f blue:225.0f/255.0f alpha:1.0]];
+  
   UIImage *img = [UIImage imageNamed:@"default_screen"];
   img = [img addTextToImageWithText:@"Baslamak Icin Resim Secin"];
   [self.selectedImage setImage: img];
-  self.previewImage.layer.cornerRadius = self.selectedImage.bounds.size.height / 8;
+  self.selectedImage.contentMode = UIViewContentModeScaleAspectFit;
+  self.selectedImage.backgroundColor = [UIColor grayColor];
+
+
+//  self.imagePicker = [[GKImagePicker alloc] init];
+//  self.imagePicker.cropSize = self.selectedImage.bounds.size;
+//  self.imagePicker.delegate = self;
+  
+  self.previewImage.layer.cornerRadius = self.selectedImage.bounds.size.height / 16;
   self.previewImage.layer.masksToBounds = YES;
 
   self.takeController = [[FDTakeController alloc] init];
@@ -62,6 +81,11 @@ struct pixel {
   self.takeController.noSourcesText = @"No Photos Available";
   
   self.takeController.allowsEditingPhoto = YES;
+  
+  self.myView = [[OKZoomView alloc] initWithFrame:self.selectedImage.bounds andStartPoint:self.selectedImage.frame.origin];
+  //  self.myView = [[MyCutomView alloc] initWithFrame:self.selectedImage.bounds andStartPoint:self.selectedImage.frame.origin];
+  self.myView.backgroundColor = [UIColor clearColor];
+
 //  [self SelectNewImage:nil];
 	// Do any additional setup after loading the view, typically from a nib.
 }
@@ -77,12 +101,33 @@ struct pixel {
 //  self.myView = [[MyCutomView alloc] initWithFrame:self.selectedImage.bounds andStartPoint:self.selectedImage.frame.origin];
   self.myView = [[OKZoomView alloc] initWithFrame:self.selectedImage.bounds andStartPoint:self.selectedImage.frame.origin];
   self.myView.backgroundColor = [UIColor clearColor];
-  
 }
 
 - (IBAction)SelectNewImage:(id)sender {
   [self.takeController takePhotoOrChooseFromLibrary];
+//  [self presentViewController:self.imagePicker.imagePickerController animated:YES completion:nil];
 }
+/*
+#pragma mark - GKImagePickerDelegate
+
+- (void)imagePicker:(GKImagePicker *)imagePicker pickedImage:(UIImage *)image
+{
+  UIGraphicsBeginImageContext(self.selectedImage.bounds.size);
+  [image drawInRect:self.selectedImage.bounds];
+  UIImage *smallImage = UIGraphicsGetImageFromCurrentImageContext();
+  UIGraphicsEndImageContext();
+  
+  NSLog(@"Small Image Size:   %@", NSStringFromCGSize(smallImage.size));
+  
+  CGImageRef imagerRef = CGImageCreateWithImageInRect([smallImage CGImage], self.selectedImage.bounds);
+  UIImage *imageToBeShow = [UIImage imageWithCGImage:imagerRef];
+  NSLog(@"Cropped Image Size: %@", NSStringFromCGSize(imageToBeShow.size));
+
+  [self.selectedImage setImage:imageToBeShow];
+  [self.imagePicker.imagePickerController dismissViewControllerAnimated:YES completion:nil];
+//  [self.selectedImage sizeToFit];
+}
+*/
 
 #pragma mark - FDTakeDelegate
 
@@ -102,27 +147,50 @@ struct pixel {
   //TODO: Ask if user wants to save original photo..
   UIImage *originalImage = (UIImage *) [info objectForKey:
                              UIImagePickerControllerOriginalImage];
-  
-  UIGraphicsBeginImageContext(self.selectedImage.bounds.size);
-  [photo drawInRect:self.selectedImage.bounds];
-  UIImage *smallImage = UIGraphicsGetImageFromCurrentImageContext();
-  UIGraphicsEndImageContext();
-  NSLog(@"Small Image Size: %@", NSStringFromCGSize(smallImage.size));
+  UIImage *imageToBeShow = nil;
+  if (self.takeController.allowsEditingPhoto) {
+    UIGraphicsBeginImageContext(self.selectedImage.bounds.size);
+    [photo drawInRect:self.selectedImage.bounds];
+    UIImage *smallImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    NSLog(@"Small Image Size:   %@", NSStringFromCGSize(smallImage.size));
 
-  CGImageRef imagerRef = CGImageCreateWithImageInRect([smallImage CGImage], self.selectedImage.bounds);
-  UIImage *croppedImage = [UIImage imageWithCGImage:imagerRef];
-  
-  //[self.imageView setImage:originalImage];
-  NSLog(@"Original Image Size: %@", NSStringFromCGSize(originalImage.size));
-  NSLog(@"Cropped  Image Size: %@", NSStringFromCGSize(croppedImage.size));
-  
-  //UIImageWriteToSavedPhotosAlbum(photo, nil, nil, nil);
-  [self.selectedImage setImage:croppedImage];
-  self.myView = [[OKZoomView alloc] initWithFrame:self.selectedImage.bounds andStartPoint:self.selectedImage.frame.origin];
+    CGImageRef imagerRef = CGImageCreateWithImageInRect([smallImage CGImage], self.selectedImage.bounds);
+    imageToBeShow = [UIImage imageWithCGImage:imagerRef];
+    NSLog(@"Cropped Image Size: %@", NSStringFromCGSize(imageToBeShow.size));
+    
+  } else {
+    
+    UIGraphicsBeginImageContext(self.selectedImage.bounds.size);
+    [photo drawInRect:self.selectedImage.bounds];
+    UIImage *smallImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
 
-//  self.myView = [[MyCutomView alloc] initWithFrame:self.selectedImage.bounds andStartPoint:self.selectedImage.frame.origin];
-  self.myView.backgroundColor = [UIColor clearColor];
-  //[self.selectedImage sizeToFit];
+    CGImageRef imagerRef = CGImageCreateWithImageInRect([smallImage CGImage], self.selectedImage.bounds);
+    imageToBeShow = [UIImage imageWithCGImage:imagerRef];
+//    imageToBeShow = originalImage;
+    
+    
+  }
+  
+//  UIGraphicsBeginImageContext(self.selectedImage.bounds.size);
+//  [photo drawInRect:self.selectedImage.bounds];
+//  UIImage *smallImage = UIGraphicsGetImageFromCurrentImageContext();
+//  UIGraphicsEndImageContext();
+//  NSLog(@"Small Image Size: %@", NSStringFromCGSize(smallImage.size));
+//
+//  CGImageRef imagerRef = CGImageCreateWithImageInRect([smallImage CGImage], self.selectedImage.bounds);
+//  UIImage *croppedImage = [UIImage imageWithCGImage:imagerRef];
+//  
+//  //[self.imageView setImage:originalImage];
+//  NSLog(@"Original Image Size: %@", NSStringFromCGSize(originalImage.size));
+//  NSLog(@"Cropped  Image Size: %@", NSStringFromCGSize(croppedImage.size));
+//  NSLog(@"Selected ImageBounds: %@", NSStringFromCGRect(self.selectedImage.bounds));
+  
+  /*UIImageWriteToSavedPhotosAlbum(photo, nil, nil, nil);*/
+  [self.selectedImage setImage:imageToBeShow];
+  [self.selectedImage sizeToFit];
 }
 
 
