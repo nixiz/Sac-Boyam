@@ -9,11 +9,12 @@
 #import <UIKit/UIKit.h>
 @protocol OKSettingsDelegate <NSObject>
 
-- (void)acceptChangedSetings:(NSArray *)settings;
+- (void)acceptChangedSetings:(NSDictionary *)settings;
 
 @end
 
 @interface OKSettingsViewController : UIViewController
 @property (weak) id<OKSettingsDelegate> delegate;
 
+-(void)setCurrentSettings:(NSDictionary *)settings;
 @end

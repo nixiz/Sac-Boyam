@@ -322,7 +322,7 @@
                                 </state>
                                 <state key="highlighted" image="settings_highlighted"/>
                                 <connections>
-                                    <segue destination="2x7-Wg-qUg" kind="push" id="y3g-nT-c91"/>
+                                    <segue destination="2x7-Wg-qUg" kind="push" identifier="settingsSegue" id="y3g-nT-c91"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -369,45 +369,51 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QrC-AU-v1f">
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="QrC-AU-v1f">
                                 <rect key="frame" x="251" y="20" width="51" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="onTintColor" red="0.027450980392156862" green="0.47058823529411764" blue="0.88235294117647056" alpha="1" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <action selector="switchValueChanged:" destination="2x7-Wg-qUg" eventType="valueChanged" id="Icb-Ug-3rQ"/>
+                                </connections>
                             </switch>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Cekilen fotograflar kayit edilsin" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zZm-wr-P2q">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Cekilen fotograflar kayit edilsin" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zZm-wr-P2q">
                                 <rect key="frame" x="20" y="25" width="223" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                <color key="textColor" red="0.027450980392156862" green="0.47058823529411764" blue="0.88235294117647056" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="textColor" red="0.014685922697364516" green="0.33173303124823711" blue="0.63329081632653061" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
-                                <color key="shadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </label>
-                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Wge-CS-dY9">
+                            <switch opaque="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Wge-CS-dY9">
                                 <rect key="frame" x="251" y="59" width="51" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="onTintColor" red="0.70588235294117507" green="0.066666666666666666" blue="0.87018134124087587" alpha="0.89000000000000001" colorSpace="calibratedRGB"/>
+                                <color key="onTintColor" red="0.027450980390000001" green="0.47058823529999999" blue="0.88235294119999996" alpha="1" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <action selector="switchValueChanged:" destination="2x7-Wg-qUg" eventType="valueChanged" id="zG7-tz-cG9"/>
+                                </connections>
                             </switch>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Fotografla oynama yapabilme" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HIN-6m-Xph">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Fotografla oynama yapabilme" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HIN-6m-Xph">
                                 <rect key="frame" x="20" y="64" width="223" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                <color key="textColor" red="0.70588235294117507" green="0.066666666666666666" blue="0.87018134124087587" alpha="0.89000000000000001" colorSpace="calibratedRGB"/>
+                                <color key="textColor" red="0.014685922699999999" green="0.33173303119999997" blue="0.63329081629999995" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
-                                <color key="shadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </label>
-                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wDU-Wq-9dS">
+                            <switch opaque="NO" tag="2" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="wDU-Wq-9dS">
                                 <rect key="frame" x="251" y="98" width="51" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="onTintColor" red="0.72941176470588232" green="0.81960784313725488" blue="0.90980392156862744" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="onTintColor" red="0.027450980390000001" green="0.47058823529999999" blue="0.88235294119999996" alpha="1" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <action selector="switchValueChanged:" destination="2x7-Wg-qUg" eventType="valueChanged" id="OQ7-0W-tEi"/>
+                                </connections>
                             </switch>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Kayit tutma" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jgm-R7-906">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Kayit tutma" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jgm-R7-906">
                                 <rect key="frame" x="20" y="103" width="223" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.70999999999999996" colorSpace="calibratedRGB"/>
+                                <color key="textColor" red="0.014685922699999999" green="0.33173303119999997" blue="0.63329081629999995" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
-                                <color key="shadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -425,6 +431,11 @@
                     </view>
                     <extendedEdge key="edgesForExtendedLayout"/>
                     <tabBarItem key="tabBarItem" systemItem="more" id="V0S-eh-5rM"/>
+                    <connections>
+                        <outlet property="editPhotosSwitch" destination="Wge-CS-dY9" id="h6r-wO-cXD"/>
+                        <outlet property="savePhotosSwitch" destination="QrC-AU-v1f" id="hf2-WR-DH2"/>
+                        <outlet property="takeRecordsSwitch" destination="wDU-Wq-9dS" id="MO4-H9-gRm"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lhz-UA-x5g" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

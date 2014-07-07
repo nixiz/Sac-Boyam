@@ -55,4 +55,14 @@
   return hexString;
 }
 
++(UIColor *)getBackgroundColor
+{
+  UIColor *backgroundColor = nil;
+  //[UIColor colorWithRed:186.0f/255.0f green:209.0f/255.0f blue:232.0f/255.0f alpha:1.0]
+//  backgroundColor = [UIColor colorWithRed:235.0f/255.0f green:4.0f/255.0f blue:177.0f/255.0f alpha:1.0]; //koyu pembe
+  backgroundColor = [UIColor colorWithRed:246.0f/255.0f green:109.0f/255.0f blue:220.0f/255.0f alpha:1.0]; //daha acik pembe
+  return backgroundColor;
+}
+
+
 @end

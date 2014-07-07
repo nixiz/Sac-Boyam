@@ -15,10 +15,12 @@
 #define indexForProductPrice  2
 
 
-@interface OKSonuclarViewController ()
+@interface OKSonuclarViewController () <UIAlertViewDelegate, UIGestureRecognizerDelegate>
 @property UIColor *mColor;
 @property (nonatomic, strong) NSMutableDictionary *resultsList;
 @property (nonatomic, strong) NSDictionary *resultsIndex;
+- (IBAction)handleLongPress:(id)sender;
+@property (nonatomic, strong) NSString *stringToBeSearceh;
 @end
 
 @implementation OKSonuclarViewController
@@ -70,6 +72,11 @@
   [self.refreshControl addTarget:self action:@selector(updateTable) forControlEvents:UIControlEventValueChanged];
   
   self.mColor = [UIColor magentaColor];
+  
+  UILongPressGestureRecognizer *lpgr = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPress:)];
+  lpgr.minimumPressDuration = 1.7; //seconds
+  lpgr.delegate = self;
+  [self.tableView addGestureRecognizer:lpgr];
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
@@ -195,6 +202,13 @@
     return cell;
 }
 
+- (NSArray *)getProductInfoArrayFromIndexPath:(NSIndexPath *)indexPath
+{
+  NSArray *productsFromSection = [self.resultsList objectForKey:[self.resultsIndex objectForKey:[NSNumber numberWithInteger:indexPath.section]]];
+  NSArray *productInfoFromSelectedRow = [productsFromSection objectAtIndex:indexPath.row];
+  
+  return productInfoFromSelectedRow;
+}
 /*
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
@@ -246,5 +260,44 @@
      [self.navigationController pushViewController:detailViewController animated:YES];
      */
 }
+
+- (void)handleLongPress:(UILongPressGestureRecognizer *)gestureRecognizer {
+//  UILongPressGestureRecognizer *gestureRecognizer = (UILongPressGestureRecognizer *)sender;
+  if (gestureRecognizer.state == UIGestureRecognizerStateBegan) {
+    CGPoint tapPoint = [gestureRecognizer locationInView:self.tableView];
+    
+    NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:tapPoint];
+    if (indexPath != nil) {
+      //    OKSonuclarCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
+      self.stringToBeSearceh = [[self getProductInfoArrayFromIndexPath:indexPath] objectAtIndex:indexForProductName];
+      NSLog(@"Tapped Cell product is %@", self.stringToBeSearceh);
+      
+      UIAlertView *message = [[UIAlertView alloc] initWithTitle:@""
+                                                        message:[NSString stringWithFormat:@"%@ icin internete bakilsin mi?", self.stringToBeSearceh]
+                                                       delegate:self
+                                              cancelButtonTitle:@"Hayir"
+                                              otherButtonTitles:@"Tamam", nil];
+      [message show];
+    }
+  }
+}
+
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
+{
+  NSString *title = [alertView buttonTitleAtIndex:buttonIndex];
+  if ([title isEqualToString:@"Hayir"]) {
+    return;
+  }
+  NSMutableString *searchText = [[NSMutableString alloc] initWithString:@"https://www.google.com/search?q="];
+  [searchText appendString:[self.stringToBeSearceh stringByReplacingOccurrencesOfString:@" " withString:@"+"]];
+
+  NSURL *url = [NSURL URLWithString:searchText];
+  BOOL success = [[UIApplication sharedApplication] openURL:url];
+  
+  if (!success) {
+    NSLog(@"Failed to open url: %@", [url description]);
+  }
+}
+
 
 @end

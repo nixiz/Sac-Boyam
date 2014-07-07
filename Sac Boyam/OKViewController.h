@@ -9,8 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "FDTakeController.h"
 #import "MyCutomView.h"
+#import "OKSettingsViewController.h"
 
-@interface OKViewController : UIViewController
+@interface OKViewController : UIViewController<OKSettingsDelegate>
 @property (weak, nonatomic) IBOutlet UIImageView *selectedImage;
 @property (weak, nonatomic) IBOutlet UIImageView *previewImage;
 @property (weak, nonatomic) IBOutlet UILabel *lblRenkKodu;

@@ -13,4 +13,6 @@
 +(CAGradientLayer *)getBackgroundLayer:(CGRect)bounds;
 +(CAGradientLayer *)getBackgroundLayer:(CGRect)bounds withColors:(NSArray *)colors andLocations:(NSArray *)locations;
 + (NSString *)colorToHexString:(UIColor *)color;
+
++(UIColor *)getBackgroundColor;
 @end

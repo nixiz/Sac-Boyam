@@ -13,12 +13,15 @@
 #import "OKZoomView.h"
 //#import "GKImagePicker.h"
 
+
 struct pixel {
   unsigned char r,g,b,a;
 };
 
 @interface OKViewController () <FDTakeDelegate/*, GKImagePickerDelegate, UIImagePickerControllerDelegate*/>
 @property (strong, nonatomic) OKZoomView *myView;
+@property (strong, nonatomic) NSDictionary *settingsArray;
+@property BOOL savePhoto;
 //@property (strong, nonatomic) GKImagePicker *imagePicker;
 @end
 
@@ -28,7 +31,10 @@ struct pixel {
 {
   [super viewDidLoad];
 //  [self.navigationController setNavigationBarHidden:NO animated:NO];
-  
+  self.settingsArray = [NSMutableDictionary dictionaryWithObjectsAndKeys:@NO, @"SavePhotos", @YES, @"EditPhotos", @NO, @"TakeRecord", nil];
+
+//  self.settingsArray = @[@NO, @YES, @NO];
+  self.savePhoto = NO;
   
 //  UIView *customNavigationView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 180, 60)];
 //  UIButton *btn1 = [UIButton buttonWithType:UIButtonTypeRoundedRect];
@@ -40,19 +46,16 @@ struct pixel {
   [fixedSpaceBarButtonItem setWidth:8];
   UIBarButtonItem *btn2 = [[UIBarButtonItem alloc] initWithTitle:@"Resim Sec" style:UIBarButtonItemStylePlain target:nil action:nil];
 //  [customNavigationView addSubview:btn1];
-//  self.navigationController.navigationBar.backgroundColor = [UIColor colorWithRed:7.0f/255.0f green:120.0f/255.0f blue:225.0f/255.0f alpha:1.0];
-  self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:186.0f/255.0f green:209.0f/255.0f blue:232.0f/255.0f alpha:1.0];
-//  self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:193.0f/255.0f green:214.0f/255.0f blue:230.0f/255.0f alpha:1.0];
+
+//  self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:186.0f/255.0f green:209.0f/255.0f blue:232.0f/255.0f alpha:1.0];
+  self.navigationController.navigationBar.barTintColor = [OKUtils getBackgroundColor];
   self.navigationController.navigationBar.translucent = YES;
-  
   self.navigationItem.rightBarButtonItems = @[btn1, fixedSpaceBarButtonItem, btn2];
   
 //  [self.view.layer insertSublayer:[OKUtils getBackgroundLayer:self.view.bounds] atIndex:0];
-  self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"background_sacBoyasi"]];
+  self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"background_sacBoyasi_3"]];
   
-  
-  
-  
+
 //  [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
 //  self.navigationController.navigationBar.shadowImage = [UIImage new];
 //  [[UINavigationBar appearance] setTintColor:[UIColor colorWithRed:7.0f/255.0f green:120.0f/255.0f blue:225.0f/255.0f alpha:1.0]];
@@ -61,7 +64,7 @@ struct pixel {
   img = [img addTextToImageWithText:@"Baslamak Icin Resim Secin"];
   [self.selectedImage setImage: img];
   self.selectedImage.contentMode = UIViewContentModeScaleAspectFit;
-  self.selectedImage.backgroundColor = [UIColor grayColor];
+  self.selectedImage.backgroundColor = [[UIColor lightGrayColor] colorWithAlphaComponent:0.75];
 
 
 //  self.imagePicker = [[GKImagePicker alloc] init];
@@ -133,6 +136,18 @@ struct pixel {
 //  [self.selectedImage sizeToFit];
 }
 */
+
+- (void)acceptChangedSetings:(NSDictionary *)settings
+{
+  //self.settingsArray = @[@NO, @YES, @NO];
+  
+//  self.takeController.allowsEditingPhoto = [[settings objectAtIndex:1] boolValue];
+//  self.savePhoto = [[settings objectAtIndex:0] boolValue];
+  self.takeController.allowsEditingPhoto = [settings[@"EditPhotos"] boolValue];
+  self.savePhoto = [settings[@"SavePhotos"] boolValue];
+  
+  self.settingsArray = settings;
+}
 
 #pragma mark - FDTakeDelegate
 
@@ -461,6 +476,21 @@ struct pixel {
   
   return CGRectMake(point.x - dx, point.y - dy, 32, 32);
 }
+
+#pragma mark - Navigation
+
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+  if ([[segue identifier] isEqualToString:@"settingsSegue"]) {
+    OKSettingsViewController *vc = [segue destinationViewController];
+    [vc setDelegate:self];
+    [vc setCurrentSettings:self.settingsArray];
+  }
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+}
+
 
 /*
 - (UIImage *)captureScreenInRect:(CGRect)captureFrame
