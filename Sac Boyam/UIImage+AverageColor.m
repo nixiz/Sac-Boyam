@@ -65,5 +65,4 @@
   return newImage;
 }
 
-
 @end

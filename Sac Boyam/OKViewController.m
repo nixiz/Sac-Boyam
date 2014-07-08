@@ -9,8 +9,10 @@
 #import "OKViewController.h"
 #import <QuartzCore/QuartzCore.h>
 #import "UIImage+AverageColor.h"
+#import "UIImage+ImageEffects.h"
 #import "OKUtils.h"
 #import "OKZoomView.h"
+#import "UIView+CreateImage.h"
 //#import "GKImagePicker.h"
 
 
@@ -41,31 +43,58 @@ struct pixel {
 //  [btn1 setFrame:CGRectMake(120, 0, 60, 60)];
 //  btn1 setTitle:@"<#string#>" forState:<#(UIControlState)#>
 
-  UIBarButtonItem *btn1 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(SelectNewImage:)];
-  UIBarButtonItem *fixedSpaceBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
-  [fixedSpaceBarButtonItem setWidth:8];
-  UIBarButtonItem *btn2 = [[UIBarButtonItem alloc] initWithTitle:@"Resim Sec" style:UIBarButtonItemStylePlain target:nil action:nil];
-//  [customNavigationView addSubview:btn1];
+//  UIBarButtonItem *btn1 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(SelectNewImage:)];
+//  UIBarButtonItem *fixedSpaceBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
+//  [fixedSpaceBarButtonItem setWidth:8];
+  UIBarButtonItem *btn2 = [[UIBarButtonItem alloc] initWithTitle:@"Resim Sec" style:UIBarButtonItemStylePlain target:self action:@selector(SelectNewImage:)];
+//  self.navigationItem.rightBarButtonItems = @[btn1, fixedSpaceBarButtonItem, btn2];
+  self.navigationItem.rightBarButtonItem = btn2;
 
-//  self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:186.0f/255.0f green:209.0f/255.0f blue:232.0f/255.0f alpha:1.0];
-  self.navigationController.navigationBar.barTintColor = [OKUtils getBackgroundColor];
-  self.navigationController.navigationBar.translucent = YES;
-  self.navigationItem.rightBarButtonItems = @[btn1, fixedSpaceBarButtonItem, btn2];
+  NSLog(@"View Frame : %@", NSStringFromCGRect(self.view.frame));
+  NSLog(@"View Bounds: %@", NSStringFromCGRect(self.view.bounds));
+
+  UIImage *backgroundImage = [UIImage imageNamed:@"background_sacBoyasi_4"];
+  NSLog(@"%@", NSStringFromCGSize(self.navigationController.navigationBar.bounds.size));
+  UIGraphicsBeginImageContext(CGSizeMake(320, 75));
+  [backgroundImage drawInRect:self.view.bounds];
+  UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+  UIGraphicsEndImageContext();
+  image = [image applyBlurWithRadius:20 tintColor:[UIColor colorWithWhite:1.0 alpha:0.2] saturationDeltaFactor:1.3 maskImage:nil];
+  
+//  UIGraphicsBeginImageContext(self.view.frame.size);
+//  [backgroundImage drawInRect:self.view.bounds];
+//  UIImage *b_image = UIGraphicsGetImageFromCurrentImageContext();
+//  UIGraphicsEndImageContext();
+  self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"background_sacBoyasi_4"]];
+//  self.view.backgroundColor = [UIColor colorWithPatternImage:b_image];
+
+  self.navigationController.navigationBar.barTintColor = [[UIColor colorWithPatternImage:image] colorWithAlphaComponent:0.45];
+  self.navigationController.navigationBar.backgroundColor = [[UIColor colorWithPatternImage:image] colorWithAlphaComponent:0.45];
+  
+//  if (NSFoundationVersionNumber > NSFoundationVersionNumber_iOS_6_1) {
+////    image = [image applyBlurWithRadius:20 tintColor:[UIColor colorWithWhite:1.0 alpha:0.2] saturationDeltaFactor:1.3 maskImage:nil];
+//    self.navigationController.navigationBar.barTintColor = [UIColor colorWithPatternImage:image];
+    self.navigationController.navigationBar.translucent = NO;
+//  } else if (NSFoundationVersionNumber > NSFoundationVersionNumber_iOS_6_0){
+//    [self.navigationController.navigationBar setTintColor:[[UIColor colorWithPatternImage:image] colorWithAlphaComponent:0.45]];
+//  }
   
 //  [self.view.layer insertSublayer:[OKUtils getBackgroundLayer:self.view.bounds] atIndex:0];
-  self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"background_sacBoyasi_3"]];
   
 
 //  [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
 //  self.navigationController.navigationBar.shadowImage = [UIImage new];
 //  [[UINavigationBar appearance] setTintColor:[UIColor colorWithRed:7.0f/255.0f green:120.0f/255.0f blue:225.0f/255.0f alpha:1.0]];
-  
+//  NSLog(@"Old Frame : %@", NSStringFromCGRect(self.selectedImage.frame));
+//  NSLog(@"Old Bounds: %@", NSStringFromCGRect(self.selectedImage.bounds));
+
   UIImage *img = [UIImage imageNamed:@"default_screen"];
   img = [img addTextToImageWithText:@"Baslamak Icin Resim Secin"];
   [self.selectedImage setImage: img];
   self.selectedImage.contentMode = UIViewContentModeScaleAspectFit;
   self.selectedImage.backgroundColor = [[UIColor lightGrayColor] colorWithAlphaComponent:0.75];
-
+  self.selectedImage.layer.borderWidth = 2.0;
+  self.selectedImage.layer.borderColor = [[[UIColor lightGrayColor] colorWithAlphaComponent:0.45] CGColor];
 
 //  self.imagePicker = [[GKImagePicker alloc] init];
 //  self.imagePicker.cropSize = self.selectedImage.bounds.size;
@@ -253,6 +282,8 @@ struct pixel {
   
   UITouch *touch = [[touches allObjects] objectAtIndex:0];
   CGPoint point = [touch locationInView:self.view];
+//  NSLog(@"%@", NSStringFromCGRect(self.selectedImage.frame));
+//  NSLog(@"%@", NSStringFromCGRect(self.selectedImage.bounds));
   
   if ([self.selectedImage pointInside:point withEvent:event])
   {
@@ -486,6 +517,9 @@ struct pixel {
     OKSettingsViewController *vc = [segue destinationViewController];
     [vc setDelegate:self];
     [vc setCurrentSettings:self.settingsArray];
+    
+//    UIImage *underlyingImage = [self.view createImageFromView];
+//    underlyingImage = [underlyingImage applyBlurWithRadius:20 tintColor:[UIColor colorWithWhite:1.0 alpha:0.2] saturationDeltaFactor:1.3 maskImage:nil];
   }
  // Get the new view controller using [segue destinationViewController].
  // Pass the selected object to the new view controller.

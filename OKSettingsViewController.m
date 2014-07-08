@@ -7,6 +7,7 @@
 //
 
 #import "OKSettingsViewController.h"
+#import "UIImage+ImageEffects.h"
 
 @interface OKSettingsViewController ()
 @property (strong, nonatomic) NSMutableDictionary *settingsMap;
@@ -32,14 +33,16 @@
 {
   [super viewDidLoad];
 
-  UIImage *backgroundImage = [UIImage imageNamed:@"background_sacBoyasi_3"];
+  UIImage *backgroundImage = [UIImage imageNamed:@"background_sacBoyasi_4"];
   UIGraphicsBeginImageContext(self.view.bounds.size);
   [backgroundImage drawInRect:self.view.bounds];
   UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
   UIGraphicsEndImageContext();
+  image = [image applyBlurWithRadius:15 tintColor:[UIColor colorWithWhite:0.8 alpha:0.2] saturationDeltaFactor:1.3 maskImage:nil];
+//  image = [image applyLightEffect];
+
   self.view.backgroundColor = [UIColor colorWithPatternImage:image];
-  
-  //
+
   if (self.settingsMap == nil) {
     self.settingsMap = [NSMutableDictionary dictionaryWithObjectsAndKeys:@NO, @"SavePhotos", @YES, @"EditPhotos", @NO, @"TakeRecord", nil];
   }

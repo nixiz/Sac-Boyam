@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		71063759196C0ED100D17D66 /* UIView+CreateImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 71063758196C0ED100D17D66 /* UIView+CreateImage.m */; };
 		710735A217C4981400484D21 /* OKSonuclarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 710735A117C4981400484D21 /* OKSonuclarViewController.m */; };
 		710735A617C49E6800484D21 /* OKSonuclarCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 710735A517C49E6800484D21 /* OKSonuclarCell.m */; };
 		71328A9617C35FD7007EE533 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71328A9517C35FD7007EE533 /* UIKit.framework */; };
@@ -41,6 +42,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		71063757196C0ED100D17D66 /* UIView+CreateImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+CreateImage.h"; sourceTree = "<group>"; };
+		71063758196C0ED100D17D66 /* UIView+CreateImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+CreateImage.m"; sourceTree = "<group>"; };
 		710735A017C4981400484D21 /* OKSonuclarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKSonuclarViewController.h; sourceTree = "<group>"; };
 		710735A117C4981400484D21 /* OKSonuclarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKSonuclarViewController.m; sourceTree = "<group>"; };
 		710735A417C49E6800484D21 /* OKSonuclarCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKSonuclarCell.h; sourceTree = "<group>"; };
@@ -228,6 +231,8 @@
 				718986571964186500C26297 /* UIImage+ImageEffects.m */,
 				71ECEF93195AC2A600872EBC /* UIImage+AverageColor.h */,
 				71ECEF94195AC2A600872EBC /* UIImage+AverageColor.m */,
+				71063757196C0ED100D17D66 /* UIView+CreateImage.h */,
+				71063758196C0ED100D17D66 /* UIView+CreateImage.m */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -329,6 +334,7 @@
 				71328AB517C35FD7007EE533 /* OKViewController.m in Sources */,
 				71328AF417C38162007EE533 /* OKMainViewController.m in Sources */,
 				718986581964186500C26297 /* UIImage+ImageEffects.m in Sources */,
+				71063759196C0ED100D17D66 /* UIView+CreateImage.m in Sources */,
 				71ECEF95195AC2A600872EBC /* UIImage+AverageColor.m in Sources */,
 				710735A217C4981400484D21 /* OKSonuclarViewController.m in Sources */,
 				710735A617C49E6800484D21 /* OKSonuclarCell.m in Sources */,
