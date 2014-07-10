@@ -5,7 +5,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <scenes>
-        <!--Sonuclar View Controller - Colors-->
+        <!--Sonuclar View Controller - Bulunan Renkler-->
         <scene sceneID="8RI-hd-FV6">
             <objects>
                 <tableViewController id="QEN-JS-ZP7" customClass="OKSonuclarViewController" sceneMemberID="viewController">
@@ -76,7 +76,7 @@
                             <outlet property="delegate" destination="QEN-JS-ZP7" id="Bxc-5E-Kdn"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Colors" id="AJs-D0-fkM"/>
+                    <navigationItem key="navigationItem" title="Bulunan Renkler" id="AJs-D0-fkM"/>
                     <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="e7x-2l-8uP">
                         <autoresizingMask key="autoresizingMask"/>
                     </refreshControl>
@@ -85,7 +85,7 @@
             </objects>
             <point key="canvasLocation" x="675" y="339"/>
         </scene>
-        <!--View Controller - My Color-->
+        <!--View Controller - Saç Boyam-->
         <scene sceneID="X9I-R2-SsP">
             <objects>
                 <viewController id="EAa-oK-16g" customClass="OKViewController" sceneMemberID="viewController">
@@ -166,7 +166,7 @@
                     </view>
                     <extendedEdge key="edgesForExtendedLayout"/>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" title="My Color" id="EXV-Tl-qd6"/>
+                    <navigationItem key="navigationItem" title="Saç Boyam" id="EXV-Tl-qd6"/>
                     <size key="freeformSize" width="320" height="568"/>
                     <connections>
                         <outlet property="lblRenkKodu" destination="EaF-9X-rAQ" id="507-N0-a1N"/>
@@ -178,7 +178,7 @@
             </objects>
             <point key="canvasLocation" x="48" y="339"/>
         </scene>
-        <!--Settings View Controller - Settings-->
+        <!--Settings View Controller - Ayarlar-->
         <scene sceneID="eT0-4L-rCk">
             <objects>
                 <viewController id="2x7-Wg-qUg" customClass="OKSettingsViewController" sceneMemberID="viewController">
@@ -198,7 +198,7 @@
                                     <action selector="switchValueChanged:" destination="2x7-Wg-qUg" eventType="valueChanged" id="Icb-Ug-3rQ"/>
                                 </connections>
                             </switch>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Save taken photos" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zZm-wr-P2q">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Çekilen fotoğraflar kayıt edilsin" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zZm-wr-P2q">
                                 <rect key="frame" x="20" y="89" width="223" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -217,7 +217,7 @@
                                     <action selector="switchValueChanged:" destination="2x7-Wg-qUg" eventType="valueChanged" id="zG7-tz-cG9"/>
                                 </connections>
                             </switch>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Edit selected photo" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HIN-6m-Xph">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Fotoğrafla oynama yapabilme" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HIN-6m-Xph">
                                 <rect key="frame" x="20" y="128" width="223" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
@@ -232,7 +232,7 @@
                                     <action selector="switchValueChanged:" destination="2x7-Wg-qUg" eventType="valueChanged" id="OQ7-0W-tEi"/>
                                 </connections>
                             </switch>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Take records" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jgm-R7-906">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Kayıt tutma" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jgm-R7-906">
                                 <rect key="frame" x="20" y="167" width="223" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -261,7 +261,7 @@
                         </constraints>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout" top="YES"/>
-                    <navigationItem key="navigationItem" title="Settings" id="Yi0-EG-oD6"/>
+                    <navigationItem key="navigationItem" title="Ayarlar" id="Yi0-EG-oD6"/>
                     <connections>
                         <outlet property="editPhotosSwitch" destination="Wge-CS-dY9" id="h6r-wO-cXD"/>
                         <outlet property="savePhotosSwitch" destination="QrC-AU-v1f" id="hf2-WR-DH2"/>

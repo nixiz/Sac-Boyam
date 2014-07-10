@@ -36,29 +36,45 @@
   }
 }
 
-- (UIImage *)addTextToImageWithText:(NSString *)text
+- (UIImage *)addTextToImageWithText:(NSString *)text andColor:(UIColor *)color
 {
-  CGPoint point = CGPointMake(self.size.width/4, self.size.height/2);
-  UIFont *font = [UIFont boldSystemFontOfSize:12];
+  if (color == nil) {
+    color = [UIColor whiteColor];
+  }
+//  CGPoint point = CGPointMake(self.size.width/4, self.size.height/2);
+//  UIFont *font = [UIFont boldSystemFontOfSize:16];
   UIGraphicsBeginImageContext(self.size);
   [self drawInRect:CGRectMake(0,0, self.size.width, self.size.height)];
-  CGRect rect = CGRectMake(point.x, point.y, self.size.width, self.size.height);
-  [[UIColor whiteColor] set];
-  [text drawInRect:CGRectIntegral(rect) withFont:font];
+  CGRect rect = CGRectMake(0, self.size.height/2, self.size.width, self.size.height);
+  NSMutableParagraphStyle *paragraphStyle = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
+  paragraphStyle.alignment = NSTextAlignmentCenter;
+  NSDictionary *attributes = @{NSFontAttributeName: [UIFont boldSystemFontOfSize:16], NSForegroundColorAttributeName: color, NSParagraphStyleAttributeName: paragraphStyle};
+  [text drawInRect:CGRectIntegral(rect) withAttributes:attributes];
+//  [[UIColor whiteColor] set];
+//  [color set];
+//  [text drawInRect:CGRectIntegral(rect) withFont:font];
   UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
   UIGraphicsEndImageContext();
   
   return newImage;
 }
 
-- (UIImage *)addTextToImageWithText:(NSString *)text atPoint:(CGPoint)point
+- (UIImage *)addTextToImageWithText:(NSString *)text atPoint:(CGPoint)point andColor:(UIColor *)color
 {
-  UIFont *font = [UIFont boldSystemFontOfSize:12];
+  if (color == nil) {
+    color = [UIColor whiteColor];
+  }
+//  UIFont *font = [UIFont boldSystemFontOfSize:16];
   UIGraphicsBeginImageContext(self.size);
   [self drawInRect:CGRectMake(0,0, self.size.width, self.size.height)];
   CGRect rect = CGRectMake(point.x, point.y, self.size.width, self.size.height);
-  [[UIColor whiteColor] set];
-  [text drawInRect:CGRectIntegral(rect) withFont:font];
+  NSMutableParagraphStyle *paragraphStyle = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
+  paragraphStyle.alignment = NSTextAlignmentCenter;
+  NSDictionary *attributes = @{NSFontAttributeName: [UIFont boldSystemFontOfSize:16], NSForegroundColorAttributeName: color, NSParagraphStyleAttributeName: paragraphStyle};
+  [text drawInRect:CGRectIntegral(rect) withAttributes:attributes];
+//  [[UIColor whiteColor] set];
+//  [color set];
+//  [text drawInRect:CGRectIntegral(rect) withFont:font];
   UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
   UIGraphicsEndImageContext();
   

@@ -15,6 +15,7 @@
 #import "UIView+CreateImage.h"
 //#import "GKImagePicker.h"
 
+static NSString * const okStringsTableName = @"localized";
 
 struct pixel {
   unsigned char r,g,b,a;
@@ -32,22 +33,12 @@ struct pixel {
 - (void)viewDidLoad
 {
   [super viewDidLoad];
-//  [self.navigationController setNavigationBarHidden:NO animated:NO];
   self.settingsArray = [NSMutableDictionary dictionaryWithObjectsAndKeys:@NO, @"SavePhotos", @YES, @"EditPhotos", @NO, @"TakeRecord", nil];
-
-//  self.settingsArray = @[@NO, @YES, @NO];
   self.savePhoto = NO;
-  
-//  UIView *customNavigationView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 180, 60)];
-//  UIButton *btn1 = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-//  [btn1 setFrame:CGRectMake(120, 0, 60, 60)];
-//  btn1 setTitle:@"<#string#>" forState:<#(UIControlState)#>
 
-//  UIBarButtonItem *btn1 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(SelectNewImage:)];
-//  UIBarButtonItem *fixedSpaceBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
-//  [fixedSpaceBarButtonItem setWidth:8];
-  UIBarButtonItem *btn2 = [[UIBarButtonItem alloc] initWithTitle:@"Resim Sec" style:UIBarButtonItemStylePlain target:self action:@selector(SelectNewImage:)];
-//  self.navigationItem.rightBarButtonItems = @[btn1, fixedSpaceBarButtonItem, btn2];
+  NSString *selectPhotoString = NSLocalizedStringFromTable(@"selectPhoto", okStringsTableName, nil);
+  UIBarButtonItem *btn2 = [[UIBarButtonItem alloc] initWithTitle:selectPhotoString style:UIBarButtonItemStylePlain target:self action:@selector(SelectNewImage:)];
+//  [btn2 setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor whiteColor]} forState:UIControlStateNormal];
   self.navigationItem.rightBarButtonItem = btn2;
 
   NSLog(@"View Frame : %@", NSStringFromCGRect(self.view.frame));
@@ -61,13 +52,16 @@ struct pixel {
   UIGraphicsEndImageContext();
   image = [image applyBlurWithRadius:20 tintColor:[UIColor colorWithWhite:1.0 alpha:0.2] saturationDeltaFactor:1.3 maskImage:nil];
   
-//  UIGraphicsBeginImageContext(self.view.frame.size);
-//  [backgroundImage drawInRect:self.view.bounds];
-//  UIImage *b_image = UIGraphicsGetImageFromCurrentImageContext();
-//  UIGraphicsEndImageContext();
-  self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"background_sacBoyasi_4"]];
-//  self.view.backgroundColor = [UIColor colorWithPatternImage:b_image];
-
+  
+  UIGraphicsBeginImageContext(self.view.bounds.size);
+  [backgroundImage drawInRect:self.view.bounds];
+  UIImage *redrawedBckgroundImage = UIGraphicsGetImageFromCurrentImageContext();
+  UIGraphicsEndImageContext();
+  self.view.backgroundColor = [UIColor colorWithPatternImage:redrawedBckgroundImage];
+  
+//  self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"background_sacBoyasi_4"]];
+//  [self.navigationController setTitle:@"Sac Boyam"];
+  [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor colorWithRed:0 green:122.0/255.0 blue:246.0/255.0 alpha:1.0]}];
   self.navigationController.navigationBar.barTintColor = [[UIColor colorWithPatternImage:image] colorWithAlphaComponent:0.45];
   self.navigationController.navigationBar.backgroundColor = [[UIColor colorWithPatternImage:image] colorWithAlphaComponent:0.45];
   
@@ -78,18 +72,12 @@ struct pixel {
 //  } else if (NSFoundationVersionNumber > NSFoundationVersionNumber_iOS_6_0){
 //    [self.navigationController.navigationBar setTintColor:[[UIColor colorWithPatternImage:image] colorWithAlphaComponent:0.45]];
 //  }
-  
-//  [self.view.layer insertSublayer:[OKUtils getBackgroundLayer:self.view.bounds] atIndex:0];
-  
-
-//  [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
-//  self.navigationController.navigationBar.shadowImage = [UIImage new];
-//  [[UINavigationBar appearance] setTintColor:[UIColor colorWithRed:7.0f/255.0f green:120.0f/255.0f blue:225.0f/255.0f alpha:1.0]];
-//  NSLog(@"Old Frame : %@", NSStringFromCGRect(self.selectedImage.frame));
-//  NSLog(@"Old Bounds: %@", NSStringFromCGRect(self.selectedImage.bounds));
-
-  UIImage *img = [UIImage imageNamed:@"default_screen"];
-  img = [img addTextToImageWithText:@"Baslamak Icin Resim Secin"];
+  UIGraphicsBeginImageContext(self.selectedImage.bounds.size);
+  UIImage *img = UIGraphicsGetImageFromCurrentImageContext();
+  UIGraphicsEndImageContext();
+//  UIImage *img = [UIImage imageNamed:@"default_screen"];
+  NSString *imageOverlayString = NSLocalizedStringFromTable(@"imageOverlay", okStringsTableName, nil);
+  img = [img addTextToImageWithText:imageOverlayString andColor:[UIColor colorWithRed:0 green:122.0/255.0 blue:246.0/255.0 alpha:1.0]];
   [self.selectedImage setImage: img];
   self.selectedImage.contentMode = UIViewContentModeScaleAspectFit;
   self.selectedImage.backgroundColor = [[UIColor lightGrayColor] colorWithAlphaComponent:0.75];
@@ -100,7 +88,6 @@ struct pixel {
 //  self.imagePicker.cropSize = self.selectedImage.bounds.size;
 //  self.imagePicker.delegate = self;
   
-//  self.previewImage.layer.cornerRadius = self.selectedImage.bounds.size.height / 16;
   self.previewImage.layer.borderWidth = 1.0;
   self.previewImage.layer.borderColor = [[UIColor colorWithRed:0.0f/255.0f green:181.0f/255.0f blue:231.0f/255.0f alpha:0.8] CGColor];
 
@@ -110,12 +97,12 @@ struct pixel {
   self.takeController = [[FDTakeController alloc] init];
   self.takeController.delegate = self;
   
-  self.takeController.takePhotoText = @"Take Photo";
-  self.takeController.takeVideoText = @"Take Video";
-  self.takeController.chooseFromPhotoRollText = @"Choose Existing";
-  self.takeController.chooseFromLibraryText = @"Choose Existing";
-  self.takeController.cancelText = @"Cancel";
-  self.takeController.noSourcesText = @"No Photos Available";
+//  self.takeController.takePhotoText = @"Take Photo";
+//  self.takeController.takeVideoText = @"Take Video";
+//  self.takeController.chooseFromPhotoRollText = @"Choose Existing";
+//  self.takeController.chooseFromLibraryText = @"Choose Existing";
+//  self.takeController.cancelText = @"Cancel";
+//  self.takeController.noSourcesText = @"No Photos Available";
   
   self.takeController.allowsEditingPhoto = YES;
   
@@ -317,7 +304,9 @@ struct pixel {
 //    colorAnim.fromValue = (id)self.previewImage.layer.borderColor;
 //    colorAnim.toValue = (id)[inverseColor CGColor];
 //    self.previewImage.layer.borderColor = [inverseColor CGColor];
-    self.lblRenkKodu.text = [NSString stringWithFormat:@"Renk Kodu: %@", [OKUtils colorToHexString:color]];
+    
+    NSString *colorCodeString = NSLocalizedStringFromTable(@"colorCode", okStringsTableName, nil);
+    self.lblRenkKodu.text = [NSString stringWithFormat:@"%@: %@", colorCodeString, [OKUtils colorToHexString:color]];
     
     self.myView.previewImage = img;
     self.myView.newPoint = point;

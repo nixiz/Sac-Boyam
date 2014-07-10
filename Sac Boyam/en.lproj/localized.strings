@@ -1,0 +1,10 @@
+/* 
+  localized.strings
+  Sac Boyam
+
+  Created by Oguzhan Katli on 10/07/14.
+  Copyright (c) 2014 Oguzhan Katli. All rights reserved.
+*/
+"imageOverlay" = "Select Photo to start";
+"selectPhoto" = "Select Photo";
+"colorCode" = "Color Code";
