@@ -8,3 +8,6 @@
 "imageOverlay" = "Select Photo to start";
 "selectPhoto" = "Select Photo";
 "colorCode" = "Color Code";
+"imageSavedSuccessfully" = "Image Saved Successfully";
+"pleaseWaitFor" = "Please wait for results being downloaded";
+"cancelButtonForURLReq" = "Cancel";

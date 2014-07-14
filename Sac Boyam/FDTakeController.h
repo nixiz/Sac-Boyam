@@ -10,6 +10,8 @@
 
 @class FDTakeController;
 
+static NSString * const kUIImagePickerControllerSourceType = @"pickerSource";
+
 @protocol FDTakeDelegate <NSObject>
 
 @optional

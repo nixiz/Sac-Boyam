@@ -222,7 +222,6 @@ static NSString * const kStringsTableName = @"FDTake";
 {
     
     [[UIApplication sharedApplication] setStatusBarHidden:YES];
-    
     NSString *mediaType = [info objectForKey: UIImagePickerControllerMediaType];
     UIImage *originalImage, *editedImage, *imageToSave;
     
@@ -244,9 +243,11 @@ static NSString * const kStringsTableName = @"FDTake";
                 [self.delegate takeController:self didFailAfterAttempting:YES];
             return;
         }
+      NSMutableDictionary *new_info = [info mutableCopy];
+      [new_info setObject:[NSNumber numberWithInteger:[picker sourceType]] forKey:kUIImagePickerControllerSourceType];
         
         if ([self.delegate respondsToSelector:@selector(takeController:gotPhoto:withInfo:)])
-            [self.delegate takeController:self gotPhoto:imageToSave withInfo:info];
+            [self.delegate takeController:self gotPhoto:imageToSave withInfo:new_info];
         
         if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
             [self.popover dismissPopoverAnimated:YES];

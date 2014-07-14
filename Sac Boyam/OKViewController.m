@@ -13,6 +13,8 @@
 #import "OKUtils.h"
 #import "OKZoomView.h"
 #import "UIView+CreateImage.h"
+#import "OKWaitForResultsVC.h"
+#import "OKSonuclarViewController.h"
 //#import "GKImagePicker.h"
 
 static NSString * const okStringsTableName = @"localized";
@@ -21,9 +23,11 @@ struct pixel {
   unsigned char r,g,b,a;
 };
 
-@interface OKViewController () <FDTakeDelegate/*, GKImagePickerDelegate, UIImagePickerControllerDelegate*/>
+@interface OKViewController () <FDTakeDelegate, OKWaitForResultsDelegate/*, GKImagePickerDelegate, UIImagePickerControllerDelegate*/>
 @property (strong, nonatomic) OKZoomView *myView;
 @property (strong, nonatomic) NSDictionary *settingsArray;
+@property (strong, nonatomic) OKWaitForResultsVC *myModalViewController;
+- (IBAction)findForColorButtonTapped:(id)sender;
 @property BOOL savePhoto;
 //@property (strong, nonatomic) GKImagePicker *imagePicker;
 @end
@@ -153,6 +157,11 @@ struct pixel {
 }
 */
 
+-(void)userCancelledRequest
+{
+  [self.myModalViewController dismissViewControllerAnimated:YES completion:nil];
+}
+
 - (void)acceptChangedSetings:(NSDictionary *)settings
 {
   //self.settingsArray = @[@NO, @YES, @NO];
@@ -163,6 +172,29 @@ struct pixel {
   self.savePhoto = [settings[@"SavePhotos"] boolValue];
   
   self.settingsArray = settings;
+}
+
+- (void)testAlertView
+{
+  UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:@"Holaa!" delegate:nil cancelButtonTitle:nil otherButtonTitles: nil];
+  [alertView show];
+  [self performSelector:@selector(dismissAlertView:) withObject:alertView afterDelay:1.3];
+}
+
+- (void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo
+{
+  NSString *completionMessage = NSLocalizedStringFromTable(@"imageSavedSuccessfully", okStringsTableName, nil);
+  if (error) {
+    completionMessage = [error localizedDescription];
+  }
+  UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:completionMessage delegate:nil cancelButtonTitle:nil otherButtonTitles: nil];
+  [alertView show];
+  [self performSelector:@selector(dismissAlertView:) withObject:alertView afterDelay:0.8];
+}
+
+- (void)dismissAlertView:(UIAlertView *)alertView
+{
+  [alertView dismissWithClickedButtonIndex:0 animated:YES];
 }
 
 #pragma mark - FDTakeDelegate
@@ -181,10 +213,35 @@ struct pixel {
 - (void)takeController:(FDTakeController *)controller gotPhoto:(UIImage *)photo withInfo:(NSDictionary *)info
 {
   //TODO: Ask if user wants to save original photo..
-  UIImage *originalImage = (UIImage *) [info objectForKey:
-                             UIImagePickerControllerOriginalImage];
+//  NSMutableString *logString = [NSMutableString stringWithString:@"Picked Source type is: "];
+//  switch (imgSource) {
+//    case UIImagePickerControllerSourceTypePhotoLibrary:
+//      [logString appendString:@"UIImagePickerControllerSourceTypePhotoLibrary"];
+//      break;
+//    case UIImagePickerControllerSourceTypeCamera:
+//      [logString appendString:@"UIImagePickerControllerSourceTypeCamera"];
+//      break;
+//    case UIImagePickerControllerSourceTypeSavedPhotosAlbum:
+//      [logString appendString:@"UIImagePickerControllerSourceTypeSavedPhotosAlbum"];
+//      break;
+//    default:
+//      [logString appendString:@"Unknown!!"];
+//      break;
+//  }
+//  NSLog(@"%@", logString);
+  UIImagePickerControllerSourceType imgSource = (UIImagePickerControllerSourceType)[[info objectForKey:kUIImagePickerControllerSourceType] integerValue];
+  if (imgSource == UIImagePickerControllerSourceTypeCamera && self.savePhoto)
+  {
+    UIImage *originalImage = (UIImage *) [info objectForKey:
+                                          UIImagePickerControllerOriginalImage];
+    
+    UIImageWriteToSavedPhotosAlbum(originalImage, self, @selector(image:didFinishSavingWithError:contextInfo:), nil);
+  }
+//  [self performSelector:@selector(testAlertView) withObject:nil afterDelay:1.0];
+  
   UIImage *imageToBeShow = nil;
   if (self.takeController.allowsEditingPhoto) {
+    
     UIGraphicsBeginImageContext(self.selectedImage.bounds.size);
     [photo drawInRect:self.selectedImage.bounds];
     UIImage *smallImage = UIGraphicsGetImageFromCurrentImageContext();
@@ -206,8 +263,6 @@ struct pixel {
     CGImageRef imagerRef = CGImageCreateWithImageInRect([smallImage CGImage], self.selectedImage.bounds);
     imageToBeShow = [UIImage imageWithCGImage:imagerRef];
 //    imageToBeShow = originalImage;
-    
-    
   }
   
 //  UIGraphicsBeginImageContext(self.selectedImage.bounds.size);
@@ -529,4 +584,33 @@ struct pixel {
   return screenImage;
 }
 */
+
+- (void)simulateDataFetched
+{
+  [self.myModalViewController dismissViewControllerAnimated:YES completion:nil];
+
+  OKSonuclarViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"sonuclarViewController"];
+  [self.navigationController pushViewController:vc animated:YES];
+}
+
+- (IBAction)findForColorButtonTapped:(id)sender {
+  //TODO: Request for results on web api.
+  self.myModalViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"waitForResultsVC"];
+  self.myModalViewController.modalPresentationStyle = UIModalPresentationPageSheet;
+  self.myModalViewController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+  self.myModalViewController.delegate = self;
+  UIImage *underlyingImage = [self.view createImageFromView];
+  underlyingImage = [underlyingImage applyBlurWithRadius:20 tintColor:[UIColor colorWithWhite:1.0 alpha:0.2] saturationDeltaFactor:1.3 maskImage:nil];
+  [self.myModalViewController initWithBackgroundImage:underlyingImage];
+  [self presentViewController:self.myModalViewController animated:YES completion:^{
+    //TODO: push to results page.
+    //sonuclarViewController
+//    OKSonuclarViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"sonuclarViewController"];
+//    [self.navigationController pushViewController:vc animated:YES];
+    [self performSelector:@selector(simulateDataFetched) withObject:nil afterDelay:2.0];
+  }];
+  
+  
+}
+
 @end
