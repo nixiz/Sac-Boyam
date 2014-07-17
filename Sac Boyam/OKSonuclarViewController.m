@@ -8,11 +8,12 @@
 
 #import "OKSonuclarViewController.h"
 #import "OKSonuclarCell.h"
+#import "OKProductJsonType.h"
 
 #define ARC4RANDOM_MAX	0x100000000
 #define indexForProductName   0
-#define indexForProductDetail 1
-#define indexForProductPrice  2
+//#define indexForProductDetail 1
+#define indexForProductPrice  1
 
 
 @interface OKSonuclarViewController () <UIAlertViewDelegate, UIGestureRecognizerDelegate>
@@ -34,36 +35,64 @@
     return self;
 }
 
+-(void)initResultsDictionary:(NSDictionary *)dict
+{
+//  for (NSDictionary *obj in dict) {
+////    OKProductJsonType *product = [OKProductJsonType productJsonTypeWithJsonDictionary:obj];
+//    NSLog(@"Json Object: %@", obj);
+//  }
+  NSLog(@"Json Object: %@", dict);
+ 
+//  NSMutableDictionary *brandNameDictionary = [NSMutableDictionary dictionaryWithCapacity:[dict count]];
+  self.resultsList = [NSMutableDictionary dictionaryWithCapacity:[dict count]];
+  
+  for (NSDictionary *obj in dict) {
+    OKProductJsonType *product = [OKProductJsonType productJsonTypeWithJsonDictionary:obj];
+    NSLog(@"Json Object: %@", obj);
+
+    
+    NSMutableArray *brands = [self.resultsList objectForKey:product.brandName];
+    if (brands == nil) {
+      brands = [[NSMutableArray alloc] init];
+    }
+    [brands addObject:[NSArray arrayWithObjects:product.name, [NSString stringWithFormat:@"%00.00f$", product.price], nil]];
+    [self.resultsList setObject:brands forKey:product.brandName];
+//    self.resultsList
+  }
+  
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
   //TODO:self.resultsList = [[NSMutableDictionary alloc] initWithContentsOfURL:<#(NSURL *)#>];
-  NSString *productNameAVON = @"AVON";
-  NSString *productNameOReal = @"OReal";
-  NSString *productNameHaciAbi = @"HaciAbi";
-  self.resultsList = [[NSMutableDictionary alloc] initWithObjectsAndKeys:
-                      [NSArray arrayWithObjects:
-                       [NSArray arrayWithObjects:@"Creative ZartZurt", @"FalanFilan", @"17.0$", nil],
-                       [NSArray arrayWithObjects:@"Creative ZartZurt", @"FalanFilan", @"17.0$", nil],
-                       [NSArray arrayWithObjects:@"Creative ZartZurt", @"FalanFilan", @"17.0$", nil],
-                       [NSArray arrayWithObjects:@"Creative ZartZurt", @"FalanFilan", @"17.0$", nil], nil], productNameAVON
-                      ,[NSArray arrayWithObjects:
-                        [NSArray arrayWithObjects:@"Oreal Healing", @"FalanFilan", @"17.0$", nil],
-                        [NSArray arrayWithObjects:@"Oreal Healing", @"FalanFilan", @"17.0$", nil],
-                        [NSArray arrayWithObjects:@"Oreal Healing", @"FalanFilan", @"17.0$", nil],
-                        [NSArray arrayWithObjects:@"Oreal Healing", @"FalanFilan", @"17.0$", nil], nil], productNameOReal
-                      ,[NSArray arrayWithObjects:
-                        [NSArray arrayWithObjects:@"HaciAbi Candir", @"FalanFilan", @"17.0$", nil],
-                        [NSArray arrayWithObjects:@"HaciAbi Candir", @"FalanFilan", @"17.0$", nil],
-                        [NSArray arrayWithObjects:@"HaciAbi Candir", @"FalanFilan", @"17.0$", nil],
-                        [NSArray arrayWithObjects:@"HaciAbi Special", @"FalanFilan", @"24.0$", nil], nil], productNameHaciAbi
-                      ,nil];
+//  NSString *productNameAVON = @"AVON";
+//  NSString *productNameOReal = @"OReal";
+//  NSString *productNameHaciAbi = @"HaciAbi";
+//  self.resultsList = [[NSMutableDictionary alloc] initWithObjectsAndKeys:
+//                      [NSArray arrayWithObjects:
+//                       [NSArray arrayWithObjects:@"Creative ZartZurt", @"FalanFilan", @"17.0$", nil],
+//                       [NSArray arrayWithObjects:@"Creative ZartZurt", @"FalanFilan", @"17.0$", nil],
+//                       [NSArray arrayWithObjects:@"Creative ZartZurt", @"FalanFilan", @"17.0$", nil],
+//                       [NSArray arrayWithObjects:@"Creative ZartZurt", @"FalanFilan", @"17.0$", nil], nil], productNameAVON
+//                      ,[NSArray arrayWithObjects:
+//                        [NSArray arrayWithObjects:@"Oreal Healing", @"FalanFilan", @"17.0$", nil],
+//                        [NSArray arrayWithObjects:@"Oreal Healing", @"FalanFilan", @"17.0$", nil],
+//                        [NSArray arrayWithObjects:@"Oreal Healing", @"FalanFilan", @"17.0$", nil],
+//                        [NSArray arrayWithObjects:@"Oreal Healing", @"FalanFilan", @"17.0$", nil], nil], productNameOReal
+//                      ,[NSArray arrayWithObjects:
+//                        [NSArray arrayWithObjects:@"HaciAbi Candir", @"FalanFilan", @"17.0$", nil],
+//                        [NSArray arrayWithObjects:@"HaciAbi Candir", @"FalanFilan", @"17.0$", nil],
+//                        [NSArray arrayWithObjects:@"HaciAbi Candir", @"FalanFilan", @"17.0$", nil],
+//                        [NSArray arrayWithObjects:@"HaciAbi Special", @"FalanFilan", @"24.0$", nil], nil], productNameHaciAbi
+//                      ,nil];
+  NSAssert([self.resultsList count] > 0, @"view load olmadan result listesinin islenmesi gerekir");
   
   NSArray *keys = [self.resultsList allKeys];
   NSMutableDictionary *tmpDict = [[NSMutableDictionary alloc] initWithCapacity:[keys count]];
   NSInteger ind = 0;
   for (NSString *str in keys) {
-    [tmpDict setValue:str forKey:[NSNumber numberWithInteger:ind++]];
+    [tmpDict setObject:str forKey:[NSNumber numberWithInteger:ind++]];
   }
   self.resultsIndex = [[NSDictionary alloc] initWithDictionary:tmpDict copyItems:YES];
   //[tmpDict removeAllObjects];

@@ -55,6 +55,35 @@
   return hexString;
 }
 
++ (NSString *)colorToJsonString:(UIColor *)color
+{
+  NSString *jsonString = nil;
+  
+  if (color && CGColorGetNumberOfComponents(color.CGColor) == 4) {
+    
+    const CGFloat *components = CGColorGetComponents(color.CGColor);
+    CGFloat r,g,b;
+    r = roundf(components[0] * 255.0);
+    g = roundf(components[1] * 255.0);
+    b = roundf(components[2] * 255.0);
+    
+    NSArray *objects = [NSArray arrayWithObjects:[NSString stringWithFormat:@"%1.5f", r], [NSString stringWithFormat:@"%1.5f", g], [NSString stringWithFormat:@"%1.5f", b], nil];
+    NSArray *keys = [NSArray arrayWithObjects:@"Red", @"Green", @"Blue", nil];
+    NSDictionary *jsonDict = [NSDictionary dictionaryWithObjects:objects forKeys:keys];
+    
+    NSError *error;
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:jsonDict options:0 error:&error];
+    if (!jsonData) {
+      NSLog(@"Error writing json data: %@", error.localizedDescription);
+    } else {
+      jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+    }
+//    hexString = [NSString stringWithFormat:@"%02x%02x%02x", (int)r, (int)g, (int)b];
+  }
+  
+  return jsonString;
+}
+
 +(UIColor *)getBackgroundColor
 {
   UIColor *backgroundColor = nil;

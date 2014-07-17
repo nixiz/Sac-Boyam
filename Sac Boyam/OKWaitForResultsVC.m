@@ -32,7 +32,7 @@ static NSString * const okStringsTableName = @"localized";
   self.view.backgroundColor = [UIColor clearColor];
   UIImageView *backView = [[UIImageView alloc] initWithFrame:self.view.frame];
   backView.image = self.backgroundImage;
-  backView.backgroundColor = [[UIColor darkGrayColor] colorWithAlphaComponent:0.75];
+  backView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.75];
   [self.view addSubview:backView];
   
   UIButton *btn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
@@ -41,8 +41,20 @@ static NSString * const okStringsTableName = @"localized";
   btn.frame = CGRectMake(0, 0, 80.0f, 40.0f);
   CGPoint centerPointForButton = self.view.center;
   centerPointForButton.y -= 40.0f;
+  centerPointForButton.x += 20.0f;
   btn.center = centerPointForButton;
+//  [btn setTranslatesAutoresizingMaskIntoConstraints:NO];
   [self.view addSubview:btn];
+  
+  self.activityView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+  CGPoint centerPoint = self.view.center;
+  centerPoint.y -= 40.0f;
+  centerPoint.x -= 20.0f;
+  self.activityView.center = centerPoint;
+  [self.activityView setHidesWhenStopped:YES];
+  [self.activityView startAnimating];
+//  [self.activityView setTranslatesAutoresizingMaskIntoConstraints:NO];
+  [self.view addSubview:self.activityView];
   
   UILabel *lbl = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 16.0f)];
   lbl.center = self.view.center;
@@ -50,16 +62,56 @@ static NSString * const okStringsTableName = @"localized";
   [lbl setTextColor:[UIColor colorWithRed:0 green:122.0/255.0 blue:246.0/255.0 alpha:1.0]];
   [lbl setTextAlignment:NSTextAlignmentCenter];
   [lbl setFont:[UIFont systemFontOfSize:16]];
+//  [lbl setTranslatesAutoresizingMaskIntoConstraints:NO];
   [self.view addSubview:lbl];
   
-  self.activityView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
-  CGPoint centerPoint = self.view.center;
-  centerPoint.y += 16.0f;
-  self.activityView.center = centerPoint;
-  [self.activityView setHidesWhenStopped:YES];
-  [self.activityView startAnimating];
-  [self.view addSubview:self.activityView];
-    // Do any additional setup after loading the view.
+  
+  
+//  NSDictionary *viewsDict = NSDictionaryOfVariableBindings(btn, _activityView);
+//  [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_activityView]-(12)-[btn]"
+//                                                                    options:NSLayoutFormatDirectionLeadingToTrailing
+//                                                                    metrics:nil
+//                                                                      views:viewsDict]];
+
+//  [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.activityView
+//                                                        attribute:NSLayoutAttributeTrailing
+//                                                        relatedBy:NSLayoutRelationEqual
+//                                                           toItem:btn
+//                                                        attribute:NSLayoutAttributeLeading
+//                                                       multiplier:1.0 constant:8.0]];
+//  [self.view addConstraint:[NSLayoutConstraint constraintWithItem:btn
+//                                                        attribute:NSLayoutAttributeCenterX
+//                                                        relatedBy:NSLayoutRelationEqual
+//                                                           toItem:self.view.superview
+//                                                        attribute:NSLayoutAttributeCenterX
+//                                                       multiplier:1.0f constant:0.0f]];
+//  [self.view addConstraint:[NSLayoutConstraint constraintWithItem:btn
+//                                                        attribute:NSLayoutAttributeCenterY
+//                                                        relatedBy:NSLayoutRelationEqual
+//                                                           toItem:self.view.superview
+//                                                        attribute:NSLayoutAttributeCenterY
+//                                                       multiplier:1.0f constant:0.0f]];
+//  [self.view addConstraint:[NSLayoutConstraint constraintWithItem:btn
+//                                                        attribute:NSLayoutAttributeBottom
+//                                                        relatedBy:NSLayoutRelationEqual
+//                                                           toItem:lbl
+//                                                        attribute:NSLayoutAttributeTop
+//                                                       multiplier:1.0f constant:8.0f]];
+//  [self.view addConstraint:[NSLayoutConstraint constraintWithItem:lbl
+//                                                        attribute:NSLayoutAttributeTrailing
+//                                                        relatedBy:NSLayoutRelationEqual
+//                                                           toItem:self.view.superview
+//                                                        attribute:NSLayoutAttributeLeading
+//                                                       multiplier:1.0f constant:20.0f]];
+//  [self.view addConstraint:[NSLayoutConstraint constraintWithItem:lbl
+//                                                        attribute:NSLayoutAttributeLeading
+//                                                        relatedBy:NSLayoutRelationEqual
+//                                                           toItem:self.view.superview
+//                                                        attribute:NSLayoutAttributeTrailing
+//                                                       multiplier:1.0f constant:20.0f]];
+  
+  
+      // Do any additional setup after loading the view.
 }
 
 - (void)didReceiveMemoryWarning

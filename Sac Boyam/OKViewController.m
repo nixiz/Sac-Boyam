@@ -15,6 +15,7 @@
 #import "UIView+CreateImage.h"
 #import "OKWaitForResultsVC.h"
 #import "OKSonuclarViewController.h"
+#import "OKProductJsonType.h"
 //#import "GKImagePicker.h"
 
 static NSString * const okStringsTableName = @"localized";
@@ -27,6 +28,7 @@ struct pixel {
 @property (strong, nonatomic) OKZoomView *myView;
 @property (strong, nonatomic) NSDictionary *settingsArray;
 @property (strong, nonatomic) OKWaitForResultsVC *myModalViewController;
+@property (strong) UIColor *color;
 - (IBAction)findForColorButtonTapped:(id)sender;
 @property BOOL savePhoto;
 //@property (strong, nonatomic) GKImagePicker *imagePicker;
@@ -160,6 +162,9 @@ struct pixel {
 -(void)userCancelledRequest
 {
   [self.myModalViewController dismissViewControllerAnimated:YES completion:nil];
+  //TODO: cancel url request
+//  [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(simulateDataFetched) object:nil];
+//  self performSelector:<#(SEL)#> withObject:<#(id)#> afterDelay:<#(NSTimeInterval)#>
 }
 
 - (void)acceptChangedSetings:(NSDictionary *)settings
@@ -339,13 +344,13 @@ struct pixel {
     UIImage *tmp_img = [UIImage imageWithCGImage:imageRef];
 
     // calculate average color for next steps
-    UIColor *color = [tmp_img averageColor];
+    self.color = [tmp_img averageColor];
     
     // show average color for user interaction.
     CGRect rect = self.previewImage.bounds;
     UIGraphicsBeginImageContext(rect.size);
     CGContextRef context = UIGraphicsGetCurrentContext();
-    CGContextSetFillColorWithColor(context, [color CGColor]);
+    CGContextSetFillColorWithColor(context, [self.color CGColor]);
     CGContextFillRect(context, rect);
     UIImage *img = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
@@ -361,7 +366,7 @@ struct pixel {
 //    self.previewImage.layer.borderColor = [inverseColor CGColor];
     
     NSString *colorCodeString = NSLocalizedStringFromTable(@"colorCode", okStringsTableName, nil);
-    self.lblRenkKodu.text = [NSString stringWithFormat:@"%@: %@", colorCodeString, [OKUtils colorToHexString:color]];
+    self.lblRenkKodu.text = [NSString stringWithFormat:@"%@: %@", colorCodeString, [OKUtils colorToHexString:self.color]];
     
     self.myView.previewImage = img;
     self.myView.newPoint = point;
@@ -585,6 +590,17 @@ struct pixel {
 }
 */
 
+- (void)showAutoDismissedAlertWithMessage:(NSString *)message withTitle:(NSString *)title
+{
+  UIAlertView *alarma = [[UIAlertView alloc] initWithTitle:title
+                                                   message:message
+                                                  delegate:self
+                                         cancelButtonTitle:NSLocalizedStringFromTable(@"OKButtonTitle", okStringsTableName, nil)
+                                         otherButtonTitles:nil];
+  [alarma show];
+  [self performSelector:@selector(dismissAlertView:) withObject:alarma afterDelay:1.3];
+}
+
 - (void)simulateDataFetched
 {
   [self.myModalViewController dismissViewControllerAnimated:YES completion:nil];
@@ -602,15 +618,92 @@ struct pixel {
   UIImage *underlyingImage = [self.view createImageFromView];
   underlyingImage = [underlyingImage applyBlurWithRadius:20 tintColor:[UIColor colorWithWhite:1.0 alpha:0.2] saturationDeltaFactor:1.3 maskImage:nil];
   [self.myModalViewController initWithBackgroundImage:underlyingImage];
-  [self presentViewController:self.myModalViewController animated:YES completion:^{
-    //TODO: push to results page.
-    //sonuclarViewController
-//    OKSonuclarViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"sonuclarViewController"];
-//    [self.navigationController pushViewController:vc animated:YES];
-    [self performSelector:@selector(simulateDataFetched) withObject:nil afterDelay:2.0];
+  
+//  [self presentViewController:self.myModalViewController animated:YES completion:^{
+//    //TODO: push to results page.
+//    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT , 0), ^{
+//      NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:@"http://10.0.3.5:42736/api/product"]];
+//      [self performSelectorOnMainThread:@selector(fetchedData:) withObject:data waitUntilDone:YES];
+//    });
+////    [self performSelector:@selector(simulateDataFetched) withObject:nil afterDelay:2.0];
+//  }];
+  [self presentViewController:self.myModalViewController animated:YES completion:nil];
+  
+  NSString *jsonRequest = [OKUtils colorToJsonString:self.color];
+  NSLog(@"jsonRequest is %@", jsonRequest);
+  NSData *requestData = [jsonRequest dataUsingEncoding:NSUTF8StringEncoding];
+  
+  NSURL *url = [NSURL URLWithString:@"http://10.0.3.5:42736/api/product/post"];
+  NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:0.0];
+  [request setHTTPMethod:@"POST"];
+//  [request setValue:@"Fiddler" forHTTPHeaderField:@"User-Agent"];
+  [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+  [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+  [request setValue:@"json" forHTTPHeaderField:@"Data-Type"];
+  NSString *dataLenStr = [@([requestData length]) stringValue];
+  [request setValue:dataLenStr forHTTPHeaderField:@"Content-Length"];
+  [request setHTTPBody:requestData];
+  
+//  NSURLResponse *response = NULL;
+//  NSError *requestError = NULL;
+//  NSData *responseData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&requestError];
+//  NSString *responseString = [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding];
+//  NSLog(@"%@",responseString);
+//  [self performSelectorOnMainThread:@selector(fetchedData:) withObject:responseData waitUntilDone:YES];
+  
+  
+  [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue currentQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+    if ([response isKindOfClass:[NSHTTPURLResponse class]])
+    {
+      NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse*) response;
+      NSLog(@"%@", [NSHTTPURLResponse localizedStringForStatusCode:[httpResponse statusCode]]);
+      if ([httpResponse statusCode] != 200) {
+        //TODO: This means bad request!!
+        NSLog(@"%@", [NSHTTPURLResponse localizedStringForStatusCode:[httpResponse statusCode]]);
+      }
+      //If you need the response, you can use it here
+    }
+    if (data == nil || connectionError) {
+      NSLog(@"HTTP Error: %@", connectionError);
+//      [self showAutoDismissedAlertWithMessage:@"Server Baglantisi yapilamadi" withTitle:@"Hata!"];
+//      return;
+    }
+    [self performSelectorOnMainThread:@selector(fetchedData:) withObject:data waitUntilDone:YES];
   }];
+}
+
+- (void)fetchedData:(NSData *)responseData
+{
+  NSError *error;
+  if (responseData == nil) {
+    //TODO: error!!
+    [self.myModalViewController dismissViewControllerAnimated:NO completion:nil];
+    [self showAutoDismissedAlertWithMessage:@"Server Baglantisi yapilamadi" withTitle:@"Hata!"];
+    return;
+  }
   
+  NSDictionary *json = [NSJSONSerialization JSONObjectWithData:responseData options:0 error:&error];
+  if (error) {
+    //TODO: show alertView and return!
+    [self.myModalViewController dismissViewControllerAnimated:NO completion:nil];
+    [self showAutoDismissedAlertWithMessage:[NSString stringWithFormat:@"%@", error] withTitle:@"Hata!"];
+    NSLog(@"%@", error);
+    return;
+  }
   
+  [self.myModalViewController dismissViewControllerAnimated:YES completion:nil];
+  
+  OKSonuclarViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"sonuclarViewController"];
+  [vc initResultsDictionary:json];
+//  [vs initResultsDictionary
+  [self.navigationController pushViewController:vc animated:YES];
+  
+//  for (NSDictionary *obj in json) {
+//    OKProductJsonType *product = [OKProductJsonType productJsonTypeWithJsonDictionary:obj];
+//    NSLog(@"Json Object: %@", obj);
+//  }
+//  
+//  NSLog(@"Json Object: %@", json);
 }
 
 @end

@@ -10,4 +10,6 @@
 
 @interface OKSonuclarViewController : UITableViewController
 
+-(void)initResultsDictionary:(NSDictionary *)dict;
+
 @end

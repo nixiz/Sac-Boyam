@@ -11,7 +11,7 @@
 #import "MyCutomView.h"
 #import "OKSettingsViewController.h"
 
-@interface OKViewController : UIViewController<OKSettingsDelegate>
+@interface OKViewController : UIViewController<OKSettingsDelegate, UIAlertViewDelegate>
 @property (weak, nonatomic) IBOutlet UIImageView *selectedImage;
 @property (weak, nonatomic) IBOutlet UIImageView *previewImage;
 @property (weak, nonatomic) IBOutlet UILabel *lblRenkKodu;

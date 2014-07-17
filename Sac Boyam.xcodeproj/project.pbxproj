@@ -32,6 +32,7 @@
 		7136433A195C4E3F006EF824 /* sacli.png in Resources */ = {isa = PBXBuildFile; fileRef = 71364339195C4E3F006EF824 /* sacli.png */; };
 		7136433D195C5E08006EF824 /* OKUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 7136433C195C5E08006EF824 /* OKUtils.m */; };
 		7152CB4F19741B330080898F /* OKWaitForResultsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 7152CB4E19741B330080898F /* OKWaitForResultsVC.m */; };
+		7152CB52197557640080898F /* OKProductJsonType.m in Sources */ = {isa = PBXBuildFile; fileRef = 7152CB51197557640080898F /* OKProductJsonType.m */; };
 		7169530A196E646700C988E5 /* FDTake.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7169530C196E646700C988E5 /* FDTake.strings */; };
 		7169530F196E64C100C988E5 /* localized.strings in Resources */ = {isa = PBXBuildFile; fileRef = 71695311196E64C100C988E5 /* localized.strings */; };
 		718986551963E59400C26297 /* OKZoomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 718986541963E59400C26297 /* OKZoomView.m */; };
@@ -82,6 +83,8 @@
 		7136433C195C5E08006EF824 /* OKUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKUtils.m; sourceTree = "<group>"; };
 		7152CB4D19741B330080898F /* OKWaitForResultsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKWaitForResultsVC.h; sourceTree = "<group>"; };
 		7152CB4E19741B330080898F /* OKWaitForResultsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKWaitForResultsVC.m; sourceTree = "<group>"; };
+		7152CB50197557640080898F /* OKProductJsonType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKProductJsonType.h; sourceTree = "<group>"; };
+		7152CB51197557640080898F /* OKProductJsonType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKProductJsonType.m; sourceTree = "<group>"; };
 		7169530B196E646700C988E5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/FDTake.strings; sourceTree = "<group>"; };
 		71695310196E64C100C988E5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/localized.strings; sourceTree = "<group>"; };
 		71695312196E64CF00C988E5 /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/FDTake.strings; sourceTree = "<group>"; };
@@ -249,6 +252,8 @@
 				71ECEF94195AC2A600872EBC /* UIImage+AverageColor.m */,
 				71063757196C0ED100D17D66 /* UIView+CreateImage.h */,
 				71063758196C0ED100D17D66 /* UIView+CreateImage.m */,
+				7152CB50197557640080898F /* OKProductJsonType.h */,
+				7152CB51197557640080898F /* OKProductJsonType.m */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -347,6 +352,7 @@
 				719BCE8C1966F0E9005F575C /* OKSettingsViewController.m in Sources */,
 				71328AF817C38BA5007EE533 /* MyCutomView.m in Sources */,
 				71328AA217C35FD7007EE533 /* main.m in Sources */,
+				7152CB52197557640080898F /* OKProductJsonType.m in Sources */,
 				7136433D195C5E08006EF824 /* OKUtils.m in Sources */,
 				71328AA617C35FD7007EE533 /* OKAppDelegate.m in Sources */,
 				71328AB517C35FD7007EE533 /* OKViewController.m in Sources */,
