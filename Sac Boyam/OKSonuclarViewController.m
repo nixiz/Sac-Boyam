@@ -16,7 +16,7 @@
 #define indexForProductName   0
 //#define indexForProductDetail 1
 #define indexForProductPrice  1
-#define MinMaxScale 0.15 //%15
+#define MinMaxScale 0.07 //%15
 //#define grayScaleScanThreshold (1.0/255.0)*100.0*MinMaxScale
 #define grayScaleScanThreshold(x) ((x)/255.0)*100.0*MinMaxScale
 
@@ -46,7 +46,7 @@
   _managedObjectContext = managedObjectContext;
   if (managedObjectContext) {
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"ColorModel"];
-    request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"brand.brandName" ascending:YES selector:@selector(localizedCaseInsensitiveCompare:)]];
+    request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"brand.brandName" ascending:YES selector:@selector(localizedCaseInsensitiveCompare:)], [NSSortDescriptor sortDescriptorWithKey:@"grayScale" ascending:YES]];
 
     CGFloat minval = fabsf(self.grayScale - grayScaleScanThreshold(self.grayScale));
     CGFloat maxval = self.grayScale + grayScaleScanThreshold(self.grayScale);
@@ -54,7 +54,7 @@
     //between burada calismiyor. internette de bunun gibi sorunlar var. o yuzden and kullanarak yaptim.
 //    request.predicate = [NSPredicate predicateWithFormat: @"grayScale BETWEEN %@", @[@1, @10]];
     
-    self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:request managedObjectContext:managedObjectContext sectionNameKeyPath:nil cacheName:nil];
+    self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:request managedObjectContext:managedObjectContext sectionNameKeyPath:@"brand.brandName" cacheName:nil];
   } else {
     self.fetchedResultsController = nil;
   }
@@ -87,36 +87,35 @@
 }
 
 #pragma mark - Table view data source
-/*
+
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-  return 50.0f;
+  return 75.0f;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-  CGRect headerViewRect = CGRectMake(0, 0, self.view.bounds.size.width, 50);
+  CGRect headerViewRect = CGRectMake(0, 0, self.view.bounds.size.width, 75);
   UIView *headerView = [[UIView alloc] initWithFrame:headerViewRect];
-  headerView.backgroundColor = self.mColor;
-  NSString *productNameString = [self.resultsIndex objectForKey:[NSNumber numberWithInteger:section]];
-  
-  
+  headerView.backgroundColor = [[UIColor lightGrayColor] colorWithAlphaComponent:0.85];
   //TODO: Get product Logo from productName value.
+  NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:section];
+  ColorModel *color = [self.fetchedResultsController objectAtIndexPath:indexPath];
+
   UIImageView *productLogo = [[UIImageView alloc] initWithImage:
-                              [UIImage imageNamed:@"Default.png"]];
-  productLogo.frame = CGRectMake(0, 0, 50, 50);
+                              [UIImage imageWithData:color.brand.brandImage]];
+  productLogo.frame = CGRectMake(0, 0, 75, 75);
   productLogo.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin;
     
   [headerView addSubview:productLogo];
     
-  UILabel *productName = [[UILabel alloc] initWithFrame:CGRectMake(55, 0, self.view.bounds.size.width - 50, 50)];
-  productName.text = productNameString;
+  UILabel *productName = [[UILabel alloc] initWithFrame:CGRectMake(80, 0, self.view.bounds.size.width - 75, 75)];
+  productName.text = color.brand.brandName;
   productName.backgroundColor = [UIColor clearColor];
   [headerView addSubview:productName];
     
   return headerView;
 }
-*/
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -130,8 +129,11 @@
   ColorModel *color = [self.fetchedResultsController objectAtIndexPath:indexPath];
   
   //TODO: get product image from url/productinfo-string.
+//  cell.productName.adjustsFontSizeToFitWidth = YES;
+  cell.productName.lineBreakMode = NSLineBreakByWordWrapping;
+  cell.productName.numberOfLines = 2;
   cell.productName.text = color.productName;
-  cell.priceLabel.text = [color.price stringValue];
+  cell.priceLabel.text = [[color.price stringValue] stringByAppendingString:@" TL"];
   [cell.productImg setImage:[UIImage imageWithData:color.productImage]];
   return cell;
 }
@@ -180,7 +182,8 @@
   NSMutableString *searchText = [[NSMutableString alloc] initWithString:@"https://www.google.com/search?q="];
   [searchText appendString:[self.stringToBeSearceh stringByReplacingOccurrencesOfString:@" " withString:@"+"]];
 
-  NSURL *url = [NSURL URLWithString:searchText];
+  NSString *urlStr = [searchText stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+  NSURL *url = [NSURL URLWithString:urlStr];
   BOOL success = [[UIApplication sharedApplication] openURL:url];
   
   if (!success) {
