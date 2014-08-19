@@ -12,4 +12,5 @@
 - (UIColor *)averageColor;
 - (UIImage *)addTextToImageWithText:(NSString *)text andColor:(UIColor *)color;
 - (UIImage *)addTextToImageWithText:(NSString *)text atPoint:(CGPoint)point andColor:(UIColor *)color;
+- (UIImage *)cropImageWithRect:(CGRect)rect;
 @end

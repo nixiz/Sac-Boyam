@@ -7,6 +7,7 @@
 //
 
 #import "OKAppDelegate.h"
+#import "OKUtils.h"
 
 @implementation OKAppDelegate
 
@@ -16,7 +17,9 @@
 //  [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
 //  self.navigationController.navigationBar.shadowImage = [UIImage new];
 //  self.navigationController.navigationBar.translucent = YES;
-
+//  [NSMutableDictionary dictionaryWithObjectsAndKeys:@NO, @"SavePhotos", @YES, @"EditPhotos", @NO, @"TakeRecord", nil];
+  NSDictionary *userDefaults = @{savePhotosKey: @NO, editPhotosKey: @YES, takeRecordKey: @NO};
+  [[NSUserDefaults standardUserDefaults] registerDefaults:userDefaults];
     // Override point for customization after application launch.
     return YES;
 }
@@ -29,6 +32,7 @@
 
 - (void)applicationDidEnterBackground:(UIApplication *)application
 {
+  [[NSUserDefaults standardUserDefaults] synchronize];
   // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
   // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
 }
@@ -45,6 +49,7 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application
 {
+  [[NSUserDefaults standardUserDefaults] synchronize];
   // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 

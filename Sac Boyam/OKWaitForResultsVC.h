@@ -18,5 +18,5 @@
 @property (weak, nonatomic) id<OKWaitForResultsDelegate> delegate;
 
 -(void)initWithBackgroundImage:(UIImage *)image;
-
+-(void)closeModalViewAnimated:(BOOL) animated;
 @end

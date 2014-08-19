@@ -29,6 +29,7 @@ static NSString * const okStringsTableName = @"localized";
 - (void)viewDidLoad
 {
   [super viewDidLoad];
+
   self.view.backgroundColor = [UIColor clearColor];
   UIImageView *backView = [[UIImageView alloc] initWithFrame:self.view.frame];
   backView.image = self.backgroundImage;
@@ -51,8 +52,8 @@ static NSString * const okStringsTableName = @"localized";
   centerPoint.y -= 40.0f;
   centerPoint.x -= 20.0f;
   self.activityView.center = centerPoint;
-  [self.activityView setHidesWhenStopped:YES];
-  [self.activityView startAnimating];
+//  [self.activityView setHidesWhenStopped:YES];
+//  [self.activityView startAnimating];
 //  [self.activityView setTranslatesAutoresizingMaskIntoConstraints:NO];
   [self.view addSubview:self.activityView];
   
@@ -65,7 +66,9 @@ static NSString * const okStringsTableName = @"localized";
 //  [lbl setTranslatesAutoresizingMaskIntoConstraints:NO];
   [self.view addSubview:lbl];
   
-  
+//  CGRect recc = CGRectInset(self.view.frame, -150, 150);
+//  self.view.frame = recc;
+
   
 //  NSDictionary *viewsDict = NSDictionaryOfVariableBindings(btn, _activityView);
 //  [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_activityView]-(12)-[btn]"
@@ -112,6 +115,19 @@ static NSString * const okStringsTableName = @"localized";
   
   
       // Do any additional setup after loading the view.
+}
+
+-(void)viewDidAppear:(BOOL)animated
+{
+  [super viewDidAppear:animated];
+  [self.activityView startAnimating];
+  [self.activityView setHidesWhenStopped:YES];
+}
+
+-(void)closeModalViewAnimated:(BOOL) animated
+{
+  [self.activityView stopAnimating];
+//  [self dismissViewControllerAnimated:animated completion:nil];
 }
 
 - (void)didReceiveMemoryWarning

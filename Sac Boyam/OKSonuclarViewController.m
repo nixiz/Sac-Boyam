@@ -55,7 +55,7 @@
     if (brands == nil) {
       brands = [[NSMutableArray alloc] init];
     }
-    [brands addObject:[NSArray arrayWithObjects:product.name, [NSString stringWithFormat:@"%00.00f$", product.price], nil]];
+    [brands addObject:[NSArray arrayWithObjects:product.name, [NSString stringWithFormat:@"%2.2f$", product.price], nil]];
     [self.resultsList setObject:brands forKey:product.brandName];
 //    self.resultsList
   }
@@ -65,7 +65,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-  //TODO:self.resultsList = [[NSMutableDictionary alloc] initWithContentsOfURL:<#(NSURL *)#>];
 //  NSString *productNameAVON = @"AVON";
 //  NSString *productNameOReal = @"OReal";
 //  NSString *productNameHaciAbi = @"HaciAbi";

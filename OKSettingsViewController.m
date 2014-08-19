@@ -8,9 +8,10 @@
 
 #import "OKSettingsViewController.h"
 #import "UIImage+ImageEffects.h"
+#import "OKUtils.h"
 
 @interface OKSettingsViewController ()
-@property (strong, nonatomic) NSMutableDictionary *settingsMap;
+@property (strong, nonatomic) NSDictionary *settingsMap;
 - (IBAction)switchValueChanged:(id)sender;
 @property (weak, nonatomic) IBOutlet UISwitch *savePhotosSwitch;
 @property (weak, nonatomic) IBOutlet UISwitch *editPhotosSwitch;
@@ -43,13 +44,13 @@
 
   self.view.backgroundColor = [UIColor colorWithPatternImage:image];
 
-  if (self.settingsMap == nil) {
-    self.settingsMap = [NSMutableDictionary dictionaryWithObjectsAndKeys:@NO, @"SavePhotos", @YES, @"EditPhotos", @NO, @"TakeRecord", nil];
-  }
-  [self.savePhotosSwitch setOn:[self.settingsMap[@"SavePhotos"] boolValue] animated:YES];
-  [self.editPhotosSwitch setOn:[self.settingsMap[@"EditPhotos"] boolValue] animated:YES];
-  [self.takeRecordsSwitch setOn:[self.settingsMap[@"TakeRecord"] boolValue] animated:YES];
-  //[NSMutableArray arrayWithObjects:@NO, @YES, @NO, nil];
+  self.settingsMap = [[NSUserDefaults standardUserDefaults] dictionaryRepresentation];
+//  if (self.settingsMap == nil) {
+//    self.settingsMap = [NSMutableDictionary dictionaryWithObjectsAndKeys:@NO, @"SavePhotos", @YES, @"EditPhotos", @NO, @"TakeRecord", nil];
+//  }
+  [self.savePhotosSwitch setOn:[self.settingsMap[savePhotosKey] boolValue] animated:YES];
+  [self.editPhotosSwitch setOn:[self.settingsMap[editPhotosKey] boolValue] animated:YES];
+  [self.takeRecordsSwitch setOn:[self.settingsMap[takeRecordKey] boolValue] animated:YES];
 }
 
 - (void)didReceiveMemoryWarning
@@ -58,14 +59,10 @@
     // Dispose of any resources that can be recreated.
 }
 
--(void)setCurrentSettings:(NSDictionary *)settings
-{
-  self.settingsMap = [NSMutableDictionary dictionaryWithDictionary:settings];
-//  for (NSString *key in settings) {
-//    [self.settingsMap setObject:[settings objectForKey:key] forKey:key];
-//  }
-//  self.settingsArray = [NSMutableArray arrayWithArray:settings];
-}
+//-(void)setCurrentSettings:(NSDictionary *)settings
+//{
+//   self.settingsMap = [NSMutableDictionary dictionaryWithDictionary:settings];
+//}
 
 /*
 #pragma mark - Navigation
@@ -81,23 +78,33 @@
 - (IBAction)switchValueChanged:(id)sender {
   UISwitch *_switch = (UISwitch *)sender;
   NSLog(@"Switch with Tag %ld value chaged to %@", (long)_switch.tag, _switch.on == YES ? @"YES" : @"NO");
+  NSString *keyString;
   switch (_switch.tag) {
     case 0:
-      [self.settingsMap setObject:[NSNumber numberWithBool:_switch.on] forKey:@"SavePhotos"];
+      keyString = savePhotosKey;
+//      [self.settingsMap setObject:[NSNumber numberWithBool:_switch.on] forKey:@"SavePhotos"];
       break;
     case 1:
-      [self.settingsMap setObject:[NSNumber numberWithBool:_switch.on] forKey:@"EditPhotos"];
+      keyString = editPhotosKey;
+//      [self.settingsMap setObject:[NSNumber numberWithBool:_switch.on] forKey:@"EditPhotos"];
       break;
     case 2:
-      [self.settingsMap setObject:[NSNumber numberWithBool:_switch.on] forKey:@"TakeRecord"];
+      keyString = takeRecordKey;
+//      [self.settingsMap setObject:[NSNumber numberWithBool:_switch.on] forKey:@"TakeRecord"];
       break;
-    default:
+    default: //default'ta zaten degisen olmayacagi icin asagidaki if dongusunde sikinti olmamasi icin herhangi biri olabilir
+      keyString = editPhotosKey;
       break;
   }
-//  [self.settingsArray replaceObjectAtIndex:_switch.tag withObject:[NSNumber numberWithBool:_switch.on]];
+  // ayarlar degistiginde buraya girilecegi icin degistimi diye kontrol etmeye gerek yok.
+  [[NSUserDefaults standardUserDefaults] setObject:@(_switch.on) forKey:keyString];
+//  [[NSUserDefaults standardUserDefaults] synchronize];
+//  if ([[self.settingsMap objectForKey:keyString] boolValue] != _switch.on) {
+//    [[NSUserDefaults standardUserDefaults] setObject:@(_switch.on) forKey:keyString];
+//    [[NSUserDefaults standardUserDefaults] synchronize];
+//  }
   if ([self.delegate respondsToSelector:@selector(acceptChangedSetings:)]) {
-    [self.delegate acceptChangedSetings:self.settingsMap];
+    [self.delegate acceptChangedSetings];
   }
-  
 }
 @end

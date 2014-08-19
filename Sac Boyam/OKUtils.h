@@ -7,6 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
+static NSString *savePhotosKey = @"savephotosKey";
+static NSString *editPhotosKey = @"editphotosKey";
+static NSString *takeRecordKey = @"takerecordKey";
 
 @interface OKUtils : NSObject
 

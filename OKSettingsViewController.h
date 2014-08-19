@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 @protocol OKSettingsDelegate <NSObject>
 
-- (void)acceptChangedSetings:(NSDictionary *)settings;
+- (void)acceptChangedSetings;
 
 @end
 

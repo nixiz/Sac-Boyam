@@ -26,11 +26,12 @@ struct pixel {
 
 @interface OKViewController () <FDTakeDelegate, OKWaitForResultsDelegate/*, GKImagePickerDelegate, UIImagePickerControllerDelegate*/>
 @property (strong, nonatomic) OKZoomView *myView;
-@property (strong, nonatomic) NSDictionary *settingsArray;
+//@property (strong, nonatomic) NSDictionary *settingsArray;
 @property (strong, nonatomic) OKWaitForResultsVC *myModalViewController;
 @property (strong) UIColor *color;
 - (IBAction)findForColorButtonTapped:(id)sender;
 @property BOOL savePhoto;
+@property BOOL userCanceledRequest;
 //@property (strong, nonatomic) GKImagePicker *imagePicker;
 @end
 
@@ -39,9 +40,13 @@ struct pixel {
 - (void)viewDidLoad
 {
   [super viewDidLoad];
-  self.settingsArray = [NSMutableDictionary dictionaryWithObjectsAndKeys:@NO, @"SavePhotos", @YES, @"EditPhotos", @NO, @"TakeRecord", nil];
-  self.savePhoto = NO;
-
+  self.userCanceledRequest = NO;
+  
+//  self.settingsArray = [[NSUserDefaults standardUserDefaults] dictionaryRepresentation];
+  self.savePhoto = [[[NSUserDefaults standardUserDefaults] objectForKey:savePhotosKey] boolValue];
+  self.takeController.allowsEditingPhoto = [[[NSUserDefaults standardUserDefaults] objectForKey:editPhotosKey] boolValue];
+//  self.savePhoto = NO;
+  
   NSString *selectPhotoString = NSLocalizedStringFromTable(@"selectPhoto", okStringsTableName, nil);
   UIBarButtonItem *btn2 = [[UIBarButtonItem alloc] initWithTitle:selectPhotoString style:UIBarButtonItemStylePlain target:self action:@selector(SelectNewImage:)];
 //  [btn2 setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor whiteColor]} forState:UIControlStateNormal];
@@ -137,46 +142,23 @@ struct pixel {
   [self.takeController takePhotoOrChooseFromLibrary];
 //  [self presentViewController:self.imagePicker.imagePickerController animated:YES completion:nil];
 }
-/*
-#pragma mark - GKImagePickerDelegate
-
-- (void)imagePicker:(GKImagePicker *)imagePicker pickedImage:(UIImage *)image
-{
-  UIGraphicsBeginImageContext(self.selectedImage.bounds.size);
-  [image drawInRect:self.selectedImage.bounds];
-  UIImage *smallImage = UIGraphicsGetImageFromCurrentImageContext();
-  UIGraphicsEndImageContext();
-  
-  NSLog(@"Small Image Size:   %@", NSStringFromCGSize(smallImage.size));
-  
-  CGImageRef imagerRef = CGImageCreateWithImageInRect([smallImage CGImage], self.selectedImage.bounds);
-  UIImage *imageToBeShow = [UIImage imageWithCGImage:imagerRef];
-  NSLog(@"Cropped Image Size: %@", NSStringFromCGSize(imageToBeShow.size));
-
-  [self.selectedImage setImage:imageToBeShow];
-  [self.imagePicker.imagePickerController dismissViewControllerAnimated:YES completion:nil];
-//  [self.selectedImage sizeToFit];
-}
-*/
 
 -(void)userCancelledRequest
 {
   [self.myModalViewController dismissViewControllerAnimated:YES completion:nil];
+  self.userCanceledRequest = YES;
+
   //TODO: cancel url request
 //  [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(simulateDataFetched) object:nil];
 //  self performSelector:<#(SEL)#> withObject:<#(id)#> afterDelay:<#(NSTimeInterval)#>
 }
 
-- (void)acceptChangedSetings:(NSDictionary *)settings
+- (void)acceptChangedSetings
 {
-  //self.settingsArray = @[@NO, @YES, @NO];
+  self.takeController.allowsEditingPhoto = [[[NSUserDefaults standardUserDefaults] objectForKey:editPhotosKey] boolValue];
+  self.savePhoto = [[[NSUserDefaults standardUserDefaults] objectForKey:savePhotosKey] boolValue];
   
-//  self.takeController.allowsEditingPhoto = [[settings objectAtIndex:1] boolValue];
-//  self.savePhoto = [[settings objectAtIndex:0] boolValue];
-  self.takeController.allowsEditingPhoto = [settings[@"EditPhotos"] boolValue];
-  self.savePhoto = [settings[@"SavePhotos"] boolValue];
-  
-  self.settingsArray = settings;
+//  self.settingsArray = settings;
 }
 
 - (void)testAlertView
@@ -199,7 +181,9 @@ struct pixel {
 
 - (void)dismissAlertView:(UIAlertView *)alertView
 {
-  [alertView dismissWithClickedButtonIndex:0 animated:YES];
+  if ([alertView isVisible]) {
+    [alertView dismissWithClickedButtonIndex:0 animated:YES];
+  }
 }
 
 #pragma mark - FDTakeDelegate
@@ -565,30 +549,12 @@ struct pixel {
   if ([[segue identifier] isEqualToString:@"settingsSegue"]) {
     OKSettingsViewController *vc = [segue destinationViewController];
     [vc setDelegate:self];
-    [vc setCurrentSettings:self.settingsArray];
+//    [vc setCurrentSettings:self.settingsArray];
     
 //    UIImage *underlyingImage = [self.view createImageFromView];
 //    underlyingImage = [underlyingImage applyBlurWithRadius:20 tintColor:[UIColor colorWithWhite:1.0 alpha:0.2] saturationDeltaFactor:1.3 maskImage:nil];
   }
- // Get the new view controller using [segue destinationViewController].
- // Pass the selected object to the new view controller.
 }
-
-
-/*
-- (UIImage *)captureScreenInRect:(CGRect)captureFrame
-{
-  
-  CALayer *layer;
-  layer = self.view.layer;
-  UIGraphicsBeginImageContext(self.view.frame.size);
-  CGContextClipToRect (UIGraphicsGetCurrentContext(), captureFrame);
-  [layer renderInContext:UIGraphicsGetCurrentContext()];
-  UIImage *screenImage = UIGraphicsGetImageFromCurrentImageContext();
-  UIGraphicsEndImageContext();
-  return screenImage;
-}
-*/
 
 - (void)showAutoDismissedAlertWithMessage:(NSString *)message withTitle:(NSString *)title
 {
@@ -598,7 +564,7 @@ struct pixel {
                                          cancelButtonTitle:NSLocalizedStringFromTable(@"OKButtonTitle", okStringsTableName, nil)
                                          otherButtonTitles:nil];
   [alarma show];
-  [self performSelector:@selector(dismissAlertView:) withObject:alarma afterDelay:1.3];
+  [self performSelector:@selector(dismissAlertView:) withObject:alarma afterDelay:3.0];
 }
 
 - (void)simulateDataFetched
@@ -612,7 +578,7 @@ struct pixel {
 - (IBAction)findForColorButtonTapped:(id)sender {
   //TODO: Request for results on web api.
   self.myModalViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"waitForResultsVC"];
-  self.myModalViewController.modalPresentationStyle = UIModalPresentationPageSheet;
+  self.myModalViewController.modalPresentationStyle = UIModalPresentationFormSheet;
   self.myModalViewController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
   self.myModalViewController.delegate = self;
   UIImage *underlyingImage = [self.view createImageFromView];
@@ -627,16 +593,14 @@ struct pixel {
 //    });
 ////    [self performSelector:@selector(simulateDataFetched) withObject:nil afterDelay:2.0];
 //  }];
-  [self presentViewController:self.myModalViewController animated:YES completion:nil];
   
   NSString *jsonRequest = [OKUtils colorToJsonString:self.color];
   NSLog(@"jsonRequest is %@", jsonRequest);
   NSData *requestData = [jsonRequest dataUsingEncoding:NSUTF8StringEncoding];
   
   NSURL *url = [NSURL URLWithString:@"http://10.0.3.5:42736/api/product/post"];
-  NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:0.0];
+  NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:20.0];
   [request setHTTPMethod:@"POST"];
-//  [request setValue:@"Fiddler" forHTTPHeaderField:@"User-Agent"];
   [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
   [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
   [request setValue:@"json" forHTTPHeaderField:@"Data-Type"];
@@ -644,32 +608,25 @@ struct pixel {
   [request setValue:dataLenStr forHTTPHeaderField:@"Content-Length"];
   [request setHTTPBody:requestData];
   
-//  NSURLResponse *response = NULL;
-//  NSError *requestError = NULL;
-//  NSData *responseData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&requestError];
-//  NSString *responseString = [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding];
-//  NSLog(@"%@",responseString);
-//  [self performSelectorOnMainThread:@selector(fetchedData:) withObject:responseData waitUntilDone:YES];
-  
-  
   [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue currentQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
     if ([response isKindOfClass:[NSHTTPURLResponse class]])
     {
       NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse*) response;
-      NSLog(@"%@", [NSHTTPURLResponse localizedStringForStatusCode:[httpResponse statusCode]]);
-      if ([httpResponse statusCode] != 200) {
+      NSLog(@"Received response status : %@", [NSHTTPURLResponse localizedStringForStatusCode:[httpResponse statusCode]]);
+      if ([httpResponse statusCode] != 200) { //if it is not ok
         //TODO: This means bad request!!
         NSLog(@"%@", [NSHTTPURLResponse localizedStringForStatusCode:[httpResponse statusCode]]);
+        [self.myModalViewController dismissViewControllerAnimated:NO completion:nil];
+        [self showAutoDismissedAlertWithMessage:@"Server Baglantisi yapilamadi" withTitle:@"Hata!"];
+        return;
       }
-      //If you need the response, you can use it here
     }
     if (data == nil || connectionError) {
-      NSLog(@"HTTP Error: %@", connectionError);
-//      [self showAutoDismissedAlertWithMessage:@"Server Baglantisi yapilamadi" withTitle:@"Hata!"];
-//      return;
+      NSLog(@"HTTP Error: %@", [connectionError localizedDescription]);
     }
     [self performSelectorOnMainThread:@selector(fetchedData:) withObject:data waitUntilDone:YES];
   }];
+  [self presentViewController:self.myModalViewController animated:YES completion:nil];
 }
 
 - (void)fetchedData:(NSData *)responseData
@@ -677,7 +634,7 @@ struct pixel {
   NSError *error;
   if (responseData == nil) {
     //TODO: error!!
-    [self.myModalViewController dismissViewControllerAnimated:NO completion:nil];
+    [self.myModalViewController dismissViewControllerAnimated:YES completion:nil];
     [self showAutoDismissedAlertWithMessage:@"Server Baglantisi yapilamadi" withTitle:@"Hata!"];
     return;
   }
@@ -685,25 +642,21 @@ struct pixel {
   NSDictionary *json = [NSJSONSerialization JSONObjectWithData:responseData options:0 error:&error];
   if (error) {
     //TODO: show alertView and return!
+    NSLog(@"%@", [error localizedDescription]);
     [self.myModalViewController dismissViewControllerAnimated:NO completion:nil];
-    [self showAutoDismissedAlertWithMessage:[NSString stringWithFormat:@"%@", error] withTitle:@"Hata!"];
-    NSLog(@"%@", error);
+    [self showAutoDismissedAlertWithMessage:[NSString stringWithFormat:@"%@", [error localizedDescription]] withTitle:@"Hata!"];
+    return;
+  } else if ([json count] == 0) {
+    NSLog(@"Hicbir veri alinamadi");
+    [self.myModalViewController dismissViewControllerAnimated:NO completion:nil];
+    [self showAutoDismissedAlertWithMessage:@"Hicbir veri alinamadi!" withTitle:@"Hata!"];
     return;
   }
   
   [self.myModalViewController dismissViewControllerAnimated:YES completion:nil];
-  
   OKSonuclarViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"sonuclarViewController"];
   [vc initResultsDictionary:json];
-//  [vs initResultsDictionary
   [self.navigationController pushViewController:vc animated:YES];
-  
-//  for (NSDictionary *obj in json) {
-//    OKProductJsonType *product = [OKProductJsonType productJsonTypeWithJsonDictionary:obj];
-//    NSLog(@"Json Object: %@", obj);
-//  }
-//  
-//  NSLog(@"Json Object: %@", json);
 }
 
 @end

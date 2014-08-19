@@ -81,4 +81,18 @@
   return newImage;
 }
 
+- (UIImage *)cropImageWithRect:(CGRect)rect {
+  
+  rect = CGRectMake(rect.origin.x*self.scale,
+                    rect.origin.y*self.scale,
+                    rect.size.width*self.scale,
+                    rect.size.height*self.scale);
+  
+  CGImageRef imageRef = CGImageCreateWithImageInRect([self CGImage], rect);
+  UIImage *croppedImage = [UIImage imageWithCGImage:imageRef
+                                        scale:self.scale
+                                  orientation:self.imageOrientation];
+  CGImageRelease(imageRef);
+  return croppedImage;
+}
 @end
