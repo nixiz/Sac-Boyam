@@ -7,9 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CoreDataTableViewController.h"
+#import "BrandModel+Create.h"
+#import "ColorModel+Create.h"
 
-@interface OKSonuclarViewController : UITableViewController
+@interface OKSonuclarViewController : CoreDataTableViewController
 
--(void)initResultsDictionary:(NSDictionary *)dict;
-
+@property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
+-(void)initResultsWithGrayScaleValue:(CGFloat)grayScale forManagedObjectContext:(NSManagedObjectContext *)context;
 @end

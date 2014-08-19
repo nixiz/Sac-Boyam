@@ -81,6 +81,46 @@
   return newImage;
 }
 
++ (NSArray*)getRGBAsFromImage:(UIImage*)image atX:(int)xx andY:(int)yy count:(int)count
+{
+  NSMutableArray *result = [NSMutableArray arrayWithCapacity:count];
+  
+  // First get the image into your data buffer
+  CGImageRef imageRef = [image CGImage];
+  NSUInteger width = CGImageGetWidth(imageRef);
+  NSUInteger height = CGImageGetHeight(imageRef);
+  CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
+  unsigned char *rawData = (unsigned char*) calloc(height * width * 4, sizeof(unsigned char));
+  NSUInteger bytesPerPixel = 4;
+  NSUInteger bytesPerRow = bytesPerPixel * width;
+  NSUInteger bitsPerComponent = 8;
+  CGContextRef context = CGBitmapContextCreate(rawData, width, height,
+                                               bitsPerComponent, bytesPerRow, colorSpace,
+                                               kCGImageAlphaPremultipliedLast | kCGBitmapByteOrder32Big);
+  CGColorSpaceRelease(colorSpace);
+  
+  CGContextDrawImage(context, CGRectMake(0, 0, width, height), imageRef);
+  CGContextRelease(context);
+  
+  // Now your rawData contains the image data in the RGBA8888 pixel format.
+  int byteIndex = (bytesPerRow * yy) + xx * bytesPerPixel;
+  for (int ii = 0 ; ii < count ; ++ii)
+  {
+    CGFloat red   = (rawData[byteIndex]     * 1.0) / 255.0;
+    CGFloat green = (rawData[byteIndex + 1] * 1.0) / 255.0;
+    CGFloat blue  = (rawData[byteIndex + 2] * 1.0) / 255.0;
+    CGFloat alpha = (rawData[byteIndex + 3] * 1.0) / 255.0;
+    byteIndex += 4;
+    
+    UIColor *acolor = [UIColor colorWithRed:red green:green blue:blue alpha:alpha];
+    [result addObject:acolor];
+  }
+  
+  free(rawData);
+  
+  return result;
+}
+
 - (UIImage *)cropImageWithRect:(CGRect)rect {
   
   rect = CGRectMake(rect.origin.x*self.scale,
@@ -95,4 +135,26 @@
   CGImageRelease(imageRef);
   return croppedImage;
 }
+
+- (UIImage *)cropImageWithRect:(CGRect)rect withBound:(CGRect)bound
+{
+  UIGraphicsBeginImageContext( bound.size );
+  [self drawInRect:bound];
+  UIImage *picture1 = UIGraphicsGetImageFromCurrentImageContext();
+  UIGraphicsEndImageContext();
+  
+  rect = CGRectMake(rect.origin.x*picture1.scale,
+                    rect.origin.y*picture1.scale,
+                    rect.size.width*picture1.scale,
+                    rect.size.height*picture1.scale);
+  
+  CGImageRef imageRef = CGImageCreateWithImageInRect([picture1 CGImage], rect);
+  UIImage *result = [UIImage imageWithCGImage:imageRef
+                                        scale:picture1.scale
+                                  orientation:picture1.imageOrientation];
+  CGImageRelease(imageRef);
+  return result;
+}
+
+
 @end

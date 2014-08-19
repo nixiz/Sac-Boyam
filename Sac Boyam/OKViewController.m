@@ -6,8 +6,9 @@
 //  Copyright (c) 2013 Oguzhan Katli. All rights reserved.
 //
 
-#import "OKViewController.h"
 #import <QuartzCore/QuartzCore.h>
+#import "OKViewController.h"
+#import "UIColor+GrayScale.h"
 #import "UIImage+AverageColor.h"
 #import "UIImage+ImageEffects.h"
 #import "OKUtils.h"
@@ -16,7 +17,6 @@
 #import "OKWaitForResultsVC.h"
 #import "OKSonuclarViewController.h"
 #import "OKProductJsonType.h"
-//#import "GKImagePicker.h"
 
 static NSString * const okStringsTableName = @"localized";
 
@@ -24,15 +24,17 @@ struct pixel {
   unsigned char r,g,b,a;
 };
 
-@interface OKViewController () <FDTakeDelegate, OKWaitForResultsDelegate/*, GKImagePickerDelegate, UIImagePickerControllerDelegate*/>
+@interface OKViewController () <FDTakeDelegate, OKWaitForResultsDelegate>
 @property (strong, nonatomic) OKZoomView *myView;
-//@property (strong, nonatomic) NSDictionary *settingsArray;
 @property (strong, nonatomic) OKWaitForResultsVC *myModalViewController;
 @property (strong) UIColor *color;
 - (IBAction)findForColorButtonTapped:(id)sender;
 @property BOOL savePhoto;
 @property BOOL userCanceledRequest;
-//@property (strong, nonatomic) GKImagePicker *imagePicker;
+
+@property (strong, nonatomic) UIManagedDocument *document;
+@property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
+@property (nonatomic, strong) NSDictionary *filesDictionary;
 @end
 
 @implementation OKViewController
@@ -42,14 +44,11 @@ struct pixel {
   [super viewDidLoad];
   self.userCanceledRequest = NO;
   
-//  self.settingsArray = [[NSUserDefaults standardUserDefaults] dictionaryRepresentation];
   self.savePhoto = [[[NSUserDefaults standardUserDefaults] objectForKey:savePhotosKey] boolValue];
   self.takeController.allowsEditingPhoto = [[[NSUserDefaults standardUserDefaults] objectForKey:editPhotosKey] boolValue];
-//  self.savePhoto = NO;
   
   NSString *selectPhotoString = NSLocalizedStringFromTable(@"selectPhoto", okStringsTableName, nil);
   UIBarButtonItem *btn2 = [[UIBarButtonItem alloc] initWithTitle:selectPhotoString style:UIBarButtonItemStylePlain target:self action:@selector(SelectNewImage:)];
-//  [btn2 setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor whiteColor]} forState:UIControlStateNormal];
   self.navigationItem.rightBarButtonItem = btn2;
 
   NSLog(@"View Frame : %@", NSStringFromCGRect(self.view.frame));
@@ -63,41 +62,28 @@ struct pixel {
   UIGraphicsEndImageContext();
   image = [image applyBlurWithRadius:20 tintColor:[UIColor colorWithWhite:1.0 alpha:0.2] saturationDeltaFactor:1.3 maskImage:nil];
   
-  
   UIGraphicsBeginImageContext(self.view.bounds.size);
   [backgroundImage drawInRect:self.view.bounds];
   UIImage *redrawedBckgroundImage = UIGraphicsGetImageFromCurrentImageContext();
   UIGraphicsEndImageContext();
   self.view.backgroundColor = [UIColor colorWithPatternImage:redrawedBckgroundImage];
   
-//  self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"background_sacBoyasi_4"]];
-//  [self.navigationController setTitle:@"Sac Boyam"];
   [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor colorWithRed:0 green:122.0/255.0 blue:246.0/255.0 alpha:1.0]}];
   self.navigationController.navigationBar.barTintColor = [[UIColor colorWithPatternImage:image] colorWithAlphaComponent:0.45];
   self.navigationController.navigationBar.backgroundColor = [[UIColor colorWithPatternImage:image] colorWithAlphaComponent:0.45];
+  self.navigationController.navigationBar.translucent = NO;
   
-//  if (NSFoundationVersionNumber > NSFoundationVersionNumber_iOS_6_1) {
-////    image = [image applyBlurWithRadius:20 tintColor:[UIColor colorWithWhite:1.0 alpha:0.2] saturationDeltaFactor:1.3 maskImage:nil];
-//    self.navigationController.navigationBar.barTintColor = [UIColor colorWithPatternImage:image];
-    self.navigationController.navigationBar.translucent = NO;
-//  } else if (NSFoundationVersionNumber > NSFoundationVersionNumber_iOS_6_0){
-//    [self.navigationController.navigationBar setTintColor:[[UIColor colorWithPatternImage:image] colorWithAlphaComponent:0.45]];
-//  }
   UIGraphicsBeginImageContext(self.selectedImage.bounds.size);
   UIImage *img = UIGraphicsGetImageFromCurrentImageContext();
   UIGraphicsEndImageContext();
-//  UIImage *img = [UIImage imageNamed:@"default_screen"];
   NSString *imageOverlayString = NSLocalizedStringFromTable(@"imageOverlay", okStringsTableName, nil);
   img = [img addTextToImageWithText:imageOverlayString andColor:[UIColor colorWithRed:0 green:122.0/255.0 blue:246.0/255.0 alpha:1.0]];
+  
   [self.selectedImage setImage: img];
   self.selectedImage.contentMode = UIViewContentModeScaleAspectFit;
   self.selectedImage.backgroundColor = [[UIColor lightGrayColor] colorWithAlphaComponent:0.75];
   self.selectedImage.layer.borderWidth = 2.0;
   self.selectedImage.layer.borderColor = [[[UIColor lightGrayColor] colorWithAlphaComponent:0.45] CGColor];
-
-//  self.imagePicker = [[GKImagePicker alloc] init];
-//  self.imagePicker.cropSize = self.selectedImage.bounds.size;
-//  self.imagePicker.delegate = self;
   
   self.previewImage.layer.borderWidth = 1.0;
   self.previewImage.layer.borderColor = [[UIColor colorWithRed:0.0f/255.0f green:181.0f/255.0f blue:231.0f/255.0f alpha:0.8] CGColor];
@@ -107,40 +93,30 @@ struct pixel {
 
   self.takeController = [[FDTakeController alloc] init];
   self.takeController.delegate = self;
-  
-//  self.takeController.takePhotoText = @"Take Photo";
-//  self.takeController.takeVideoText = @"Take Video";
-//  self.takeController.chooseFromPhotoRollText = @"Choose Existing";
-//  self.takeController.chooseFromLibraryText = @"Choose Existing";
-//  self.takeController.cancelText = @"Cancel";
-//  self.takeController.noSourcesText = @"No Photos Available";
-  
   self.takeController.allowsEditingPhoto = YES;
   
   self.myView = [[OKZoomView alloc] initWithFrame:self.selectedImage.bounds andStartPoint:self.selectedImage.frame.origin];
-  //  self.myView = [[MyCutomView alloc] initWithFrame:self.selectedImage.bounds andStartPoint:self.selectedImage.frame.origin];
   self.myView.backgroundColor = [UIColor clearColor];
-
-//  [self SelectNewImage:nil];
-	// Do any additional setup after loading the view, typically from a nib.
 }
 
 - (void)didReceiveMemoryWarning
 {
   [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+  [super viewWillAppear:animated];
+  if (!self.managedObjectContext) [self initManagedDocument];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
-  
-//  self.myView = [[MyCutomView alloc] initWithFrame:self.selectedImage.bounds andStartPoint:self.selectedImage.frame.origin];
   self.myView = [[OKZoomView alloc] initWithFrame:self.selectedImage.bounds andStartPoint:self.selectedImage.frame.origin];
   self.myView.backgroundColor = [UIColor clearColor];
 }
 
 - (IBAction)SelectNewImage:(id)sender {
   [self.takeController takePhotoOrChooseFromLibrary];
-//  [self presentViewController:self.imagePicker.imagePickerController animated:YES completion:nil];
 }
 
 -(void)userCancelledRequest
@@ -201,36 +177,17 @@ struct pixel {
 
 - (void)takeController:(FDTakeController *)controller gotPhoto:(UIImage *)photo withInfo:(NSDictionary *)info
 {
-  //TODO: Ask if user wants to save original photo..
-//  NSMutableString *logString = [NSMutableString stringWithString:@"Picked Source type is: "];
-//  switch (imgSource) {
-//    case UIImagePickerControllerSourceTypePhotoLibrary:
-//      [logString appendString:@"UIImagePickerControllerSourceTypePhotoLibrary"];
-//      break;
-//    case UIImagePickerControllerSourceTypeCamera:
-//      [logString appendString:@"UIImagePickerControllerSourceTypeCamera"];
-//      break;
-//    case UIImagePickerControllerSourceTypeSavedPhotosAlbum:
-//      [logString appendString:@"UIImagePickerControllerSourceTypeSavedPhotosAlbum"];
-//      break;
-//    default:
-//      [logString appendString:@"Unknown!!"];
-//      break;
-//  }
-//  NSLog(@"%@", logString);
   UIImagePickerControllerSourceType imgSource = (UIImagePickerControllerSourceType)[[info objectForKey:kUIImagePickerControllerSourceType] integerValue];
   if (imgSource == UIImagePickerControllerSourceTypeCamera && self.savePhoto)
   {
     UIImage *originalImage = (UIImage *) [info objectForKey:
                                           UIImagePickerControllerOriginalImage];
-    
     UIImageWriteToSavedPhotosAlbum(originalImage, self, @selector(image:didFinishSavingWithError:contextInfo:), nil);
   }
-//  [self performSelector:@selector(testAlertView) withObject:nil afterDelay:1.0];
   
   UIImage *imageToBeShow = nil;
-  if (self.takeController.allowsEditingPhoto) {
-    
+  if (self.takeController.allowsEditingPhoto)
+  {
     UIGraphicsBeginImageContext(self.selectedImage.bounds.size);
     [photo drawInRect:self.selectedImage.bounds];
     UIImage *smallImage = UIGraphicsGetImageFromCurrentImageContext();
@@ -241,9 +198,9 @@ struct pixel {
     CGImageRef imagerRef = CGImageCreateWithImageInRect([smallImage CGImage], self.selectedImage.bounds);
     imageToBeShow = [UIImage imageWithCGImage:imagerRef];
     NSLog(@"Cropped Image Size: %@", NSStringFromCGSize(imageToBeShow.size));
-    
-  } else {
-    
+  }
+  else
+  {
     UIGraphicsBeginImageContext(self.selectedImage.bounds.size);
     [photo drawInRect:self.selectedImage.bounds];
     UIImage *smallImage = UIGraphicsGetImageFromCurrentImageContext();
@@ -251,24 +208,7 @@ struct pixel {
 
     CGImageRef imagerRef = CGImageCreateWithImageInRect([smallImage CGImage], self.selectedImage.bounds);
     imageToBeShow = [UIImage imageWithCGImage:imagerRef];
-//    imageToBeShow = originalImage;
   }
-  
-//  UIGraphicsBeginImageContext(self.selectedImage.bounds.size);
-//  [photo drawInRect:self.selectedImage.bounds];
-//  UIImage *smallImage = UIGraphicsGetImageFromCurrentImageContext();
-//  UIGraphicsEndImageContext();
-//  NSLog(@"Small Image Size: %@", NSStringFromCGSize(smallImage.size));
-//
-//  CGImageRef imagerRef = CGImageCreateWithImageInRect([smallImage CGImage], self.selectedImage.bounds);
-//  UIImage *croppedImage = [UIImage imageWithCGImage:imagerRef];
-//  
-//  //[self.imageView setImage:originalImage];
-//  NSLog(@"Original Image Size: %@", NSStringFromCGSize(originalImage.size));
-//  NSLog(@"Cropped  Image Size: %@", NSStringFromCGSize(croppedImage.size));
-//  NSLog(@"Selected ImageBounds: %@", NSStringFromCGRect(self.selectedImage.bounds));
-  
-  /*UIImageWriteToSavedPhotosAlbum(photo, nil, nil, nil);*/
   [self.selectedImage setImage:imageToBeShow];
   [self.selectedImage sizeToFit];
 }
@@ -313,8 +253,6 @@ struct pixel {
   
   UITouch *touch = [[touches allObjects] objectAtIndex:0];
   CGPoint point = [touch locationInView:self.view];
-//  NSLog(@"%@", NSStringFromCGRect(self.selectedImage.frame));
-//  NSLog(@"%@", NSStringFromCGRect(self.selectedImage.bounds));
   
   if ([self.selectedImage pointInside:point withEvent:event])
   {
@@ -340,15 +278,6 @@ struct pixel {
     UIGraphicsEndImageContext();
     [self.previewImage setImage:img];
     
-    //[UIColor colorWithRed:186.0f/255.0f green:209.0f/255.0f blue:232.0f/255.0f alpha:1.0]
-//    const CGFloat *components = CGColorGetComponents([color CGColor]);
-//    UIColor *inverseColor = [UIColor colorWithRed:fabsf(186.0f/255.0f - components[0]) green:fabsf(209.0f/255.0f - components[1]) blue:fabsf(232.0f/255.0f - components[2]) alpha:1.0];
-    
-//    CABasicAnimation *colorAnim = [CABasicAnimation animationWithKeyPath:@"borderColor"];
-//    colorAnim.fromValue = (id)self.previewImage.layer.borderColor;
-//    colorAnim.toValue = (id)[inverseColor CGColor];
-//    self.previewImage.layer.borderColor = [inverseColor CGColor];
-    
     NSString *colorCodeString = NSLocalizedStringFromTable(@"colorCode", okStringsTableName, nil);
     self.lblRenkKodu.text = [NSString stringWithFormat:@"%@: %@", colorCodeString, [OKUtils colorToHexString:self.color]];
     
@@ -370,168 +299,6 @@ struct pixel {
   [super touchesCancelled:touches withEvent:event];
 }
 
-- (UIColor*) getAverageColorOfCroppedImage:(UIImage*)image
-{
-  NSUInteger red = 0;
-  NSUInteger green = 0;
-  NSUInteger blue = 0;
-  
-  
-  // Allocate a buffer big enough to hold all the pixels
-  
-  struct pixel* pixels = (struct pixel*) calloc(1, image.size.width * image.size.height * sizeof(struct pixel));
-  if (pixels != nil)
-  {
-    
-    CGContextRef context = CGBitmapContextCreate(
-                                                 (void*) pixels,
-                                                 image.size.width,
-                                                 image.size.height,
-                                                 8,
-                                                 image.size.width * 4,
-                                                 CGImageGetColorSpace(image.CGImage),
-                                                 kCGImageAlphaPremultipliedLast
-                                                 );
-    
-    if (context != NULL)
-    {
-      // Draw the image in the bitmap
-      
-      CGContextDrawImage(context, CGRectMake(0.0f, 0.0f, image.size.width, image.size.height), image.CGImage);
-      
-      // Now that we have the image drawn in our own buffer, we can loop over the pixels to
-      // process it. This simple case simply counts all pixels that have a pure red component.
-      
-      // There are probably more efficient and interesting ways to do this. But the important
-      // part is that the pixels buffer can be read directly.
-      
-      NSUInteger numberOfPixels = image.size.width * image.size.height;
-      for (int i=0; i<numberOfPixels; i++) {
-        red += pixels[i].r;
-        green += pixels[i].g;
-        blue += pixels[i].b;
-      }
-      
-      
-      red   /= numberOfPixels;
-      green /= numberOfPixels;
-      blue  /= numberOfPixels;
-      
-      
-      CGContextRelease(context);
-    }
-    
-    free(pixels);
-  }
-  return [UIColor colorWithRed:red/255.0f green:green/255.0f blue:blue/255.0f alpha:1.0f];
-}
-
-- (UIColor*) getPixelColorAtLocation:(CGPoint)point
-{
-  
-  UIColor* color = nil;
-  
-  CGImageRef inImage;
-  
-  inImage = self.selectedImage.image.CGImage;
-  
-  
-  // Create off screen bitmap context to draw the image into. Format ARGB is 4 bytes for each pixel: Alpa, Red, Green, Blue
-  CGContextRef cgctx = [self createARGBBitmapContextFromImage:inImage];
-  if (cgctx == NULL) { return nil; /* error */ }
-  
-  size_t w = CGImageGetWidth(inImage);
-  size_t h = CGImageGetHeight(inImage);
-  CGRect rect = {{0,0},{w,h}};
-  
-  
-  // Draw the image to the bitmap context. Once we draw, the memory
-  // allocated for the context for rendering will then contain the
-  // raw image data in the specified color space.
-  CGContextDrawImage(cgctx, rect, inImage);
-  
-  // Now we can get a pointer to the image data associated with the bitmap
-  // context.
-  unsigned char* data = CGBitmapContextGetData (cgctx);
-  if (data != NULL) {
-    //offset locates the pixel in the data from x,y.
-    //4 for 4 bytes of data per pixel, w is width of one row of data.
-    int offset = 4*((w*round(point.y))+round(point.x));
-    int alpha =  data[offset];
-    int red = data[offset+1];
-    int green = data[offset+2];
-    int blue = data[offset+3];
-    color = [UIColor colorWithRed:(red/255.0f) green:(green/255.0f) blue:(blue/255.0f) alpha:(alpha/255.0f)];
-  }
-  
-  // When finished, release the context
-  //CGContextRelease(cgctx);
-  // Free image data memory for the context
-  if (data) { free(data); }
-  
-  return color;
-}
-
-- (CGContextRef) createARGBBitmapContextFromImage:(CGImageRef)inImage
-{
-  CGContextRef    context = NULL;
-  CGColorSpaceRef colorSpace;
-  void *          bitmapData;
-  int             bitmapByteCount;
-  int             bitmapBytesPerRow;
-  
-  // Get image width, height. We'll use the entire image.
-  size_t pixelsWide = CGImageGetWidth(inImage);
-  size_t pixelsHigh = CGImageGetHeight(inImage);
-  
-  // Declare the number of bytes per row. Each pixel in the bitmap in this
-  // example is represented by 4 bytes; 8 bits each of red, green, blue, and
-  // alpha.
-  bitmapBytesPerRow   = (pixelsWide * 4);
-  bitmapByteCount     = (bitmapBytesPerRow * pixelsHigh);
-  
-  // Use the generic RGB color space.
-  colorSpace = CGColorSpaceCreateDeviceRGB();
-  
-  if (colorSpace == NULL)
-  {
-    fprintf(stderr, "Error allocating color space\n");
-    return NULL;
-  }
-  
-  // Allocate memory for image data. This is the destination in memory
-  // where any drawing to the bitmap context will be rendered.
-  bitmapData = malloc( bitmapByteCount );
-  if (bitmapData == NULL)
-  {
-    fprintf (stderr, "Memory not allocated!");
-    CGColorSpaceRelease( colorSpace );
-    return NULL;
-  }
-  
-  // Create the bitmap context. We want pre-multiplied ARGB, 8-bits
-  // per component. Regardless of what the source image format is
-  // (CMYK, Grayscale, and so on) it will be converted over to the format
-  // specified here by CGBitmapContextCreate.
-  context = CGBitmapContextCreate (bitmapData,
-                                   pixelsWide,
-                                   pixelsHigh,
-                                   8,      // bits per component
-                                   bitmapBytesPerRow,
-                                   colorSpace,
-                                   kCGImageAlphaPremultipliedFirst);
-  if (context == NULL)
-  {
-    free (bitmapData);
-    fprintf (stderr, "Context not created!");
-  }
-  
-  // Make sure and release colorspace before returning
-  CGColorSpaceRelease( colorSpace );
-  
-  return context;
-}
-
 - (CGRect)getRectangleFromPoint:(CGPoint)point
 {
   CGFloat dx,dy;
@@ -549,10 +316,6 @@ struct pixel {
   if ([[segue identifier] isEqualToString:@"settingsSegue"]) {
     OKSettingsViewController *vc = [segue destinationViewController];
     [vc setDelegate:self];
-//    [vc setCurrentSettings:self.settingsArray];
-    
-//    UIImage *underlyingImage = [self.view createImageFromView];
-//    underlyingImage = [underlyingImage applyBlurWithRadius:20 tintColor:[UIColor colorWithWhite:1.0 alpha:0.2] saturationDeltaFactor:1.3 maskImage:nil];
   }
 }
 
@@ -576,87 +339,67 @@ struct pixel {
 }
 
 - (IBAction)findForColorButtonTapped:(id)sender {
-  //TODO: Request for results on web api.
-  self.myModalViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"waitForResultsVC"];
-  self.myModalViewController.modalPresentationStyle = UIModalPresentationFormSheet;
-  self.myModalViewController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-  self.myModalViewController.delegate = self;
-  UIImage *underlyingImage = [self.view createImageFromView];
-  underlyingImage = [underlyingImage applyBlurWithRadius:20 tintColor:[UIColor colorWithWhite:1.0 alpha:0.2] saturationDeltaFactor:1.3 maskImage:nil];
-  [self.myModalViewController initWithBackgroundImage:underlyingImage];
-  
-//  [self presentViewController:self.myModalViewController animated:YES completion:^{
-//    //TODO: push to results page.
-//    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT , 0), ^{
-//      NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:@"http://10.0.3.5:42736/api/product"]];
-//      [self performSelectorOnMainThread:@selector(fetchedData:) withObject:data waitUntilDone:YES];
-//    });
-////    [self performSelector:@selector(simulateDataFetched) withObject:nil afterDelay:2.0];
-//  }];
-  
-  NSString *jsonRequest = [OKUtils colorToJsonString:self.color];
-  NSLog(@"jsonRequest is %@", jsonRequest);
-  NSData *requestData = [jsonRequest dataUsingEncoding:NSUTF8StringEncoding];
-  
-  NSURL *url = [NSURL URLWithString:@"http://10.0.3.5:42736/api/product/post"];
-  NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:20.0];
-  [request setHTTPMethod:@"POST"];
-  [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
-  [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-  [request setValue:@"json" forHTTPHeaderField:@"Data-Type"];
-  NSString *dataLenStr = [@([requestData length]) stringValue];
-  [request setValue:dataLenStr forHTTPHeaderField:@"Content-Length"];
-  [request setHTTPBody:requestData];
-  
-  [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue currentQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
-    if ([response isKindOfClass:[NSHTTPURLResponse class]])
-    {
-      NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse*) response;
-      NSLog(@"Received response status : %@", [NSHTTPURLResponse localizedStringForStatusCode:[httpResponse statusCode]]);
-      if ([httpResponse statusCode] != 200) { //if it is not ok
-        //TODO: This means bad request!!
-        NSLog(@"%@", [NSHTTPURLResponse localizedStringForStatusCode:[httpResponse statusCode]]);
-        [self.myModalViewController dismissViewControllerAnimated:NO completion:nil];
-        [self showAutoDismissedAlertWithMessage:@"Server Baglantisi yapilamadi" withTitle:@"Hata!"];
-        return;
-      }
-    }
-    if (data == nil || connectionError) {
-      NSLog(@"HTTP Error: %@", [connectionError localizedDescription]);
-    }
-    [self performSelectorOnMainThread:@selector(fetchedData:) withObject:data waitUntilDone:YES];
-  }];
-  [self presentViewController:self.myModalViewController animated:YES completion:nil];
-}
-
-- (void)fetchedData:(NSData *)responseData
-{
-  NSError *error;
-  if (responseData == nil) {
-    //TODO: error!!
-    [self.myModalViewController dismissViewControllerAnimated:YES completion:nil];
-    [self showAutoDismissedAlertWithMessage:@"Server Baglantisi yapilamadi" withTitle:@"Hata!"];
+  //if the context was not created yet return!
+  if (self.document.documentState != UIDocumentStateNormal) {
     return;
   }
-  
-  NSDictionary *json = [NSJSONSerialization JSONObjectWithData:responseData options:0 error:&error];
-  if (error) {
-    //TODO: show alertView and return!
-    NSLog(@"%@", [error localizedDescription]);
-    [self.myModalViewController dismissViewControllerAnimated:NO completion:nil];
-    [self showAutoDismissedAlertWithMessage:[NSString stringWithFormat:@"%@", [error localizedDescription]] withTitle:@"Hata!"];
-    return;
-  } else if ([json count] == 0) {
-    NSLog(@"Hicbir veri alinamadi");
-    [self.myModalViewController dismissViewControllerAnimated:NO completion:nil];
-    [self showAutoDismissedAlertWithMessage:@"Hicbir veri alinamadi!" withTitle:@"Hata!"];
-    return;
-  }
-  
-  [self.myModalViewController dismissViewControllerAnimated:YES completion:nil];
+  CGFloat grayScaleValueOfColor = [self.color grayScaleColor];
   OKSonuclarViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"sonuclarViewController"];
-  [vc initResultsDictionary:json];
+  [vc initResultsWithGrayScaleValue:grayScaleValueOfColor forManagedObjectContext:self.managedObjectContext];
   [self.navigationController pushViewController:vc animated:YES];
 }
+
+-(void)documentIsReady
+{
+  //the document is ready!
+//  [self.tableView reloadData];
+}
+
+-(void)initManagedDocument
+{
+  NSFileManager *fm = [NSFileManager defaultManager];
+  NSURL *documentsDir = [[fm URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] firstObject];
+  
+  NSString *docName = @"SacBoyalari.dm";
+  NSURL *url = [documentsDir URLByAppendingPathComponent:docName isDirectory:YES];
+  
+  NSURL *persUrl = [url URLByAppendingPathComponent:@"StoreContent" isDirectory:YES];
+  if (![[NSFileManager defaultManager] fileExistsAtPath:[persUrl path]]) {
+    NSError *error;
+    BOOL success = [[NSFileManager defaultManager] createDirectoryAtURL:persUrl withIntermediateDirectories:YES attributes:nil error:&error];
+    if (!success || error) {
+      NSLog(@"Error: %@", [error userInfo]);
+    }
+    persUrl = [persUrl URLByAppendingPathComponent:@"persistentStore"];
+    NSURL *preloadUrl = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"persistentStore" ofType:@""]];
+    
+    if (![[NSFileManager defaultManager]  copyItemAtURL:preloadUrl toURL:persUrl error:&error])
+    {
+      NSLog(@"Error %@", [error userInfo]);
+    }
+  }
+  
+  NSLog(@"DB path: %@", url);
+  self.document = [[UIManagedDocument alloc] initWithFileURL:url];
+  if ([[NSFileManager defaultManager] fileExistsAtPath:[url path]]) {
+    [self.document openWithCompletionHandler:^(BOOL success) {
+      if (success) {
+        self.managedObjectContext = self.document.managedObjectContext;
+        [self documentIsReady];
+      }
+      if (!success) NSLog(@"Couldnt open document at %@", url);
+    }];
+  } else {
+    [self.document saveToURL:url forSaveOperation:UIDocumentSaveForCreating completionHandler:^(BOOL success) {
+      if (success) {
+        self.managedObjectContext = self.document.managedObjectContext;
+        [self documentIsReady];
+      }
+      if (!success) NSLog(@"Couldnt create document at %@", url);
+    }];
+  }
+  //  UIManagedDocument *document = [[UIManagedDocument alloc] initWithFileURL:url];
+}
+
 
 @end

@@ -9,11 +9,16 @@
 #import "OKSonuclarViewController.h"
 #import "OKSonuclarCell.h"
 #import "OKProductJsonType.h"
+#import "ColorModel+Create.h"
+#import "BrandModel+Create.h"
 
 #define ARC4RANDOM_MAX	0x100000000
 #define indexForProductName   0
 //#define indexForProductDetail 1
 #define indexForProductPrice  1
+#define MinMaxScale 0.15 //%15
+//#define grayScaleScanThreshold (1.0/255.0)*100.0*MinMaxScale
+#define grayScaleScanThreshold(x) ((x)/255.0)*100.0*MinMaxScale
 
 
 @interface OKSonuclarViewController () <UIAlertViewDelegate, UIGestureRecognizerDelegate>
@@ -22,6 +27,7 @@
 @property (nonatomic, strong) NSDictionary *resultsIndex;
 - (IBAction)handleLongPress:(id)sender;
 @property (nonatomic, strong) NSString *stringToBeSearceh;
+@property CGFloat grayScale;
 @end
 
 @implementation OKSonuclarViewController
@@ -35,146 +41,53 @@
     return self;
 }
 
--(void)initResultsDictionary:(NSDictionary *)dict
+-(void)setManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
 {
-//  for (NSDictionary *obj in dict) {
-////    OKProductJsonType *product = [OKProductJsonType productJsonTypeWithJsonDictionary:obj];
-//    NSLog(@"Json Object: %@", obj);
-//  }
-  NSLog(@"Json Object: %@", dict);
- 
-//  NSMutableDictionary *brandNameDictionary = [NSMutableDictionary dictionaryWithCapacity:[dict count]];
-  self.resultsList = [NSMutableDictionary dictionaryWithCapacity:[dict count]];
-  
-  for (NSDictionary *obj in dict) {
-    OKProductJsonType *product = [OKProductJsonType productJsonTypeWithJsonDictionary:obj];
-    NSLog(@"Json Object: %@", obj);
+  _managedObjectContext = managedObjectContext;
+  if (managedObjectContext) {
+    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"ColorModel"];
+    request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"brand.brandName" ascending:YES selector:@selector(localizedCaseInsensitiveCompare:)]];
 
+    CGFloat minval = fabsf(self.grayScale - grayScaleScanThreshold(self.grayScale));
+    CGFloat maxval = self.grayScale + grayScaleScanThreshold(self.grayScale);
+    request.predicate = [NSPredicate predicateWithFormat: @"grayScale >= %@ AND grayScale <= %@", @(minval), @(maxval)];
+    //between burada calismiyor. internette de bunun gibi sorunlar var. o yuzden and kullanarak yaptim.
+//    request.predicate = [NSPredicate predicateWithFormat: @"grayScale BETWEEN %@", @[@1, @10]];
     
-    NSMutableArray *brands = [self.resultsList objectForKey:product.brandName];
-    if (brands == nil) {
-      brands = [[NSMutableArray alloc] init];
-    }
-    [brands addObject:[NSArray arrayWithObjects:product.name, [NSString stringWithFormat:@"%2.2f$", product.price], nil]];
-    [self.resultsList setObject:brands forKey:product.brandName];
-//    self.resultsList
+    self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:request managedObjectContext:managedObjectContext sectionNameKeyPath:nil cacheName:nil];
+  } else {
+    self.fetchedResultsController = nil;
   }
-  
+}
+
+-(void)initResultsWithGrayScaleValue:(CGFloat)grayScale forManagedObjectContext:(NSManagedObjectContext *)context
+{
+  self.grayScale = grayScale;
+  self.managedObjectContext = context;
 }
 
 - (void)viewDidLoad
 {
-    [super viewDidLoad];
-//  NSString *productNameAVON = @"AVON";
-//  NSString *productNameOReal = @"OReal";
-//  NSString *productNameHaciAbi = @"HaciAbi";
-//  self.resultsList = [[NSMutableDictionary alloc] initWithObjectsAndKeys:
-//                      [NSArray arrayWithObjects:
-//                       [NSArray arrayWithObjects:@"Creative ZartZurt", @"FalanFilan", @"17.0$", nil],
-//                       [NSArray arrayWithObjects:@"Creative ZartZurt", @"FalanFilan", @"17.0$", nil],
-//                       [NSArray arrayWithObjects:@"Creative ZartZurt", @"FalanFilan", @"17.0$", nil],
-//                       [NSArray arrayWithObjects:@"Creative ZartZurt", @"FalanFilan", @"17.0$", nil], nil], productNameAVON
-//                      ,[NSArray arrayWithObjects:
-//                        [NSArray arrayWithObjects:@"Oreal Healing", @"FalanFilan", @"17.0$", nil],
-//                        [NSArray arrayWithObjects:@"Oreal Healing", @"FalanFilan", @"17.0$", nil],
-//                        [NSArray arrayWithObjects:@"Oreal Healing", @"FalanFilan", @"17.0$", nil],
-//                        [NSArray arrayWithObjects:@"Oreal Healing", @"FalanFilan", @"17.0$", nil], nil], productNameOReal
-//                      ,[NSArray arrayWithObjects:
-//                        [NSArray arrayWithObjects:@"HaciAbi Candir", @"FalanFilan", @"17.0$", nil],
-//                        [NSArray arrayWithObjects:@"HaciAbi Candir", @"FalanFilan", @"17.0$", nil],
-//                        [NSArray arrayWithObjects:@"HaciAbi Candir", @"FalanFilan", @"17.0$", nil],
-//                        [NSArray arrayWithObjects:@"HaciAbi Special", @"FalanFilan", @"24.0$", nil], nil], productNameHaciAbi
-//                      ,nil];
-  NSAssert([self.resultsList count] > 0, @"view load olmadan result listesinin islenmesi gerekir");
-  
-  NSArray *keys = [self.resultsList allKeys];
-  NSMutableDictionary *tmpDict = [[NSMutableDictionary alloc] initWithCapacity:[keys count]];
-  NSInteger ind = 0;
-  for (NSString *str in keys) {
-    [tmpDict setObject:str forKey:[NSNumber numberWithInteger:ind++]];
-  }
-  self.resultsIndex = [[NSDictionary alloc] initWithDictionary:tmpDict copyItems:YES];
-  //[tmpDict removeAllObjects];
-  
-  self.refreshControl.tintColor = [UIColor lightGrayColor];
-  [self.refreshControl addTarget:self action:@selector(updateTable) forControlEvents:UIControlEventValueChanged];
-  
-  self.mColor = [UIColor magentaColor];
-  
+  [super viewDidLoad];
   UILongPressGestureRecognizer *lpgr = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPress:)];
-  lpgr.minimumPressDuration = 1.7; //seconds
+  lpgr.minimumPressDuration = 1.5; //seconds
   lpgr.delegate = self;
   [self.tableView addGestureRecognizer:lpgr];
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
   [super viewDidAppear:animated];
-  [self.refreshControl beginRefreshing];
-  
-  if (self.tableView.contentOffset.y == 0) {
-    [UIView animateWithDuration:0.25 delay:0 options:UIViewAnimationOptionBeginFromCurrentState animations:^{
-      self.tableView.contentOffset = CGPointMake(0, -self.refreshControl.bounds.size.height);
-    } completion:^(BOOL finished) {
-      if (!finished) {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Aman Yarabbi"
-                                                        message:@"Operation is Not Completely Finished"
-                                                       delegate:self
-                                              cancelButtonTitle:@"OK"
-                                              otherButtonTitles:nil];
-        [alert show];
-      }
-    }];
-  }
-  [self.refreshControl sendActionsForControlEvents:UIControlEventValueChanged];
 }
 
 - (void)didReceiveMemoryWarning
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-- (void)doEndUpdateTable
-{
-  [self.tableView reloadData];
-  [self.refreshControl endRefreshing];
-}
-
-- (void)updateTable
-{
-  self.mColor = [UIColor colorWithRed:(CGFloat)arc4random()/ARC4RANDOM_MAX
-                                green:(CGFloat)arc4random()/ARC4RANDOM_MAX
-                                 blue:(CGFloat)arc4random()/ARC4RANDOM_MAX
-                                alpha:0.88f];
-  //Update results list.
-  //TODO:self.resultsList = [[NSMutableDictionary alloc] initWithContentsOfURL:<#(NSURL *)#>];
-
-  [self performSelector:@selector(doEndUpdateTable) withObject:nil afterDelay:1];
+  [super didReceiveMemoryWarning];
+  // Dispose of any resources that can be recreated.
 }
 
 #pragma mark - Table view data source
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    // Return the number of sections.
-    return [self.resultsList count];
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    // Return the number of rows in the section.
-  //NSString *str = [self.resultsIndex objectForKey:[NSNumber numberWithInteger:section]];
-  //NSArray *arr = [self.resultsList objectForKey:str];
-  //NSInteger rslt = [arr count];
-  return [[self.resultsList objectForKey:[self.resultsIndex objectForKey:[NSNumber numberWithInteger:section]]] count];
-}
-
+/*
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
   return 50.0f;
@@ -203,7 +116,7 @@
     
   return headerView;
 }
-
+*/
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -214,67 +127,14 @@
   {
     cell = [[OKSonuclarCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
   }
-  NSArray *productsFromSection = [self.resultsList objectForKey:[self.resultsIndex objectForKey:[NSNumber numberWithInteger:indexPath.section]]];
-  NSArray *productInfoFromSelectedRow = [productsFromSection objectAtIndex:indexPath.row];
-  
+  ColorModel *color = [self.fetchedResultsController objectAtIndexPath:indexPath];
   
   //TODO: get product image from url/productinfo-string.
-  cell.productName.text = [productInfoFromSelectedRow objectAtIndex:indexForProductName];
-  cell.priceLabel.text = [productInfoFromSelectedRow objectAtIndex:indexForProductPrice];
-  
-  //cell.productName.text = @"Kreatif ZartZurt";
-  
-    //cell.productImg
-    // Configure the cell...
-    
-    return cell;
+  cell.productName.text = color.productName;
+  cell.priceLabel.text = [color.price stringValue];
+  [cell.productImg setImage:[UIImage imageWithData:color.productImage]];
+  return cell;
 }
-
-- (NSArray *)getProductInfoArrayFromIndexPath:(NSIndexPath *)indexPath
-{
-  NSArray *productsFromSection = [self.resultsList objectForKey:[self.resultsIndex objectForKey:[NSNumber numberWithInteger:indexPath.section]]];
-  NSArray *productInfoFromSelectedRow = [productsFromSection objectAtIndex:indexPath.row];
-  
-  return productInfoFromSelectedRow;
-}
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
 
 #pragma mark - Table view delegate
 
@@ -297,7 +157,8 @@
     NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:tapPoint];
     if (indexPath != nil) {
       //    OKSonuclarCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
-      self.stringToBeSearceh = [[self getProductInfoArrayFromIndexPath:indexPath] objectAtIndex:indexForProductName];
+      ColorModel *color = [self.fetchedResultsController objectAtIndexPath:indexPath];
+      self.stringToBeSearceh = color.productName;
       NSLog(@"Tapped Cell product is %@", self.stringToBeSearceh);
       
       UIAlertView *message = [[UIAlertView alloc] initWithTitle:@""
@@ -326,6 +187,5 @@
     NSLog(@"Failed to open url: %@", [url description]);
   }
 }
-
 
 @end
