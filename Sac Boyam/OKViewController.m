@@ -77,11 +77,13 @@ struct pixel {
   UIImage *img = UIGraphicsGetImageFromCurrentImageContext();
   UIGraphicsEndImageContext();
   NSString *imageOverlayString = NSLocalizedStringFromTable(@"imageOverlay", okStringsTableName, nil);
-  img = [img addTextToImageWithText:imageOverlayString andColor:[UIColor colorWithRed:0 green:122.0/255.0 blue:246.0/255.0 alpha:1.0]];
+//  img = [img addTextToImageWithText:imageOverlayString andColor:[UIColor colorWithRed:0 green:122.0/255.0 blue:246.0/255.0 alpha:1.0]];
+  img = [img addTextToImageWithText:imageOverlayString andColor:nil];
   
   [self.selectedImage setImage: img];
   self.selectedImage.contentMode = UIViewContentModeScaleAspectFit;
-  self.selectedImage.backgroundColor = [[UIColor lightGrayColor] colorWithAlphaComponent:0.75];
+  self.selectedImage.backgroundColor = [UIColor clearColor];
+//  self.selectedImage.backgroundColor = [[UIColor lightGrayColor] colorWithAlphaComponent:0.75];
   self.selectedImage.layer.borderWidth = 2.0;
   self.selectedImage.layer.borderColor = [[[UIColor lightGrayColor] colorWithAlphaComponent:0.45] CGColor];
   

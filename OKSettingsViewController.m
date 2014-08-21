@@ -16,6 +16,8 @@
 @property (weak, nonatomic) IBOutlet UISwitch *savePhotosSwitch;
 @property (weak, nonatomic) IBOutlet UISwitch *editPhotosSwitch;
 @property (weak, nonatomic) IBOutlet UISwitch *takeRecordsSwitch;
+- (IBAction)resultsDensityChanged:(id)sender;
+@property (weak, nonatomic) IBOutlet UISlider *resultDensitySlider;
 
 @end
 
@@ -51,6 +53,7 @@
   [self.savePhotosSwitch setOn:[self.settingsMap[savePhotosKey] boolValue] animated:YES];
   [self.editPhotosSwitch setOn:[self.settingsMap[editPhotosKey] boolValue] animated:YES];
   [self.takeRecordsSwitch setOn:[self.settingsMap[takeRecordKey] boolValue] animated:YES];
+  [self.resultDensitySlider setValue:[self.settingsMap[resultDensityKey] floatValue] animated:YES];
 }
 
 - (void)didReceiveMemoryWarning
@@ -106,5 +109,11 @@
   if ([self.delegate respondsToSelector:@selector(acceptChangedSetings:)]) {
     [self.delegate acceptChangedSetings];
   }
+}
+
+- (IBAction)resultsDensityChanged:(id)sender {
+  
+  [[NSUserDefaults standardUserDefaults] setObject:@(self.resultDensitySlider.value) forKey:resultDensityKey];
+  
 }
 @end

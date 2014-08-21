@@ -16,5 +16,5 @@
 @interface OKSettingsViewController : UIViewController
 @property (weak) id<OKSettingsDelegate> delegate;
 
--(void)setCurrentSettings:(NSDictionary *)settings;
+//-(void)setCurrentSettings:(NSDictionary *)settings;
 @end

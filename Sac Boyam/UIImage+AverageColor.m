@@ -39,7 +39,9 @@
 - (UIImage *)addTextToImageWithText:(NSString *)text andColor:(UIColor *)color
 {
   if (color == nil) {
-    color = [UIColor whiteColor];
+//    color = [UIColor whiteColor];
+    //mercur white on interface builder colour palette
+    color = [UIColor colorWithRed:235.0/255.0 green:235.0/255.0 blue:235.0/255.0 alpha:1.0];
   }
 //  CGPoint point = CGPointMake(self.size.width/4, self.size.height/2);
 //  UIFont *font = [UIFont boldSystemFontOfSize:16];
@@ -48,7 +50,7 @@
   CGRect rect = CGRectMake(0, self.size.height/2, self.size.width, self.size.height);
   NSMutableParagraphStyle *paragraphStyle = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
   paragraphStyle.alignment = NSTextAlignmentCenter;
-  NSDictionary *attributes = @{NSFontAttributeName: [UIFont boldSystemFontOfSize:16], NSForegroundColorAttributeName: color, NSParagraphStyleAttributeName: paragraphStyle};
+  NSDictionary *attributes = @{NSFontAttributeName: [UIFont boldSystemFontOfSize:24], NSForegroundColorAttributeName: color, NSParagraphStyleAttributeName: paragraphStyle};
   [text drawInRect:CGRectIntegral(rect) withAttributes:attributes];
 //  [[UIColor whiteColor] set];
 //  [color set];

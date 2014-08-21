@@ -96,7 +96,6 @@
 		7134B71C19A3B3F800BFE754 /* ColorModel+Create.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ColorModel+Create.m"; sourceTree = "<group>"; };
 		7134B71D19A3B3F800BFE754 /* BrandModel+Create.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BrandModel+Create.h"; sourceTree = "<group>"; };
 		7134B71E19A3B3F800BFE754 /* BrandModel+Create.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "BrandModel+Create.m"; sourceTree = "<group>"; };
-		7134B72619A3B49600BFE754 /* OKViewController_CoreData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OKViewController_CoreData.h; sourceTree = "<group>"; };
 		7134B72719A3B53C00BFE754 /* persistentStore */ = {isa = PBXFileReference; lastKnownFileType = file; path = persistentStore; sourceTree = "<group>"; };
 		7134B72919A3C25900BFE754 /* ColorModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorModel.h; sourceTree = "<group>"; };
 		7134B72A19A3C25900BFE754 /* ColorModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorModel.m; sourceTree = "<group>"; };
@@ -202,6 +201,7 @@
 		71328A9B17C35FD7007EE533 /* Sac Boyam */ = {
 			isa = PBXGroup;
 			children = (
+				71E8523619A60B3A00CA592A /* iPad */,
 				7134B72519A3B3FE00BFE754 /* CoreData */,
 				7189866719645B7B00C26297 /* Utils */,
 				710735A317C49E4200484D21 /* ResultsPage */,
@@ -267,7 +267,6 @@
 				71328AF617C38ADB007EE533 /* MyCutomView.m */,
 				71328AB317C35FD7007EE533 /* OKViewController.h */,
 				71328AB417C35FD7007EE533 /* OKViewController.m */,
-				7134B72619A3B49600BFE754 /* OKViewController_CoreData.h */,
 				718986531963E59400C26297 /* OKZoomView.h */,
 				718986541963E59400C26297 /* OKZoomView.m */,
 			);
@@ -318,6 +317,13 @@
 			children = (
 			);
 			name = GKImages;
+			sourceTree = "<group>";
+		};
+		71E8523619A60B3A00CA592A /* iPad */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = iPad;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -545,7 +551,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Sac Boyam/Sac Boyam-Prefix.pch";
 				INFOPLIST_FILE = "Sac Boyam/Sac Boyam-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
@@ -558,7 +564,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Sac Boyam/Sac Boyam-Prefix.pch";
 				INFOPLIST_FILE = "Sac Boyam/Sac Boyam-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;

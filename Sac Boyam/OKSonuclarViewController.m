@@ -11,6 +11,7 @@
 #import "OKProductJsonType.h"
 #import "ColorModel+Create.h"
 #import "BrandModel+Create.h"
+#import "OKUtils.h"
 
 #define ARC4RANDOM_MAX	0x100000000
 #define indexForProductName   0
@@ -18,8 +19,7 @@
 #define indexForProductPrice  1
 #define MinMaxScale 0.07 //%15
 //#define grayScaleScanThreshold (1.0/255.0)*100.0*MinMaxScale
-#define grayScaleScanThreshold(x) ((x)/255.0)*100.0*MinMaxScale
-
+#define grayScaleScanThreshold(x) ((x)/255.0)*100.0*([[[NSUserDefaults standardUserDefaults] objectForKey:resultDensityKey] floatValue]/100.0)
 
 @interface OKSonuclarViewController () <UIAlertViewDelegate, UIGestureRecognizerDelegate>
 @property UIColor *mColor;
@@ -48,6 +48,7 @@
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"ColorModel"];
     request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"brand.brandName" ascending:YES selector:@selector(localizedCaseInsensitiveCompare:)], [NSSortDescriptor sortDescriptorWithKey:@"grayScale" ascending:YES]];
 
+    NSLog(@"given scale density %@", [[NSUserDefaults standardUserDefaults] objectForKey:resultDensityKey]);
     CGFloat minval = fabsf(self.grayScale - grayScaleScanThreshold(self.grayScale));
     CGFloat maxval = self.grayScale + grayScaleScanThreshold(self.grayScale);
     request.predicate = [NSPredicate predicateWithFormat: @"grayScale >= %@ AND grayScale <= %@", @(minval), @(maxval)];
