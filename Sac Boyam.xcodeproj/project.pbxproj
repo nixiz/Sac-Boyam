@@ -20,7 +20,6 @@
 		71328AAA17C35FD7007EE533 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 71328AA917C35FD7007EE533 /* Default@2x.png */; };
 		71328AAC17C35FD7007EE533 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 71328AAB17C35FD7007EE533 /* Default-568h@2x.png */; };
 		71328AAF17C35FD7007EE533 /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71328AAD17C35FD7007EE533 /* MainStoryboard_iPhone.storyboard */; };
-		71328AB217C35FD7007EE533 /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71328AB017C35FD7007EE533 /* MainStoryboard_iPad.storyboard */; };
 		71328AB517C35FD7007EE533 /* OKViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 71328AB417C35FD7007EE533 /* OKViewController.m */; };
 		71328ABF17C365F3007EE533 /* derpette_brown.png in Resources */ = {isa = PBXBuildFile; fileRef = 71328ABD17C365F3007EE533 /* derpette_brown.png */; };
 		71328AC017C365F3007EE533 /* derpette_blond.png in Resources */ = {isa = PBXBuildFile; fileRef = 71328ABE17C365F3007EE533 /* derpette_blond.png */; };
@@ -76,7 +75,6 @@
 		71328AA917C35FD7007EE533 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		71328AAB17C35FD7007EE533 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		71328AAE17C35FD7007EE533 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
-		71328AB117C35FD7007EE533 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
 		71328AB317C35FD7007EE533 /* OKViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OKViewController.h; sourceTree = "<group>"; };
 		71328AB417C35FD7007EE533 /* OKViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OKViewController.m; sourceTree = "<group>"; };
 		71328ABD17C365F3007EE533 /* derpette_brown.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = derpette_brown.png; path = img/derpette_brown.png; sourceTree = "<group>"; };
@@ -116,7 +114,6 @@
 		71695310196E64C100C988E5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/localized.strings; sourceTree = "<group>"; };
 		71695312196E64CF00C988E5 /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/FDTake.strings; sourceTree = "<group>"; };
 		71695313196E64CF00C988E5 /* tr */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = tr; path = tr.lproj/MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
-		71695314196E64CF00C988E5 /* tr */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = tr; path = tr.lproj/MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
 		71695315196E64CF00C988E5 /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		71695316196E64CF00C988E5 /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/localized.strings; sourceTree = "<group>"; };
 		718986531963E59400C26297 /* OKZoomView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKZoomView.h; sourceTree = "<group>"; };
@@ -209,7 +206,6 @@
 				71328AA417C35FD7007EE533 /* OKAppDelegate.h */,
 				71328AA517C35FD7007EE533 /* OKAppDelegate.m */,
 				71328AAD17C35FD7007EE533 /* MainStoryboard_iPhone.storyboard */,
-				71328AB017C35FD7007EE533 /* MainStoryboard_iPad.storyboard */,
 				719BCE8A1966F0E9005F575C /* OKSettingsViewController.h */,
 				719BCE8B1966F0E9005F575C /* OKSettingsViewController.m */,
 				71328AF217C38162007EE533 /* OKMainViewController.h */,
@@ -393,7 +389,6 @@
 				71328AAC17C35FD7007EE533 /* Default-568h@2x.png in Resources */,
 				718986661964592B00C26297 /* final_effect_2.png in Resources */,
 				71328AAF17C35FD7007EE533 /* MainStoryboard_iPhone.storyboard in Resources */,
-				71328AB217C35FD7007EE533 /* MainStoryboard_iPad.storyboard in Resources */,
 				71328ABF17C365F3007EE533 /* derpette_brown.png in Resources */,
 				7169530A196E646700C988E5 /* FDTake.strings in Resources */,
 				71328AC017C365F3007EE533 /* derpette_blond.png in Resources */,
@@ -455,15 +450,6 @@
 				71695313196E64CF00C988E5 /* tr */,
 			);
 			name = MainStoryboard_iPhone.storyboard;
-			sourceTree = "<group>";
-		};
-		71328AB017C35FD7007EE533 /* MainStoryboard_iPad.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				71328AB117C35FD7007EE533 /* en */,
-				71695314196E64CF00C988E5 /* tr */,
-			);
-			name = MainStoryboard_iPad.storyboard;
 			sourceTree = "<group>";
 		};
 		7169530C196E646700C988E5 /* FDTake.strings */ = {
@@ -551,9 +537,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Sac Boyam/Sac Boyam-Prefix.pch";
 				INFOPLIST_FILE = "Sac Boyam/Sac Boyam-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -564,9 +550,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Sac Boyam/Sac Boyam-Prefix.pch";
 				INFOPLIST_FILE = "Sac Boyam/Sac Boyam-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

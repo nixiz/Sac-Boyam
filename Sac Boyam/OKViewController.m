@@ -69,6 +69,8 @@ struct pixel {
   self.view.backgroundColor = [UIColor colorWithPatternImage:redrawedBckgroundImage];
   
   [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor colorWithRed:0 green:122.0/255.0 blue:246.0/255.0 alpha:1.0]}];
+
+  //[[UINavigationBar appearance] setTintColor:[UIColor blackColor]];
   self.navigationController.navigationBar.barTintColor = [[UIColor colorWithPatternImage:image] colorWithAlphaComponent:0.45];
   self.navigationController.navigationBar.backgroundColor = [[UIColor colorWithPatternImage:image] colorWithAlphaComponent:0.45];
   self.navigationController.navigationBar.translucent = NO;
