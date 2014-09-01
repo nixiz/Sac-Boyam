@@ -48,9 +48,16 @@ struct pixel {
   self.savePhoto = [[[NSUserDefaults standardUserDefaults] objectForKey:savePhotosKey] boolValue];
   self.takeController.allowsEditingPhoto = [[[NSUserDefaults standardUserDefaults] objectForKey:editPhotosKey] boolValue];
   
+  UIBarButtonItem *camBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCamera target:self action:@selector(SelectNewImage:)];
+  
+  UIBarButtonItem *fixedSpaceBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
+  fixedSpaceBarButtonItem.width = 20;
+
   NSString *selectPhotoString = NSLocalizedStringFromTable(@"selectPhoto", okStringsTableName, nil);
+//  UIBarButtonItem *btn2 = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"settings"] style:UIBarButtonItemStylePlain target:nil action:nil];
   UIBarButtonItem *btn2 = [[UIBarButtonItem alloc] initWithTitle:selectPhotoString style:UIBarButtonItemStylePlain target:self action:@selector(SelectNewImage:)];
-  self.navigationItem.rightBarButtonItem = btn2;
+
+  self.navigationItem.rightBarButtonItems = @[btn2, fixedSpaceBarButtonItem, camBtn];
 
   NSLog(@"View Frame : %@", NSStringFromCGRect(self.view.frame));
   NSLog(@"View Bounds: %@", NSStringFromCGRect(self.view.bounds));

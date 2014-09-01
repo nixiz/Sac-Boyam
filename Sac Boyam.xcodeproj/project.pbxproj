@@ -66,7 +66,6 @@
 		71328A9717C35FD7007EE533 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		71328A9917C35FD7007EE533 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		71328A9D17C35FD7007EE533 /* Sac Boyam-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Sac Boyam-Info.plist"; sourceTree = "<group>"; };
-		71328A9F17C35FD7007EE533 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		71328AA117C35FD7007EE533 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		71328AA317C35FD7007EE533 /* Sac Boyam-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Sac Boyam-Prefix.pch"; sourceTree = "<group>"; };
 		71328AA417C35FD7007EE533 /* OKAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OKAppDelegate.h; sourceTree = "<group>"; };
@@ -109,8 +108,6 @@
 		7152CB4E19741B330080898F /* OKWaitForResultsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKWaitForResultsVC.m; sourceTree = "<group>"; };
 		7152CB50197557640080898F /* OKProductJsonType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKProductJsonType.h; sourceTree = "<group>"; };
 		7152CB51197557640080898F /* OKProductJsonType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKProductJsonType.m; sourceTree = "<group>"; };
-		7169530B196E646700C988E5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/FDTake.strings; sourceTree = "<group>"; };
-		71695310196E64C100C988E5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/localized.strings; sourceTree = "<group>"; };
 		71695312196E64CF00C988E5 /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/FDTake.strings; sourceTree = "<group>"; };
 		71695313196E64CF00C988E5 /* tr */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = tr; path = tr.lproj/MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
 		71695315196E64CF00C988E5 /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -436,7 +433,6 @@
 		71328A9E17C35FD7007EE533 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				71328A9F17C35FD7007EE533 /* en */,
 				71695315196E64CF00C988E5 /* tr */,
 			);
 			name = InfoPlist.strings;
@@ -453,7 +449,6 @@
 		7169530C196E646700C988E5 /* FDTake.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				7169530B196E646700C988E5 /* en */,
 				71695312196E64CF00C988E5 /* tr */,
 			);
 			name = FDTake.strings;
@@ -462,7 +457,6 @@
 		71695311196E64C100C988E5 /* localized.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				71695310196E64C100C988E5 /* en */,
 				71695316196E64CF00C988E5 /* tr */,
 			);
 			name = localized.strings;
