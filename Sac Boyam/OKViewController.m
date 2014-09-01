@@ -18,6 +18,7 @@
 #import "OKSonuclarViewController.h"
 #import "OKProductJsonType.h"
 
+
 static NSString * const okStringsTableName = @"localized";
 
 struct pixel {
@@ -55,8 +56,11 @@ struct pixel {
   NSLog(@"View Bounds: %@", NSStringFromCGRect(self.view.bounds));
 
   UIImage *backgroundImage = [UIImage imageNamed:@"background_sacBoyasi_4"];
-  NSLog(@"%@", NSStringFromCGSize(self.navigationController.navigationBar.bounds.size));
-  UIGraphicsBeginImageContext(CGSizeMake(320, 75));
+  NSLog(@"Navigation Bar frame  size %@", NSStringFromCGSize(self.navigationController.navigationBar.frame.size));
+  NSLog(@"Navigation Bar frame  %@", NSStringFromCGRect(self.navigationController.navigationBar.frame));
+  NSLog(@"Navigation Bar bounds  %@", NSStringFromCGRect(self.navigationController.navigationBar.bounds));
+  NSLog(@"Navigation Bar bounds size %@", NSStringFromCGSize(self.navigationController.navigationBar.bounds.size));
+  UIGraphicsBeginImageContext(CGSizeMake(320, self.navigationController.navigationBar.bounds.size.height + 20));
   [backgroundImage drawInRect:self.view.bounds];
   UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
   UIGraphicsEndImageContext();
@@ -66,13 +70,24 @@ struct pixel {
   [backgroundImage drawInRect:self.view.bounds];
   UIImage *redrawedBckgroundImage = UIGraphicsGetImageFromCurrentImageContext();
   UIGraphicsEndImageContext();
+  
+  
+  redrawedBckgroundImage = [redrawedBckgroundImage applyBlurWithRadius:15 tintColor:[UIColor colorWithWhite:0.8 alpha:0.2] saturationDeltaFactor:1.3 maskImage:nil];
   self.view.backgroundColor = [UIColor colorWithPatternImage:redrawedBckgroundImage];
   
   [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor colorWithRed:0 green:122.0/255.0 blue:246.0/255.0 alpha:1.0]}];
 
-  //[[UINavigationBar appearance] setTintColor:[UIColor blackColor]];
+  /*
+  if (NSFoundationVersionNumber > NSFoundationVersionNumber_iOS_6_1) {
+    self.navigationController.navigationBar.barTintColor = [[UIColor colorWithPatternImage:image] colorWithAlphaComponent:0.45];
+    self.navigationController.navigationBar.backgroundColor = [[UIColor colorWithPatternImage:image] colorWithAlphaComponent:0.45];
+    self.navigationController.navigationBar.translucent = NO;
+  } else if (NSFoundationVersionNumber > NSFoundationVersionNumber_iOS_6_0){
+    //[[UINavigationBar appearance] setTintColor:[UIColor blackColor]];
+    [self.navigationController.navigationBar setTintColor:[[UIColor colorWithPatternImage:image] colorWithAlphaComponent:0.45]];
+  }*/
+  
   self.navigationController.navigationBar.barTintColor = [[UIColor colorWithPatternImage:image] colorWithAlphaComponent:0.45];
-  self.navigationController.navigationBar.backgroundColor = [[UIColor colorWithPatternImage:image] colorWithAlphaComponent:0.45];
   self.navigationController.navigationBar.translucent = NO;
   
   UIGraphicsBeginImageContext(self.selectedImage.bounds.size);
@@ -94,6 +109,17 @@ struct pixel {
 
   self.previewImage.layer.cornerRadius = 12.0;
   self.previewImage.layer.masksToBounds = YES;
+  
+//  UIColor *avColor = [backgroundImage averageColor];
+//  CGRect rect = self.previewImage.bounds;
+//  UIGraphicsBeginImageContext(rect.size);
+//  CGContextRef context = UIGraphicsGetCurrentContext();
+//  CGContextSetFillColorWithColor(context, [avColor CGColor]);
+//  CGContextFillRect(context, rect);
+//  UIImage *s_img = UIGraphicsGetImageFromCurrentImageContext();
+//  UIGraphicsEndImageContext();
+//
+//  [self.previewImage setImage:s_img];
 
   self.takeController = [[FDTakeController alloc] init];
   self.takeController.delegate = self;
@@ -281,13 +307,15 @@ struct pixel {
     UIImage *img = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     [self.previewImage setImage:img];
+
+//#if TARGET_IPHONE_SIMULATOR
+//    NSString *colorCodeString = NSLocalizedStringFromTable(@"colorCode", okStringsTableName, nil);
+//    self.lblRenkKodu.text = [NSString stringWithFormat:@"%@: %@", colorCodeString, [OKUtils colorToHexString:self.color]];
     
-    NSString *colorCodeString = NSLocalizedStringFromTable(@"colorCode", okStringsTableName, nil);
-    self.lblRenkKodu.text = [NSString stringWithFormat:@"%@: %@", colorCodeString, [OKUtils colorToHexString:self.color]];
-    
+//#endif
     self.myView.previewImage = img;
     self.myView.newPoint = point;
-    [self.view addSubview:self.myView];
+//    [self.view addSubview:self.myView];
     [self.myView setNeedsDisplay];
   }
   [super touchesMoved:touches withEvent:event];

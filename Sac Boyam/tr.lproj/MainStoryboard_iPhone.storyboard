@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="ceA-Rt-hew">
     <dependencies>
-        <deployment defaultVersion="1552" identifier="iOS"/>
+        <deployment defaultVersion="1792" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <scenes>
@@ -14,11 +14,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="gray" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SonuclarCell" id="MnQ-2C-k7i" customClass="OKSonuclarCell">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="gray" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SonuclarCell" id="MnQ-2C-k7i" customClass="OKSonuclarCell">
                                 <rect key="frame" x="0.0" y="22" width="320" height="70"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="MnQ-2C-k7i" id="yUe-kP-C4z">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="69"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="287" height="69"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="Default.png" translatesAutoresizingMaskIntoConstraints="NO" id="wkc-sw-3j7">
@@ -38,28 +38,29 @@
                                             <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </label>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="17.0$" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Oci-Q3-y14">
-                                            <rect key="frame" x="233" y="0.0" width="67" height="69"/>
+                                            <rect key="frame" x="233" y="0.0" width="54" height="69"/>
                                             <accessibility key="accessibilityConfiguration">
                                                 <accessibilityTraits key="traits" none="YES" staticText="YES" summaryElement="YES"/>
                                             </accessibility>
                                             <constraints>
                                                 <constraint firstAttribute="height" relation="lessThanOrEqual" constant="70" id="rIw-ek-QQk"/>
                                             </constraints>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                             <color key="textColor" red="0.82745105029999999" green="0.2823529541" blue="0.070588238540000001" alpha="1" colorSpace="deviceRGB"/>
                                             <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </label>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="trailing" secondItem="Oci-Q3-y14" secondAttribute="trailing" id="G4b-Ws-Utb"/>
+                                    </constraints>
                                 </tableViewCellContentView>
                                 <constraints>
                                     <constraint firstItem="Oci-Q3-y14" firstAttribute="top" secondItem="MnQ-2C-k7i" secondAttribute="top" id="1nm-Kj-cIm"/>
-                                    <constraint firstAttribute="trailing" secondItem="Oci-Q3-y14" secondAttribute="trailing" constant="20" id="2Kw-4o-LIV"/>
                                     <constraint firstItem="Oci-Q3-y14" firstAttribute="bottom" secondItem="1FS-2J-snm" secondAttribute="bottom" id="LeP-Gw-3BN"/>
                                     <constraint firstItem="1FS-2J-snm" firstAttribute="top" secondItem="MnQ-2C-k7i" secondAttribute="top" id="RK2-QO-k9n"/>
                                     <constraint firstItem="wkc-sw-3j7" firstAttribute="bottom" secondItem="MnQ-2C-k7i" secondAttribute="bottom" id="RUT-YU-v75"/>
                                     <constraint firstItem="wkc-sw-3j7" firstAttribute="leading" secondItem="MnQ-2C-k7i" secondAttribute="leading" id="WWa-sE-m8u"/>
                                     <constraint firstItem="1FS-2J-snm" firstAttribute="leading" secondItem="wkc-sw-3j7" secondAttribute="trailing" constant="8" symbolic="YES" id="cF7-qm-SrJ"/>
-                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Oci-Q3-y14" secondAttribute="trailing" constant="20" id="duE-FI-ay5"/>
                                     <constraint firstItem="Oci-Q3-y14" firstAttribute="leading" secondItem="1FS-2J-snm" secondAttribute="trailing" constant="8" symbolic="YES" id="qTj-gL-8Yn"/>
                                     <constraint firstItem="wkc-sw-3j7" firstAttribute="top" secondItem="MnQ-2C-k7i" secondAttribute="top" id="ssU-Py-pQ8"/>
                                 </constraints>
@@ -108,7 +109,7 @@
                                     <constraint firstAttribute="height" constant="50" id="B05-ZZ-16J"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Renk Kodu: #36fde44" textAlignment="center" lineBreakMode="headTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EaF-9X-rAQ">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="center" lineBreakMode="headTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EaF-9X-rAQ">
                                 <rect key="frame" x="100" y="449" width="121" height="15"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
