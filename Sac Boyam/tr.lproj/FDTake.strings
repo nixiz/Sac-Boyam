@@ -8,10 +8,10 @@
 "chooseFromPhotoRoll" = "Kameradan seç";
 
 /* There are no sources available to select a photo */
-"noSources" = "Resim seçimi için hiçbir kaynak bulunamadı.";
+"noSources" = "Resim seçimi için hiçbir kaynak bulunamadı";
 
 /* Option to take photo using camera */
-"takePhoto" = "Fotoğraf çek.";
+"takePhoto" = "Fotoğraf çek";
 
 /* Option to take video using camera */
-"takeVideo" = "Bir video çekin.";
+"takeVideo" = "Bir video çekin";

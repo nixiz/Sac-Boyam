@@ -17,9 +17,7 @@
 #import "OKWaitForResultsVC.h"
 #import "OKSonuclarViewController.h"
 #import "OKProductJsonType.h"
-
-
-static NSString * const okStringsTableName = @"localized";
+#import "OKAppDelegate.h"
 
 struct pixel {
   unsigned char r,g,b,a;
@@ -81,7 +79,6 @@ struct pixel {
   [backgroundImage drawInRect:self.view.bounds];
   UIImage *redrawedBckgroundImage = UIGraphicsGetImageFromCurrentImageContext();
   UIGraphicsEndImageContext();
-  
   
   redrawedBckgroundImage = [redrawedBckgroundImage applyBlurWithRadius:15 tintColor:[UIColor colorWithWhite:0.8 alpha:0.2] saturationDeltaFactor:1.3 maskImage:nil];
   self.view.backgroundColor = [UIColor colorWithPatternImage:redrawedBckgroundImage];
@@ -417,7 +414,7 @@ struct pixel {
     NSError *error;
     BOOL success = [[NSFileManager defaultManager] createDirectoryAtURL:persUrl withIntermediateDirectories:YES attributes:nil error:&error];
     if (!success || error) {
-      NSLog(@"Error: %@", [error userInfo]);
+      NSLog(@"Error: %@", [error userInfo]); return;
     }
     persUrl = [persUrl URLByAppendingPathComponent:@"persistentStore"];
     NSURL *preloadUrl = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"persistentStore" ofType:@""]];
@@ -426,6 +423,7 @@ struct pixel {
     {
       NSLog(@"Error %@", [error userInfo]);
     }
+    NSLog(@"File successfuly copied to folder %@", persUrl);
   }
   
   NSLog(@"DB path: %@", url);

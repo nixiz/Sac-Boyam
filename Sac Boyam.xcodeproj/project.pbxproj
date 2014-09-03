@@ -111,6 +111,10 @@
 		713733B419B5E61100542E86 /* UserRecordModel+Create.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UserRecordModel+Create.h"; sourceTree = "<group>"; };
 		713733B519B5E61100542E86 /* UserRecordModel+Create.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UserRecordModel+Create.m"; sourceTree = "<group>"; };
 		713733E519B5FD7C00542E86 /* persistentStore */ = {isa = PBXFileReference; lastKnownFileType = file; path = persistentStore; sourceTree = "<group>"; };
+		713733EB19B70F0500542E86 /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/FDTake.strings; sourceTree = "<group>"; };
+		713733EC19B70F0500542E86 /* tr */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = tr; path = tr.lproj/MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
+		713733ED19B70F0500542E86 /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		713733EE19B70F0500542E86 /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/localized.strings; sourceTree = "<group>"; };
 		7150A55E19B4A1AB00597373 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
 		7152CB4D19741B330080898F /* OKWaitForResultsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKWaitForResultsVC.h; sourceTree = "<group>"; };
 		7152CB4E19741B330080898F /* OKWaitForResultsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKWaitForResultsVC.m; sourceTree = "<group>"; };
@@ -118,10 +122,6 @@
 		7152CB51197557640080898F /* OKProductJsonType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKProductJsonType.m; sourceTree = "<group>"; };
 		7169530B196E646700C988E5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/FDTake.strings; sourceTree = "<group>"; };
 		71695310196E64C100C988E5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/localized.strings; sourceTree = "<group>"; };
-		71695312196E64CF00C988E5 /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/FDTake.strings; sourceTree = "<group>"; };
-		71695313196E64CF00C988E5 /* tr */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = tr; path = tr.lproj/MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
-		71695315196E64CF00C988E5 /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		71695316196E64CF00C988E5 /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/localized.strings; sourceTree = "<group>"; };
 		718986531963E59400C26297 /* OKZoomView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKZoomView.h; sourceTree = "<group>"; };
 		718986541963E59400C26297 /* OKZoomView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKZoomView.m; sourceTree = "<group>"; };
 		718986561964186500C26297 /* UIImage+ImageEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+ImageEffects.h"; sourceTree = "<group>"; };
@@ -466,7 +466,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				71328A9F17C35FD7007EE533 /* en */,
-				71695315196E64CF00C988E5 /* tr */,
+				713733ED19B70F0500542E86 /* tr */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -474,8 +474,8 @@
 		71328AAD17C35FD7007EE533 /* MainStoryboard_iPhone.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				71695313196E64CF00C988E5 /* tr */,
 				7150A55E19B4A1AB00597373 /* en */,
+				713733EC19B70F0500542E86 /* tr */,
 			);
 			name = MainStoryboard_iPhone.storyboard;
 			sourceTree = "<group>";
@@ -484,7 +484,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				7169530B196E646700C988E5 /* en */,
-				71695312196E64CF00C988E5 /* tr */,
+				713733EB19B70F0500542E86 /* tr */,
 			);
 			name = FDTake.strings;
 			sourceTree = "<group>";
@@ -493,7 +493,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				71695310196E64C100C988E5 /* en */,
-				71695316196E64CF00C988E5 /* tr */,
+				713733EE19B70F0500542E86 /* tr */,
 			);
 			name = localized.strings;
 			sourceTree = "<group>";

@@ -11,4 +11,13 @@
 "imageSavedSuccessfully" = "Image Saved Successfully";
 "pleaseWaitFor" = "Please wait for results being downloaded";
 "cancelButtonForURLReq" = "Cancel";
-"OKButtonTitle" = "Ok";
+"OKButtonTitle" = "OK";
+"Warning" = "Warning";
+"DeleteAllRecordsPromt" = "All records are getting deleted. Delete?";
+"recordTime" = "Record Time";
+"brand" = "Brand";
+"product" = "Product";
+"savedSuccessfuly" = "Saved successfuly";
+"saved" = "Saved";
+"resultsTitle" = "Results";
+"settingsTitle" = "Settings";

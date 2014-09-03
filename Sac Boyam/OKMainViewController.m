@@ -9,6 +9,8 @@
 #import "OKMainViewController.h"
 #import "OKUtils.h"
 #import "UIImage+ImageEffects.h"
+#import "OKAppDelegate.h"
+
 
 @interface OKMainViewController ()
 @property (weak, nonatomic) IBOutlet UIImageView *productImageView;
@@ -43,7 +45,12 @@
   
   if (self.colorModel) {
     self.productImageView.image = [UIImage imageWithData:self.colorModel.productImage];
-    self.productDetailsLabel.text = [NSString stringWithFormat:@"Brand: %@\nProduct: %@", self.colorModel.brand.brandName, self.colorModel.productName];
+    
+    
+    [self.productDetailsLabel setFont:[UIFont systemFontOfSize:12]];
+    self.productDetailsLabel.numberOfLines = 3;
+    self.productDetailsLabel.lineBreakMode = NSLineBreakByWordWrapping;
+    self.productDetailsLabel.text = [NSString stringWithFormat:@"%@: %@\n%@: %@", NSLocalizedStringFromTable(@"brand", okStringsTableName, nil), self.colorModel.brand.brandName, NSLocalizedStringFromTable(@"product", okStringsTableName, nil), self.colorModel.productName];
   }
   
   
@@ -70,7 +77,16 @@
 }
 
 - (IBAction)lookForInternet:(id)sender {
-
+  NSMutableString *searchText = [[NSMutableString alloc] initWithString:@"https://www.google.com/search?q="];
+  [searchText appendString:[self.colorModel.productName stringByReplacingOccurrencesOfString:@" " withString:@"+"]];
+  
+  NSString *urlStr = [searchText stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+  NSURL *url = [NSURL URLWithString:urlStr];
+  BOOL success = [[UIApplication sharedApplication] openURL:url];
+  
+  if (!success) {
+    NSLog(@"Failed to open url: %@", [url description]);
+  }
 }
 
 - (IBAction)addRemoveFav:(id)sender {
@@ -78,9 +94,15 @@
   if (takeRecord) {
     UserRecordModel *record = [UserRecordModel recordModelWithDate:[NSDate date] usedColorModel:self.colorModel inManagedObjectContext:self.managedObjectContext];
     if (record) {
-      UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:@"Basari ile kaydedildi" delegate:nil cancelButtonTitle:@"Tamam" otherButtonTitles: nil];
+      UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil
+                                                          message:NSLocalizedStringFromTable(@"savedSuccessfuly", okStringsTableName, nil)
+                                                         delegate:nil
+                                                cancelButtonTitle:NSLocalizedStringFromTable(@"OKButtonTitle", okStringsTableName, nil)
+                                                otherButtonTitles:nil];
       [alertView show];
-      [self.favButton setTitle:@"Favorilere Eklendi" forState:UIControlStateNormal];
+      [self.favButton setTitle:NSLocalizedStringFromTable(@"saved", okStringsTableName, nil) forState:UIControlStateNormal];
+      [self.favButton setEnabled:NO];
+      [self.favButton setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
     }
   }
 

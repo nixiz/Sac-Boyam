@@ -12,6 +12,7 @@
 #import "Sac Boyam/UserRecordModel.h"
 #import "Sac Boyam/ColorModel.h"
 #import "Sac Boyam/OKMainViewController.h"
+#import "OKAppDelegate.h"
 
 @interface OKSettingsViewController () <UITableViewDataSource, UITableViewDelegate, UIAlertViewDelegate>
 @property (strong, nonatomic) NSDictionary *settingsMap;
@@ -100,6 +101,8 @@
   
 //  [self.recordsTableView setHidden:YES];
   self.recordsTableView.backgroundColor = [UIColor clearColor];
+  [self.navigationItem setTitle:NSLocalizedStringFromTable(@"settingsTitle", okStringsTableName, nil)];
+
 //  self.suspendAutomaticTrackingOfChangesInManagedObjectContext = YES;
 }
 
@@ -108,22 +111,6 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-//-(void)setCurrentSettings:(NSDictionary *)settings
-//{
-//   self.settingsMap = [NSMutableDictionary dictionaryWithDictionary:settings];
-//}
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 - (IBAction)switchValueChanged:(id)sender {
   UISwitch *_switch = (UISwitch *)sender;
@@ -148,11 +135,13 @@
   }
   if ([keyString isEqualToString:takeRecordKey] && !_switch.on) {
     //eger take record kapatildiysa
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Title"
-                                                        message:@"Message"
+    //NSString *completionMessage = NSLocalizedStringFromTable(@"imageSavedSuccessfully", okStringsTableName, nil);
+
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedStringFromTable(@"Warning", okStringsTableName, nil)
+                                                        message:NSLocalizedStringFromTable(@"DeleteAllRecordsPromt", okStringsTableName, nil)
                                                         delegate:self
-                                              cancelButtonTitle:@"Iptal"
-                                              otherButtonTitles:@"Tamam", nil];
+                                              cancelButtonTitle:NSLocalizedStringFromTable(@"cancelButtonForURLReq", okStringsTableName, nil)
+                                              otherButtonTitles:NSLocalizedStringFromTable(@"OKButtonTitle", okStringsTableName, nil), nil];
     [alertView show];
   } else {
     // ayarlar degistiginde buraya girilecegi icin degistimi diye kontrol etmeye gerek yok.
@@ -172,7 +161,7 @@
 -(void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
 {
   NSString *str = [alertView buttonTitleAtIndex:buttonIndex];
-  if ([str isEqualToString:@"Tamam"]) {
+  if ([str isEqualToString:NSLocalizedStringFromTable(@"OKButtonTitle", okStringsTableName, nil)]) {
     //TODO: clear all records
 //    [self performSelectorInBackground:@selector(deleteAllEntries) withObject:nil];
     [self deleteAllEntries];
@@ -184,35 +173,36 @@
 
 -(void)deleteAllEntries
 {
-  NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"UserRecordModel"];
-  request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"recordDate" ascending:YES]];
-  request.predicate = nil; //get all records
-
-  NSError *error;
-  NSArray *matches = [self.managedObjectContext executeFetchRequest:request error:&error];
-
-  
-  if (error) {
-    //handle error
-    NSLog(@"An error occured %@", [error userInfo]);
-  } else { //boyle bir brand varsa olani donder
-    
-    for (UserRecordModel *record in matches) {
-      [self.managedObjectContext deleteObject:record];
-      [self.managedObjectContext save:&error];
-      if (error) {
-        NSLog(@"An error occured when saving. %@", [error userInfo]);
-      }
-    }
-  }
+//  NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"UserRecordModel"];
+//  request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"recordDate" ascending:YES]];
+//  request.predicate = nil; //get all records
+//
 //  NSError *error;
-//  for (UserRecordModel *record in [self.fetchedResultsController fetchedObjects]) {
-//    [self.managedObjectContext deleteObject:record];
-//  }
-//  [self.managedObjectContext save:&error];
+//  NSArray *matches = [self.managedObjectContext executeFetchRequest:request error:&error];
+//
+//  
 //  if (error) {
-//    NSLog(@"An error occured when saving. %@", [error userInfo]);
+//    //handle error
+//    NSLog(@"An error occured %@", [error userInfo]);
+//  } else { //boyle bir brand varsa olani donder
+//    
+//    for (UserRecordModel *record in matches) {
+//      [self.managedObjectContext deleteObject:record];
+//      [self.managedObjectContext save:&error];
+//      if (error) {
+//        NSLog(@"An error occured when saving. %@", [error userInfo]);
+//      }
+//    }
 //  }
+  
+  NSError *error;
+  for (UserRecordModel *record in [self.fetchedResultsController fetchedObjects]) {
+    [self.managedObjectContext deleteObject:record];
+  }
+  [self.managedObjectContext save:&error];
+  if (error) {
+    NSLog(@"An error occured when saving. %@", [error userInfo]);
+  }
   [[NSUserDefaults standardUserDefaults] setObject:@(self.takeRecordsSwitch.on) forKey:takeRecordKey];
 
   [self.recordsTableView reloadData];
@@ -226,7 +216,7 @@
   _managedObjectContext = managedObjectContext;
   if (managedObjectContext) {
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"UserRecordModel"];
-    request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"recordDate" ascending:YES]];
+    request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"recordDate" ascending:NO]];
     request.predicate = nil; //get all records
     
     self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:request managedObjectContext:managedObjectContext sectionNameKeyPath:nil cacheName:nil];
@@ -393,14 +383,14 @@
   UserRecordModel *record = [self.fetchedResultsController objectAtIndexPath:indexPath];
 
 //  cell.textLabel.adjustsFontSizeToFitWidth = YES;
-  [cell.textLabel setFont:[UIFont systemFontOfSize:14]];
-//  cell.textLabel.numberOfLines = 2;
+  [cell.textLabel setFont:[UIFont systemFontOfSize:12]];
+  cell.textLabel.numberOfLines = 2;
   cell.textLabel.lineBreakMode = NSLineBreakByWordWrapping;
   cell.textLabel.text = record.recordedColor.productName;
 
   cell.detailTextLabel.adjustsFontSizeToFitWidth = YES;
-  cell.detailTextLabel.text = [NSString stringWithFormat:@"Kayit Zamani : %@", [OKUtils dateToString:record.recordDate]];
-  
+  cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ : %@", NSLocalizedStringFromTable(@"recordTime", okStringsTableName, nil), [OKUtils dateToString:record.recordDate]];
+//  [cell setSelectionStyle:UITableViewCellSelectionStyleBlue];
 //  ColorModel *color = [self.fetchedResultsController objectAtIndexPath:indexPath];
 //  
 //  cell.productName.lineBreakMode = NSLineBreakByWordWrapping;
@@ -427,6 +417,8 @@
   }
   
 }
+
+#pragma mark - Navigation
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {

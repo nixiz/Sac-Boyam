@@ -6,6 +6,7 @@
 //  Copyright (c) 2013 Oguzhan Katli. All rights reserved.
 //
 
+#import "OKAppDelegate.h"
 #import "OKSonuclarViewController.h"
 #import "OKSonuclarCell.h"
 #import "OKProductJsonType.h"
@@ -72,10 +73,11 @@
 - (void)viewDidLoad
 {
   [super viewDidLoad];
-  UILongPressGestureRecognizer *lpgr = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPress:)];
-  lpgr.minimumPressDuration = 1.5; //seconds
-  lpgr.delegate = self;
-  [self.tableView addGestureRecognizer:lpgr];
+//  UILongPressGestureRecognizer *lpgr = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPress:)];
+//  lpgr.minimumPressDuration = 1.5; //seconds
+//  lpgr.delegate = self;
+//  [self.tableView addGestureRecognizer:lpgr];
+  [self.navigationItem setTitle:NSLocalizedStringFromTable(@"resultsTitle", okStringsTableName, nil)];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -138,6 +140,7 @@
   cell.productName.text = color.productName;
   cell.priceLabel.text = [[color.price stringValue] stringByAppendingString:@" TL"];
   [cell.productImg setImage:[UIImage imageWithData:color.productImage]];
+//  [cell setSelectionStyle:UITableViewCellSelectionStyleBlue];
   return cell;
 }
 
