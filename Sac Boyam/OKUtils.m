@@ -94,5 +94,12 @@
   return backgroundColor;
 }
 
++(NSString *)dateToString:(NSDate *)date
+{
+  NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+  dateFormatter.dateFormat = @"yyyy-MM-dd HH:mm:ss";
+  return [dateFormatter stringFromDate:date];
+}
+
 
 @end

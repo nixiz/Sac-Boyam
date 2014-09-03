@@ -19,5 +19,7 @@ static NSString *resultDensityKey = @"resultDensityKey";
 + (NSString *)colorToHexString:(UIColor *)color;
 + (NSString *)colorToJsonString:(UIColor *)color;
 
++(NSString *)dateToString:(NSDate *)date;
+
 +(UIColor *)getBackgroundColor;
 @end

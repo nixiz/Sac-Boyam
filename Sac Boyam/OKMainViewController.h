@@ -7,9 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "FDTakeController.h"
-
+#import "ColorModel.h"
+#import "BrandModel.h"
+#import "UserRecordModel+Create.h"
 
 @interface OKMainViewController : UIViewController
-
+@property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
+@property (nonatomic, retain) ColorModel *colorModel;
 @end

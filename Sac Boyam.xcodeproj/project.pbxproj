@@ -32,14 +32,16 @@
 		7134B72219A3B3F800BFE754 /* OKProductType.m in Sources */ = {isa = PBXBuildFile; fileRef = 7134B71A19A3B3F800BFE754 /* OKProductType.m */; };
 		7134B72319A3B3F800BFE754 /* ColorModel+Create.m in Sources */ = {isa = PBXBuildFile; fileRef = 7134B71C19A3B3F800BFE754 /* ColorModel+Create.m */; };
 		7134B72419A3B3F800BFE754 /* BrandModel+Create.m in Sources */ = {isa = PBXBuildFile; fileRef = 7134B71E19A3B3F800BFE754 /* BrandModel+Create.m */; };
-		7134B72819A3B53C00BFE754 /* persistentStore in Resources */ = {isa = PBXBuildFile; fileRef = 7134B72719A3B53C00BFE754 /* persistentStore */; };
-		7134B72B19A3C25900BFE754 /* ColorModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7134B72A19A3C25900BFE754 /* ColorModel.m */; };
-		7134B72E19A3C25A00BFE754 /* BrandModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7134B72D19A3C25A00BFE754 /* BrandModel.m */; };
 		7134B73019A3C27200BFE754 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7134B72F19A3C27200BFE754 /* CoreData.framework */; };
 		7134B73319A3C8F900BFE754 /* UIColor+GrayScale.m in Sources */ = {isa = PBXBuildFile; fileRef = 7134B73219A3C8F900BFE754 /* UIColor+GrayScale.m */; };
 		71364338195C3B93006EF824 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71364337195C3B93006EF824 /* QuartzCore.framework */; };
 		7136433A195C4E3F006EF824 /* sacli.png in Resources */ = {isa = PBXBuildFile; fileRef = 71364339195C4E3F006EF824 /* sacli.png */; };
 		7136433D195C5E08006EF824 /* OKUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 7136433C195C5E08006EF824 /* OKUtils.m */; };
+		713733AD19B5E59700542E86 /* ColorModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 713733AC19B5E59700542E86 /* ColorModel.m */; };
+		713733B019B5E59700542E86 /* UserRecordModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 713733AF19B5E59700542E86 /* UserRecordModel.m */; };
+		713733B319B5E59700542E86 /* BrandModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 713733B219B5E59700542E86 /* BrandModel.m */; };
+		713733B619B5E61100542E86 /* UserRecordModel+Create.m in Sources */ = {isa = PBXBuildFile; fileRef = 713733B519B5E61100542E86 /* UserRecordModel+Create.m */; };
+		713733E619B5FEAE00542E86 /* persistentStore in Resources */ = {isa = PBXBuildFile; fileRef = 713733E519B5FD7C00542E86 /* persistentStore */; };
 		7152CB4F19741B330080898F /* OKWaitForResultsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 7152CB4E19741B330080898F /* OKWaitForResultsVC.m */; };
 		7152CB52197557640080898F /* OKProductJsonType.m in Sources */ = {isa = PBXBuildFile; fileRef = 7152CB51197557640080898F /* OKProductJsonType.m */; };
 		7169530A196E646700C988E5 /* FDTake.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7169530C196E646700C988E5 /* FDTake.strings */; };
@@ -93,11 +95,6 @@
 		7134B71C19A3B3F800BFE754 /* ColorModel+Create.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ColorModel+Create.m"; sourceTree = "<group>"; };
 		7134B71D19A3B3F800BFE754 /* BrandModel+Create.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BrandModel+Create.h"; sourceTree = "<group>"; };
 		7134B71E19A3B3F800BFE754 /* BrandModel+Create.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "BrandModel+Create.m"; sourceTree = "<group>"; };
-		7134B72719A3B53C00BFE754 /* persistentStore */ = {isa = PBXFileReference; lastKnownFileType = file; path = persistentStore; sourceTree = "<group>"; };
-		7134B72919A3C25900BFE754 /* ColorModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorModel.h; sourceTree = "<group>"; };
-		7134B72A19A3C25900BFE754 /* ColorModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorModel.m; sourceTree = "<group>"; };
-		7134B72C19A3C25A00BFE754 /* BrandModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrandModel.h; sourceTree = "<group>"; };
-		7134B72D19A3C25A00BFE754 /* BrandModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrandModel.m; sourceTree = "<group>"; };
 		7134B72F19A3C27200BFE754 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		7134B73119A3C8F900BFE754 /* UIColor+GrayScale.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+GrayScale.h"; sourceTree = "<group>"; };
 		7134B73219A3C8F900BFE754 /* UIColor+GrayScale.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+GrayScale.m"; sourceTree = "<group>"; };
@@ -105,6 +102,16 @@
 		71364339195C4E3F006EF824 /* sacli.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sacli.png; sourceTree = "<group>"; };
 		7136433B195C5E08006EF824 /* OKUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKUtils.h; sourceTree = "<group>"; };
 		7136433C195C5E08006EF824 /* OKUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKUtils.m; sourceTree = "<group>"; };
+		713733AB19B5E59600542E86 /* ColorModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorModel.h; sourceTree = "<group>"; };
+		713733AC19B5E59700542E86 /* ColorModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorModel.m; sourceTree = "<group>"; };
+		713733AE19B5E59700542E86 /* UserRecordModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserRecordModel.h; sourceTree = "<group>"; };
+		713733AF19B5E59700542E86 /* UserRecordModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserRecordModel.m; sourceTree = "<group>"; };
+		713733B119B5E59700542E86 /* BrandModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrandModel.h; sourceTree = "<group>"; };
+		713733B219B5E59700542E86 /* BrandModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrandModel.m; sourceTree = "<group>"; };
+		713733B419B5E61100542E86 /* UserRecordModel+Create.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UserRecordModel+Create.h"; sourceTree = "<group>"; };
+		713733B519B5E61100542E86 /* UserRecordModel+Create.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UserRecordModel+Create.m"; sourceTree = "<group>"; };
+		713733E519B5FD7C00542E86 /* persistentStore */ = {isa = PBXFileReference; lastKnownFileType = file; path = persistentStore; sourceTree = "<group>"; };
+		7150A55E19B4A1AB00597373 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
 		7152CB4D19741B330080898F /* OKWaitForResultsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKWaitForResultsVC.h; sourceTree = "<group>"; };
 		7152CB4E19741B330080898F /* OKWaitForResultsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKWaitForResultsVC.m; sourceTree = "<group>"; };
 		7152CB50197557640080898F /* OKProductJsonType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKProductJsonType.h; sourceTree = "<group>"; };
@@ -152,6 +159,7 @@
 		710735A317C49E4200484D21 /* ResultsPage */ = {
 			isa = PBXGroup;
 			children = (
+				713733E819B603FF00542E86 /* Result  Detail */,
 				7134B71119A3B3A800BFE754 /* CoreDataTableViewController.h */,
 				7134B71219A3B3A800BFE754 /* CoreDataTableViewController.m */,
 				710735A017C4981400484D21 /* OKSonuclarViewController.h */,
@@ -202,13 +210,10 @@
 				7189866719645B7B00C26297 /* Utils */,
 				710735A317C49E4200484D21 /* ResultsPage */,
 				71328AF717C38B07007EE533 /* SelectColorPage */,
+				713733AA19B5DB4000542E86 /* Settings Page */,
 				71328AA417C35FD7007EE533 /* OKAppDelegate.h */,
 				71328AA517C35FD7007EE533 /* OKAppDelegate.m */,
 				71328AAD17C35FD7007EE533 /* MainStoryboard_iPhone.storyboard */,
-				719BCE8A1966F0E9005F575C /* OKSettingsViewController.h */,
-				719BCE8B1966F0E9005F575C /* OKSettingsViewController.m */,
-				71328AF217C38162007EE533 /* OKMainViewController.h */,
-				71328AF317C38162007EE533 /* OKMainViewController.m */,
 				7193555B19654DFC0040F48D /* ImageAssets.xcassets */,
 				71328AC117C365F7007EE533 /* images */,
 				71328A9C17C35FD7007EE533 /* Supporting Files */,
@@ -271,20 +276,42 @@
 		7134B72519A3B3FE00BFE754 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
-				7134B72719A3B53C00BFE754 /* persistentStore */,
+				713733E519B5FD7C00542E86 /* persistentStore */,
 				7134B71419A3B3F800BFE754 /* ColorDataModel.xcdatamodel */,
-				7134B72C19A3C25A00BFE754 /* BrandModel.h */,
-				7134B72D19A3C25A00BFE754 /* BrandModel.m */,
-				7134B72919A3C25900BFE754 /* ColorModel.h */,
-				7134B72A19A3C25900BFE754 /* ColorModel.m */,
+				713733B119B5E59700542E86 /* BrandModel.h */,
+				713733B219B5E59700542E86 /* BrandModel.m */,
+				713733AE19B5E59700542E86 /* UserRecordModel.h */,
+				713733AF19B5E59700542E86 /* UserRecordModel.m */,
+				713733AB19B5E59600542E86 /* ColorModel.h */,
+				713733AC19B5E59700542E86 /* ColorModel.m */,
 				7134B71919A3B3F800BFE754 /* OKProductType.h */,
 				7134B71A19A3B3F800BFE754 /* OKProductType.m */,
-				7134B71B19A3B3F800BFE754 /* ColorModel+Create.h */,
-				7134B71C19A3B3F800BFE754 /* ColorModel+Create.m */,
 				7134B71D19A3B3F800BFE754 /* BrandModel+Create.h */,
 				7134B71E19A3B3F800BFE754 /* BrandModel+Create.m */,
+				713733B419B5E61100542E86 /* UserRecordModel+Create.h */,
+				713733B519B5E61100542E86 /* UserRecordModel+Create.m */,
+				7134B71B19A3B3F800BFE754 /* ColorModel+Create.h */,
+				7134B71C19A3B3F800BFE754 /* ColorModel+Create.m */,
 			);
 			name = CoreData;
+			sourceTree = "<group>";
+		};
+		713733AA19B5DB4000542E86 /* Settings Page */ = {
+			isa = PBXGroup;
+			children = (
+				719BCE8A1966F0E9005F575C /* OKSettingsViewController.h */,
+				719BCE8B1966F0E9005F575C /* OKSettingsViewController.m */,
+			);
+			name = "Settings Page";
+			sourceTree = "<group>";
+		};
+		713733E819B603FF00542E86 /* Result  Detail */ = {
+			isa = PBXGroup;
+			children = (
+				71328AF217C38162007EE533 /* OKMainViewController.h */,
+				71328AF317C38162007EE533 /* OKMainViewController.m */,
+			);
+			name = "Result  Detail";
 			sourceTree = "<group>";
 		};
 		7189866719645B7B00C26297 /* Utils */ = {
@@ -380,6 +407,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				713733E619B5FEAE00542E86 /* persistentStore in Resources */,
 				71328AA017C35FD7007EE533 /* InfoPlist.strings in Resources */,
 				71328AA817C35FD7007EE533 /* Default.png in Resources */,
 				7193555C19654DFC0040F48D /* ImageAssets.xcassets in Resources */,
@@ -392,7 +420,6 @@
 				7169530A196E646700C988E5 /* FDTake.strings in Resources */,
 				71328AC017C365F3007EE533 /* derpette_blond.png in Resources */,
 				7136433A195C4E3F006EF824 /* sacli.png in Resources */,
-				7134B72819A3B53C00BFE754 /* persistentStore in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -405,20 +432,22 @@
 			files = (
 				718986551963E59400C26297 /* OKZoomView.m in Sources */,
 				7134B72219A3B3F800BFE754 /* OKProductType.m in Sources */,
-				7134B72E19A3C25A00BFE754 /* BrandModel.m in Sources */,
 				7134B72419A3B3F800BFE754 /* BrandModel+Create.m in Sources */,
 				71ECEF91195ABB3400872EBC /* FDTakeController.m in Sources */,
 				719BCE8C1966F0E9005F575C /* OKSettingsViewController.m in Sources */,
+				713733B319B5E59700542E86 /* BrandModel.m in Sources */,
 				71328AF817C38BA5007EE533 /* MyCutomView.m in Sources */,
+				713733B619B5E61100542E86 /* UserRecordModel+Create.m in Sources */,
 				71328AA217C35FD7007EE533 /* main.m in Sources */,
 				7134B71319A3B3A800BFE754 /* CoreDataTableViewController.m in Sources */,
 				7134B73319A3C8F900BFE754 /* UIColor+GrayScale.m in Sources */,
+				713733B019B5E59700542E86 /* UserRecordModel.m in Sources */,
 				7152CB52197557640080898F /* OKProductJsonType.m in Sources */,
 				7136433D195C5E08006EF824 /* OKUtils.m in Sources */,
 				71328AA617C35FD7007EE533 /* OKAppDelegate.m in Sources */,
 				71328AB517C35FD7007EE533 /* OKViewController.m in Sources */,
 				7134B72319A3B3F800BFE754 /* ColorModel+Create.m in Sources */,
-				7134B72B19A3C25900BFE754 /* ColorModel.m in Sources */,
+				713733AD19B5E59700542E86 /* ColorModel.m in Sources */,
 				71328AF417C38162007EE533 /* OKMainViewController.m in Sources */,
 				718986581964186500C26297 /* UIImage+ImageEffects.m in Sources */,
 				71063759196C0ED100D17D66 /* UIView+CreateImage.m in Sources */,
@@ -446,6 +475,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				71695313196E64CF00C988E5 /* tr */,
+				7150A55E19B4A1AB00597373 /* en */,
 			);
 			name = MainStoryboard_iPhone.storyboard;
 			sourceTree = "<group>";

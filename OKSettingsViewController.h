@@ -7,14 +7,21 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <CoreData/CoreData.h>
+
 @protocol OKSettingsDelegate <NSObject>
 
 - (void)acceptChangedSetings;
 
 @end
 
-@interface OKSettingsViewController : UIViewController
+@interface OKSettingsViewController : UIViewController<NSFetchedResultsControllerDelegate>
 @property (weak) id<OKSettingsDelegate> delegate;
+
+@property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
+
+// Set to YES to get some debugging output in the console.
+@property BOOL debug;
 
 //-(void)setCurrentSettings:(NSDictionary *)settings;
 @end

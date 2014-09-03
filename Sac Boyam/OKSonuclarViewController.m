@@ -12,6 +12,7 @@
 #import "ColorModel+Create.h"
 #import "BrandModel+Create.h"
 #import "OKUtils.h"
+#import "OKMainViewController.h"
 
 #define ARC4RANDOM_MAX	0x100000000
 #define indexForProductName   0
@@ -141,17 +142,6 @@
 
 #pragma mark - Table view delegate
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Navigation logic may go here. Create and push another view controller.
-    /*
-     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-     [self.navigationController pushViewController:detailViewController animated:YES];
-     */
-}
-
 - (void)handleLongPress:(UILongPressGestureRecognizer *)gestureRecognizer {
 //  UILongPressGestureRecognizer *gestureRecognizer = (UILongPressGestureRecognizer *)sender;
   if (gestureRecognizer.state == UIGestureRecognizerStateBegan) {
@@ -189,6 +179,20 @@
   
   if (!success) {
     NSLog(@"Failed to open url: %@", [url description]);
+  }
+}
+
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+  //resultDetailSegue
+  if ([[segue identifier] isEqualToString:@"resultDetailSegue"]) {
+    NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
+    ColorModel *color = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    OKMainViewController *vc = [segue destinationViewController];
+    //TODO: share color model to to destination view controller
+    [vc setColorModel:color];
+    [vc setManagedObjectContext:self.managedObjectContext];
   }
 }
 

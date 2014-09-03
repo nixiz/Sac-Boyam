@@ -15,8 +15,13 @@
         <attribute name="red" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <relationship name="brand" maxCount="1" deletionRule="Nullify" destinationEntity="BrandModel" inverseName="products" inverseEntity="BrandModel" syncable="YES"/>
     </entity>
+    <entity name="UserRecordModel" representedClassName="UserRecordModel" syncable="YES">
+        <attribute name="recordDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <relationship name="recordedColor" optional="YES" maxCount="1" deletionRule="No Action" destinationEntity="ColorModel" syncable="YES"/>
+    </entity>
     <elements>
-        <element name="BrandModel" positionX="432" positionY="-900" width="128" height="90"/>
-        <element name="ColorModel" positionX="205" positionY="-927" width="119" height="163"/>
+        <element name="BrandModel" positionX="475" positionY="-855" width="128" height="90"/>
+        <element name="ColorModel" positionX="205" positionY="-999" width="119" height="163"/>
+        <element name="UserRecordModel" positionX="468" positionY="-1036" width="128" height="73"/>
     </elements>
 </model>

@@ -7,10 +7,16 @@
 //
 
 #import "OKMainViewController.h"
-#import "OKViewController.h"
 #import "OKUtils.h"
+#import "UIImage+ImageEffects.h"
 
 @interface OKMainViewController ()
+@property (weak, nonatomic) IBOutlet UIImageView *productImageView;
+//@property (weak, nonatomic) IBOutlet UIImageView *averageColorImageView;
+@property (weak, nonatomic) IBOutlet UILabel *productDetailsLabel;
+@property (weak, nonatomic) IBOutlet UIButton *favButton;
+- (IBAction)lookForInternet:(id)sender;
+- (IBAction)addRemoveFav:(id)sender;
 @end
 
 @implementation OKMainViewController
@@ -27,24 +33,30 @@
 - (void)viewDidLoad
 {
   [super viewDidLoad];
-  [self.view.layer insertSublayer:[OKUtils getBackgroundLayer:self.view.bounds] atIndex:0];
+  UIImage *backgroundImage = [UIImage imageNamed:@"background_sacBoyasi_4"];
+  UIGraphicsBeginImageContext(self.view.bounds.size);
+  [backgroundImage drawInRect:self.view.bounds];
+  UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+  UIGraphicsEndImageContext();
+  image = [image applyBlurWithRadius:15 tintColor:[UIColor colorWithWhite:0.8 alpha:0.2] saturationDeltaFactor:1.3 maskImage:nil];
+  self.view.backgroundColor = [UIColor colorWithPatternImage:image];
+  
+  if (self.colorModel) {
+    self.productImageView.image = [UIImage imageWithData:self.colorModel.productImage];
+    self.productDetailsLabel.text = [NSString stringWithFormat:@"Brand: %@\nProduct: %@", self.colorModel.brand.brandName, self.colorModel.productName];
+  }
+  
+  BOOL takeRecord = [[[NSUserDefaults standardUserDefaults] objectForKey:takeRecordKey] boolValue];
+  if (!takeRecord) {
+    [self.favButton setEnabled:NO];
+  }
+
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
-//  [self.navigationController setNavigationBarHidden:YES animated:YES];
   [super viewDidAppear:animated];
 }
-
-//- (void)viewDidDisappear:(BOOL)animated
-//{
-//  for (UIView *view in self.view.subviews) {
-//    if (view.tag == 132) {
-//      [view removeFromSuperview];
-//    }
-//  }
-//  [super viewDidDisappear:animated];
-//}
 
 - (void)didReceiveMemoryWarning
 {
@@ -52,14 +64,20 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-//  [self.navigationController setNavigationBarHidden:NO animated:YES];
-  //if ([segue.identifier isEqualToString:@"SecondScreenSegue"])
-  //{
-  //  OKViewController *seguewController = [segue destinationViewController];
-  //  //[seguewController.selectedImage setImage:self.selectedImage];
-  //}
+- (IBAction)lookForInternet:(id)sender {
+
 }
 
+- (IBAction)addRemoveFav:(id)sender {
+  BOOL takeRecord = [[[NSUserDefaults standardUserDefaults] objectForKey:takeRecordKey] boolValue];
+  if (takeRecord) {
+    UserRecordModel *record = [UserRecordModel recordModelWithDate:[NSDate date] usedColorModel:self.colorModel inManagedObjectContext:self.managedObjectContext];
+    if (record) {
+      UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:@"Basari ile kaydedildi" delegate:nil cancelButtonTitle:@"Tamam" otherButtonTitles: nil];
+      [alertView show];
+    }
+  }
+  
+
+}
 @end

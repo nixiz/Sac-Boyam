@@ -47,7 +47,18 @@ struct pixel {
   
   self.savePhoto = [[[NSUserDefaults standardUserDefaults] objectForKey:savePhotosKey] boolValue];
   self.takeController.allowsEditingPhoto = [[[NSUserDefaults standardUserDefaults] objectForKey:editPhotosKey] boolValue];
-  
+  /*
+   UIBarButtonItem *camBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCamera target:self action:@selector(SelectNewImage:)];
+   
+   UIBarButtonItem *fixedSpaceBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
+   fixedSpaceBarButtonItem.width = 20;
+   
+   NSString *selectPhotoString = NSLocalizedStringFromTable(@"selectPhoto", okStringsTableName, nil);
+   //  UIBarButtonItem *btn2 = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"settings"] style:UIBarButtonItemStylePlain target:nil action:nil];
+   UIBarButtonItem *btn2 = [[UIBarButtonItem alloc] initWithTitle:selectPhotoString style:UIBarButtonItemStylePlain target:self action:@selector(SelectNewImage:)];
+   
+   self.navigationItem.rightBarButtonItems = @[btn2, fixedSpaceBarButtonItem, camBtn];
+   */
   NSString *selectPhotoString = NSLocalizedStringFromTable(@"selectPhoto", okStringsTableName, nil);
   UIBarButtonItem *btn2 = [[UIBarButtonItem alloc] initWithTitle:selectPhotoString style:UIBarButtonItemStylePlain target:self action:@selector(SelectNewImage:)];
   self.navigationItem.rightBarButtonItem = btn2;
@@ -228,6 +239,7 @@ struct pixel {
     CGImageRef imagerRef = CGImageCreateWithImageInRect([smallImage CGImage], self.selectedImage.bounds);
     imageToBeShow = [UIImage imageWithCGImage:imagerRef];
     NSLog(@"Cropped Image Size: %@", NSStringFromCGSize(imageToBeShow.size));
+    CGImageRelease(imagerRef);
   }
   else
   {
@@ -238,6 +250,7 @@ struct pixel {
 
     CGImageRef imagerRef = CGImageCreateWithImageInRect([smallImage CGImage], self.selectedImage.bounds);
     imageToBeShow = [UIImage imageWithCGImage:imagerRef];
+    CGImageRelease(imagerRef);
   }
   [self.selectedImage setImage:imageToBeShow];
   [self.selectedImage sizeToFit];
@@ -256,6 +269,7 @@ struct pixel {
     // Crop a picture from given rectangle
     CGImageRef imageRef = CGImageCreateWithImageInRect([self.selectedImage.image CGImage], rect1);
     UIImage *tmp_img = [UIImage imageWithCGImage:imageRef];
+    CGImageRelease(imageRef);
 
     // calculate average color for next steps
     UIColor *color = [tmp_img averageColor];
@@ -294,6 +308,7 @@ struct pixel {
     // Crop a picture from given rectangle
     CGImageRef imageRef = CGImageCreateWithImageInRect([self.selectedImage.image CGImage], rect1);
     UIImage *tmp_img = [UIImage imageWithCGImage:imageRef];
+    CGImageRelease(imageRef);
 
     // calculate average color for next steps
     self.color = [tmp_img averageColor];
@@ -348,6 +363,7 @@ struct pixel {
   if ([[segue identifier] isEqualToString:@"settingsSegue"]) {
     OKSettingsViewController *vc = [segue destinationViewController];
     [vc setDelegate:self];
+    [vc setManagedObjectContext:self.managedObjectContext];
   }
 }
 
