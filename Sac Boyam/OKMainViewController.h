@@ -14,4 +14,5 @@
 @interface OKMainViewController : UIViewController
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
 @property (nonatomic, retain) ColorModel *colorModel;
+@property BOOL lookingFromFavList;
 @end

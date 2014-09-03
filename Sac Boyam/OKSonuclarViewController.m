@@ -57,6 +57,7 @@
 //    request.predicate = [NSPredicate predicateWithFormat: @"grayScale BETWEEN %@", @[@1, @10]];
     
     self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:request managedObjectContext:managedObjectContext sectionNameKeyPath:@"brand.brandName" cacheName:nil];
+    self.fetchedResultsController.delegate = self;
   } else {
     self.fetchedResultsController = nil;
   }
@@ -193,6 +194,7 @@
     //TODO: share color model to to destination view controller
     [vc setColorModel:color];
     [vc setManagedObjectContext:self.managedObjectContext];
+    vc.lookingFromFavList = NO;
   }
 }
 

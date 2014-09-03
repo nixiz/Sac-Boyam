@@ -123,6 +123,19 @@
   return result;
 }
 
++(UIImage *)imageWithColor:(UIColor *)color andSize:(CGSize)size
+{
+  UIImage *img;
+  CGRect rect = CGRectMake(0, 0, size.width, size.height);
+  UIGraphicsBeginImageContext(rect.size);
+  CGContextRef context = UIGraphicsGetCurrentContext();
+  CGContextSetFillColorWithColor(context, [color CGColor]);
+  CGContextFillRect(context, rect);
+  img = UIGraphicsGetImageFromCurrentImageContext();
+  UIGraphicsEndImageContext();
+  return img;
+}
+
 - (UIImage *)cropImageWithRect:(CGRect)rect {
   
   rect = CGRectMake(rect.origin.x*self.scale,

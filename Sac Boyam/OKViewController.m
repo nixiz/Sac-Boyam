@@ -115,6 +115,7 @@ struct pixel {
   self.selectedImage.layer.borderWidth = 2.0;
   self.selectedImage.layer.borderColor = [[[UIColor lightGrayColor] colorWithAlphaComponent:0.45] CGColor];
   
+  self.previewImage.image = [UIImage imageWithColor:[UIColor clearColor] andSize:self.previewImage.bounds.size];
   self.previewImage.layer.borderWidth = 1.0;
   self.previewImage.layer.borderColor = [[UIColor colorWithRed:0.0f/255.0f green:181.0f/255.0f blue:231.0f/255.0f alpha:0.8] CGColor];
 

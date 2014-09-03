@@ -11,6 +11,7 @@
 #import "OKUtils.h"
 #import "Sac Boyam/UserRecordModel.h"
 #import "Sac Boyam/ColorModel.h"
+#import "Sac Boyam/OKMainViewController.h"
 
 @interface OKSettingsViewController () <UITableViewDataSource, UITableViewDelegate, UIAlertViewDelegate>
 @property (strong, nonatomic) NSDictionary *settingsMap;
@@ -86,6 +87,8 @@
 
   self.view.backgroundColor = [UIColor colorWithPatternImage:image];
 
+  self.fetchedResultsController.delegate = self;
+  
   self.settingsMap = [[NSUserDefaults standardUserDefaults] dictionaryRepresentation];
 //  if (self.settingsMap == nil) {
 //    self.settingsMap = [NSMutableDictionary dictionaryWithObjectsAndKeys:@NO, @"SavePhotos", @YES, @"EditPhotos", @NO, @"TakeRecord", nil];
@@ -97,6 +100,7 @@
   
 //  [self.recordsTableView setHidden:YES];
   self.recordsTableView.backgroundColor = [UIColor clearColor];
+//  self.suspendAutomaticTrackingOfChangesInManagedObjectContext = YES;
 }
 
 - (void)didReceiveMemoryWarning
@@ -170,7 +174,8 @@
   NSString *str = [alertView buttonTitleAtIndex:buttonIndex];
   if ([str isEqualToString:@"Tamam"]) {
     //TODO: clear all records
-    [self performSelectorInBackground:@selector(deleteAllEntries) withObject:nil];
+//    [self performSelectorInBackground:@selector(deleteAllEntries) withObject:nil];
+    [self deleteAllEntries];
   } else {
     [self.takeRecordsSwitch setOn:YES animated:YES];
   }
@@ -179,38 +184,37 @@
 
 -(void)deleteAllEntries
 {
-//  NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"UserRecordModel"];
-//  request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"recordDate" ascending:YES]];
-//  request.predicate = nil; //get all records
-//
-//  NSError *error;
-//  NSArray *matches = [self.managedObjectContext executeFetchRequest:request error:&error];
-//
-//  
-//  if (error) {
-//    //handle error
-//    NSLog(@"An error occured %@", [error userInfo]);
-//  } else { //boyle bir brand varsa olani donder
-//    
-//    for (UserRecordModel *record in matches) {
-//      [self.managedObjectContext deleteObject:record];
-//    }
-//    
-//    if ([matches count]) {
-//      [self.managedObjectContext save:&error];
-//      if (error) {
-//        NSLog(@"An error occured when saving. %@", [error userInfo]);
-//      }
-//    }
-//  }
+  NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"UserRecordModel"];
+  request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"recordDate" ascending:YES]];
+  request.predicate = nil; //get all records
+
   NSError *error;
-  for (UserRecordModel *record in [self.fetchedResultsController fetchedObjects]) {
-    [self.managedObjectContext deleteObject:record];
-  }
-  [self.managedObjectContext save:&error];
+  NSArray *matches = [self.managedObjectContext executeFetchRequest:request error:&error];
+
+  
   if (error) {
-    NSLog(@"An error occured when saving. %@", [error userInfo]);
+    //handle error
+    NSLog(@"An error occured %@", [error userInfo]);
+  } else { //boyle bir brand varsa olani donder
+    
+    for (UserRecordModel *record in matches) {
+      [self.managedObjectContext deleteObject:record];
+      [self.managedObjectContext save:&error];
+      if (error) {
+        NSLog(@"An error occured when saving. %@", [error userInfo]);
+      }
+    }
   }
+//  NSError *error;
+//  for (UserRecordModel *record in [self.fetchedResultsController fetchedObjects]) {
+//    [self.managedObjectContext deleteObject:record];
+//  }
+//  [self.managedObjectContext save:&error];
+//  if (error) {
+//    NSLog(@"An error occured when saving. %@", [error userInfo]);
+//  }
+  [[NSUserDefaults standardUserDefaults] setObject:@(self.takeRecordsSwitch.on) forKey:takeRecordKey];
+
   [self.recordsTableView reloadData];
 //  [self.recordsTableView setHidden:YES];
 }
@@ -226,6 +230,7 @@
     request.predicate = nil; //get all records
     
     self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:request managedObjectContext:managedObjectContext sectionNameKeyPath:nil cacheName:nil];
+    self.fetchedResultsController.delegate = self;
   } else {
     self.fetchedResultsController = nil;
   }
@@ -408,6 +413,34 @@
   return cell;
 }
 
+-(BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+{
+  return YES;
+}
+
+-(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+  if (editingStyle == UITableViewCellEditingStyleDelete) {
+    UserRecordModel *mob = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    [self.fetchedResultsController.managedObjectContext deleteObject:mob];
+//    [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+  }
+  
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+  //resultDetailSegue
+  if ([[segue identifier] isEqualToString:@"favDetailSegue"]) {
+    NSIndexPath *indexPath = [self.recordsTableView indexPathForCell:sender];
+    UserRecordModel *record = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    OKMainViewController *vc = [segue destinationViewController];
+    //TODO: share color model to to destination view controller
+    [vc setColorModel:record.recordedColor];
+    [vc setManagedObjectContext:self.managedObjectContext];
+    vc.lookingFromFavList = YES;
+  }
+}
 
 
 @end

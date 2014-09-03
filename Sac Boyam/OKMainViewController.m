@@ -46,11 +46,16 @@
     self.productDetailsLabel.text = [NSString stringWithFormat:@"Brand: %@\nProduct: %@", self.colorModel.brand.brandName, self.colorModel.productName];
   }
   
+  
   BOOL takeRecord = [[[NSUserDefaults standardUserDefaults] objectForKey:takeRecordKey] boolValue];
   if (!takeRecord) {
     [self.favButton setEnabled:NO];
+    [self.favButton setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
   }
-
+  if (self.lookingFromFavList) {
+//    [self.favButton setTitle:@"Favorilerden Cikart" forState:UIControlStateNormal];
+    [self.favButton setHidden:YES];
+  }
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -75,9 +80,9 @@
     if (record) {
       UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:@"Basari ile kaydedildi" delegate:nil cancelButtonTitle:@"Tamam" otherButtonTitles: nil];
       [alertView show];
+      [self.favButton setTitle:@"Favorilere Eklendi" forState:UIControlStateNormal];
     }
   }
-  
 
 }
 @end
