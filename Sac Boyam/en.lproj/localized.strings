@@ -5,7 +5,7 @@
   Created by Oguzhan Katli on 10/07/14.
   Copyright (c) 2014 Oguzhan Katli. All rights reserved.
 */
-"imageOverlay" = "Select Photo to start";
+"imageOverlay" = "Select Photo To Start";
 "selectPhoto" = "Select Photo";
 "colorCode" = "Color Code";
 "imageSavedSuccessfully" = "Image Saved Successfully";
@@ -17,9 +17,9 @@
 "recordTime" = "Record Time";
 "brand" = "Brand";
 "product" = "Product";
-"savedSuccessfuly" = "Saved successfuly";
+"savedSuccessfuly" = "Saved Successfuly";
 "saved" = "Saved";
 "resultsTitle" = "Results";
 "settingsTitle" = "Settings";
 "takeRecordPromt" = "Please enter name for this product";
-"averageColorLableString" = "Color to find";
+"averageColorLableString" = "Color To Find";

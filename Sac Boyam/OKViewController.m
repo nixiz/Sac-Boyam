@@ -264,11 +264,13 @@ struct pixel {
   UITouch *touch = [[touches allObjects] objectAtIndex:0];
   CGPoint point = [touch locationInView:self.view];
   
-  if ([self.selectedImage pointInside:point withEvent:event])
+//  if ([self.selectedImage pointInside:point withEvent:event])
+  if (CGRectContainsPoint(self.selectedImage.frame, point))
   {
     // Create a rectangle (10x10) from touched touched point
     CGRect rect1 = [self getRectangleFromPoint:point];
-    
+    rect1 = CGRectOffset(rect1, -self.selectedImage.frame.origin.x, -self.selectedImage.frame.origin.y);
+
     // Crop a picture from given rectangle
     CGImageRef imageRef = CGImageCreateWithImageInRect([self.selectedImage.image CGImage], rect1);
     UIImage *tmp_img = [UIImage imageWithCGImage:imageRef];
@@ -301,17 +303,25 @@ struct pixel {
   UITouch *touch = [[touches allObjects] objectAtIndex:0];
   CGPoint point = [touch locationInView:self.view];
   
-  if ([self.selectedImage pointInside:point withEvent:event])
+//  if ([self.selectedImage pointInside:point withEvent:event])
+  if (CGRectContainsPoint(self.selectedImage.frame, point))
   {
     /***--Crop photo from touched point and calculate average color of cropped photo.--***/
     
     // Create a rectangle (10x10) from touched touched point
     CGRect rect1 = [self getRectangleFromPoint:point];
+    rect1 = CGRectOffset(rect1, -self.selectedImage.frame.origin.x, -self.selectedImage.frame.origin.y);
+//    CGRect frameRect = self.selectedImage.frame;
+//    NSLog(@"Selected Image Frame : %@", NSStringFromCGRect(frameRect));
+//
+//    NSLog(@"%f  %f  ", self.selectedImage.frame.origin.x, self.selectedImage.frame.origin.y);
 
     // Crop a picture from given rectangle
-    CGImageRef imageRef = CGImageCreateWithImageInRect([self.selectedImage.image CGImage], rect1);
-    UIImage *tmp_img = [UIImage imageWithCGImage:imageRef];
-    CGImageRelease(imageRef);
+    UIImage *tmp_img = [self.selectedImage.image cropImageWithRect:rect1];
+//    CGImageRef imageRef = CGImageCreateWithImageInRect([self.selectedImage.image CGImage], rect1);
+//    UIImage *tmp_img = [UIImage imageWithCGImage:imageRef];
+//    CGImageRelease(imageRef);
+    
 
     // calculate average color for next steps
     self.color = [tmp_img averageColor];
