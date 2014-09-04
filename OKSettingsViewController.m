@@ -382,11 +382,11 @@
 
   UserRecordModel *record = [self.fetchedResultsController objectAtIndexPath:indexPath];
 
-//  cell.textLabel.adjustsFontSizeToFitWidth = YES;
-  [cell.textLabel setFont:[UIFont systemFontOfSize:12]];
-  cell.textLabel.numberOfLines = 2;
-  cell.textLabel.lineBreakMode = NSLineBreakByWordWrapping;
-  cell.textLabel.text = record.recordedColor.productName;
+  cell.textLabel.adjustsFontSizeToFitWidth = YES;
+//  [cell.textLabel setFont:[UIFont systemFontOfSize:14]];
+//  cell.textLabel.numberOfLines = 2;
+//  cell.textLabel.lineBreakMode = NSLineBreakByWordWrapping;
+  cell.textLabel.text = record.recordName;
 
   cell.detailTextLabel.adjustsFontSizeToFitWidth = YES;
   cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ : %@", NSLocalizedStringFromTable(@"recordTime", okStringsTableName, nil), [OKUtils dateToString:record.recordDate]];
@@ -431,6 +431,7 @@
     [vc setColorModel:record.recordedColor];
     [vc setManagedObjectContext:self.managedObjectContext];
     vc.lookingFromFavList = YES;
+    [vc.navigationItem setTitle:record.recordName];
   }
 }
 

@@ -17,11 +17,12 @@
     </entity>
     <entity name="UserRecordModel" representedClassName="UserRecordModel" syncable="YES">
         <attribute name="recordDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="recordName" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="recordedColor" optional="YES" maxCount="1" deletionRule="No Action" destinationEntity="ColorModel" syncable="YES"/>
     </entity>
     <elements>
         <element name="BrandModel" positionX="475" positionY="-855" width="128" height="90"/>
         <element name="ColorModel" positionX="205" positionY="-999" width="119" height="163"/>
-        <element name="UserRecordModel" positionX="468" positionY="-1036" width="128" height="73"/>
+        <element name="UserRecordModel" positionX="468" positionY="-1036" width="128" height="88"/>
     </elements>
 </model>

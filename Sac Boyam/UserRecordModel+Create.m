@@ -11,13 +11,14 @@
 @implementation UserRecordModel (Create)
 
 + (UserRecordModel *)recordModelWithDate:(NSDate *)recordDate
+                              recordName:(NSString *)recordName
                           usedColorModel:(ColorModel *)color
                   inManagedObjectContext:(NSManagedObjectContext *)context
 {
   UserRecordModel *recordModel = nil;
   
   NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"UserRecordModel"];
-  request.predicate = [NSPredicate predicateWithFormat:@"recordDate = %@", recordDate];
+  request.predicate = [NSPredicate predicateWithFormat:@"recordName = %@", recordName];
   
   NSError *error;
   NSArray *mathes = [context executeFetchRequest:request error:&error];
@@ -28,6 +29,7 @@
     recordModel = [mathes lastObject];
   } else {
     recordModel = [NSEntityDescription insertNewObjectForEntityForName:@"UserRecordModel" inManagedObjectContext:context];
+    recordModel.recordName = recordName;
     recordModel.recordDate = recordDate;
     recordModel.recordedColor = color;
   }

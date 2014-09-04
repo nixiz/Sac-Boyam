@@ -12,7 +12,7 @@
 #import "OKAppDelegate.h"
 
 
-@interface OKMainViewController ()
+@interface OKMainViewController () <UIAlertViewDelegate>
 @property (weak, nonatomic) IBOutlet UIImageView *productImageView;
 //@property (weak, nonatomic) IBOutlet UIImageView *averageColorImageView;
 @property (weak, nonatomic) IBOutlet UILabel *productDetailsLabel;
@@ -77,6 +77,16 @@
 }
 
 - (IBAction)lookForInternet:(id)sender {
+  
+//  UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Warning"
+//                                                    message:@"Uygulamadan cikilacak! "
+//                                                   delegate:self
+//                                          cancelButtonTitle:@"Hayir"
+//                                          otherButtonTitles:@"Tamam", nil];
+//  [message show];
+  
+  
+  
   NSMutableString *searchText = [[NSMutableString alloc] initWithString:@"https://www.google.com/search?q="];
   [searchText appendString:[self.colorModel.productName stringByReplacingOccurrencesOfString:@" " withString:@"+"]];
   
@@ -89,22 +99,72 @@
   }
 }
 
+//- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
+//{
+//  NSString *title = [alertView buttonTitleAtIndex:buttonIndex];
+//  if ([title isEqualToString:@"Hayir"]) {
+//    return;
+//  }
+//  NSMutableString *searchText = [[NSMutableString alloc] initWithString:@"https://www.google.com/search?q="];
+//  [searchText appendString:[self.stringToBeSearceh stringByReplacingOccurrencesOfString:@" " withString:@"+"]];
+//  
+//  NSString *urlStr = [searchText stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+//  NSURL *url = [NSURL URLWithString:urlStr];
+//  BOOL success = [[UIApplication sharedApplication] openURL:url];
+//  
+//  if (!success) {
+//    NSLog(@"Failed to open url: %@", [url description]);
+//  }
+//}
+
 - (IBAction)addRemoveFav:(id)sender {
   BOOL takeRecord = [[[NSUserDefaults standardUserDefaults] objectForKey:takeRecordKey] boolValue];
   if (takeRecord) {
-    UserRecordModel *record = [UserRecordModel recordModelWithDate:[NSDate date] usedColorModel:self.colorModel inManagedObjectContext:self.managedObjectContext];
-    if (record) {
-      UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil
-                                                          message:NSLocalizedStringFromTable(@"savedSuccessfuly", okStringsTableName, nil)
-                                                         delegate:nil
-                                                cancelButtonTitle:NSLocalizedStringFromTable(@"OKButtonTitle", okStringsTableName, nil)
-                                                otherButtonTitles:nil];
-      [alertView show];
-      [self.favButton setTitle:NSLocalizedStringFromTable(@"saved", okStringsTableName, nil) forState:UIControlStateNormal];
-      [self.favButton setEnabled:NO];
-      [self.favButton setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
-    }
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil
+                                                        message:NSLocalizedStringFromTable(@"takeRecordPromt", okStringsTableName, nil)
+                                                      delegate:self
+                                              cancelButtonTitle:NSLocalizedStringFromTable(@"cancelButtonForURLReq", okStringsTableName, nil)
+                                              otherButtonTitles:NSLocalizedStringFromTable(@"OKButtonTitle", okStringsTableName, nil), nil];
+    [alertView setAlertViewStyle:UIAlertViewStylePlainTextInput];
+    UITextField *textField = [alertView textFieldAtIndex:0];
+    [textField setPlaceholder:@"Hallo!"];
+    [textField setClearsOnBeginEditing:YES];
+    [alertView show];
   }
-
 }
+
+- (void)dismissAlertView:(UIAlertView *)alertView
+{
+  if ([alertView isVisible]) {
+    [alertView dismissWithClickedButtonIndex:0 animated:YES];
+  }
+}
+
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+  NSString *title = [alertView buttonTitleAtIndex:buttonIndex];
+  if ([title isEqualToString:NSLocalizedStringFromTable(@"cancelButtonForURLReq", okStringsTableName, nil)]) {
+    return;
+  }
+  NSString *recordName = [[alertView textFieldAtIndex:0] text];
+  UserRecordModel *record = [UserRecordModel recordModelWithDate:[NSDate date]
+                                                      recordName:recordName
+                                                  usedColorModel:self.colorModel
+                                          inManagedObjectContext:self.managedObjectContext];
+//  UserRecordModel *record = [UserRecordModel recordModelWithDate:[NSDate date] usedColorModel:self.colorModel inManagedObjectContext:self.managedObjectContext];
+  if (record) {
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil
+                                                        message:NSLocalizedStringFromTable(@"savedSuccessfuly", okStringsTableName, nil)
+                                                       delegate:nil
+                                              cancelButtonTitle:nil
+                                              otherButtonTitles: nil];
+    [alertView show];
+    [self performSelector:@selector(dismissAlertView:) withObject:alertView afterDelay:0.6];
+
+    [self.favButton setTitle:NSLocalizedStringFromTable(@"saved", okStringsTableName, nil) forState:UIControlStateNormal];
+    [self.favButton setEnabled:NO];
+    [self.favButton setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
+  }
+}
+
 @end

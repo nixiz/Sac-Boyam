@@ -10,6 +10,7 @@
 
 @interface UserRecordModel (Create)
 + (UserRecordModel *)recordModelWithDate:(NSDate *)recordDate
+                              recordName:(NSString *)recordName
                           usedColorModel:(ColorModel *)color
             inManagedObjectContext:(NSManagedObjectContext *)context;
 
