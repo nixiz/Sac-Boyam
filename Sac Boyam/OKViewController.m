@@ -45,21 +45,26 @@ struct pixel {
   
   self.savePhoto = [[[NSUserDefaults standardUserDefaults] objectForKey:savePhotosKey] boolValue];
   self.takeController.allowsEditingPhoto = [[[NSUserDefaults standardUserDefaults] objectForKey:editPhotosKey] boolValue];
-  /*
-   UIBarButtonItem *camBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCamera target:self action:@selector(SelectNewImage:)];
+  
+  UIBarButtonItem *camBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCamera target:self action:@selector(SelectNewImage:)];
    
-   UIBarButtonItem *fixedSpaceBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
-   fixedSpaceBarButtonItem.width = 20;
-   
-   NSString *selectPhotoString = NSLocalizedStringFromTable(@"selectPhoto", okStringsTableName, nil);
-   //  UIBarButtonItem *btn2 = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"settings"] style:UIBarButtonItemStylePlain target:nil action:nil];
-   UIBarButtonItem *btn2 = [[UIBarButtonItem alloc] initWithTitle:selectPhotoString style:UIBarButtonItemStylePlain target:self action:@selector(SelectNewImage:)];
-   
-   self.navigationItem.rightBarButtonItems = @[btn2, fixedSpaceBarButtonItem, camBtn];
-   */
-  NSString *selectPhotoString = NSLocalizedStringFromTable(@"selectPhoto", okStringsTableName, nil);
-  UIBarButtonItem *btn2 = [[UIBarButtonItem alloc] initWithTitle:selectPhotoString style:UIBarButtonItemStylePlain target:self action:@selector(SelectNewImage:)];
+//  UIBarButtonItem *fixedSpaceBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
+//  fixedSpaceBarButtonItem.width = 8;
+  
+  UIBarButtonItem *btn2 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(settingsButtonTap:)];
+//  NSString *selectPhotoString = NSLocalizedStringFromTable(@"selectPhoto", okStringsTableName, nil);
+//  UIBarButtonItem *btn2 = [[UIBarButtonItem alloc] initWithTitle:selectPhotoString style:UIBarButtonItemStylePlain target:self action:@selector(SelectNewImage:)];
+  
   self.navigationItem.rightBarButtonItem = btn2;
+  
+  self.navigationItem.leftBarButtonItem = camBtn;
+  
+  self.lblRenkKodu.adjustsFontSizeToFitWidth = YES;
+  self.lblRenkKodu.text = NSLocalizedStringFromTable(@"averageColorLableString", okStringsTableName, nil);
+
+//  NSString *selectPhotoString = NSLocalizedStringFromTable(@"selectPhoto", okStringsTableName, nil);
+//  UIBarButtonItem *btn2 = [[UIBarButtonItem alloc] initWithTitle:selectPhotoString style:UIBarButtonItemStylePlain target:self action:@selector(SelectNewImage:)];
+//  self.navigationItem.rightBarButtonItem = btn2;
 
   NSLog(@"View Frame : %@", NSStringFromCGRect(self.view.frame));
   NSLog(@"View Bounds: %@", NSStringFromCGRect(self.view.bounds));
@@ -353,6 +358,11 @@ struct pixel {
   return CGRectMake(point.x - dx, point.y - dy, 32, 32);
 }
 
+-(void)settingsButtonTap:(id)sender
+{
+  [self performSegueWithIdentifier:@"settingsSegue" sender:sender];
+}
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -362,6 +372,14 @@ struct pixel {
     OKSettingsViewController *vc = [segue destinationViewController];
     [vc setDelegate:self];
     [vc setManagedObjectContext:self.managedObjectContext];
+  } else if ([[segue identifier] isEqualToString:@"resultsSegue"]) {
+    if (self.document.documentState != UIDocumentStateNormal) {
+      return;
+    }
+    CGFloat grayScaleValueOfColor = [self.color grayScaleColor];
+    OKSonuclarViewController *vc = [segue destinationViewController];
+    [vc initResultsWithGrayScaleValue:grayScaleValueOfColor forManagedObjectContext:self.managedObjectContext];
+//    [self.navigationController pushViewController:vc animated:YES];
   }
 }
 

@@ -91,19 +91,18 @@
   self.fetchedResultsController.delegate = self;
   
   self.settingsMap = [[NSUserDefaults standardUserDefaults] dictionaryRepresentation];
-//  if (self.settingsMap == nil) {
-//    self.settingsMap = [NSMutableDictionary dictionaryWithObjectsAndKeys:@NO, @"SavePhotos", @YES, @"EditPhotos", @NO, @"TakeRecord", nil];
-//  }
   [self.savePhotosSwitch setOn:[self.settingsMap[savePhotosKey] boolValue] animated:YES];
   [self.editPhotosSwitch setOn:[self.settingsMap[editPhotosKey] boolValue] animated:YES];
   [self.takeRecordsSwitch setOn:[self.settingsMap[takeRecordKey] boolValue] animated:YES];
   [self.resultDensitySlider setValue:[self.settingsMap[resultDensityKey] floatValue] animated:YES];
   
-//  [self.recordsTableView setHidden:YES];
   self.recordsTableView.backgroundColor = [UIColor clearColor];
   [self.navigationItem setTitle:NSLocalizedStringFromTable(@"settingsTitle", okStringsTableName, nil)];
 
-//  self.suspendAutomaticTrackingOfChangesInManagedObjectContext = YES;
+  if (self.delegate == nil) {
+    //eger result sayfasi tarafindan acilmissa!
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(performUnwindSegue:)];
+  }
 }
 
 - (void)didReceiveMemoryWarning
@@ -207,6 +206,11 @@
 
   [self.recordsTableView reloadData];
 //  [self.recordsTableView setHidden:YES];
+}
+
+-(void)performUnwindSegue:(id)sender
+{
+  [self performSegueWithIdentifier:@"unwindToResultsSegue" sender:sender];
 }
 
 //-----------------------------oOo-------------------------oOo-----------------------oOo----------------------------------//

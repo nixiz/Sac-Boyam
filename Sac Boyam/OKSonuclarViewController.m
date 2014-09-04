@@ -14,6 +14,7 @@
 #import "BrandModel+Create.h"
 #import "OKUtils.h"
 #import "OKMainViewController.h"
+#import "OKSettingsViewController.h"
 
 #define ARC4RANDOM_MAX	0x100000000
 #define indexForProductName   0
@@ -43,22 +44,27 @@
     return self;
 }
 
+-(void)refreshFetcedResultController:(NSManagedObjectContext *)context
+{
+  NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"ColorModel"];
+  request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"brand.brandName" ascending:YES selector:@selector(localizedCaseInsensitiveCompare:)], [NSSortDescriptor sortDescriptorWithKey:@"grayScale" ascending:YES]];
+  
+  NSLog(@"given scale density %@", [[NSUserDefaults standardUserDefaults] objectForKey:resultDensityKey]);
+  CGFloat minval = fabsf(self.grayScale - grayScaleScanThreshold(self.grayScale));
+  CGFloat maxval = self.grayScale + grayScaleScanThreshold(self.grayScale);
+  request.predicate = [NSPredicate predicateWithFormat: @"grayScale >= %@ AND grayScale <= %@", @(minval), @(maxval)];
+  //between burada calismiyor. internette de bunun gibi sorunlar var. o yuzden and kullanarak yaptim.
+  //    request.predicate = [NSPredicate predicateWithFormat: @"grayScale BETWEEN %@", @[@1, @10]];
+  
+  self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:request managedObjectContext:context sectionNameKeyPath:@"brand.brandName" cacheName:nil];
+  self.fetchedResultsController.delegate = self;
+}
+
 -(void)setManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
 {
   _managedObjectContext = managedObjectContext;
   if (managedObjectContext) {
-    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"ColorModel"];
-    request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"brand.brandName" ascending:YES selector:@selector(localizedCaseInsensitiveCompare:)], [NSSortDescriptor sortDescriptorWithKey:@"grayScale" ascending:YES]];
-
-    NSLog(@"given scale density %@", [[NSUserDefaults standardUserDefaults] objectForKey:resultDensityKey]);
-    CGFloat minval = fabsf(self.grayScale - grayScaleScanThreshold(self.grayScale));
-    CGFloat maxval = self.grayScale + grayScaleScanThreshold(self.grayScale);
-    request.predicate = [NSPredicate predicateWithFormat: @"grayScale >= %@ AND grayScale <= %@", @(minval), @(maxval)];
-    //between burada calismiyor. internette de bunun gibi sorunlar var. o yuzden and kullanarak yaptim.
-//    request.predicate = [NSPredicate predicateWithFormat: @"grayScale BETWEEN %@", @[@1, @10]];
-    
-    self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:request managedObjectContext:managedObjectContext sectionNameKeyPath:@"brand.brandName" cacheName:nil];
-    self.fetchedResultsController.delegate = self;
+    [self refreshFetcedResultController:managedObjectContext];
   } else {
     self.fetchedResultsController = nil;
   }
@@ -78,11 +84,8 @@
 //  lpgr.delegate = self;
 //  [self.tableView addGestureRecognizer:lpgr];
   [self.navigationItem setTitle:NSLocalizedStringFromTable(@"resultsTitle", okStringsTableName, nil)];
-}
-
-- (void)viewDidAppear:(BOOL)animated
-{
-  [super viewDidAppear:animated];
+  UIBarButtonItem *btn2 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(settingsFromResultsTap:)];
+  self.navigationItem.rightBarButtonItem = btn2;
 }
 
 - (void)didReceiveMemoryWarning
@@ -186,6 +189,19 @@
   }
 }
 
+-(IBAction)unwindToResults:(UIStoryboardSegue *)segue
+{
+  UIViewController *vc = segue.sourceViewController;
+  
+  if ([vc isKindOfClass:[OKSettingsViewController class]]) {
+    [self refreshFetcedResultController:self.managedObjectContext];
+  }
+}
+
+-(void)settingsFromResultsTap:(id)sender
+{
+  [self performSegueWithIdentifier:@"settingSegueFromResults" sender:sender];
+}
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
@@ -198,6 +214,9 @@
     [vc setColorModel:color];
     [vc setManagedObjectContext:self.managedObjectContext];
     vc.lookingFromFavList = NO;
+  } else if ([[segue identifier] isEqualToString:@"settingSegueFromResults"]) {
+    OKSettingsViewController *vc = [segue destinationViewController];
+    [vc setManagedObjectContext:self.managedObjectContext];
   }
 }
 
