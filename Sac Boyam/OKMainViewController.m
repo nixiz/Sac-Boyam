@@ -129,6 +129,8 @@
     UITextField *textField = [alertView textFieldAtIndex:0];
     [textField setPlaceholder:@"Hallo!"];
     [textField setClearsOnBeginEditing:YES];
+    [textField setAutocorrectionType:UITextAutocorrectionTypeDefault];
+    [textField setAutocapitalizationType:UITextAutocapitalizationTypeSentences];
     [alertView show];
   }
 }

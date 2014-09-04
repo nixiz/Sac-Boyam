@@ -267,32 +267,32 @@ struct pixel {
 //  if ([self.selectedImage pointInside:point withEvent:event])
   if (CGRectContainsPoint(self.selectedImage.frame, point))
   {
-    // Create a rectangle (10x10) from touched touched point
-    CGRect rect1 = [self getRectangleFromPoint:point];
-    rect1 = CGRectOffset(rect1, -self.selectedImage.frame.origin.x, -self.selectedImage.frame.origin.y);
-
-    // Crop a picture from given rectangle
-    CGImageRef imageRef = CGImageCreateWithImageInRect([self.selectedImage.image CGImage], rect1);
-    UIImage *tmp_img = [UIImage imageWithCGImage:imageRef];
-    CGImageRelease(imageRef);
-
-    // calculate average color for next steps
-    UIColor *color = [tmp_img averageColor];
-    
-    // show average color for user interaction.
-    CGRect rect = self.previewImage.bounds;
-    UIGraphicsBeginImageContext(rect.size);
-    CGContextRef context = UIGraphicsGetCurrentContext();
-    CGContextSetFillColorWithColor(context, [color CGColor]);
-    CGContextFillRect(context, rect);
-    UIImage *img = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    
-    [self.previewImage setImage:img];
-    
-    self.myView.newPoint = point;
+//    // Create a rectangle (10x10) from touched touched point
+//    CGRect rect1 = [self getRectangleFromPoint:point];
+//    rect1 = CGRectOffset(rect1, -self.selectedImage.frame.origin.x, -self.selectedImage.frame.origin.y);
+//
+//    // Crop a picture from given rectangle
+//    CGImageRef imageRef = CGImageCreateWithImageInRect([self.selectedImage.image CGImage], rect1);
+//    UIImage *tmp_img = [UIImage imageWithCGImage:imageRef];
+//    CGImageRelease(imageRef);
+//
+//    // calculate average color for next steps
+//    UIColor *color = [tmp_img averageColor];
+//    
+//    // show average color for user interaction.
+//    CGRect rect = self.previewImage.bounds;
+//    UIGraphicsBeginImageContext(rect.size);
+//    CGContextRef context = UIGraphicsGetCurrentContext();
+//    CGContextSetFillColorWithColor(context, [color CGColor]);
+//    CGContextFillRect(context, rect);
+//    UIImage *img = UIGraphicsGetImageFromCurrentImageContext();
+//    UIGraphicsEndImageContext();
+//    
+//    [self.previewImage setImage:img];
+//    
+//    self.myView.newPoint = point;
     [self.view addSubview:self.myView];
-    [self.myView setNeedsDisplay];
+//    [self.myView setNeedsDisplay];
   }
   
   [super touchesBegan:touches withEvent:event];
