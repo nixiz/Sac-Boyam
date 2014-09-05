@@ -16,9 +16,6 @@
 		71328AA017C35FD7007EE533 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 71328A9E17C35FD7007EE533 /* InfoPlist.strings */; };
 		71328AA217C35FD7007EE533 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 71328AA117C35FD7007EE533 /* main.m */; };
 		71328AA617C35FD7007EE533 /* OKAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 71328AA517C35FD7007EE533 /* OKAppDelegate.m */; };
-		71328AA817C35FD7007EE533 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 71328AA717C35FD7007EE533 /* Default.png */; };
-		71328AAA17C35FD7007EE533 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 71328AA917C35FD7007EE533 /* Default@2x.png */; };
-		71328AAC17C35FD7007EE533 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 71328AAB17C35FD7007EE533 /* Default-568h@2x.png */; };
 		71328AAF17C35FD7007EE533 /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71328AAD17C35FD7007EE533 /* MainStoryboard_iPhone.storyboard */; };
 		71328AB517C35FD7007EE533 /* OKViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 71328AB417C35FD7007EE533 /* OKViewController.m */; };
 		71328ABF17C365F3007EE533 /* derpette_brown.png in Resources */ = {isa = PBXBuildFile; fileRef = 71328ABD17C365F3007EE533 /* derpette_brown.png */; };
@@ -42,6 +39,8 @@
 		7152CB52197557640080898F /* OKProductJsonType.m in Sources */ = {isa = PBXBuildFile; fileRef = 7152CB51197557640080898F /* OKProductJsonType.m */; };
 		7169530A196E646700C988E5 /* FDTake.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7169530C196E646700C988E5 /* FDTake.strings */; };
 		7169530F196E64C100C988E5 /* localized.strings in Resources */ = {isa = PBXBuildFile; fileRef = 71695311196E64C100C988E5 /* localized.strings */; };
+		716A8FA919B9988A009D0E3E /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 716A8FA719B9988A009D0E3E /* Default-568h@2x.png */; };
+		716A8FAA19B9988A009D0E3E /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 716A8FA819B9988A009D0E3E /* Default@2x.png */; };
 		71840ED819B8454600F99868 /* BrandModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 71840ED719B8454600F99868 /* BrandModel.m */; };
 		71840EDB19B8454800F99868 /* ColorModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 71840EDA19B8454800F99868 /* ColorModel.m */; };
 		71840EDE19B8454800F99868 /* UserRecordModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 71840EDD19B8454800F99868 /* UserRecordModel.m */; };
@@ -73,9 +72,6 @@
 		71328AA317C35FD7007EE533 /* Sac Boyam-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Sac Boyam-Prefix.pch"; sourceTree = "<group>"; };
 		71328AA417C35FD7007EE533 /* OKAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OKAppDelegate.h; sourceTree = "<group>"; };
 		71328AA517C35FD7007EE533 /* OKAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OKAppDelegate.m; sourceTree = "<group>"; };
-		71328AA717C35FD7007EE533 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
-		71328AA917C35FD7007EE533 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
-		71328AAB17C35FD7007EE533 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		71328AB317C35FD7007EE533 /* OKViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OKViewController.h; sourceTree = "<group>"; };
 		71328AB417C35FD7007EE533 /* OKViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OKViewController.m; sourceTree = "<group>"; };
 		71328ABD17C365F3007EE533 /* derpette_brown.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = derpette_brown.png; path = img/derpette_brown.png; sourceTree = "<group>"; };
@@ -115,6 +111,8 @@
 		7152CB51197557640080898F /* OKProductJsonType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKProductJsonType.m; sourceTree = "<group>"; };
 		7169530B196E646700C988E5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/FDTake.strings; sourceTree = "<group>"; };
 		71695310196E64C100C988E5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/localized.strings; sourceTree = "<group>"; };
+		716A8FA719B9988A009D0E3E /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		716A8FA819B9988A009D0E3E /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		71840ED619B8454600F99868 /* BrandModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrandModel.h; sourceTree = "<group>"; };
 		71840ED719B8454600F99868 /* BrandModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrandModel.m; sourceTree = "<group>"; };
 		71840ED919B8454800F99868 /* ColorModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorModel.h; sourceTree = "<group>"; };
@@ -230,10 +228,9 @@
 				71328A9D17C35FD7007EE533 /* Sac Boyam-Info.plist */,
 				71328A9E17C35FD7007EE533 /* InfoPlist.strings */,
 				71328AA117C35FD7007EE533 /* main.m */,
+				716A8FA719B9988A009D0E3E /* Default-568h@2x.png */,
+				716A8FA819B9988A009D0E3E /* Default@2x.png */,
 				71328AA317C35FD7007EE533 /* Sac Boyam-Prefix.pch */,
-				71328AA717C35FD7007EE533 /* Default.png */,
-				71328AA917C35FD7007EE533 /* Default@2x.png */,
-				71328AAB17C35FD7007EE533 /* Default-568h@2x.png */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -407,13 +404,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				716A8FAA19B9988A009D0E3E /* Default@2x.png in Resources */,
 				71328AA017C35FD7007EE533 /* InfoPlist.strings in Resources */,
-				71328AA817C35FD7007EE533 /* Default.png in Resources */,
+				716A8FA919B9988A009D0E3E /* Default-568h@2x.png in Resources */,
 				7193555C19654DFC0040F48D /* ImageAssets.xcassets in Resources */,
-				71328AAA17C35FD7007EE533 /* Default@2x.png in Resources */,
 				71840EE019B84B7800F99868 /* persistentStore in Resources */,
 				7169530F196E64C100C988E5 /* localized.strings in Resources */,
-				71328AAC17C35FD7007EE533 /* Default-568h@2x.png in Resources */,
 				718986661964592B00C26297 /* final_effect_2.png in Resources */,
 				71328AAF17C35FD7007EE533 /* MainStoryboard_iPhone.storyboard in Resources */,
 				71328ABF17C365F3007EE533 /* derpette_brown.png in Resources */,
@@ -562,6 +558,8 @@
 		71328AB917C35FD7007EE533 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Sac Boyam/Sac Boyam-Prefix.pch";
 				INFOPLIST_FILE = "Sac Boyam/Sac Boyam-Info.plist";
@@ -575,6 +573,8 @@
 		71328ABA17C35FD7007EE533 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Sac Boyam/Sac Boyam-Prefix.pch";
 				INFOPLIST_FILE = "Sac Boyam/Sac Boyam-Info.plist";
