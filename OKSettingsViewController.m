@@ -148,7 +148,7 @@
   } else {
     // ayarlar degistiginde buraya girilecegi icin degistimi diye kontrol etmeye gerek yok.
     [[NSUserDefaults standardUserDefaults] setObject:@(_switch.on) forKey:keyString];
-    if ([self.delegate respondsToSelector:@selector(acceptChangedSetings:)]) {
+    if ([self.delegate respondsToSelector:@selector(acceptChangedSetings)]) {
       [self.delegate acceptChangedSetings];
     }
   }

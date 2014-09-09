@@ -10,6 +10,7 @@
 		71063759196C0ED100D17D66 /* UIView+CreateImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 71063758196C0ED100D17D66 /* UIView+CreateImage.m */; };
 		710735A217C4981400484D21 /* OKSonuclarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 710735A117C4981400484D21 /* OKSonuclarViewController.m */; };
 		710735A617C49E6800484D21 /* OKSonuclarCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 710735A517C49E6800484D21 /* OKSonuclarCell.m */; };
+		710DC71419BEE7BF00306DB9 /* FDTakeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 710DC71319BEE7BF00306DB9 /* FDTakeController.m */; };
 		71328A9617C35FD7007EE533 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71328A9517C35FD7007EE533 /* UIKit.framework */; };
 		71328A9817C35FD7007EE533 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71328A9717C35FD7007EE533 /* Foundation.framework */; };
 		71328A9A17C35FD7007EE533 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71328A9917C35FD7007EE533 /* CoreGraphics.framework */; };
@@ -52,7 +53,6 @@
 		7193555C19654DFC0040F48D /* ImageAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7193555B19654DFC0040F48D /* ImageAssets.xcassets */; };
 		719BCE8C1966F0E9005F575C /* OKSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 719BCE8B1966F0E9005F575C /* OKSettingsViewController.m */; };
 		71BFA22F19BDC99100A4C7CB /* OKTutorialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 71BFA22E19BDC99100A4C7CB /* OKTutorialViewController.m */; };
-		71ECEF91195ABB3400872EBC /* FDTakeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 71ECEF90195ABB3400872EBC /* FDTakeController.m */; };
 		71ECEF95195AC2A600872EBC /* UIImage+AverageColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 71ECEF94195AC2A600872EBC /* UIImage+AverageColor.m */; };
 /* End PBXBuildFile section */
 
@@ -63,6 +63,9 @@
 		710735A117C4981400484D21 /* OKSonuclarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKSonuclarViewController.m; sourceTree = "<group>"; };
 		710735A417C49E6800484D21 /* OKSonuclarCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKSonuclarCell.h; sourceTree = "<group>"; };
 		710735A517C49E6800484D21 /* OKSonuclarCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKSonuclarCell.m; sourceTree = "<group>"; };
+		710DC71119BED62400306DB9 /* tr */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = tr; path = tr.lproj/MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
+		710DC71219BEE7BF00306DB9 /* FDTakeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDTakeController.h; sourceTree = "<group>"; };
+		710DC71319BEE7BF00306DB9 /* FDTakeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDTakeController.m; sourceTree = "<group>"; };
 		71328A9217C35FD7007EE533 /* Sac Boyam.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Sac Boyam.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		71328A9517C35FD7007EE533 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		71328A9717C35FD7007EE533 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -102,7 +105,6 @@
 		713733B419B5E61100542E86 /* UserRecordModel+Create.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UserRecordModel+Create.h"; sourceTree = "<group>"; };
 		713733B519B5E61100542E86 /* UserRecordModel+Create.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UserRecordModel+Create.m"; sourceTree = "<group>"; };
 		713733EB19B70F0500542E86 /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/FDTake.strings; sourceTree = "<group>"; };
-		713733EC19B70F0500542E86 /* tr */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = tr; path = tr.lproj/MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
 		713733ED19B70F0500542E86 /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		713733EE19B70F0500542E86 /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/localized.strings; sourceTree = "<group>"; };
 		7150A55E19B4A1AB00597373 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
@@ -132,8 +134,6 @@
 		719BCE8B1966F0E9005F575C /* OKSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OKSettingsViewController.m; path = ../OKSettingsViewController.m; sourceTree = "<group>"; };
 		71BFA22D19BDC99100A4C7CB /* OKTutorialViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKTutorialViewController.h; sourceTree = "<group>"; };
 		71BFA22E19BDC99100A4C7CB /* OKTutorialViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKTutorialViewController.m; sourceTree = "<group>"; };
-		71ECEF8F195ABB3400872EBC /* FDTakeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDTakeController.h; sourceTree = "<group>"; };
-		71ECEF90195ABB3400872EBC /* FDTakeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDTakeController.m; sourceTree = "<group>"; };
 		71ECEF93195AC2A600872EBC /* UIImage+AverageColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+AverageColor.h"; sourceTree = "<group>"; };
 		71ECEF94195AC2A600872EBC /* UIImage+AverageColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+AverageColor.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -256,8 +256,8 @@
 			isa = PBXGroup;
 			children = (
 				7169530C196E646700C988E5 /* FDTake.strings */,
-				71ECEF8F195ABB3400872EBC /* FDTakeController.h */,
-				71ECEF90195ABB3400872EBC /* FDTakeController.m */,
+				710DC71219BEE7BF00306DB9 /* FDTakeController.h */,
+				710DC71319BEE7BF00306DB9 /* FDTakeController.m */,
 			);
 			name = FDTake;
 			sourceTree = "<group>";
@@ -436,12 +436,12 @@
 				7134B72419A3B3F800BFE754 /* BrandModel+Create.m in Sources */,
 				71840EDE19B8454800F99868 /* UserRecordModel.m in Sources */,
 				71840ED819B8454600F99868 /* BrandModel.m in Sources */,
-				71ECEF91195ABB3400872EBC /* FDTakeController.m in Sources */,
 				719BCE8C1966F0E9005F575C /* OKSettingsViewController.m in Sources */,
 				71328AF817C38BA5007EE533 /* MyCutomView.m in Sources */,
 				713733B619B5E61100542E86 /* UserRecordModel+Create.m in Sources */,
 				71328AA217C35FD7007EE533 /* main.m in Sources */,
 				71BFA22F19BDC99100A4C7CB /* OKTutorialViewController.m in Sources */,
+				710DC71419BEE7BF00306DB9 /* FDTakeController.m in Sources */,
 				7134B71319A3B3A800BFE754 /* CoreDataTableViewController.m in Sources */,
 				7134B73319A3C8F900BFE754 /* UIColor+GrayScale.m in Sources */,
 				71840EDB19B8454800F99868 /* ColorModel.m in Sources */,
@@ -477,7 +477,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				7150A55E19B4A1AB00597373 /* en */,
-				713733EC19B70F0500542E86 /* tr */,
+				710DC71119BED62400306DB9 /* tr */,
 			);
 			name = MainStoryboard_iPhone.storyboard;
 			sourceTree = "<group>";
