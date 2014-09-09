@@ -15,11 +15,12 @@
 "Warning" = "Uyarı";
 "DeleteAllRecordsPromt" = "Bütün kayıtlar silinecek! Silinsin mi?";
 "recordTime" = "Kayıt Zamanı";
-"brand" = "Firma";
-"product" = "Ürün";
+"brand"   = "Firma";
+"product" = "Ürün ";
 "savedSuccessfuly" = "Başarıyla Kaydedildi";
 "saved" = "Kaydedildi";
 "resultsTitle" = "Sonuçlar";
 "settingsTitle" = "Ayarlar";
 "takeRecordPromt" = "Bu ürün için anahtar kelime giriniz";
 "averageColorLableString" = "Bulunacak Renk";
+"settings" = "Ayarlar";

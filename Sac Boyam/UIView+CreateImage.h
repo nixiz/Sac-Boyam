@@ -11,4 +11,5 @@
 @interface UIView (CreateImage)
 - (UIImage *)createImageFromView;
 - (UIImage*) maskImage:(UIImage *)image withMask:(UIImage *)maskImage;
+-(UIColor *) getBackgroundColor;
 @end

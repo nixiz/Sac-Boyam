@@ -13,6 +13,7 @@
 #import "Sac Boyam/ColorModel.h"
 #import "Sac Boyam/OKMainViewController.h"
 #import "OKAppDelegate.h"
+#import "Sac Boyam/UIView+CreateImage.h"
 
 @interface OKSettingsViewController () <UITableViewDataSource, UITableViewDelegate, UIAlertViewDelegate>
 @property (strong, nonatomic) NSDictionary *settingsMap;
@@ -86,7 +87,8 @@
   image = [image applyBlurWithRadius:15 tintColor:[UIColor colorWithWhite:0.8 alpha:0.2] saturationDeltaFactor:1.3 maskImage:nil];
 //  image = [image applyLightEffect];
 
-  self.view.backgroundColor = [UIColor colorWithPatternImage:image];
+  self.view.backgroundColor = [self.view getBackgroundColor];
+//  self.view.backgroundColor = [OKUtils getBackgroundColor];
 
   self.fetchedResultsController.delegate = self;
   
@@ -101,7 +103,8 @@
 
   if (self.delegate == nil) {
     //eger result sayfasi tarafindan acilmissa!
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(performUnwindSegue:)];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(performUnwindSegue:)];
+    self.navigationItem.hidesBackButton = YES;
   }
 }
 
@@ -390,9 +393,11 @@
 //  [cell.textLabel setFont:[UIFont systemFontOfSize:14]];
 //  cell.textLabel.numberOfLines = 2;
 //  cell.textLabel.lineBreakMode = NSLineBreakByWordWrapping;
+  [cell.textLabel setTextColor:[UIColor whiteColor]];
   cell.textLabel.text = record.recordName;
 
   cell.detailTextLabel.adjustsFontSizeToFitWidth = YES;
+  [cell.detailTextLabel setTextColor:[UIColor colorWithWhite:1.0 alpha:0.8]];
   cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ : %@", NSLocalizedStringFromTable(@"recordTime", okStringsTableName, nil), [OKUtils dateToString:record.recordDate]];
 //  [cell setSelectionStyle:UITableViewCellSelectionStyleBlue];
 //  ColorModel *color = [self.fetchedResultsController objectAtIndexPath:indexPath];

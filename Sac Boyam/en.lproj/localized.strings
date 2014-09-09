@@ -15,7 +15,7 @@
 "Warning" = "Warning";
 "DeleteAllRecordsPromt" = "All records are getting deleted. Delete?";
 "recordTime" = "Record Time";
-"brand" = "Brand";
+"brand"   = "Brand   ";
 "product" = "Product";
 "savedSuccessfuly" = "Saved Successfuly";
 "saved" = "Saved";
@@ -23,3 +23,4 @@
 "settingsTitle" = "Settings";
 "takeRecordPromt" = "Please enter name for this product";
 "averageColorLableString" = "Color To Find";
+"settings" = "Settings";

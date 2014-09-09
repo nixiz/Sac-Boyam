@@ -10,7 +10,7 @@
 #import "OKUtils.h"
 #import "UIImage+ImageEffects.h"
 #import "OKAppDelegate.h"
-
+#import "UIView+CreateImage.h"
 
 @interface OKMainViewController () <UIAlertViewDelegate>
 @property (weak, nonatomic) IBOutlet UIImageView *productImageView;
@@ -41,16 +41,19 @@
   UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
   UIGraphicsEndImageContext();
   image = [image applyBlurWithRadius:15 tintColor:[UIColor colorWithWhite:0.8 alpha:0.2] saturationDeltaFactor:1.3 maskImage:nil];
-  self.view.backgroundColor = [UIColor colorWithPatternImage:image];
-  
+  self.view.backgroundColor = [self.view getBackgroundColor];
+//  self.view.backgroundColor = [OKUtils getBackgroundColor];
+
   if (self.colorModel) {
     self.productImageView.image = [UIImage imageWithData:self.colorModel.productImage];
     
     
-    [self.productDetailsLabel setFont:[UIFont systemFontOfSize:12]];
-    self.productDetailsLabel.numberOfLines = 3;
-    self.productDetailsLabel.lineBreakMode = NSLineBreakByWordWrapping;
+    [self.productDetailsLabel setFont:[UIFont fontWithName:@"Helvetica Neue" size:14.0]];
+    self.productDetailsLabel.numberOfLines = 0;
+//    self.productDetailsLabel.lineBreakMode = NSLineBreakByWordWrapping;
     self.productDetailsLabel.text = [NSString stringWithFormat:@"%@: %@\n%@: %@", NSLocalizedStringFromTable(@"brand", okStringsTableName, nil), self.colorModel.brand.brandName, NSLocalizedStringFromTable(@"product", okStringsTableName, nil), self.colorModel.productName];
+//    CGSize labelSize = [self.productDetailsLabel.text sizeWithAttributes:<#(NSDictionary *)#>];
+//    [self.productDetailsLabel sizeToFit];
   }
   
   

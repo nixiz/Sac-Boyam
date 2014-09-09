@@ -15,6 +15,7 @@
 #import "OKUtils.h"
 #import "OKMainViewController.h"
 #import "OKSettingsViewController.h"
+#import "UIView+CreateImage.h"
 
 #define ARC4RANDOM_MAX	0x100000000
 #define indexForProductName   0
@@ -84,8 +85,11 @@
 //  lpgr.delegate = self;
 //  [self.tableView addGestureRecognizer:lpgr];
   [self.navigationItem setTitle:NSLocalizedStringFromTable(@"resultsTitle", okStringsTableName, nil)];
-  UIBarButtonItem *btn2 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(settingsFromResultsTap:)];
+//  UIBarButtonItem *btn2 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(settingsFromResultsTap:)];
+  UIBarButtonItem *btn2 = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedStringFromTable(@"settings", okStringsTableName, nil) style:UIBarButtonItemStylePlain target:self action:@selector(settingsFromResultsTap:)];
   self.navigationItem.rightBarButtonItem = btn2;
+  
+  self.view.backgroundColor = [self.view getBackgroundColor];
 }
 
 - (void)didReceiveMemoryWarning
@@ -98,12 +102,12 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-  return 75.0f;
+  return 70.0f;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-  CGRect headerViewRect = CGRectMake(0, 0, self.view.bounds.size.width, 75);
+  CGRect headerViewRect = CGRectMake(0, 0, self.view.bounds.size.width, 70);
   UIView *headerView = [[UIView alloc] initWithFrame:headerViewRect];
   headerView.backgroundColor = [[UIColor lightGrayColor] colorWithAlphaComponent:0.85];
   //TODO: Get product Logo from productName value.
@@ -112,12 +116,12 @@
 
   UIImageView *productLogo = [[UIImageView alloc] initWithImage:
                               [UIImage imageWithData:color.brand.brandImage]];
-  productLogo.frame = CGRectMake(0, 0, 75, 75);
+  productLogo.frame = CGRectMake(0, 0, 70, 70);
   productLogo.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin;
     
   [headerView addSubview:productLogo];
     
-  UILabel *productName = [[UILabel alloc] initWithFrame:CGRectMake(80, 0, self.view.bounds.size.width - 75, 75)];
+  UILabel *productName = [[UILabel alloc] initWithFrame:CGRectMake(80, 0, self.view.bounds.size.width - 70, 70)];
   productName.text = color.brand.brandName;
   productName.backgroundColor = [UIColor clearColor];
   [headerView addSubview:productName];
@@ -135,13 +139,15 @@
     cell = [[OKSonuclarCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
   }
   ColorModel *color = [self.fetchedResultsController objectAtIndexPath:indexPath];
-  
+  UIImage *cellImage = [UIImage imageNamed:@"resultsTableCell"];
+  cell.backgroundColor = [UIColor colorWithPatternImage:cellImage];
   //TODO: get product image from url/productinfo-string.
 //  cell.productName.adjustsFontSizeToFitWidth = YES;
   cell.productName.lineBreakMode = NSLineBreakByWordWrapping;
   cell.productName.numberOfLines = 2;
   cell.productName.text = color.productName;
-  cell.priceLabel.text = [[color.price stringValue] stringByAppendingString:@" TL"];
+//  cell.priceLabel.text = [[color.price stringValue] stringByAppendingString:@" TL"];
+  cell.priceLabel.text = @"";
   [cell.productImg setImage:[UIImage imageWithData:color.productImage]];
 //  [cell setSelectionStyle:UITableViewCellSelectionStyleBlue];
   return cell;

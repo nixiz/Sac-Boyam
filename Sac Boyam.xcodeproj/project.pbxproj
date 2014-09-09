@@ -51,6 +51,7 @@
 		718986661964592B00C26297 /* final_effect_2.png in Resources */ = {isa = PBXBuildFile; fileRef = 718986651964592B00C26297 /* final_effect_2.png */; };
 		7193555C19654DFC0040F48D /* ImageAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7193555B19654DFC0040F48D /* ImageAssets.xcassets */; };
 		719BCE8C1966F0E9005F575C /* OKSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 719BCE8B1966F0E9005F575C /* OKSettingsViewController.m */; };
+		71BFA22F19BDC99100A4C7CB /* OKTutorialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 71BFA22E19BDC99100A4C7CB /* OKTutorialViewController.m */; };
 		71ECEF91195ABB3400872EBC /* FDTakeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 71ECEF90195ABB3400872EBC /* FDTakeController.m */; };
 		71ECEF95195AC2A600872EBC /* UIImage+AverageColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 71ECEF94195AC2A600872EBC /* UIImage+AverageColor.m */; };
 /* End PBXBuildFile section */
@@ -129,6 +130,8 @@
 		7193555B19654DFC0040F48D /* ImageAssets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = ImageAssets.xcassets; path = ../ImageAssets.xcassets; sourceTree = "<group>"; };
 		719BCE8A1966F0E9005F575C /* OKSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OKSettingsViewController.h; path = ../OKSettingsViewController.h; sourceTree = "<group>"; };
 		719BCE8B1966F0E9005F575C /* OKSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OKSettingsViewController.m; path = ../OKSettingsViewController.m; sourceTree = "<group>"; };
+		71BFA22D19BDC99100A4C7CB /* OKTutorialViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKTutorialViewController.h; sourceTree = "<group>"; };
+		71BFA22E19BDC99100A4C7CB /* OKTutorialViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKTutorialViewController.m; sourceTree = "<group>"; };
 		71ECEF8F195ABB3400872EBC /* FDTakeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDTakeController.h; sourceTree = "<group>"; };
 		71ECEF90195ABB3400872EBC /* FDTakeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDTakeController.m; sourceTree = "<group>"; };
 		71ECEF93195AC2A600872EBC /* UIImage+AverageColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+AverageColor.h"; sourceTree = "<group>"; };
@@ -218,6 +221,8 @@
 				71695311196E64C100C988E5 /* localized.strings */,
 				7152CB4D19741B330080898F /* OKWaitForResultsVC.h */,
 				7152CB4E19741B330080898F /* OKWaitForResultsVC.m */,
+				71BFA22D19BDC99100A4C7CB /* OKTutorialViewController.h */,
+				71BFA22E19BDC99100A4C7CB /* OKTutorialViewController.m */,
 			);
 			path = "Sac Boyam";
 			sourceTree = "<group>";
@@ -436,6 +441,7 @@
 				71328AF817C38BA5007EE533 /* MyCutomView.m in Sources */,
 				713733B619B5E61100542E86 /* UserRecordModel+Create.m in Sources */,
 				71328AA217C35FD7007EE533 /* main.m in Sources */,
+				71BFA22F19BDC99100A4C7CB /* OKTutorialViewController.m in Sources */,
 				7134B71319A3B3A800BFE754 /* CoreDataTableViewController.m in Sources */,
 				7134B73319A3C8F900BFE754 /* UIColor+GrayScale.m in Sources */,
 				71840EDB19B8454800F99868 /* ColorModel.m in Sources */,

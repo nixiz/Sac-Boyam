@@ -18,6 +18,7 @@
 #import "OKSonuclarViewController.h"
 #import "OKProductJsonType.h"
 #import "OKAppDelegate.h"
+#import "OKTutorialViewController.h"
 
 struct pixel {
   unsigned char r,g,b,a;
@@ -47,33 +48,23 @@ struct pixel {
   self.takeController.allowsEditingPhoto = [[[NSUserDefaults standardUserDefaults] objectForKey:editPhotosKey] boolValue];
   
   UIBarButtonItem *camBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCamera target:self action:@selector(SelectNewImage:)];
-   
-//  UIBarButtonItem *fixedSpaceBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
-//  fixedSpaceBarButtonItem.width = 8;
-  
-  UIBarButtonItem *btn2 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(settingsButtonTap:)];
-//  NSString *selectPhotoString = NSLocalizedStringFromTable(@"selectPhoto", okStringsTableName, nil);
-//  UIBarButtonItem *btn2 = [[UIBarButtonItem alloc] initWithTitle:selectPhotoString style:UIBarButtonItemStylePlain target:self action:@selector(SelectNewImage:)];
-  
+//  UIBarButtonItem *btn2 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(settingsButtonTap:)];
+  UIBarButtonItem *btn2 = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedStringFromTable(@"settings", okStringsTableName, nil) style:UIBarButtonItemStylePlain target:self action:@selector(settingsButtonTap:)];
   self.navigationItem.rightBarButtonItem = btn2;
-  
   self.navigationItem.leftBarButtonItem = camBtn;
+//  self.navigationItem.rightBarButtonItems = @[btn2, camBtn];
   
   self.lblRenkKodu.adjustsFontSizeToFitWidth = YES;
   self.lblRenkKodu.text = NSLocalizedStringFromTable(@"averageColorLableString", okStringsTableName, nil);
 
-//  NSString *selectPhotoString = NSLocalizedStringFromTable(@"selectPhoto", okStringsTableName, nil);
-//  UIBarButtonItem *btn2 = [[UIBarButtonItem alloc] initWithTitle:selectPhotoString style:UIBarButtonItemStylePlain target:self action:@selector(SelectNewImage:)];
-//  self.navigationItem.rightBarButtonItem = btn2;
-
   NSLog(@"View Frame : %@", NSStringFromCGRect(self.view.frame));
   NSLog(@"View Bounds: %@", NSStringFromCGRect(self.view.bounds));
-
-  UIImage *backgroundImage = [UIImage imageNamed:@"background_sacBoyasi_4"];
   NSLog(@"Navigation Bar frame  size %@", NSStringFromCGSize(self.navigationController.navigationBar.frame.size));
   NSLog(@"Navigation Bar frame  %@", NSStringFromCGRect(self.navigationController.navigationBar.frame));
   NSLog(@"Navigation Bar bounds  %@", NSStringFromCGRect(self.navigationController.navigationBar.bounds));
   NSLog(@"Navigation Bar bounds size %@", NSStringFromCGSize(self.navigationController.navigationBar.bounds.size));
+
+  UIImage *backgroundImage = [UIImage imageNamed:@"background_sacBoyasi_5"];
   UIGraphicsBeginImageContext(CGSizeMake(320, self.navigationController.navigationBar.bounds.size.height + 20));
   [backgroundImage drawInRect:self.view.bounds];
   UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
@@ -87,20 +78,13 @@ struct pixel {
   
   redrawedBckgroundImage = [redrawedBckgroundImage applyBlurWithRadius:15 tintColor:[UIColor colorWithWhite:0.8 alpha:0.2] saturationDeltaFactor:1.3 maskImage:nil];
   self.view.backgroundColor = [UIColor colorWithPatternImage:redrawedBckgroundImage];
+//  UIColor *backColor = [UIColor colorWithRed:255.0/255.0 green:190.0/255.0 blue:201.0/255.0 alpha:1.0];
+//  self.view.backgroundColor = [OKUtils getBackgroundColor];
   
-  [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor colorWithRed:0 green:122.0/255.0 blue:246.0/255.0 alpha:1.0]}];
-
-  /*
-  if (NSFoundationVersionNumber > NSFoundationVersionNumber_iOS_6_1) {
-    self.navigationController.navigationBar.barTintColor = [[UIColor colorWithPatternImage:image] colorWithAlphaComponent:0.45];
-    self.navigationController.navigationBar.backgroundColor = [[UIColor colorWithPatternImage:image] colorWithAlphaComponent:0.45];
-    self.navigationController.navigationBar.translucent = NO;
-  } else if (NSFoundationVersionNumber > NSFoundationVersionNumber_iOS_6_0){
-    //[[UINavigationBar appearance] setTintColor:[UIColor blackColor]];
-    [self.navigationController.navigationBar setTintColor:[[UIColor colorWithPatternImage:image] colorWithAlphaComponent:0.45]];
-  }*/
-  
-  self.navigationController.navigationBar.barTintColor = [[UIColor colorWithPatternImage:image] colorWithAlphaComponent:0.45];
+  [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor whiteColor]}];
+//  [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor colorWithRed:0 green:122.0/255.0 blue:246.0/255.0 alpha:1.0]}];
+  self.navigationController.navigationBar.barTintColor = [UIColor colorWithPatternImage:image];
+  self.navigationController.navigationBar.tintColor = [UIColor colorWithWhite:1.0 alpha:0.80];
   self.navigationController.navigationBar.translucent = NO;
   
   UIGraphicsBeginImageContext(self.selectedImage.bounds.size);
@@ -108,18 +92,20 @@ struct pixel {
   UIGraphicsEndImageContext();
   NSString *imageOverlayString = NSLocalizedStringFromTable(@"imageOverlay", okStringsTableName, nil);
 //  img = [img addTextToImageWithText:imageOverlayString andColor:[UIColor colorWithRed:0 green:122.0/255.0 blue:246.0/255.0 alpha:1.0]];
-  img = [img addTextToImageWithText:imageOverlayString andColor:nil];
+  img = [img addTextToImageWithText:imageOverlayString andColor:[UIColor colorWithWhite:1.0 alpha:0.8]];
+//  img = [img addTextToImageWithText:imageOverlayString andColor:nil];
   
-  [self.selectedImage setImage: img];
-  self.selectedImage.contentMode = UIViewContentModeScaleAspectFit;
+  [self.selectedImage setImage:img];
+  self.selectedImage.contentMode = UIViewContentModeScaleAspectFill;
   self.selectedImage.backgroundColor = [UIColor clearColor];
-//  self.selectedImage.backgroundColor = [[UIColor lightGrayColor] colorWithAlphaComponent:0.75];
   self.selectedImage.layer.borderWidth = 2.0;
   self.selectedImage.layer.borderColor = [[[UIColor lightGrayColor] colorWithAlphaComponent:0.45] CGColor];
+//  self.selectedImage.layer.borderColor = [[[UIColor colorWithRed:0 green:122.0/255.0 blue:246.0/255.0 alpha:1.0] colorWithAlphaComponent:0.45] CGColor];
   
   self.previewImage.image = [UIImage imageWithColor:[UIColor clearColor] andSize:self.previewImage.bounds.size];
   self.previewImage.layer.borderWidth = 1.0;
-  self.previewImage.layer.borderColor = [[UIColor colorWithRed:0.0f/255.0f green:181.0f/255.0f blue:231.0f/255.0f alpha:0.8] CGColor];
+//  self.previewImage.layer.borderColor = [[UIColor colorWithRed:0.0f/255.0f green:181.0f/255.0f blue:231.0f/255.0f alpha:0.8] CGColor];
+  self.previewImage.layer.borderColor = [[UIColor colorWithWhite:1.0 alpha:0.8] CGColor];
 
   self.previewImage.layer.cornerRadius = 12.0;
   self.previewImage.layer.masksToBounds = YES;
@@ -141,6 +127,8 @@ struct pixel {
   
   self.myView = [[OKZoomView alloc] initWithFrame:self.selectedImage.bounds andStartPoint:self.selectedImage.frame.origin];
   self.myView.backgroundColor = [UIColor clearColor];
+  
+//  [self.takeController takePhotoOrChooseFromLibrary];
 }
 
 - (void)didReceiveMemoryWarning
@@ -157,6 +145,9 @@ struct pixel {
 - (void)viewDidAppear:(BOOL)animated {
   self.myView = [[OKZoomView alloc] initWithFrame:self.selectedImage.bounds andStartPoint:self.selectedImage.frame.origin];
   self.myView.backgroundColor = [UIColor clearColor];
+  
+//  UIImage *screenShot = [self.view createImageFromView];
+//  [self performSegueWithIdentifier:@"tutorialSegue" sender:self];
 }
 
 - (IBAction)SelectNewImage:(id)sender {
@@ -336,11 +327,12 @@ struct pixel {
     UIGraphicsEndImageContext();
     [self.previewImage setImage:img];
 
-//#if TARGET_IPHONE_SIMULATOR
-//    NSString *colorCodeString = NSLocalizedStringFromTable(@"colorCode", okStringsTableName, nil);
-//    self.lblRenkKodu.text = [NSString stringWithFormat:@"%@: %@", colorCodeString, [OKUtils colorToHexString:self.color]];
     
-//#endif
+//    UIGraphicsBeginImageContext(self.myView.previewImage.size);
+//    [tmp_img drawInRect:CGRectMake(0, 0, self.myView.previewImage.size.width, self.myView.previewImage.size.height)];
+//    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+//    UIGraphicsEndImageContext();
+    
     self.myView.previewImage = img;
     self.myView.newPoint = point;
 //    [self.view addSubview:self.myView];
@@ -375,6 +367,15 @@ struct pixel {
 
 #pragma mark - Navigation
 
+//-(IBAction)unwindToRoot:(UIStoryboardSegue *)segue
+//{
+//  UIViewController *vc = segue.sourceViewController;
+//  
+//  if ([vc isKindOfClass:[OKSettingsViewController class]]) {
+////    [self refreshFetcedResultController:self.managedObjectContext];
+//  }
+//}
+
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
@@ -390,6 +391,11 @@ struct pixel {
     OKSonuclarViewController *vc = [segue destinationViewController];
     [vc initResultsWithGrayScaleValue:grayScaleValueOfColor forManagedObjectContext:self.managedObjectContext];
 //    [self.navigationController pushViewController:vc animated:YES];
+  } else if ([[segue identifier] isEqualToString:@"tutorialSegue"]) {
+    UIImage * screenShot = [[self view] createImageFromView];
+    screenShot = [screenShot applyDarkEffect];
+    OKTutorialViewController *vc = segue.destinationViewController;
+    [vc initWithMainImage:screenShot andText:@"Hede Hodo"];
   }
 }
 
