@@ -35,12 +35,12 @@
 - (void)viewDidLoad
 {
   [super viewDidLoad];
-  UIImage *backgroundImage = [UIImage imageNamed:@"background_sacBoyasi_4"];
-  UIGraphicsBeginImageContext(self.view.bounds.size);
-  [backgroundImage drawInRect:self.view.bounds];
-  UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
-  UIGraphicsEndImageContext();
-  image = [image applyBlurWithRadius:15 tintColor:[UIColor colorWithWhite:0.8 alpha:0.2] saturationDeltaFactor:1.3 maskImage:nil];
+//  UIImage *backgroundImage = [UIImage imageNamed:@"background_sacBoyasi_4"];
+//  UIGraphicsBeginImageContext(self.view.bounds.size);
+//  [backgroundImage drawInRect:self.view.bounds];
+//  UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+//  UIGraphicsEndImageContext();
+//  image = [image applyBlurWithRadius:15 tintColor:[UIColor colorWithWhite:0.8 alpha:0.2] saturationDeltaFactor:1.3 maskImage:nil];
   self.view.backgroundColor = [self.view getBackgroundColor];
 //  self.view.backgroundColor = [OKUtils getBackgroundColor];
 

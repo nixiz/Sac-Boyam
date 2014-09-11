@@ -401,6 +401,22 @@ struct pixel {
 //  }
 //}
 
+-(BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender
+{
+  if ([identifier isEqualToString:@"resultsSegue"]) {
+    if (self.selectedImage.image == nil) {
+      UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil
+                                                          message:NSLocalizedStringFromTable(@"noImageToFound", okStringsTableName, nil)
+                                                         delegate:nil
+                                                cancelButtonTitle:NSLocalizedStringFromTable(@"OKButtonTitle", okStringsTableName, nil)
+                                                otherButtonTitles: nil];
+      [alertView show];
+      return NO;
+    }
+  }
+  return YES;
+}
+
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {

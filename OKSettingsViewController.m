@@ -79,12 +79,12 @@
 {
   [super viewDidLoad];
 
-  UIImage *backgroundImage = [UIImage imageNamed:@"background_sacBoyasi_4"];
-  UIGraphicsBeginImageContext(self.view.bounds.size);
-  [backgroundImage drawInRect:self.view.bounds];
-  UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
-  UIGraphicsEndImageContext();
-  image = [image applyBlurWithRadius:15 tintColor:[UIColor colorWithWhite:0.8 alpha:0.2] saturationDeltaFactor:1.3 maskImage:nil];
+//  UIImage *backgroundImage = [UIImage imageNamed:@"background_sacBoyasi_4"];
+//  UIGraphicsBeginImageContext(self.view.bounds.size);
+//  [backgroundImage drawInRect:self.view.bounds];
+//  UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+//  UIGraphicsEndImageContext();
+//  image = [image applyBlurWithRadius:15 tintColor:[UIColor colorWithWhite:0.8 alpha:0.2] saturationDeltaFactor:1.3 maskImage:nil];
 //  image = [image applyLightEffect];
 
   self.view.backgroundColor = [self.view getBackgroundColor];
@@ -99,8 +99,16 @@
   [self.resultDensitySlider setValue:[self.settingsMap[resultDensityKey] floatValue] animated:YES];
   
   self.recordsTableView.backgroundColor = [UIColor clearColor];
+//  UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 15)];
+//  UILabel *titleLabel = [UILabel new];
+//  [titleLabel setFrame:CGRectMake(12, 0, self.view.bounds.size.width, 15)];
+//  [titleLabel setFont:[UIFont fontWithName:@"HelveticaNeue-Medium" size:14.0]];
+//  [titleLabel setTextColor:[UIColor whiteColor]];
+//  [titleLabel setText:@"Kayitlar"];
+//  [headerView addSubview:titleLabel];
+//  self.recordsTableView.tableHeaderView = headerView;
+  
   [self.navigationItem setTitle:NSLocalizedStringFromTable(@"settingsTitle", okStringsTableName, nil)];
-
   if (self.delegate == nil) {
     //eger result sayfasi tarafindan acilmissa!
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(performUnwindSegue:)];
