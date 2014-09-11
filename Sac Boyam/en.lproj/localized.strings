@@ -17,7 +17,9 @@
 "recordTime" = "Record Time";
 "brand"   = "Brand   ";
 "product" = "Product";
+"error" = "Error";
 "savedSuccessfuly" = "Saved Successfuly";
+"recordNotSaved" = "You have to enter name to record";
 "saved" = "Saved";
 "resultsTitle" = "Results";
 "settingsTitle" = "Settings";
@@ -26,3 +28,4 @@
 "settings" = "Settings";
 "skipButtonName" = "skip";
 "noImageToFound" = "No image selected yet";
+"enterNameForProduct" = "Record Name";

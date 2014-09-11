@@ -17,7 +17,9 @@
 "recordTime" = "Kayıt Zamanı";
 "brand"   = "Firma";
 "product" = "Ürün ";
+"error" = "Hata";
 "savedSuccessfuly" = "Başarıyla Kaydedildi";
+"recordNotSaved" = "Kayıt ismi girilmedi";
 "saved" = "Kaydedildi";
 "resultsTitle" = "Sonuçlar";
 "settingsTitle" = "Ayarlar";
@@ -26,3 +28,4 @@
 "settings" = "Ayarlar";
 "skipButtonName" = "atla";
 "noImageToFound" = "İlk önce resim seçmelisin";
+"enterNameForProduct" = "Kayıt İsmi";

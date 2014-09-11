@@ -130,10 +130,13 @@
                                               otherButtonTitles:NSLocalizedStringFromTable(@"OKButtonTitle", okStringsTableName, nil), nil];
     [alertView setAlertViewStyle:UIAlertViewStylePlainTextInput];
     UITextField *textField = [alertView textFieldAtIndex:0];
-    [textField setPlaceholder:@"Hallo!"];
-    [textField setClearsOnBeginEditing:YES];
+    [textField setPlaceholder:NSLocalizedStringFromTable(@"enterNameForProduct", okStringsTableName, nil)];
+    [textField setClearButtonMode:UITextFieldViewModeWhileEditing];
+    
     [textField setAutocorrectionType:UITextAutocorrectionTypeDefault];
     [textField setAutocapitalizationType:UITextAutocapitalizationTypeSentences];
+    NSString *brandName = [NSString stringWithFormat:@"%@ ", self.colorModel.brand.brandName];
+    [textField setText:brandName];
     [alertView show];
   }
 }
@@ -152,6 +155,16 @@
     return;
   }
   NSString *recordName = [[alertView textFieldAtIndex:0] text];
+  //if record name is null or empty
+  if ([recordName length] == 0) {
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedStringFromTable(@"error", okStringsTableName, nil)
+                                                        message:NSLocalizedStringFromTable(@"recordNotSaved", okStringsTableName, nil)
+                                                       delegate:nil
+                                              cancelButtonTitle:NSLocalizedStringFromTable(@"OKButtonTitle", okStringsTableName, nil)
+                                              otherButtonTitles: nil];
+    [alertView show];
+    return;
+  }
   UserRecordModel *record = [UserRecordModel recordModelWithDate:[NSDate date]
                                                       recordName:recordName
                                                   usedColorModel:self.colorModel
