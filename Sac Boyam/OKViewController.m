@@ -36,6 +36,7 @@ struct pixel {
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
 @property (nonatomic, strong) NSDictionary *filesDictionary;
 @property CGRect previewImageBound;
+@property (strong, nonatomic) UIButton *takePicBtn;
 @end
 
 @implementation OKViewController
@@ -46,7 +47,6 @@ struct pixel {
   self.userCanceledRequest = NO;
   
   UIBarButtonItem *camBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCamera target:self action:@selector(SelectNewImage:)];
-//  UIBarButtonItem *btn2 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(settingsButtonTap:)];
   UIBarButtonItem *btn2 = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedStringFromTable(@"settings", okStringsTableName, nil) style:UIBarButtonItemStylePlain target:self action:@selector(settingsButtonTap:)];
   self.navigationItem.rightBarButtonItem = btn2;
   self.navigationItem.leftBarButtonItem = camBtn;
@@ -85,40 +85,35 @@ struct pixel {
   self.navigationController.navigationBar.tintColor = [UIColor colorWithWhite:1.0 alpha:0.80];
   self.navigationController.navigationBar.translucent = NO;
   
-  UIGraphicsBeginImageContext(self.selectedImage.bounds.size);
-  UIImage *img = UIGraphicsGetImageFromCurrentImageContext();
-  UIGraphicsEndImageContext();
+//  UIGraphicsBeginImageContext(self.selectedImage.bounds.size);
+//  UIImage *img = UIGraphicsGetImageFromCurrentImageContext();
+//  UIGraphicsEndImageContext();
   NSString *imageOverlayString = NSLocalizedStringFromTable(@"imageOverlay", okStringsTableName, nil);
-//  img = [img addTextToImageWithText:imageOverlayString andColor:[UIColor colorWithRed:0 green:122.0/255.0 blue:246.0/255.0 alpha:1.0]];
-  img = [img addTextToImageWithText:imageOverlayString andColor:[UIColor colorWithWhite:1.0 alpha:0.8]];
-//  img = [img addTextToImageWithText:imageOverlayString andColor:nil];
+//  img = [img addTextToImageWithText:imageOverlayString andColor:[UIColor colorWithWhite:1.0 alpha:0.8]];
   
-  [self.selectedImage setImage:img];
+  self.takePicBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+  CGRect buttonFrame = CGRectMake(0, self.view.bounds.size.height/2.0, self.view.bounds.size.width, 30);
+  [self.takePicBtn setFrame:buttonFrame];
+  [self.takePicBtn addTarget:self action:@selector(SelectNewImage:) forControlEvents:UIControlEventTouchUpInside];
+  [self.takePicBtn setTitle:imageOverlayString forState:UIControlStateNormal];
+  [self.takePicBtn setTitleColor:[[UIColor whiteColor] colorWithAlphaComponent:0.8] forState:UIControlStateNormal];
+  [self.takePicBtn.titleLabel setFont:[UIFont fontWithName:@"Helvetica Neue" size:24]];
+  
+  [self.view addSubview:self.takePicBtn];
+  
+//  [self.selectedImage setImage:img];
   self.selectedImage.contentMode = UIViewContentModeScaleAspectFill;
   self.selectedImage.backgroundColor = [UIColor clearColor];
   self.selectedImage.layer.borderWidth = 2.0;
   self.selectedImage.layer.borderColor = [[[UIColor lightGrayColor] colorWithAlphaComponent:0.45] CGColor];
-//  self.selectedImage.layer.borderColor = [[[UIColor colorWithRed:0 green:122.0/255.0 blue:246.0/255.0 alpha:1.0] colorWithAlphaComponent:0.45] CGColor];
   
   self.previewImage.image = [UIImage imageWithColor:[UIColor clearColor] andSize:self.previewImage.bounds.size];
   self.previewImage.layer.borderWidth = 1.0;
-//  self.previewImage.layer.borderColor = [[UIColor colorWithRed:0.0f/255.0f green:181.0f/255.0f blue:231.0f/255.0f alpha:0.8] CGColor];
   self.previewImage.layer.borderColor = [[UIColor colorWithWhite:1.0 alpha:0.8] CGColor];
 
   self.previewImage.layer.cornerRadius = 12.0;
   self.previewImage.layer.masksToBounds = YES;
   
-//  UIColor *avColor = [backgroundImage averageColor];
-//  CGRect rect = self.previewImage.bounds;
-//  UIGraphicsBeginImageContext(rect.size);
-//  CGContextRef context = UIGraphicsGetCurrentContext();
-//  CGContextSetFillColorWithColor(context, [avColor CGColor]);
-//  CGContextFillRect(context, rect);
-//  UIImage *s_img = UIGraphicsGetImageFromCurrentImageContext();
-//  UIGraphicsEndImageContext();
-//
-//  [self.previewImage setImage:s_img];
-
   self.takeController = [[FDTakeController alloc] init];
   self.takeController.delegate = self;
   self.takeController.allowsEditingPhoto = [[[NSUserDefaults standardUserDefaults] objectForKey:editPhotosKey] boolValue];
@@ -127,7 +122,7 @@ struct pixel {
   self.myView = [[OKZoomView alloc] initWithFrame:self.selectedImage.bounds andStartPoint:self.selectedImage.frame.origin];
   self.myView.backgroundColor = [UIColor clearColor];
   
-//  [self.takeController takePhotoOrChooseFromLibrary];
+//  [self performSelector:@selector(showTutorial) withObject:nil afterDelay:1.5];
 }
 
 - (void)didReceiveMemoryWarning
@@ -145,11 +140,26 @@ struct pixel {
   self.myView = [[OKZoomView alloc] initWithFrame:self.selectedImage.bounds andStartPoint:self.selectedImage.frame.origin];
   self.myView.backgroundColor = [UIColor clearColor];
   self.previewImageBound = self.selectedImage.bounds;
+  
+  if ([[[NSUserDefaults standardUserDefaults] objectForKey:showTutorialKey] boolValue]) {
+    [self performSegueWithIdentifier:@"tutorialSegue" sender:self];
+  }
+
+  
+//  [self.takeController takePhotoOrChooseFromLibrary];
 //  UIImage *screenShot = [self.view createImageFromView];
 //  [self performSegueWithIdentifier:@"tutorialSegue" sender:self];
 }
 
+- (void)showTutorial
+{
+  [self performSegueWithIdentifier:@"tutorialSegue" sender:self];
+}
+
 - (IBAction)SelectNewImage:(id)sender {
+//  if ([sender isKindOfClass:[UIButton class]]) {
+//    [((UIButton *)sender) removeFromSuperview];
+//  }
   [self.takeController takePhotoOrChooseFromLibrary];
 }
 
@@ -211,6 +221,9 @@ struct pixel {
 
 - (void)takeController:(FDTakeController *)controller gotPhoto:(UIImage *)photo withInfo:(NSDictionary *)info
 {
+  if ([self.takePicBtn isDescendantOfView:self.view]) {
+    [self.takePicBtn removeFromSuperview];
+  }
   UIImagePickerControllerSourceType imgSource = (UIImagePickerControllerSourceType)[[info objectForKey:kUIImagePickerControllerSourceType] integerValue];
   if (imgSource == UIImagePickerControllerSourceTypeCamera && self.savePhoto)
   {
@@ -262,6 +275,7 @@ struct pixel {
 
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+  if (self.selectedImage.image == nil) return;
   UITouch *touch = [[touches allObjects] objectAtIndex:0];
   CGPoint point = [touch locationInView:self.view];
   
@@ -300,7 +314,8 @@ struct pixel {
 }
 
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
-  
+  if (self.selectedImage.image == nil) return;
+
   UITouch *touch = [[touches allObjects] objectAtIndex:0];
   CGPoint point = [touch locationInView:self.view];
   

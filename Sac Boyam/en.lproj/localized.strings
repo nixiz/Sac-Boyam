@@ -24,3 +24,4 @@
 "takeRecordPromt" = "Please enter name for this product";
 "averageColorLableString" = "Color To Find";
 "settings" = "Settings";
+"skipButtonName" = "skip";

@@ -24,3 +24,4 @@
 "takeRecordPromt" = "Bu ürün için anahtar kelime giriniz";
 "averageColorLableString" = "Bulunacak Renk";
 "settings" = "Ayarlar";
+"skipButtonName" = "atla";
