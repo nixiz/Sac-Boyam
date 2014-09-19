@@ -76,21 +76,13 @@ struct pixel {
   
   redrawedBckgroundImage = [redrawedBckgroundImage applyBlurWithRadius:15 tintColor:[UIColor colorWithWhite:0.8 alpha:0.2] saturationDeltaFactor:1.3 maskImage:nil];
   self.view.backgroundColor = [UIColor colorWithPatternImage:redrawedBckgroundImage];
-//  UIColor *backColor = [UIColor colorWithRed:255.0/255.0 green:190.0/255.0 blue:201.0/255.0 alpha:1.0];
-//  self.view.backgroundColor = [OKUtils getBackgroundColor];
   
   [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor whiteColor]}];
-//  [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor colorWithRed:0 green:122.0/255.0 blue:246.0/255.0 alpha:1.0]}];
   self.navigationController.navigationBar.barTintColor = [UIColor colorWithPatternImage:image];
   self.navigationController.navigationBar.tintColor = [UIColor colorWithWhite:1.0 alpha:0.80];
   self.navigationController.navigationBar.translucent = NO;
   
-//  UIGraphicsBeginImageContext(self.selectedImage.bounds.size);
-//  UIImage *img = UIGraphicsGetImageFromCurrentImageContext();
-//  UIGraphicsEndImageContext();
   NSString *imageOverlayString = NSLocalizedStringFromTable(@"imageOverlay", okStringsTableName, nil);
-//  img = [img addTextToImageWithText:imageOverlayString andColor:[UIColor colorWithWhite:1.0 alpha:0.8]];
-  
   self.takePicBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
   CGRect buttonFrame = CGRectMake(0, self.view.bounds.size.height/2.0, self.view.bounds.size.width, 30);
   [self.takePicBtn setFrame:buttonFrame];
@@ -101,7 +93,6 @@ struct pixel {
   
   [self.view addSubview:self.takePicBtn];
   
-//  [self.selectedImage setImage:img];
   self.selectedImage.contentMode = UIViewContentModeScaleAspectFill;
   self.selectedImage.backgroundColor = [UIColor clearColor];
   self.selectedImage.layer.borderWidth = 2.0;
@@ -144,11 +135,7 @@ struct pixel {
   if ([[[NSUserDefaults standardUserDefaults] objectForKey:showTutorialKey] boolValue]) {
     [self performSegueWithIdentifier:@"tutorialSegue" sender:self];
   }
-
-  
-//  [self.takeController takePhotoOrChooseFromLibrary];
-//  UIImage *screenShot = [self.view createImageFromView];
-//  [self performSegueWithIdentifier:@"tutorialSegue" sender:self];
+  [super viewDidAppear:animated];
 }
 
 - (void)showTutorial
@@ -157,9 +144,6 @@ struct pixel {
 }
 
 - (IBAction)SelectNewImage:(id)sender {
-//  if ([sender isKindOfClass:[UIButton class]]) {
-//    [((UIButton *)sender) removeFromSuperview];
-//  }
   [self.takeController takePhotoOrChooseFromLibrary];
 }
 
@@ -167,18 +151,12 @@ struct pixel {
 {
   [self.myModalViewController dismissViewControllerAnimated:YES completion:nil];
   self.userCanceledRequest = YES;
-
-  //TODO: cancel url request
-//  [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(simulateDataFetched) object:nil];
-//  self performSelector:<#(SEL)#> withObject:<#(id)#> afterDelay:<#(NSTimeInterval)#>
 }
 
 - (void)acceptChangedSetings
 {
   self.takeController.allowsEditingPhoto = [[[NSUserDefaults standardUserDefaults] objectForKey:editPhotosKey] boolValue];
   self.savePhoto = [[[NSUserDefaults standardUserDefaults] objectForKey:savePhotosKey] boolValue];
-  
-//  self.settingsArray = settings;
 }
 
 - (void)testAlertView
@@ -208,16 +186,9 @@ struct pixel {
 
 #pragma mark - FDTakeDelegate
 
-- (void)takeController:(FDTakeController *)controller didCancelAfterAttempting:(BOOL)madeAttempt
-{
-//  [self.navigationController popToRootViewControllerAnimated:NO];
-//  UIAlertView *alertView;
-//  if (madeAttempt)
-//    alertView = [[UIAlertView alloc] initWithTitle:@"Ooopps!!" message:@"The take was cancelled after selecting media" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-////  else
-////    alertView = [[UIAlertView alloc] initWithTitle:@"Example app" message:@"The take was cancelled without selecting media" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-//  [alertView show];
-}
+//- (void)takeController:(FDTakeController *)controller didCancelAfterAttempting:(BOOL)madeAttempt
+//{
+//}
 
 - (void)takeController:(FDTakeController *)controller gotPhoto:(UIImage *)photo withInfo:(NSDictionary *)info
 {
@@ -232,11 +203,6 @@ struct pixel {
     UIImageWriteToSavedPhotosAlbum(originalImage, self, @selector(image:didFinishSavingWithError:contextInfo:), nil);
   }
   
-//  UIImage *smallImage = photo;
-//  if (self.takeController.allowsEditingPhoto)
-//  {
-//    smallImage = (UIImage *) [info objectForKey:UIImagePickerControllerEditedImage];
-//  }
   NSLog(@"Image Size:   %@", NSStringFromCGSize(photo.size));
   UIGraphicsBeginImageContext(self.previewImageBound.size);
   [photo drawInRect:self.previewImageBound];
@@ -244,33 +210,6 @@ struct pixel {
   UIGraphicsEndImageContext();
   [self.selectedImage setImage:imageToBeShow];
   [self.selectedImage sizeToFit];
-//  UIImage *imageToBeShow = nil;
-//  if (self.takeController.allowsEditingPhoto)
-//  {
-//    UIGraphicsBeginImageContext(self.selectedImage.bounds.size);
-//    [photo drawInRect:self.selectedImage.bounds];
-//    UIImage *smallImage = UIGraphicsGetImageFromCurrentImageContext();
-//    UIGraphicsEndImageContext();
-//    
-//    NSLog(@"Small Image Size:   %@", NSStringFromCGSize(smallImage.size));
-//
-//    CGImageRef imagerRef = CGImageCreateWithImageInRect([smallImage CGImage], self.selectedImage.bounds);
-//    imageToBeShow = [UIImage imageWithCGImage:imagerRef];
-//    NSLog(@"Cropped Image Size: %@", NSStringFromCGSize(imageToBeShow.size));
-//    CGImageRelease(imagerRef);
-//  }
-//  else
-//  {
-//    UIGraphicsBeginImageContext(self.selectedImage.bounds.size);
-//    [photo drawInRect:self.selectedImage.bounds];
-//    UIImage *smallImage = UIGraphicsGetImageFromCurrentImageContext();
-//    UIGraphicsEndImageContext();
-//
-//    CGImageRef imagerRef = CGImageCreateWithImageInRect([smallImage CGImage], self.selectedImage.bounds);
-//    imageToBeShow = [UIImage imageWithCGImage:imagerRef];
-//    CGImageRelease(imagerRef);
-//  }
-//  [self.selectedImage setImage:imageToBeShow];
 }
 
 
@@ -279,7 +218,6 @@ struct pixel {
   UITouch *touch = [[touches allObjects] objectAtIndex:0];
   CGPoint point = [touch locationInView:self.view];
   
-//  if ([self.selectedImage pointInside:point withEvent:event])
   if (CGRectContainsPoint(self.selectedImage.frame, point))
   {
     // Create a rectangle (10x10) from touched touched point
@@ -319,7 +257,6 @@ struct pixel {
   UITouch *touch = [[touches allObjects] objectAtIndex:0];
   CGPoint point = [touch locationInView:self.view];
   
-//  if ([self.selectedImage pointInside:point withEvent:event])
   if (CGRectContainsPoint(self.selectedImage.frame, point))
   {
     /***--Crop photo from touched point and calculate average color of cropped photo.--***/
@@ -327,17 +264,9 @@ struct pixel {
     // Create a rectangle (10x10) from touched touched point
     CGRect rect1 = [self getRectangleFromPoint:point];
     rect1 = CGRectOffset(rect1, -self.selectedImage.frame.origin.x, -self.selectedImage.frame.origin.y);
-//    CGRect frameRect = self.selectedImage.frame;
-//    NSLog(@"Selected Image Frame : %@", NSStringFromCGRect(frameRect));
-//
-//    NSLog(@"%f  %f  ", self.selectedImage.frame.origin.x, self.selectedImage.frame.origin.y);
 
     // Crop a picture from given rectangle
     UIImage *tmp_img = [self.selectedImage.image cropImageWithRect:rect1];
-//    CGImageRef imageRef = CGImageCreateWithImageInRect([self.selectedImage.image CGImage], rect1);
-//    UIImage *tmp_img = [UIImage imageWithCGImage:imageRef];
-//    CGImageRelease(imageRef);
-    
 
     // calculate average color for next steps
     self.color = [tmp_img averageColor];
@@ -351,16 +280,9 @@ struct pixel {
     UIImage *img = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     [self.previewImage setImage:img];
-
-    
-//    UIGraphicsBeginImageContext(self.myView.previewImage.size);
-//    [tmp_img drawInRect:CGRectMake(0, 0, self.myView.previewImage.size.width, self.myView.previewImage.size.height)];
-//    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
-//    UIGraphicsEndImageContext();
     
     self.myView.previewImage = img;
     self.myView.newPoint = point;
-//    [self.view addSubview:self.myView];
     [self.myView setNeedsDisplay];
   }
   [super touchesMoved:touches withEvent:event];
@@ -378,11 +300,15 @@ struct pixel {
 
 - (CGRect)getRectangleFromPoint:(CGPoint)point
 {
+  CGSize drawableSize = self.selectedImage.bounds.size;
+  CGFloat scaleFactor = self.view.window.screen.nativeScale;
+  drawableSize.width *= scaleFactor;
+  CGFloat capturePixelSize = drawableSize.width * 0.1;
   CGFloat dx,dy;
-  dx = point.x >= 16 ? 16 : 0;
-  dy = point.y >= 16 ? 16 : 0;
+  dx = point.x >= capturePixelSize/2.0 ? capturePixelSize/2.0 : 0;
+  dy = point.y >= capturePixelSize/2.0 ? capturePixelSize/2.0 : 0;
   
-  return CGRectMake(point.x - dx, point.y - dy, 32, 32);
+  return CGRectMake(point.x - dx, point.y - dy, capturePixelSize, capturePixelSize);
 }
 
 -(void)settingsButtonTap:(id)sender
