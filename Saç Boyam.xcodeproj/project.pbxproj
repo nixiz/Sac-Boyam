@@ -379,6 +379,11 @@
 				CLASSPREFIX = OK;
 				LastUpgradeCheck = 0460;
 				ORGANIZATIONNAME = "Oguzhan Katli";
+				TargetAttributes = {
+					71328A9117C35FD7007EE533 = {
+						DevelopmentTeam = J2YDNSCTAL;
+					};
+				};
 			};
 			buildConfigurationList = 71328A8D17C35FD7007EE533 /* Build configuration list for PBXProject "Saç Boyam" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -566,6 +571,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Sac Boyam/Saç Boyam-Prefix.pch";
 				INFOPLIST_FILE = "Sac Boyam/Saç Boyam-Info.plist";
@@ -581,6 +587,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Sac Boyam/Saç Boyam-Prefix.pch";
 				INFOPLIST_FILE = "Sac Boyam/Saç Boyam-Info.plist";
