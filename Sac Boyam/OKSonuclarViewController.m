@@ -109,7 +109,7 @@
 {
   CGRect headerViewRect = CGRectMake(0, 0, self.view.bounds.size.width, 70);
   UIView *headerView = [[UIView alloc] initWithFrame:headerViewRect];
-  headerView.backgroundColor = [[UIColor lightGrayColor] colorWithAlphaComponent:0.85];
+  headerView.backgroundColor = [[UIColor lightGrayColor] colorWithAlphaComponent:0.65];
   //TODO: Get product Logo from productName value.
   NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:section];
   ColorModel *color = [self.fetchedResultsController objectAtIndexPath:indexPath];

@@ -412,7 +412,7 @@ struct pixel {
   
   NSURL *persUrl = [url URLByAppendingPathComponent:@"StoreContent" isDirectory:YES];
   if (![[NSFileManager defaultManager] fileExistsAtPath:[persUrl path]]) {
-    NSError *error;
+    NSError *error = nil;
     BOOL success = [[NSFileManager defaultManager] createDirectoryAtURL:persUrl withIntermediateDirectories:YES attributes:nil error:&error];
     if (!success || error) {
       NSLog(@"Error: %@", [error userInfo]); return;
@@ -424,8 +424,17 @@ struct pixel {
     {
       NSLog(@"Error %@", [error userInfo]);
     }
+    success = [documentsDir setResourceValue: [NSNumber numberWithBool: YES]
+                                         forKey: NSURLIsExcludedFromBackupKey error: &error];
+    if(!success){
+      NSLog(@"Error excluding %@ from backup %@", [persUrl lastPathComponent], error);
+      return;
+    }
+
     NSLog(@"File successfuly copied to folder %@", persUrl);
   }
+  
+  
   
   NSLog(@"DB path: %@", url);
   self.document = [[UIManagedDocument alloc] initWithFileURL:url];
