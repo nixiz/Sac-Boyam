@@ -11,6 +11,7 @@
 #import "UIImage+ImageEffects.h"
 #import "OKAppDelegate.h"
 #import "UIView+CreateImage.h"
+#import "OKTryOnMeVC.h"
 
 @interface OKMainViewController () <UIAlertViewDelegate>
 @property (weak, nonatomic) IBOutlet UIImageView *productImageView;
@@ -35,36 +36,25 @@
 - (void)viewDidLoad
 {
   [super viewDidLoad];
-//  UIImage *backgroundImage = [UIImage imageNamed:@"background_sacBoyasi_4"];
-//  UIGraphicsBeginImageContext(self.view.bounds.size);
-//  [backgroundImage drawInRect:self.view.bounds];
-//  UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
-//  UIGraphicsEndImageContext();
-//  image = [image applyBlurWithRadius:15 tintColor:[UIColor colorWithWhite:0.8 alpha:0.2] saturationDeltaFactor:1.3 maskImage:nil];
   self.view.backgroundColor = [self.view getBackgroundColor];
-//  self.view.backgroundColor = [OKUtils getBackgroundColor];
-
+  
   if (self.colorModel) {
     self.productImageView.image = [UIImage imageWithData:self.colorModel.productImage];
     
-    
     [self.productDetailsLabel setFont:[UIFont fontWithName:@"Helvetica Neue" size:14.0]];
     self.productDetailsLabel.numberOfLines = 0;
-//    self.productDetailsLabel.lineBreakMode = NSLineBreakByWordWrapping;
     self.productDetailsLabel.text = [NSString stringWithFormat:@"%@: %@\n%@: %@", NSLocalizedStringFromTable(@"brand", okStringsTableName, nil), self.colorModel.brand.brandName, NSLocalizedStringFromTable(@"product", okStringsTableName, nil), self.colorModel.productName];
-//    CGSize labelSize = [self.productDetailsLabel.text sizeWithAttributes:<#(NSDictionary *)#>];
-//    [self.productDetailsLabel sizeToFit];
   }
   
-  
-  BOOL takeRecord = [[[NSUserDefaults standardUserDefaults] objectForKey:takeRecordKey] boolValue];
-  if (!takeRecord) {
-    [self.favButton setEnabled:NO];
-    [self.favButton setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
-  }
-  if (self.lookingFromFavList) {
-//    [self.favButton setTitle:@"Favorilerden Cikart" forState:UIControlStateNormal];
-    [self.favButton setHidden:YES];
+  if (self.lookingFromFavList == NO) {
+    UIBarButtonItem *savebtn = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedStringFromTable(@"saveButtonName", okStringsTableName, nil) style:UIBarButtonItemStylePlain target:self action:@selector(addRemoveFav:)];
+    
+    BOOL takeRecord = [[[NSUserDefaults standardUserDefaults] objectForKey:takeRecordKey] boolValue];
+    if (!takeRecord) {
+      [savebtn setEnabled:NO];
+//      [savebtn setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
+    }
+    self.navigationItem.rightBarButtonItem = savebtn;
   }
 }
 
@@ -179,10 +169,26 @@
     [alertView show];
     [self performSelector:@selector(dismissAlertView:) withObject:alertView afterDelay:0.6];
 
-    [self.favButton setTitle:NSLocalizedStringFromTable(@"saved", okStringsTableName, nil) forState:UIControlStateNormal];
-    [self.favButton setEnabled:NO];
-    [self.favButton setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
+    [self.navigationItem.rightBarButtonItem setTitle:NSLocalizedStringFromTable(@"saved", okStringsTableName, nil)];
+    [self.navigationItem.rightBarButtonItem setEnabled:NO];
+//    [self.favButton setTitle:NSLocalizedStringFromTable(@"saved", okStringsTableName, nil) forState:UIControlStateNormal];
+//    [self.favButton setEnabled:NO];
+//    [self.favButton setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
   }
+}
+//tryOnMeSegue
+
+#pragma mark - Navigation
+ 
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+  if ([[segue identifier] isEqualToString:@"tryOnMeSegue"]) {
+    OKTryOnMeVC *vc = [segue destinationViewController];
+    [vc setColorModel:self.colorModel];
+  }
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+
 }
 
 @end

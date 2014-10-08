@@ -29,3 +29,5 @@
 "skipButtonName" = "atla";
 "noImageToFound" = "İlk önce resim seçmelisin";
 "enterNameForProduct" = "Kayıt İsmi";
+"saveButtonName" = "Kaydet";
+"shouldSaveUserDefaultPhoto" = "Öngörülen Fotoğraf olarak kayıt edilsin mi?";

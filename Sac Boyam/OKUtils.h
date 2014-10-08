@@ -12,6 +12,7 @@ static NSString *editPhotosKey = @"editphotosKey";
 static NSString *takeRecordKey = @"takerecordKey";
 static NSString *resultDensityKey = @"resultDensityKey";
 static NSString *showTutorialKey = @"showTutorialKey";
+static NSString *userDefaultPhotoKey = @"userPhotoKey";
 
 @interface OKUtils : NSObject
 

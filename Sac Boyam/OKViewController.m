@@ -301,7 +301,12 @@ struct pixel {
 - (CGRect)getRectangleFromPoint:(CGPoint)point
 {
   CGSize drawableSize = self.selectedImage.bounds.size;
-  CGFloat scaleFactor = self.view.window.screen.nativeScale;
+  
+  CGFloat scaleFactor = [UIScreen mainScreen].scale;
+  if ([[UIScreen mainScreen] respondsToSelector:@selector(nativeScale)]) {
+      scaleFactor = [UIScreen mainScreen].nativeScale;
+  }
+//  CGFloat scaleFactor = self.view.window.screen.nativeScale;
   drawableSize.width *= scaleFactor;
   CGFloat capturePixelSize = drawableSize.width * 0.1;
   CGFloat dx,dy;

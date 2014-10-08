@@ -29,3 +29,5 @@
 "skipButtonName" = "skip";
 "noImageToFound" = "No image selected yet";
 "enterNameForProduct" = "Record Name";
+"saveButtonName" = "Save";
+"shouldSaveUserDefaultPhoto" = "Should be saved as your default photo?";
