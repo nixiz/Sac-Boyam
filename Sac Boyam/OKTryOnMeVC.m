@@ -15,25 +15,29 @@
 #import "OKUtils.h"
 #import "OKZoomView.h"
 #import "UIView+CreateImage.h"
+#import "UIView+draggable.h"
+#import "UIBezierPath+Interpolation.h"
+#import "CRVINTERGraphicsView.h"
+#import "TapToPointView.h"
 
-@interface OKTryOnMeVC () <FDTakeDelegate, UIAlertViewDelegate>
+@interface OKTryOnMeVC () <FDTakeDelegate, UIAlertViewDelegate, UIGestureRecognizerDelegate>
 @property (weak, nonatomic) IBOutlet UIImageView *previewImg;
-@property (weak, nonatomic) IBOutlet UISlider *blendSlider;
-@property (weak, nonatomic) IBOutlet UILabel *sliderLabel;
-- (IBAction)sliderValueChanged:(id)sender;
-@property (strong, nonatomic) OKZoomView *myView;
 @property FDTakeController *takeController;
 
-@property (strong, nonatomic) UIManagedDocument *document;
-@property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
-@property (nonatomic, strong) NSDictionary *filesDictionary;
 @property CGRect previewImageBound;
 @property (strong) UIColor *color;
 @property (strong, nonatomic) UIButton *takePicBtn;
 
-@property CGFloat blendValue;
-@property (weak, nonatomic) IBOutlet UIImageView *imgView1;
-@property (weak, nonatomic) IBOutlet UIImageView *imgView2;
+@property (strong, nonatomic) NSMutableArray *bezierPoints;
+@property UITapGestureRecognizer *gestureRecognizer;
+@property NSInteger tapCount;
+@property (strong, nonatomic) CRVINTERGraphicsView *graphView;
+- (IBAction)editButtonsTapped:(id)sender;
+@property (strong, nonatomic) UIView *settingsView;
+@property CGFloat blendAlphaValue;
+@property (weak, nonatomic) IBOutlet UIToolbar *tryToolBar;
+@property CGRect settingsViewRecoverFrame;
+@property CGRect settingsViewHideFrame;
 @end
 
 @implementation OKTryOnMeVC
@@ -41,8 +45,26 @@
 - (void)viewDidLoad {
   [super viewDidLoad];  
   UIBarButtonItem *camBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCamera target:self action:@selector(SelectNewImage:)];
+//  UIBarButtonItem *actionBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(ActionButtonTapped:)];
   self.navigationItem.rightBarButtonItem = camBtn;
   self.view.backgroundColor = [self.view getBackgroundColor];
+
+  self.tapCount = 0;
+  self.bezierPoints = [NSMutableArray new];
+
+  self.graphView = [[CRVINTERGraphicsView alloc] initWithFrame:self.view.frame];
+  self.graphView.backgroundColor = [UIColor clearColor];
+  [self.graphView setIsClosed:YES];
+  [self.graphView setUseHermite:YES];
+  [self.view insertSubview:self.graphView aboveSubview:self.previewImg];
+  
+  self.gestureRecognizer = [[UITapGestureRecognizer alloc]
+                            initWithTarget:self
+                            action:@selector(tapped:)];
+  self.gestureRecognizer.delegate = self;
+  self.gestureRecognizer.numberOfTapsRequired = 1;
+  self.gestureRecognizer.numberOfTouchesRequired = 1;
+  [self.view addGestureRecognizer:self.gestureRecognizer];
 
   self.takeController = [[FDTakeController alloc] init];
   self.takeController.delegate = self;
@@ -73,17 +95,48 @@
     //it cant be null
     assert(NO);
   }
+  self.blendAlphaValue = .64;
+  CGRect toolBarFrame = self.tryToolBar.frame;
+  self.settingsViewRecoverFrame = CGRectMake(0, toolBarFrame.origin.y - 52 + 20/*size of status bar*/, toolBarFrame.size.width, 56);
+  self.settingsViewHideFrame = CGRectMake(0, toolBarFrame.origin.y + 20/*size of status bar*/, toolBarFrame.size.width, 56);
+  self.settingsView = [[UIView alloc] initWithFrame:self.settingsViewHideFrame];
+  self.settingsView.backgroundColor = [UIColor colorWithWhite:0.8 alpha:0.72];
+  /*******
+   | "lorem ipsum ipsala kim kum"   label column  (12 px)
+   |
+   |      -------X------            slider column (44 px)
+   |
+   *******/
+  //create view objects for settings tap
+  UILabel *sliderExplanationLabel = [[UILabel alloc] init];
+  [sliderExplanationLabel setFrame:CGRectMake(0, 0, self.view.bounds.size.width, 20)];
+  [sliderExplanationLabel setText:@"Slider Value for Alpha Blending Value"];
+  [sliderExplanationLabel setFont:[UIFont fontWithName:@"Helvetica Neue" size:14.0]];
+  [sliderExplanationLabel setTextColor:[[UIColor whiteColor] colorWithAlphaComponent:0.85]];
+  //  [sliderExplanationLabel setAdjustsFontSizeToFitWidth:YES];
+  [self.settingsView addSubview:sliderExplanationLabel];
   
-  self.myView = [[OKZoomView alloc] initWithFrame:self.previewImg.bounds andStartPoint:self.previewImg.frame.origin];
+  UISlider *alphaSlider = [[UISlider alloc] init];
+  [alphaSlider setFrame:CGRectMake(0, 20, self.view.bounds.size.width, 36)];
+  [alphaSlider setMaximumValue:1.0];
+  [alphaSlider setMinimumValue:0.0];
+  [alphaSlider setValue:self.blendAlphaValue animated:NO];
+//  [sliderFPS setMinimumTrackImage:[[UIImage imageNamed:@"camera_slider_empty.png"] resizableImageWithCapInsets:UIEdgeInsetsFromString(@"8")]
+//                         forState:UIControlStateNormal];
+//  [sliderFPS setMaximumTrackImage:[[UIImage imageNamed:@"camera_slider_full.png"] resizableImageWithCapInsets:UIEdgeInsetsFromString(@"8")]
+  UIImage *maxColorImage = [UIImage imageWithColor:self.color andSize:CGSizeMake(8, 8)];
+  UIImage *minColorImage = [UIImage imageWithColor:[[UIColor colorWithWhite:0.8 alpha:0.32] colorWithAlphaComponent:0.32] andSize:CGSizeMake(8, 8)];
+  [alphaSlider setMaximumTrackImage:[maxColorImage resizableImageWithCapInsets:UIEdgeInsetsFromString(@"8")] forState:UIControlStateNormal];
+  [alphaSlider setMinimumTrackImage:[minColorImage resizableImageWithCapInsets:UIEdgeInsetsFromString(@"8")] forState:UIControlStateNormal];
+  [alphaSlider addTarget:self action:@selector(alphaSliderChanged:) forControlEvents:UIControlEventValueChanged];
+  [self.settingsView addSubview:alphaSlider];
+//  [self.settingsView setHidden:YES];
 }
 
 -(void)viewDidAppear:(BOOL)animated
 {
   [super viewDidAppear:animated];
-  self.myView = [[OKZoomView alloc] initWithFrame:self.previewImg.bounds andStartPoint:self.previewImg.frame.origin];
-  self.myView.backgroundColor = [UIColor clearColor];
   self.previewImageBound = self.previewImg.bounds;
-  [self sliderValueChanged:self.blendSlider];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -95,21 +148,12 @@
   [self.takeController takePhotoOrChooseFromLibrary];
 }
 
-- (UIImage *)blendImages:(UIImage *)firstImage and:(UIImage *)secondImage desiredSize:(CGSize)size;
+- (void)saveImageToUserDefaults
 {
-  UIImage *blendImage = nil;
-  
-  UIGraphicsBeginImageContext( size );
-  
-  // Use existing opacity as is
-  [firstImage drawInRect:CGRectMake(0,0,size.width, size.height)];
-  // Apply supplied opacity
-  [secondImage drawInRect:CGRectMake(0,0, size.width, size.height) blendMode:kCGBlendModeNormal alpha:self.blendValue];
-  
-  blendImage = UIGraphicsGetImageFromCurrentImageContext();
-  
-  UIGraphicsEndImageContext();
-  return blendImage;
+  [[NSUserDefaults standardUserDefaults] setObject:UIImagePNGRepresentation(self.previewImg.image) forKey:userDefaultPhotoKey];
+  if (![[NSUserDefaults standardUserDefaults] synchronize]) {
+    NSLog(@"User Defaults can not be saved!!!");
+  }
 }
 
 #pragma mark - FDTakeDelegate
@@ -138,138 +182,6 @@
   }
 }
 
-- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-  if (self.previewImg.image == nil) return;
-  UITouch *touch = [[touches allObjects] objectAtIndex:0];
-  CGPoint point = [touch locationInView:self.view];
-  
-  if (CGRectContainsPoint(self.previewImg.frame, point))
-  {
-    // Create a rectangle (10x10) from touched touched point
-    CGRect rect1 = [self getRectangleFromPoint:point];
-    rect1 = CGRectOffset(rect1, -self.previewImg.frame.origin.x, -self.previewImg.frame.origin.y);
-    
-    // Crop a picture from given rectangle
-    CGImageRef imageRef = CGImageCreateWithImageInRect([self.previewImg.image CGImage], rect1);
-    UIImage *tmp_img = [UIImage imageWithCGImage:imageRef];
-    CGImageRelease(imageRef);
-    
-    // calculate average color for next steps
-    UIColor *blendColor = [tmp_img averageColor];
-    
-    CGRect rect = CGRectMake(0, 0, rect1.size.width, rect1.size.height);
-    UIGraphicsBeginImageContext(rect.size);
-    CGContextRef context = UIGraphicsGetCurrentContext();
-    CGContextSetFillColorWithColor(context, [blendColor CGColor]);
-    CGContextFillRect(context, rect);
-    UIImage *blendImage = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    
-    UIGraphicsBeginImageContext(rect.size);
-    CGContextRef context2 = UIGraphicsGetCurrentContext();
-    CGContextSetFillColorWithColor(context2, [self.color CGColor]);
-    CGContextFillRect(context2, rect);
-    UIImage *firstImage = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    
-    UIImage *finalImage = [self blendImages:firstImage and:blendImage desiredSize:rect1.size];
-    UIColor *color1 = [firstImage averageColor];
-    UIColor *color2 = [blendImage averageColor];
-    UIColor *color3 = [finalImage averageColor];
-    NSLog(@"\nFirstColor: %@\nSecondColor: %@\nFinalColor: %@", [color1 description], [color2 description], [color3 description]);
-    
-    [self.imgView1 setImage:firstImage];
-
-    
-    self.myView.newPoint = point;
-    [self.view addSubview:self.myView];
-    [self.myView setNeedsDisplay];
-  }
-  
-  [super touchesBegan:touches withEvent:event];
-}
-
-- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
-  if (self.previewImg.image == nil) return;
-  
-  UITouch *touch = [[touches allObjects] objectAtIndex:0];
-  CGPoint point = [touch locationInView:self.view];
-  
-  if (CGRectContainsPoint(self.previewImg.frame, point))
-  {
-    /***--Crop photo from touched point and calculate average color of cropped photo.--***/
-    
-    // Create a rectangle (10x10) from touched touched point
-    CGRect rect1 = [self getRectangleFromPoint:point];
-    rect1 = CGRectOffset(rect1, -self.previewImg.frame.origin.x, -self.previewImg.frame.origin.y);
-    
-    // Crop a picture from given rectangle
-    UIImage *tmp_img = [self.previewImg.image cropImageWithRect:rect1];
-    
-    // calculate average color for next steps
-    UIColor *blendColor = [tmp_img averageColor];
-
-    CGRect rect = CGRectMake(0, 0, rect1.size.width, rect1.size.height);
-    UIGraphicsBeginImageContext(rect.size);
-    CGContextRef context = UIGraphicsGetCurrentContext();
-    CGContextSetFillColorWithColor(context, [blendColor CGColor]);
-    CGContextFillRect(context, rect);
-    UIImage *blendImage = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    
-    UIGraphicsBeginImageContext(rect.size);
-    CGContextRef context2 = UIGraphicsGetCurrentContext();
-    CGContextSetFillColorWithColor(context2, [self.color CGColor]);
-    CGContextFillRect(context2, rect);
-    UIImage *firstImage = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    
-    UIImage *finalImage = [self blendImages:firstImage and:blendImage desiredSize:rect1.size];
-    
-//    [self.imgView1 setImage:firstImage];
-    [self.imgView2 setImage:blendImage];
-    
-    self.myView.previewImage = finalImage;
-    self.myView.newPoint = point;
-    [self.myView setNeedsDisplay];
-  }
-  [super touchesMoved:touches withEvent:event];
-}
-
-- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
-  [self.myView removeFromSuperview];
-  [super touchesEnded:touches withEvent:event];
-}
-
-- (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event {
-  [self.myView removeFromSuperview];
-  [super touchesCancelled:touches withEvent:event];
-}
-
-- (CGRect)getRectangleFromPoint:(CGPoint)point
-{
-  CGSize drawableSize = self.previewImg.bounds.size;
-  CGFloat scaleFactor = [UIScreen mainScreen].scale;
-  if ([[UIScreen mainScreen] respondsToSelector:@selector(nativeScale)]) {
-    scaleFactor = [UIScreen mainScreen].nativeScale;
-  }
-  drawableSize.width *= scaleFactor;
-  CGFloat capturePixelSize = drawableSize.width * 0.1;
-  CGFloat dx,dy;
-  dx = point.x >= capturePixelSize/2.0 ? capturePixelSize/2.0 : 0;
-  dy = point.y >= capturePixelSize/2.0 ? capturePixelSize/2.0 : 0;
-  
-  return CGRectMake(point.x - dx, point.y - dy, capturePixelSize, capturePixelSize);
-}
-
-- (void)saveImageToUserDefaults
-{
-  [[NSUserDefaults standardUserDefaults] setObject:UIImagePNGRepresentation(self.previewImg.image) forKey:userDefaultPhotoKey];
-  if (![[NSUserDefaults standardUserDefaults] synchronize]) {
-    NSLog(@"User Defaults can not be saved!!!");
-  }
-}
-
 #pragma mark - UIAlertViewDelegate
 
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
@@ -281,19 +193,249 @@
   [self saveImageToUserDefaults];
 }
 
-/*
-#pragma mark - Navigation
+#pragma mark - UIGestureRecognizerDelegate
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
-
-- (IBAction)sliderValueChanged:(id)sender {
+-(void)tapped:(UITapGestureRecognizer *)gesture {
+  //  [self animateHelpText:0.0];
+  const char *encoding = @encode(CGPoint);
+  CGPoint touchedPt = [gesture locationOfTouch:0 inView:self.view];
+//  CGRect rectForImage = CGRectMake(touchedPt.x - 3.25, touchedPt.y - 3.25, 7.5, 7.5);
+  CGRect rectForImage = [self getRectangleFromPoint:touchedPt];
   
-  self.blendValue = [((UISlider *)sender) value];
-  [self.sliderLabel setText:[NSString stringWithFormat:@"Blend Value: %f", self.blendValue]];
+  if (CGRectContainsPoint(self.previewImg.frame, touchedPt)) {
+    
+    TapToPointView *v = [[TapToPointView alloc] initWithFrame:rectForImage];
+    v.point = touchedPt;
+    [v setCount:self.tapCount++];
+    
+    [self.view addSubview:v];
+    [v setNeedsDisplay];
+    
+    [self.graphView.interpolationPoints addObject:[NSValue valueWithBytes:&touchedPt objCType:encoding]];
+    [self.graphView setNeedsDisplay];
+  }
+  CGPoint touchedPtForImage = [gesture locationOfTouch:0 inView:self.previewImg];
+  [self.bezierPoints addObject:[NSValue valueWithBytes:&touchedPtForImage objCType:encoding]];
+}
+
+- (IBAction)editButtonsTapped:(id)sender {
+  NSInteger btnTag = ((UIButton *)sender).tag;
+//  NSLog(@"Button %@ tapped", [[((UIButton *)sender) titleLabel] text]);
+  switch (btnTag) {
+    case 11: //undo last button (B1)
+      [self removeLastTapView];
+      break;
+    case 10: //clear button     (B2)
+      [self removeallTapViews];
+      break;
+    case 12: //done button      (B3)
+      [self createMaskImageFromBezierPaths];
+      break;
+    case 13:
+      [self reloadOriginalImage];
+      break;
+    case 14:
+      [self showHideSettingsPage];
+      break;
+    default:
+      break;
+  }
+}
+
+- (void)showHideSettingsPage
+{
+  //update frames
+  CGRect toolBarFrame = self.tryToolBar.frame;
+  self.settingsViewRecoverFrame = CGRectMake(0, toolBarFrame.origin.y - 56, toolBarFrame.size.width, 56);
+  self.settingsViewHideFrame = CGRectMake(0, toolBarFrame.origin.y, toolBarFrame.size.width, 56);
+  if ([self.settingsView isDescendantOfView:self.view]) {
+    [UIView transitionWithView:self.settingsView
+                      duration:0.3
+                       options:UIViewAnimationOptionShowHideTransitionViews | UIViewAnimationOptionCurveLinear
+                    animations:^{
+                      [self.settingsView setFrame:self.settingsViewHideFrame];
+                      [self.settingsView setAlpha:0.0];
+                    }
+                    completion:^(BOOL finished) {
+                      if (!finished) {
+                        NSLog(@"asdasdas");
+                      }
+                      [self.settingsView removeFromSuperview];
+                    }];
+  } else {
+    [self.view insertSubview:self.settingsView belowSubview:self.tryToolBar];
+//    [self.view addSubview:self.settingsView];
+    [UIView transitionWithView:self.settingsView
+                      duration:0.3
+                       options:UIViewAnimationOptionShowHideTransitionViews | UIViewAnimationOptionCurveLinear
+                    animations:^{
+                      [self.settingsView setFrame:self.settingsViewRecoverFrame];
+
+                      [self.settingsView setAlpha:1.0];
+                    }
+                    completion:^(BOOL finished) {
+                      if (!finished) {
+                        NSLog(@"asdasdas");
+                      }
+                    }];
+  }
+}
+
+- (void)removeLastTapView
+{
+  for (UIView *v in [self.view subviews]) {
+    if ([v isKindOfClass:[TapToPointView class]] ) {
+      if ([(TapToPointView *)v count] == self.tapCount - 1) {
+        [v removeFromSuperview];
+        self.tapCount -= 1;
+        //Burasi dogru calisacakmi?!
+        [self.bezierPoints removeLastObject];
+        [self.graphView.interpolationPoints removeLastObject];
+        [self.graphView setNeedsDisplay];
+        break;
+      }
+    }
+  }
+}
+
+- (void)removeallTapViews
+{
+  for (UIView *v in [self.view subviews]) {
+    if ([v isKindOfClass:[TapToPointView class]] ) {
+      [v removeFromSuperview];
+    }
+  }
+  [self.bezierPoints removeAllObjects];
+  [self.graphView.interpolationPoints removeAllObjects];
+  [self.graphView setNeedsDisplay];
+  self.tapCount = 0;
+}
+
+- (void)reloadOriginalImage
+{
+  [self removeallTapViews];
+  UIImage *userPhoto = [UIImage imageWithData:[[NSUserDefaults standardUserDefaults] objectForKey:userDefaultPhotoKey]];
+  if (userPhoto) {
+    [self.previewImg setImage:userPhoto];
+  }
+}
+
+- (void)createMaskImageFromBezierPaths
+{
+  UIBezierPath *path = [UIBezierPath interpolateCGPointsWithHermite:self.bezierPoints closed:YES];
+  [self removeallTapViews];
+  UIImage *croppedImage = [self cropImageUsingBezierPath:self.previewImg.image bezierPath:[path copy]];
+  
+  UIGraphicsBeginImageContext(self.previewImg.bounds.size);
+  CGContextRef context = UIGraphicsGetCurrentContext();
+  CGContextSetFillColorWithColor(context, [self.color CGColor]);
+  [path fill];
+  UIImage *img = UIGraphicsGetImageFromCurrentImageContext();
+  UIGraphicsEndImageContext();
+
+//  croppedImage = [self blendImages:croppedImage and:img desiredSize:self.previewImg.bounds.size];
+  UIGraphicsBeginImageContext( self.previewImg.bounds.size );
+  
+  [croppedImage drawInRect:CGRectMake(0,0,self.previewImg.bounds.size.width, self.previewImg.bounds.size.height)];
+  
+  [img drawInRect:CGRectMake(0,0, self.previewImg.bounds.size.width, self.previewImg.bounds.size.height) blendMode:kCGBlendModeNormal alpha:.32];
+  
+  croppedImage = UIGraphicsGetImageFromCurrentImageContext();
+  UIGraphicsEndImageContext();
+
+  
+  UIImage *finalImage = [self blendImages:self.previewImg.image and:img desiredSize:self.previewImg.bounds.size];
+  [self.previewImg setImage:finalImage];
+}
+
+- (UIImage *)cropImageUsingBezierPath:(UIImage *)image bezierPath:(UIBezierPath *)path
+{
+  UIImage *croppedImage = nil;
+  UIImageView *view = [[UIImageView alloc] initWithFrame:self.previewImg.frame];
+  [view setImage:image];
+  
+  CAShapeLayer *shapeLayer = [CAShapeLayer layer];
+  shapeLayer.path = path.CGPath;
+  [view.layer setMask:shapeLayer];//or make it as [imageview.layer setMask:shapeLayer];
+  //and add imageView as subview of whichever view you want. draw the original image
+  //on the imageview in that case
+  
+  UIGraphicsBeginImageContext(view.bounds.size);
+  [view.layer renderInContext:UIGraphicsGetCurrentContext()];
+  croppedImage = UIGraphicsGetImageFromCurrentImageContext();
+  UIGraphicsEndImageContext();
+  
+  return croppedImage;
+}
+
+- (UIImage *)blendImages:(UIImage *)sourceImage withBezierPath:(UIBezierPath *)path andColorToBurn:(UIColor *)color;
+{
+  UIImage *blendImage = nil;
+  CGFloat hue, sat, brigh, alpa;
+  [color getHue:&hue saturation:&sat brightness:&brigh alpha:&alpa];
+  
+  UIGraphicsBeginImageContext(self.previewImg.bounds.size);
+  CGContextRef context = UIGraphicsGetCurrentContext();
+  
+  // Use existing opacity as is
+  [sourceImage drawInRect:CGRectMake(0,0,self.previewImg.bounds.size.width, self.previewImg.bounds.size.height)];
+  
+  CGContextSetBlendMode(context, kCGBlendModeHue);
+  [color set];
+  [path fill];
+  
+  blendImage = UIGraphicsGetImageFromCurrentImageContext();
+  
+  UIGraphicsEndImageContext();
+  return blendImage;
+}
+
+- (UIImage *)blendImages:(UIImage *)firstImage and:(UIImage *)secondImage desiredSize:(CGSize)size;
+{
+  UIImage *blendImage = nil;
+  
+  UIGraphicsBeginImageContext( size );
+
+  [firstImage drawInRect:CGRectMake(0,0,size.width, size.height)];
+  
+//  [secondImage drawInRect:CGRectMake(0,0, size.width, size.height) blendMode:kCGBlendModeHue alpha:.64];
+  [secondImage drawInRect:CGRectMake(0,0, size.width, size.height) blendMode:kCGBlendModeHue alpha:self.blendAlphaValue];
+  
+  blendImage = UIGraphicsGetImageFromCurrentImageContext();
+  UIGraphicsEndImageContext();
+  return blendImage;
+}
+
+- (CGRect)getRectangleFromPoint:(CGPoint)point
+{
+  CGFloat natureSize = 3.25;
+  CGFloat scaleFactor = [UIScreen mainScreen].scale;
+  if ([[UIScreen mainScreen] respondsToSelector:@selector(nativeScale)]) {
+    scaleFactor = [UIScreen mainScreen].nativeScale;
+  }
+  natureSize = natureSize * scaleFactor;
+
+  CGFloat dx, dy;
+  dx = point.x >= natureSize/2.0 ? natureSize/2.0 : 0;
+  dy = point.y >= natureSize/2.0 ? natureSize/2.0 : 0;
+  
+  return CGRectMake(point.x - dx, point.y - dy, natureSize, natureSize);
+}
+
+- (void)alphaSliderChanged:(id)sender
+{
+  self.blendAlphaValue = ((UISlider *)sender).value;
+//  [self reloadOriginalImage];
+}
+
+- (CGRect)statusBarFrameViewRect:(UIView*)view
+{
+  CGRect statusBarFrame = [[UIApplication sharedApplication] statusBarFrame];
+  
+  CGRect statusBarWindowRect = [view.window convertRect:statusBarFrame fromWindow: nil];
+  
+  CGRect statusBarViewRect = [view convertRect:statusBarWindowRect fromView: nil];
+  
+  return statusBarViewRect;
 }
 @end

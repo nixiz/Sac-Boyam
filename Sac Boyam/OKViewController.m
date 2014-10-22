@@ -308,7 +308,7 @@ struct pixel {
   }
 //  CGFloat scaleFactor = self.view.window.screen.nativeScale;
   drawableSize.width *= scaleFactor;
-  CGFloat capturePixelSize = drawableSize.width * 0.1;
+  CGFloat capturePixelSize = floorf(drawableSize.width * 0.1);
   CGFloat dx,dy;
   dx = point.x >= capturePixelSize/2.0 ? capturePixelSize/2.0 : 0;
   dy = point.y >= capturePixelSize/2.0 ? capturePixelSize/2.0 : 0;
@@ -429,6 +429,7 @@ struct pixel {
     {
       NSLog(@"Error %@", [error userInfo]);
     }
+    NSLog(@"DocumentsDir Dir: %@", [documentsDir lastPathComponent]);
     success = [documentsDir setResourceValue: [NSNumber numberWithBool: YES]
                                          forKey: NSURLIsExcludedFromBackupKey error: &error];
     if(!success){
@@ -442,6 +443,13 @@ struct pixel {
   
   
   NSLog(@"DB path: %@", url);
+  NSError *_error;
+  BOOL _success = [url setResourceValue:@(YES) forKey:NSURLIsExcludedFromBackupKey error:&_error];
+  if (!_success) {
+    NSLog(@"Error excluding %@ from backup %@", [url lastPathComponent], _error);
+//    abort();
+  }
+  
   self.document = [[UIManagedDocument alloc] initWithFileURL:url];
   if ([[NSFileManager defaultManager] fileExistsAtPath:[url path]]) {
     [self.document openWithCompletionHandler:^(BOOL success) {

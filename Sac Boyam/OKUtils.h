@@ -7,6 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
+
 static NSString *savePhotosKey = @"savephotosKey";
 static NSString *editPhotosKey = @"editphotosKey";
 static NSString *takeRecordKey = @"takerecordKey";

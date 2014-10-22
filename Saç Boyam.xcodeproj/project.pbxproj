@@ -52,9 +52,14 @@
 		718986661964592B00C26297 /* final_effect_2.png in Resources */ = {isa = PBXBuildFile; fileRef = 718986651964592B00C26297 /* final_effect_2.png */; };
 		7193555C19654DFC0040F48D /* ImageAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7193555B19654DFC0040F48D /* ImageAssets.xcassets */; };
 		719BCE8C1966F0E9005F575C /* OKSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 719BCE8B1966F0E9005F575C /* OKSettingsViewController.m */; };
+		719C30DD19F7A9C300E938BA /* CRVINTERGraphicsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 719C30D819F7A9C300E938BA /* CRVINTERGraphicsView.m */; };
+		719C30DE19F7A9C300E938BA /* CGPointExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 719C30DA19F7A9C300E938BA /* CGPointExtension.m */; };
+		719C30DF19F7A9C300E938BA /* UIBezierPath+Interpolation.m in Sources */ = {isa = PBXBuildFile; fileRef = 719C30DC19F7A9C300E938BA /* UIBezierPath+Interpolation.m */; };
+		719C30E319F7ACE300E938BA /* TapToPointView.m in Sources */ = {isa = PBXBuildFile; fileRef = 719C30E219F7ACE300E938BA /* TapToPointView.m */; };
 		71BFA22F19BDC99100A4C7CB /* OKTutorialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 71BFA22E19BDC99100A4C7CB /* OKTutorialViewController.m */; };
 		71D5795C19E5104800E6E2AF /* OKTryOnMeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 71D5795B19E5104800E6E2AF /* OKTryOnMeVC.m */; };
 		71ECEF95195AC2A600872EBC /* UIImage+AverageColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 71ECEF94195AC2A600872EBC /* UIImage+AverageColor.m */; };
+		71F93DEC19EEAE1200048A9B /* UIView+draggable.m in Sources */ = {isa = PBXBuildFile; fileRef = 71F93DEB19EEAE1200048A9B /* UIView+draggable.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -133,12 +138,22 @@
 		7193555B19654DFC0040F48D /* ImageAssets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = ImageAssets.xcassets; path = ../ImageAssets.xcassets; sourceTree = "<group>"; };
 		719BCE8A1966F0E9005F575C /* OKSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OKSettingsViewController.h; path = ../OKSettingsViewController.h; sourceTree = "<group>"; };
 		719BCE8B1966F0E9005F575C /* OKSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OKSettingsViewController.m; path = ../OKSettingsViewController.m; sourceTree = "<group>"; };
+		719C30D719F7A9C300E938BA /* CRVINTERGraphicsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRVINTERGraphicsView.h; sourceTree = "<group>"; };
+		719C30D819F7A9C300E938BA /* CRVINTERGraphicsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CRVINTERGraphicsView.m; sourceTree = "<group>"; };
+		719C30D919F7A9C300E938BA /* CGPointExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CGPointExtension.h; sourceTree = "<group>"; };
+		719C30DA19F7A9C300E938BA /* CGPointExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CGPointExtension.m; sourceTree = "<group>"; };
+		719C30DB19F7A9C300E938BA /* UIBezierPath+Interpolation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBezierPath+Interpolation.h"; sourceTree = "<group>"; };
+		719C30DC19F7A9C300E938BA /* UIBezierPath+Interpolation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBezierPath+Interpolation.m"; sourceTree = "<group>"; };
+		719C30E119F7ACE300E938BA /* TapToPointView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TapToPointView.h; sourceTree = "<group>"; };
+		719C30E219F7ACE300E938BA /* TapToPointView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TapToPointView.m; sourceTree = "<group>"; };
 		71BFA22D19BDC99100A4C7CB /* OKTutorialViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKTutorialViewController.h; sourceTree = "<group>"; };
 		71BFA22E19BDC99100A4C7CB /* OKTutorialViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKTutorialViewController.m; sourceTree = "<group>"; };
 		71D5795A19E5104800E6E2AF /* OKTryOnMeVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKTryOnMeVC.h; sourceTree = "<group>"; };
 		71D5795B19E5104800E6E2AF /* OKTryOnMeVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKTryOnMeVC.m; sourceTree = "<group>"; };
 		71ECEF93195AC2A600872EBC /* UIImage+AverageColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+AverageColor.h"; sourceTree = "<group>"; };
 		71ECEF94195AC2A600872EBC /* UIImage+AverageColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+AverageColor.m"; sourceTree = "<group>"; };
+		71F93DEA19EEAE1200048A9B /* UIView+draggable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+draggable.h"; sourceTree = "<group>"; };
+		71F93DEB19EEAE1200048A9B /* UIView+draggable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+draggable.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -226,6 +241,8 @@
 				7152CB4E19741B330080898F /* OKWaitForResultsVC.m */,
 				71BFA22D19BDC99100A4C7CB /* OKTutorialViewController.h */,
 				71BFA22E19BDC99100A4C7CB /* OKTutorialViewController.m */,
+				719C30E119F7ACE300E938BA /* TapToPointView.h */,
+				719C30E219F7ACE300E938BA /* TapToPointView.m */,
 				71D5795A19E5104800E6E2AF /* OKTryOnMeVC.h */,
 				71D5795B19E5104800E6E2AF /* OKTryOnMeVC.m */,
 			);
@@ -324,7 +341,9 @@
 		7189866719645B7B00C26297 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				71F93DED19EEAE1700048A9B /* Draggable */,
 				71328AEF17C36C9B007EE533 /* FDTake */,
+				719C30E019F7A9C800E938BA /* Bezier Interpolation */,
 				7136433B195C5E08006EF824 /* OKUtils.h */,
 				7136433C195C5E08006EF824 /* OKUtils.m */,
 				7134B73119A3C8F900BFE754 /* UIColor+GrayScale.h */,
@@ -341,6 +360,19 @@
 			name = Utils;
 			sourceTree = "<group>";
 		};
+		719C30E019F7A9C800E938BA /* Bezier Interpolation */ = {
+			isa = PBXGroup;
+			children = (
+				719C30D719F7A9C300E938BA /* CRVINTERGraphicsView.h */,
+				719C30D819F7A9C300E938BA /* CRVINTERGraphicsView.m */,
+				719C30D919F7A9C300E938BA /* CGPointExtension.h */,
+				719C30DA19F7A9C300E938BA /* CGPointExtension.m */,
+				719C30DB19F7A9C300E938BA /* UIBezierPath+Interpolation.h */,
+				719C30DC19F7A9C300E938BA /* UIBezierPath+Interpolation.m */,
+			);
+			name = "Bezier Interpolation";
+			sourceTree = "<group>";
+		};
 		71E02BCC1966C8D9005F3A34 /* GKImages */ = {
 			isa = PBXGroup;
 			children = (
@@ -353,6 +385,15 @@
 			children = (
 			);
 			name = iPad;
+			sourceTree = "<group>";
+		};
+		71F93DED19EEAE1700048A9B /* Draggable */ = {
+			isa = PBXGroup;
+			children = (
+				71F93DEA19EEAE1200048A9B /* UIView+draggable.h */,
+				71F93DEB19EEAE1200048A9B /* UIView+draggable.m */,
+			);
+			name = Draggable;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -441,10 +482,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				719C30DD19F7A9C300E938BA /* CRVINTERGraphicsView.m in Sources */,
 				718986551963E59400C26297 /* OKZoomView.m in Sources */,
 				71D5795C19E5104800E6E2AF /* OKTryOnMeVC.m in Sources */,
 				7134B72219A3B3F800BFE754 /* OKProductType.m in Sources */,
 				7134B72419A3B3F800BFE754 /* BrandModel+Create.m in Sources */,
+				719C30DE19F7A9C300E938BA /* CGPointExtension.m in Sources */,
 				71840EDE19B8454800F99868 /* UserRecordModel.m in Sources */,
 				71840ED819B8454600F99868 /* BrandModel.m in Sources */,
 				719BCE8C1966F0E9005F575C /* OKSettingsViewController.m in Sources */,
@@ -460,10 +503,13 @@
 				7136433D195C5E08006EF824 /* OKUtils.m in Sources */,
 				71328AA617C35FD7007EE533 /* OKAppDelegate.m in Sources */,
 				71328AB517C35FD7007EE533 /* OKViewController.m in Sources */,
+				719C30E319F7ACE300E938BA /* TapToPointView.m in Sources */,
 				7134B72319A3B3F800BFE754 /* ColorModel+Create.m in Sources */,
+				719C30DF19F7A9C300E938BA /* UIBezierPath+Interpolation.m in Sources */,
 				71328AF417C38162007EE533 /* OKMainViewController.m in Sources */,
 				718986581964186500C26297 /* UIImage+ImageEffects.m in Sources */,
 				71063759196C0ED100D17D66 /* UIView+CreateImage.m in Sources */,
+				71F93DEC19EEAE1200048A9B /* UIView+draggable.m in Sources */,
 				71ECEF95195AC2A600872EBC /* UIImage+AverageColor.m in Sources */,
 				7134B71F19A3B3F800BFE754 /* ColorDataModel.xcdatamodel in Sources */,
 				710735A217C4981400484D21 /* OKSonuclarViewController.m in Sources */,
@@ -578,11 +624,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Sac Boyam/Saç Boyam-Prefix.pch";
 				INFOPLIST_FILE = "Sac Boyam/Saç Boyam-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "Saç Boyam";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
@@ -594,11 +642,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Sac Boyam/Saç Boyam-Prefix.pch";
 				INFOPLIST_FILE = "Sac Boyam/Saç Boyam-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "Saç Boyam";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
