@@ -25,13 +25,14 @@
 //#define grayScaleScanThreshold (1.0/255.0)*100.0*MinMaxScale
 #define grayScaleScanThreshold(x) ((x)/255.0)*100.0*([[[NSUserDefaults standardUserDefaults] objectForKey:resultDensityKey] floatValue]/100.0)
 
-@interface OKSonuclarViewController () <UIAlertViewDelegate, UIGestureRecognizerDelegate>
+@interface OKSonuclarViewController () <UIAlertViewDelegate>
 @property UIColor *mColor;
 @property (nonatomic, strong) NSMutableDictionary *resultsList;
 @property (nonatomic, strong) NSDictionary *resultsIndex;
-- (IBAction)handleLongPress:(id)sender;
+//- (IBAction)handleLongPress:(id)sender;
 @property (nonatomic, strong) NSString *stringToBeSearceh;
 @property CGFloat grayScale;
+
 @end
 
 @implementation OKSonuclarViewController
@@ -48,7 +49,35 @@
 -(void)refreshFetcedResultController:(NSManagedObjectContext *)context
 {
   NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"ColorModel"];
+/* 
+ //core data fetching'de bu islem calismiyor. 
+ //Bunun calisabilmesi icin fetch edilen objelerin once memoriye alinmasi sonradan karsilastirilmasi gerekiyor
+  __block float grayScaleOfGivenValue = self.grayScale;
+  NSSortDescriptor *customSortDesc = [NSSortDescriptor sortDescriptorWithKey:@"grayScale" ascending:YES comparator:^NSComparisonResult(id obj1, id obj2) {
+    NSAssert([obj1 isKindOfClass:[NSNumber class]] && [obj2 isKindOfClass:[NSNumber class]], @"Objects Must Be Float!");
+    float distToDefaultValueForObj1 = fabsf([obj1 floatValue] - grayScaleOfGivenValue);
+    float distToDefaultValueForObj2 = fabsf([obj2 floatValue] - grayScaleOfGivenValue);
+    if (distToDefaultValueForObj1 < distToDefaultValueForObj2) {
+      return NSOrderedAscending;
+    } else if (distToDefaultValueForObj1 > distToDefaultValueForObj2) {
+      return NSOrderedDescending;
+    }
+    return NSOrderedSame;
+  }];
+*/
+/*
+ NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"BrandModel"];
+ request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"brandName"
+ ascending:YES
+ selector:@selector(localizedCaseInsensitiveCompare:)]];
+ request.predicate = [NSPredicate predicateWithFormat:@"brandName = %@", brandName];
+ 
+ NSError *error;
+ NSArray *matches = [context executeFetchRequest:request error:&error];
+*/
+  
   request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"brand.brandName" ascending:YES selector:@selector(localizedCaseInsensitiveCompare:)], [NSSortDescriptor sortDescriptorWithKey:@"grayScale" ascending:YES]];
+//  request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"brand.brandName" ascending:YES selector:@selector(localizedCaseInsensitiveCompare:)], customSortDesc];
   
   NSLog(@"given scale density %@", [[NSUserDefaults standardUserDefaults] objectForKey:resultDensityKey]);
   CGFloat minval = fabsf(self.grayScale - grayScaleScanThreshold(self.grayScale));
@@ -80,15 +109,9 @@
 - (void)viewDidLoad
 {
   [super viewDidLoad];
-//  UILongPressGestureRecognizer *lpgr = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPress:)];
-//  lpgr.minimumPressDuration = 1.5; //seconds
-//  lpgr.delegate = self;
-//  [self.tableView addGestureRecognizer:lpgr];
   [self.navigationItem setTitle:NSLocalizedStringFromTable(@"resultsTitle", okStringsTableName, nil)];
-//  UIBarButtonItem *btn2 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(settingsFromResultsTap:)];
   UIBarButtonItem *btn2 = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedStringFromTable(@"settings", okStringsTableName, nil) style:UIBarButtonItemStylePlain target:self action:@selector(settingsFromResultsTap:)];
   self.navigationItem.rightBarButtonItem = btn2;
-  
   self.view.backgroundColor = [self.view getBackgroundColor];
 }
 
@@ -141,7 +164,6 @@
   ColorModel *color = [self.fetchedResultsController objectAtIndexPath:indexPath];
   UIImage *cellImage = [UIImage imageNamed:@"resultsTableCell"];
   cell.backgroundColor = [UIColor colorWithPatternImage:cellImage];
-  //TODO: get product image from url/productinfo-string.
 //  cell.productName.adjustsFontSizeToFitWidth = YES;
   cell.productName.lineBreakMode = NSLineBreakByWordWrapping;
   cell.productName.numberOfLines = 2;
@@ -149,12 +171,10 @@
 //  cell.priceLabel.text = [[color.price stringValue] stringByAppendingString:@" TL"];
   cell.priceLabel.text = @"";
   [cell.productImg setImage:[UIImage imageWithData:color.productImage]];
-//  [cell setSelectionStyle:UITableViewCellSelectionStyleBlue];
   return cell;
 }
 
-#pragma mark - Table view delegate
-
+/*
 - (void)handleLongPress:(UILongPressGestureRecognizer *)gestureRecognizer {
 //  UILongPressGestureRecognizer *gestureRecognizer = (UILongPressGestureRecognizer *)sender;
   if (gestureRecognizer.state == UIGestureRecognizerStateBegan) {
@@ -194,7 +214,7 @@
     NSLog(@"Failed to open url: %@", [url description]);
   }
 }
-
+*/
 -(IBAction)unwindToResults:(UIStoryboardSegue *)segue
 {
   UIViewController *vc = segue.sourceViewController;

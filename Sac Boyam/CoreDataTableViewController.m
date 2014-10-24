@@ -19,6 +19,7 @@
 @synthesize suspendAutomaticTrackingOfChangesInManagedObjectContext = _suspendAutomaticTrackingOfChangesInManagedObjectContext;
 @synthesize debug = _debug;
 @synthesize beganUpdates = _beganUpdates;
+@synthesize useExtentedSort = _useExtentedSort;
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
@@ -41,7 +42,30 @@
     } else {
         if (self.debug) NSLog(@"[%@ %@] no NSFetchedResultsController (yet?)", NSStringFromClass([self class]), NSStringFromSelector(_cmd));
     }
+
+/**Burada boyle yapinca oluyor ama ondan sonra tableview icin nasil yapicaz?!!*/
+  
+//  NSArray *results = [self.fetchedResultsController fetchedObjects];
+//  __block float grayScaleOfGivenValue = self.grayScale;
+//  NSSortDescriptor *customSortDesc = [NSSortDescriptor sortDescriptorWithKey:@"grayScale" ascending:YES comparator:^NSComparisonResult(id obj1, id obj2) {
+//    NSAssert([obj1 isKindOfClass:[NSNumber class]] && [obj2 isKindOfClass:[NSNumber class]], @"Objects Must Be Float!");
+//    float distToDefaultValueForObj1 = fabsf([obj1 floatValue] - grayScaleOfGivenValue);
+//    float distToDefaultValueForObj2 = fabsf([obj2 floatValue] - grayScaleOfGivenValue);
+//    if (distToDefaultValueForObj1 < distToDefaultValueForObj2) {
+//      return NSOrderedAscending;
+//    } else if (distToDefaultValueForObj1 > distToDefaultValueForObj2) {
+//      return NSOrderedDescending;
+//    }
+//    return NSOrderedSame;
+//  }];
+//  NSArray *asda = [results sortedArrayUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"brand.brandName" ascending:YES selector:@selector(localizedCaseInsensitiveCompare:)], customSortDesc]];
     [self.tableView reloadData];
+}
+
+- (NSArray *)getExtentedSortWithFetchedResult:(NSArray *)fetchResult
+{
+  // this should be not called!
+  return fetchResult;
 }
 
 - (void)setFetchedResultsController:(NSFetchedResultsController *)newfrc
@@ -116,10 +140,14 @@
             case NSFetchedResultsChangeDelete:
                 [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationFade];
                 break;
+          case NSFetchedResultsChangeMove:
+          case NSFetchedResultsChangeUpdate:
+          default:
+            // do nothing!
+            break;
         }
     }
 }
-
 
 - (void)controller:(NSFetchedResultsController *)controller
    didChangeObject:(id)anObject

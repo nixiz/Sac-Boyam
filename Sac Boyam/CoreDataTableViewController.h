@@ -46,8 +46,11 @@
 // It is not necessary (in fact, not desirable) to set this during row deletion or insertion
 //  (but definitely for row moves).
 @property (nonatomic) BOOL suspendAutomaticTrackingOfChangesInManagedObjectContext;
-
+@property (nonatomic) BOOL useExtentedSort;
+- (NSArray *)getExtentedSortWithFetchedResult:(NSArray *)fetchResult;
 // Set to YES to get some debugging output in the console.
 @property BOOL debug;
+
+//- (void)
 
 @end

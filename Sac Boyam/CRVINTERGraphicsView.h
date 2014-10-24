@@ -14,4 +14,7 @@
 - (void) setIsClosed:(BOOL)closed;
 - (void) setAlpha:(float)alpha;
 - (void) setUseHermite:(BOOL)useHermite;
+- (void) setShowDashedConnectors:(BOOL)showDashed;
+- (void) setShowTouchedPoints:(BOOL)showPoint;
+
 @end

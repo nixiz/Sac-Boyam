@@ -13,6 +13,8 @@
     BOOL _closed;
     float _alpha;
     BOOL _useHermite;
+  BOOL _showDashed;
+  BOOL _showPointer;
 }
 
 @end
@@ -25,49 +27,56 @@
         _closed = NO;
         _alpha  = 0.5;
         _useHermite = NO;
+      _showPointer = NO;
+      _showDashed = NO;
         self.interpolationPoints = [NSMutableArray new];
     }
     return self;
 }
 
 - (void)drawRect:(CGRect)rect {
+
+  if (_showDashed) {
     // Dashed line drawing
     UIBezierPath *dashedConnectors;
     for (int ii=0; ii < [self.interpolationPoints count]; ++ii) {
-        NSValue *pv = self.interpolationPoints[ii];
-        CGPoint point;
-        [pv getValue:&point];
-        
-        if ([self.interpolationPoints count] > 1) {
-            if (ii == 0) {
-                dashedConnectors = [UIBezierPath new];
-                [dashedConnectors moveToPoint:point];
-            }
-            else {
-                [dashedConnectors addLineToPoint:point];
-            }
+      NSValue *pv = self.interpolationPoints[ii];
+      CGPoint point;
+      [pv getValue:&point];
+      
+      if ([self.interpolationPoints count] > 1) {
+        if (ii == 0) {
+          dashedConnectors = [UIBezierPath new];
+          [dashedConnectors moveToPoint:point];
         }
+        else {
+          [dashedConnectors addLineToPoint:point];
+        }
+      }
     }
     
     if (_closed)
-        [dashedConnectors closePath];
+      [dashedConnectors closePath];
     
     CGFloat dashedConnectorsPattern[] = {3, 3, 3, 3};
     dashedConnectors.lineWidth = 0.5;
     [[UIColor colorWithRed:0.4 green:0.4 blue:0.4 alpha:1.0] setStroke];
     [dashedConnectors setLineDash: dashedConnectorsPattern count: 4 phase: 0];
     [dashedConnectors stroke];
-    
+  }
+  
+  if (_showPointer) {
     // Interpolation points drawing
     for (NSValue *pv in self.interpolationPoints) {
-        CGPoint point;
-        [pv getValue:&point];
-        
-        UIBezierPath *pointPath = [UIBezierPath bezierPathWithOvalInRect: CGRectMake(point.x-2, point.y-2, 4, 4)];
-        [[UIColor redColor] setFill];
-        [pointPath fill];
+      CGPoint point;
+      [pv getValue:&point];
+      
+      UIBezierPath *pointPath = [UIBezierPath bezierPathWithOvalInRect: CGRectMake(point.x-2, point.y-2, 4, 4)];
+      [[UIColor redColor] setFill];
+      [pointPath fill];
     }
-    
+  }
+  
     // Curve drawing
     UIBezierPath *path;
     if (_useHermite) {
@@ -94,6 +103,16 @@
 
 - (void) setUseHermite:(BOOL)useHermite {
     _useHermite = useHermite;
+}
+
+- (void) setShowDashedConnectors:(BOOL)showDashed
+{
+  _showDashed = showDashed;
+}
+
+- (void) setShowTouchedPoints:(BOOL)showPoint
+{
+  _showPointer = showPoint;
 }
 
 @end

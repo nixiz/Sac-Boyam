@@ -243,6 +243,7 @@ struct pixel {
     
     [self.previewImage setImage:img];
     
+    self.myView.previewImage = img;
     self.myView.newPoint = point;
     [self.view addSubview:self.myView];
     [self.myView setNeedsDisplay];

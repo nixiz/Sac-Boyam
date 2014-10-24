@@ -178,7 +178,6 @@
 		710735A317C49E4200484D21 /* ResultsPage */ = {
 			isa = PBXGroup;
 			children = (
-				713733E819B603FF00542E86 /* Result  Detail */,
 				7134B71119A3B3A800BFE754 /* CoreDataTableViewController.h */,
 				7134B71219A3B3A800BFE754 /* CoreDataTableViewController.m */,
 				710735A017C4981400484D21 /* OKSonuclarViewController.h */,
@@ -227,9 +226,11 @@
 				71E8523619A60B3A00CA592A /* iPad */,
 				7134B72519A3B3FE00BFE754 /* CoreData */,
 				7189866719645B7B00C26297 /* Utils */,
-				710735A317C49E4200484D21 /* ResultsPage */,
 				71328AF717C38B07007EE533 /* SelectColorPage */,
+				710735A317C49E4200484D21 /* ResultsPage */,
+				713733E819B603FF00542E86 /* Results Detail */,
 				713733AA19B5DB4000542E86 /* Settings Page */,
+				71EC0EA019F8D13B00A34D2C /* Try On Me Page */,
 				71328AA417C35FD7007EE533 /* OKAppDelegate.h */,
 				71328AA517C35FD7007EE533 /* OKAppDelegate.m */,
 				71328AAD17C35FD7007EE533 /* MainStoryboard_iPhone.storyboard */,
@@ -241,10 +242,6 @@
 				7152CB4E19741B330080898F /* OKWaitForResultsVC.m */,
 				71BFA22D19BDC99100A4C7CB /* OKTutorialViewController.h */,
 				71BFA22E19BDC99100A4C7CB /* OKTutorialViewController.m */,
-				719C30E119F7ACE300E938BA /* TapToPointView.h */,
-				719C30E219F7ACE300E938BA /* TapToPointView.m */,
-				71D5795A19E5104800E6E2AF /* OKTryOnMeVC.h */,
-				71D5795B19E5104800E6E2AF /* OKTryOnMeVC.m */,
 			);
 			path = "Sac Boyam";
 			sourceTree = "<group>";
@@ -329,13 +326,13 @@
 			name = "Settings Page";
 			sourceTree = "<group>";
 		};
-		713733E819B603FF00542E86 /* Result  Detail */ = {
+		713733E819B603FF00542E86 /* Results Detail */ = {
 			isa = PBXGroup;
 			children = (
 				71328AF217C38162007EE533 /* OKMainViewController.h */,
 				71328AF317C38162007EE533 /* OKMainViewController.m */,
 			);
-			name = "Result  Detail";
+			name = "Results Detail";
 			sourceTree = "<group>";
 		};
 		7189866719645B7B00C26297 /* Utils */ = {
@@ -385,6 +382,17 @@
 			children = (
 			);
 			name = iPad;
+			sourceTree = "<group>";
+		};
+		71EC0EA019F8D13B00A34D2C /* Try On Me Page */ = {
+			isa = PBXGroup;
+			children = (
+				719C30E119F7ACE300E938BA /* TapToPointView.h */,
+				719C30E219F7ACE300E938BA /* TapToPointView.m */,
+				71D5795A19E5104800E6E2AF /* OKTryOnMeVC.h */,
+				71D5795B19E5104800E6E2AF /* OKTryOnMeVC.m */,
+			);
+			name = "Try On Me Page";
 			sourceTree = "<group>";
 		};
 		71F93DED19EEAE1700048A9B /* Draggable */ = {

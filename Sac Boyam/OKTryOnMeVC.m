@@ -54,7 +54,7 @@
 
   self.graphView = [[CRVINTERGraphicsView alloc] initWithFrame:self.view.frame];
   self.graphView.backgroundColor = [UIColor clearColor];
-  [self.graphView setIsClosed:YES];
+  [self.graphView setIsClosed:NO];
   [self.graphView setUseHermite:YES];
   [self.view insertSubview:self.graphView aboveSubview:self.previewImg];
   
@@ -100,7 +100,10 @@
   self.settingsViewRecoverFrame = CGRectMake(0, toolBarFrame.origin.y - 52 + 20/*size of status bar*/, toolBarFrame.size.width, 56);
   self.settingsViewHideFrame = CGRectMake(0, toolBarFrame.origin.y + 20/*size of status bar*/, toolBarFrame.size.width, 56);
   self.settingsView = [[UIView alloc] initWithFrame:self.settingsViewHideFrame];
-  self.settingsView.backgroundColor = [UIColor colorWithWhite:0.8 alpha:0.72];
+//  self.settingsView.backgroundColor = [UIColor colorWithWhite:0.8 alpha:0.82];
+  self.settingsView.backgroundColor = [[self.view getBackgroundColor] colorWithAlphaComponent:0.82];
+  
+  self.settingsView.layer.cornerRadius = 4.0;
   /*******
    | "lorem ipsum ipsala kim kum"   label column  (12 px)
    |
@@ -110,9 +113,10 @@
   //create view objects for settings tap
   UILabel *sliderExplanationLabel = [[UILabel alloc] init];
   [sliderExplanationLabel setFrame:CGRectMake(0, 0, self.view.bounds.size.width, 20)];
-  [sliderExplanationLabel setText:@"Slider Value for Alpha Blending Value"];
+  [sliderExplanationLabel setText:NSLocalizedStringFromTable(@"tryOnMeSliderLabelText", okStringsTableName, nil)];
   [sliderExplanationLabel setFont:[UIFont fontWithName:@"Helvetica Neue" size:14.0]];
   [sliderExplanationLabel setTextColor:[[UIColor whiteColor] colorWithAlphaComponent:0.85]];
+  [sliderExplanationLabel setTextAlignment:NSTextAlignmentCenter];
   //  [sliderExplanationLabel setAdjustsFontSizeToFitWidth:YES];
   [self.settingsView addSubview:sliderExplanationLabel];
   
@@ -126,8 +130,8 @@
 //  [sliderFPS setMaximumTrackImage:[[UIImage imageNamed:@"camera_slider_full.png"] resizableImageWithCapInsets:UIEdgeInsetsFromString(@"8")]
   UIImage *maxColorImage = [UIImage imageWithColor:self.color andSize:CGSizeMake(8, 8)];
   UIImage *minColorImage = [UIImage imageWithColor:[[UIColor colorWithWhite:0.8 alpha:0.32] colorWithAlphaComponent:0.32] andSize:CGSizeMake(8, 8)];
-  [alphaSlider setMaximumTrackImage:[maxColorImage resizableImageWithCapInsets:UIEdgeInsetsFromString(@"8")] forState:UIControlStateNormal];
-  [alphaSlider setMinimumTrackImage:[minColorImage resizableImageWithCapInsets:UIEdgeInsetsFromString(@"8")] forState:UIControlStateNormal];
+  [alphaSlider setMaximumTrackImage:[minColorImage resizableImageWithCapInsets:UIEdgeInsetsFromString(@"8")] forState:UIControlStateNormal];
+  [alphaSlider setMinimumTrackImage:[maxColorImage resizableImageWithCapInsets:UIEdgeInsetsFromString(@"8")] forState:UIControlStateNormal];
   [alphaSlider addTarget:self action:@selector(alphaSliderChanged:) forControlEvents:UIControlEventValueChanged];
   [self.settingsView addSubview:alphaSlider];
 //  [self.settingsView setHidden:YES];
@@ -196,6 +200,8 @@
 #pragma mark - UIGestureRecognizerDelegate
 
 -(void)tapped:(UITapGestureRecognizer *)gesture {
+  // eger settings ekrani gozukuyorsa diger islemleri yapma
+  if ([self.settingsView isDescendantOfView:self.view]) return;
   //  [self animateHelpText:0.0];
   const char *encoding = @encode(CGPoint);
   CGPoint touchedPt = [gesture locationOfTouch:0 inView:self.view];
@@ -244,13 +250,14 @@
 
 - (void)showHideSettingsPage
 {
+  static CGFloat currentBlendValue = 0.64;
   //update frames
   CGRect toolBarFrame = self.tryToolBar.frame;
   self.settingsViewRecoverFrame = CGRectMake(0, toolBarFrame.origin.y - 56, toolBarFrame.size.width, 56);
   self.settingsViewHideFrame = CGRectMake(0, toolBarFrame.origin.y, toolBarFrame.size.width, 56);
   if ([self.settingsView isDescendantOfView:self.view]) {
     [UIView transitionWithView:self.settingsView
-                      duration:0.3
+                      duration:0.4
                        options:UIViewAnimationOptionShowHideTransitionViews | UIViewAnimationOptionCurveLinear
                     animations:^{
                       [self.settingsView setFrame:self.settingsViewHideFrame];
@@ -261,12 +268,16 @@
                         NSLog(@"asdasdas");
                       }
                       [self.settingsView removeFromSuperview];
+//                      if (currentBlendValue != self.blendAlphaValue) {
+//                        [self reloadOriginalImage];
+//                      }
                     }];
   } else {
+    currentBlendValue = self.blendAlphaValue;
     [self.view insertSubview:self.settingsView belowSubview:self.tryToolBar];
 //    [self.view addSubview:self.settingsView];
     [UIView transitionWithView:self.settingsView
-                      duration:0.3
+                      duration:0.4
                        options:UIViewAnimationOptionShowHideTransitionViews | UIViewAnimationOptionCurveLinear
                     animations:^{
                       [self.settingsView setFrame:self.settingsViewRecoverFrame];
@@ -322,9 +333,9 @@
 
 - (void)createMaskImageFromBezierPaths
 {
+//  [self.graphView setIsClosed:YES];
   UIBezierPath *path = [UIBezierPath interpolateCGPointsWithHermite:self.bezierPoints closed:YES];
   [self removeallTapViews];
-  UIImage *croppedImage = [self cropImageUsingBezierPath:self.previewImg.image bezierPath:[path copy]];
   
   UIGraphicsBeginImageContext(self.previewImg.bounds.size);
   CGContextRef context = UIGraphicsGetCurrentContext();
@@ -333,16 +344,16 @@
   UIImage *img = UIGraphicsGetImageFromCurrentImageContext();
   UIGraphicsEndImageContext();
 
-//  croppedImage = [self blendImages:croppedImage and:img desiredSize:self.previewImg.bounds.size];
-  UIGraphicsBeginImageContext( self.previewImg.bounds.size );
-  
-  [croppedImage drawInRect:CGRectMake(0,0,self.previewImg.bounds.size.width, self.previewImg.bounds.size.height)];
-  
-  [img drawInRect:CGRectMake(0,0, self.previewImg.bounds.size.width, self.previewImg.bounds.size.height) blendMode:kCGBlendModeNormal alpha:.32];
-  
-  croppedImage = UIGraphicsGetImageFromCurrentImageContext();
-  UIGraphicsEndImageContext();
-
+  NSLog(@"BlendValue: %f", self.blendAlphaValue);
+//  UIImage *croppedImage = [self cropImageUsingBezierPath:self.previewImg.image bezierPath:[path copy]];
+//  UIGraphicsBeginImageContext( self.previewImg.bounds.size );
+//  
+//  [croppedImage drawInRect:CGRectMake(0,0,self.previewImg.bounds.size.width, self.previewImg.bounds.size.height)];
+//  
+//  [img drawInRect:CGRectMake(0,0, self.previewImg.bounds.size.width, self.previewImg.bounds.size.height) blendMode:kCGBlendModeNormal alpha:self.blendAlphaValue];
+//  
+//  croppedImage = UIGraphicsGetImageFromCurrentImageContext();
+//  UIGraphicsEndImageContext();
   
   UIImage *finalImage = [self blendImages:self.previewImg.image and:img desiredSize:self.previewImg.bounds.size];
   [self.previewImg setImage:finalImage];
@@ -400,6 +411,7 @@
   
 //  [secondImage drawInRect:CGRectMake(0,0, size.width, size.height) blendMode:kCGBlendModeHue alpha:.64];
   [secondImage drawInRect:CGRectMake(0,0, size.width, size.height) blendMode:kCGBlendModeHue alpha:self.blendAlphaValue];
+//  [secondImage drawInRect:CGRectMake(0,0, size.width, size.height) blendMode:kCGBlendModeHue alpha:1.0];
   
   blendImage = UIGraphicsGetImageFromCurrentImageContext();
   UIGraphicsEndImageContext();
