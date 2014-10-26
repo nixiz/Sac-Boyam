@@ -14,6 +14,7 @@
 #import "Sac Boyam/OKMainViewController.h"
 #import "OKAppDelegate.h"
 #import "Sac Boyam/UIView+CreateImage.h"
+#import "OKInfoViewController.h"
 
 @interface OKSettingsViewController () <UITableViewDataSource, UITableViewDelegate, UIAlertViewDelegate>
 @property (strong, nonatomic) NSDictionary *settingsMap;
@@ -107,12 +108,19 @@
 //  [titleLabel setText:@"Kayitlar"];
 //  [headerView addSubview:titleLabel];
 //  self.recordsTableView.tableHeaderView = headerView;
-  
+  UIBarButtonItem *infoBtn = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"infoMark_navBar"]
+                                                              style:UIBarButtonItemStylePlain
+                                                             target:self
+                                                             action:@selector(showTutorial)];
+
   [self.navigationItem setTitle:NSLocalizedStringFromTable(@"settingsTitle", okStringsTableName, nil)];
   if (self.delegate == nil) {
     //eger result sayfasi tarafindan acilmissa!
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(performUnwindSegue:)];
+    UIBarButtonItem *unwindButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(performUnwindSegue:)];
+    self.navigationItem.rightBarButtonItems = @[unwindButton, infoBtn];
     self.navigationItem.hidesBackButton = YES;
+  } else {
+    self.navigationItem.rightBarButtonItem = infoBtn;
   }
 }
 
@@ -120,6 +128,14 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)showTutorial
+{
+  OKInfoViewController *vc = [[OKInfoViewController alloc] initWithNibName:@"OKInfoViewController" bundle:nil];
+//  vc.pageIndex = 3;
+  [vc setPageIndex:OKSettingsPage];
+  [self presentViewController:vc animated:NO completion:nil];
 }
 
 - (IBAction)switchValueChanged:(id)sender {

@@ -36,6 +36,10 @@
 		7136433A195C4E3F006EF824 /* sacli.png in Resources */ = {isa = PBXBuildFile; fileRef = 71364339195C4E3F006EF824 /* sacli.png */; };
 		7136433D195C5E08006EF824 /* OKUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 7136433C195C5E08006EF824 /* OKUtils.m */; };
 		713733B619B5E61100542E86 /* UserRecordModel+Create.m in Sources */ = {isa = PBXBuildFile; fileRef = 713733B519B5E61100542E86 /* UserRecordModel+Create.m */; };
+		713FBE1D19FAB080009C9487 /* OKInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 713FBE1B19FAB080009C9487 /* OKInfoViewController.m */; };
+		713FBE1E19FAB080009C9487 /* OKInfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 713FBE1C19FAB080009C9487 /* OKInfoViewController.xib */; };
+		713FBE2219FAB097009C9487 /* OKInfoChildViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 713FBE2019FAB097009C9487 /* OKInfoChildViewController.m */; };
+		713FBE2319FAB097009C9487 /* OKInfoChildViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 713FBE2119FAB097009C9487 /* OKInfoChildViewController.xib */; };
 		7152CB4F19741B330080898F /* OKWaitForResultsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 7152CB4E19741B330080898F /* OKWaitForResultsVC.m */; };
 		7152CB52197557640080898F /* OKProductJsonType.m in Sources */ = {isa = PBXBuildFile; fileRef = 7152CB51197557640080898F /* OKProductJsonType.m */; };
 		7169530A196E646700C988E5 /* FDTake.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7169530C196E646700C988E5 /* FDTake.strings */; };
@@ -56,7 +60,6 @@
 		719C30DE19F7A9C300E938BA /* CGPointExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 719C30DA19F7A9C300E938BA /* CGPointExtension.m */; };
 		719C30DF19F7A9C300E938BA /* UIBezierPath+Interpolation.m in Sources */ = {isa = PBXBuildFile; fileRef = 719C30DC19F7A9C300E938BA /* UIBezierPath+Interpolation.m */; };
 		719C30E319F7ACE300E938BA /* TapToPointView.m in Sources */ = {isa = PBXBuildFile; fileRef = 719C30E219F7ACE300E938BA /* TapToPointView.m */; };
-		71BFA22F19BDC99100A4C7CB /* OKTutorialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 71BFA22E19BDC99100A4C7CB /* OKTutorialViewController.m */; };
 		71D5795C19E5104800E6E2AF /* OKTryOnMeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 71D5795B19E5104800E6E2AF /* OKTryOnMeVC.m */; };
 		71ECEF95195AC2A600872EBC /* UIImage+AverageColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 71ECEF94195AC2A600872EBC /* UIImage+AverageColor.m */; };
 		71F93DEC19EEAE1200048A9B /* UIView+draggable.m in Sources */ = {isa = PBXBuildFile; fileRef = 71F93DEB19EEAE1200048A9B /* UIView+draggable.m */; };
@@ -113,6 +116,12 @@
 		713733EB19B70F0500542E86 /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/FDTake.strings; sourceTree = "<group>"; };
 		713733ED19B70F0500542E86 /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		713733EE19B70F0500542E86 /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/localized.strings; sourceTree = "<group>"; };
+		713FBE1A19FAB080009C9487 /* OKInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKInfoViewController.h; sourceTree = "<group>"; };
+		713FBE1B19FAB080009C9487 /* OKInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKInfoViewController.m; sourceTree = "<group>"; };
+		713FBE1C19FAB080009C9487 /* OKInfoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OKInfoViewController.xib; sourceTree = "<group>"; };
+		713FBE1F19FAB097009C9487 /* OKInfoChildViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKInfoChildViewController.h; sourceTree = "<group>"; };
+		713FBE2019FAB097009C9487 /* OKInfoChildViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKInfoChildViewController.m; sourceTree = "<group>"; };
+		713FBE2119FAB097009C9487 /* OKInfoChildViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OKInfoChildViewController.xib; sourceTree = "<group>"; };
 		7150A55E19B4A1AB00597373 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
 		7152CB4D19741B330080898F /* OKWaitForResultsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKWaitForResultsVC.h; sourceTree = "<group>"; };
 		7152CB4E19741B330080898F /* OKWaitForResultsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKWaitForResultsVC.m; sourceTree = "<group>"; };
@@ -146,8 +155,6 @@
 		719C30DC19F7A9C300E938BA /* UIBezierPath+Interpolation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBezierPath+Interpolation.m"; sourceTree = "<group>"; };
 		719C30E119F7ACE300E938BA /* TapToPointView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TapToPointView.h; sourceTree = "<group>"; };
 		719C30E219F7ACE300E938BA /* TapToPointView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TapToPointView.m; sourceTree = "<group>"; };
-		71BFA22D19BDC99100A4C7CB /* OKTutorialViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKTutorialViewController.h; sourceTree = "<group>"; };
-		71BFA22E19BDC99100A4C7CB /* OKTutorialViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKTutorialViewController.m; sourceTree = "<group>"; };
 		71D5795A19E5104800E6E2AF /* OKTryOnMeVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKTryOnMeVC.h; sourceTree = "<group>"; };
 		71D5795B19E5104800E6E2AF /* OKTryOnMeVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKTryOnMeVC.m; sourceTree = "<group>"; };
 		71ECEF93195AC2A600872EBC /* UIImage+AverageColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+AverageColor.h"; sourceTree = "<group>"; };
@@ -240,8 +247,12 @@
 				71695311196E64C100C988E5 /* localized.strings */,
 				7152CB4D19741B330080898F /* OKWaitForResultsVC.h */,
 				7152CB4E19741B330080898F /* OKWaitForResultsVC.m */,
-				71BFA22D19BDC99100A4C7CB /* OKTutorialViewController.h */,
-				71BFA22E19BDC99100A4C7CB /* OKTutorialViewController.m */,
+				713FBE1A19FAB080009C9487 /* OKInfoViewController.h */,
+				713FBE1B19FAB080009C9487 /* OKInfoViewController.m */,
+				713FBE1C19FAB080009C9487 /* OKInfoViewController.xib */,
+				713FBE1F19FAB097009C9487 /* OKInfoChildViewController.h */,
+				713FBE2019FAB097009C9487 /* OKInfoChildViewController.m */,
+				713FBE2119FAB097009C9487 /* OKInfoChildViewController.xib */,
 			);
 			path = "Sac Boyam";
 			sourceTree = "<group>";
@@ -473,7 +484,9 @@
 				716A8FA919B9988A009D0E3E /* Default-568h@2x.png in Resources */,
 				7193555C19654DFC0040F48D /* ImageAssets.xcassets in Resources */,
 				71840EE019B84B7800F99868 /* persistentStore in Resources */,
+				713FBE2319FAB097009C9487 /* OKInfoChildViewController.xib in Resources */,
 				7169530F196E64C100C988E5 /* localized.strings in Resources */,
+				713FBE1E19FAB080009C9487 /* OKInfoViewController.xib in Resources */,
 				718986661964592B00C26297 /* final_effect_2.png in Resources */,
 				71328AAF17C35FD7007EE533 /* MainStoryboard_iPhone.storyboard in Resources */,
 				71328ABF17C365F3007EE533 /* derpette_brown.png in Resources */,
@@ -502,7 +515,6 @@
 				71328AF817C38BA5007EE533 /* MyCutomView.m in Sources */,
 				713733B619B5E61100542E86 /* UserRecordModel+Create.m in Sources */,
 				71328AA217C35FD7007EE533 /* main.m in Sources */,
-				71BFA22F19BDC99100A4C7CB /* OKTutorialViewController.m in Sources */,
 				710DC71419BEE7BF00306DB9 /* FDTakeController.m in Sources */,
 				7134B71319A3B3A800BFE754 /* CoreDataTableViewController.m in Sources */,
 				7134B73319A3C8F900BFE754 /* UIColor+GrayScale.m in Sources */,
@@ -510,12 +522,14 @@
 				7152CB52197557640080898F /* OKProductJsonType.m in Sources */,
 				7136433D195C5E08006EF824 /* OKUtils.m in Sources */,
 				71328AA617C35FD7007EE533 /* OKAppDelegate.m in Sources */,
+				713FBE2219FAB097009C9487 /* OKInfoChildViewController.m in Sources */,
 				71328AB517C35FD7007EE533 /* OKViewController.m in Sources */,
 				719C30E319F7ACE300E938BA /* TapToPointView.m in Sources */,
 				7134B72319A3B3F800BFE754 /* ColorModel+Create.m in Sources */,
 				719C30DF19F7A9C300E938BA /* UIBezierPath+Interpolation.m in Sources */,
 				71328AF417C38162007EE533 /* OKMainViewController.m in Sources */,
 				718986581964186500C26297 /* UIImage+ImageEffects.m in Sources */,
+				713FBE1D19FAB080009C9487 /* OKInfoViewController.m in Sources */,
 				71063759196C0ED100D17D66 /* UIView+CreateImage.m in Sources */,
 				71F93DEC19EEAE1200048A9B /* UIView+draggable.m in Sources */,
 				71ECEF95195AC2A600872EBC /* UIImage+AverageColor.m in Sources */,

@@ -16,6 +16,14 @@ static NSString *resultDensityKey = @"resultDensityKey";
 static NSString *showTutorialKey = @"showTutorialKey";
 static NSString *userDefaultPhotoKey = @"userPhotoKey";
 
+typedef NS_ENUM(NSInteger, OKPageType) {
+  OKSelectColorPage = 0,
+  OKResultsPage = 1,
+  OKResultDetailPage = 2,
+  OKSettingsPage = 3,
+  OKTryOnMePage = 4
+};
+
 @interface OKUtils : NSObject
 
 +(CAGradientLayer *)getBackgroundLayer:(CGRect)bounds;
@@ -26,4 +34,5 @@ static NSString *userDefaultPhotoKey = @"userPhotoKey";
 +(NSString *)dateToString:(NSDate *)date;
 
 +(UIColor *)getBackgroundColor;
+//+(NSArray *)getNavigationBarRightSideItemsForController:(id)instance selector:(SEL)action andForPage:(OKPageType) pageType;
 @end

@@ -101,6 +101,16 @@
   dateFormatter.dateFormat = @"yyyy-MM-dd HH:mm:ss";
   return [dateFormatter stringFromDate:date];
 }
+/*
++(NSArray *)getNavigationBarRightSideItemsForController:(id)instance selector:(SEL)action andForPage:(OKPageType) pageType
+{
+//  NSArray *arr = nil;
+  UIBarButtonItem *infoBtn = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"infoMark_navBar"] style:UIBarButtonItemStylePlain target:instance action:@selector(settingsButtonTap:)];
+  
+  UIBarButtonItem *camBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCamera target:self action:@selector(SelectNewImage:)];
+  //  UIBarButtonItem *btn2 = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedStringFromTable(@"settings", okStringsTableName, nil) style:UIBarButtonItemStylePlain target:self action:@selector(settingsButtonTap:)];
+  UIBarButtonItem *settingsBtn = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"settings_navBar"] style:UIBarButtonItemStylePlain target:self action:@selector(settingsButtonTap:)];
 
-
+}
+*/
 @end

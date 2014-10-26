@@ -19,6 +19,7 @@
 #import "UIBezierPath+Interpolation.h"
 #import "CRVINTERGraphicsView.h"
 #import "TapToPointView.h"
+#import "OKInfoViewController.h"
 
 @interface OKTryOnMeVC () <FDTakeDelegate, UIAlertViewDelegate, UIGestureRecognizerDelegate>
 @property (weak, nonatomic) IBOutlet UIImageView *previewImg;
@@ -45,8 +46,18 @@
 - (void)viewDidLoad {
   [super viewDidLoad];  
   UIBarButtonItem *camBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCamera target:self action:@selector(SelectNewImage:)];
-//  UIBarButtonItem *actionBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(ActionButtonTapped:)];
-  self.navigationItem.rightBarButtonItem = camBtn;
+//  UIBarButtonItem *settings2Btn = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"settings-2_navBar"] style:UIBarButtonItemStylePlain target:nil action:nil];
+//  UIBarButtonItem *infoMarkBtn = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"infoMark_navBar"] style:UIBarButtonItemStylePlain target:nil action:nil];
+//  UIBarButtonItem *fixedSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
+//  fixedSpace.width = 8.0;
+
+  UIBarButtonItem *infoBtn = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"infoMark_navBar"]
+                                                              style:UIBarButtonItemStylePlain
+                                                             target:self
+                                                             action:@selector(showTutorial)];
+  
+  
+  self.navigationItem.rightBarButtonItems = @[camBtn, infoBtn];
   self.view.backgroundColor = [self.view getBackgroundColor];
 
   self.tapCount = 0;
@@ -158,6 +169,14 @@
   if (![[NSUserDefaults standardUserDefaults] synchronize]) {
     NSLog(@"User Defaults can not be saved!!!");
   }
+}
+
+- (void)showTutorial
+{
+  OKInfoViewController *vc = [[OKInfoViewController alloc] initWithNibName:@"OKInfoViewController" bundle:nil];
+  [vc setPageIndex:OKTryOnMePage];
+//  vc.pageIndex = 4;
+  [self presentViewController:vc animated:NO completion:nil];
 }
 
 #pragma mark - FDTakeDelegate

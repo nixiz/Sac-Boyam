@@ -12,6 +12,7 @@
 #import "OKAppDelegate.h"
 #import "UIView+CreateImage.h"
 #import "OKTryOnMeVC.h"
+#import "OKInfoViewController.h"
 
 @interface OKMainViewController () <UIAlertViewDelegate>
 @property (weak, nonatomic) IBOutlet UIImageView *productImageView;
@@ -45,7 +46,10 @@
     self.productDetailsLabel.numberOfLines = 0;
     self.productDetailsLabel.text = [NSString stringWithFormat:@"%@: %@\n%@: %@", NSLocalizedStringFromTable(@"brand", okStringsTableName, nil), self.colorModel.brand.brandName, NSLocalizedStringFromTable(@"product", okStringsTableName, nil), self.colorModel.productName];
   }
-  
+  UIBarButtonItem *infoBtn = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"infoMark_navBar"]
+                                                              style:UIBarButtonItemStylePlain
+                                                             target:self
+                                                             action:@selector(showTutorial)];
   if (self.lookingFromFavList == NO) {
     UIBarButtonItem *savebtn = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedStringFromTable(@"saveButtonName", okStringsTableName, nil) style:UIBarButtonItemStylePlain target:self action:@selector(addRemoveFav:)];
     
@@ -54,7 +58,9 @@
       [savebtn setEnabled:NO];
 //      [savebtn setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
     }
-    self.navigationItem.rightBarButtonItem = savebtn;
+    self.navigationItem.rightBarButtonItems = @[savebtn, infoBtn];
+  } else {
+    self.navigationItem.rightBarButtonItem = infoBtn;
   }
 }
 
@@ -67,6 +73,14 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)showTutorial
+{
+  OKInfoViewController *vc = [[OKInfoViewController alloc] initWithNibName:@"OKInfoViewController" bundle:nil];
+//  vc.pageIndex = 2;
+  [vc setPageIndex:OKResultDetailPage];
+  [self presentViewController:vc animated:NO completion:nil];
 }
 
 - (IBAction)lookForInternet:(id)sender {

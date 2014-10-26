@@ -8,8 +8,28 @@
 
 #import "OKAppDelegate.h"
 #import "OKUtils.h"
+#import "UIView+CreateImage.h"
+#import "UIImage+ImageEffects.h"
+#import "OKInfoViewController.h"
 
 @implementation OKAppDelegate
+
+- (void)showTutorialForViewController:(UIViewController *)controller andPageIndex:(NSInteger)pageNumber
+{
+  UIImage * screenShot = [[controller view] createImageFromView];
+  screenShot = [screenShot applyDarkEffect];
+  OKInfoViewController *vc = [[OKInfoViewController alloc] initWithNibName:@"OKInfoViewController" bundle:nil];
+  vc.screenShot = screenShot;
+  vc.pageIndex = 0;
+  //  [vc setModalPresentationStyle:UIModalPresentationFullScreen];
+  //  [vc setModalTransitionStyle:UIModalTransitionStyleFlipHorizontal];
+  [controller presentViewController:vc animated:NO completion:nil];
+  
+  if ([[[NSUserDefaults standardUserDefaults] objectForKey:showTutorialKey] boolValue]) {
+    [[NSUserDefaults standardUserDefaults] setObject:@NO forKey:showTutorialKey];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+  }
+}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -18,7 +38,7 @@
 //  self.navigationController.navigationBar.shadowImage = [UIImage new];
 //  self.navigationController.navigationBar.translucent = YES;
 //  [NSMutableDictionary dictionaryWithObjectsAndKeys:@NO, @"SavePhotos", @YES, @"EditPhotos", @NO, @"TakeRecord", nil];
-  NSDictionary *userDefaults = @{savePhotosKey: @NO, editPhotosKey: @YES, takeRecordKey: @YES, resultDensityKey: @7, showTutorialKey: @NO};
+  NSDictionary *userDefaults = @{savePhotosKey: @NO, editPhotosKey: @YES, takeRecordKey: @YES, resultDensityKey: @7, showTutorialKey: @YES};
   [[NSUserDefaults standardUserDefaults] registerDefaults:userDefaults];
     // Override point for customization after application launch.
     return YES;

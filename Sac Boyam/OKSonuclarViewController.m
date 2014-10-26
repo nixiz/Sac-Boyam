@@ -16,6 +16,8 @@
 #import "OKMainViewController.h"
 #import "OKSettingsViewController.h"
 #import "UIView+CreateImage.h"
+#import "UIImage+ImageEffects.h"
+#import "OKInfoViewController.h"
 
 #define ARC4RANDOM_MAX	0x100000000
 #define indexForProductName   0
@@ -110,8 +112,18 @@
 {
   [super viewDidLoad];
   [self.navigationItem setTitle:NSLocalizedStringFromTable(@"resultsTitle", okStringsTableName, nil)];
-  UIBarButtonItem *btn2 = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedStringFromTable(@"settings", okStringsTableName, nil) style:UIBarButtonItemStylePlain target:self action:@selector(settingsFromResultsTap:)];
-  self.navigationItem.rightBarButtonItem = btn2;
+//  UIBarButtonItem *btn2 = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedStringFromTable(@"settings", okStringsTableName, nil)
+//                                                           style:UIBarButtonItemStylePlain
+//                                                          target:self action:@selector(settingsFromResultsTap:)];
+  UIBarButtonItem *settingsBtn = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"settings_navBar"]
+                                                                  style:UIBarButtonItemStylePlain
+                                                                 target:self
+                                                                 action:@selector(settingsFromResultsTap:)];
+  UIBarButtonItem *infoBtn = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"infoMark_navBar"]
+                                                              style:UIBarButtonItemStylePlain
+                                                             target:self
+                                                             action:@selector(showTutorial)];
+  self.navigationItem.rightBarButtonItems = @[settingsBtn, infoBtn];
   self.view.backgroundColor = [self.view getBackgroundColor];
 }
 
@@ -119,6 +131,19 @@
 {
   [super didReceiveMemoryWarning];
   // Dispose of any resources that can be recreated.
+}
+
+- (void)showTutorial
+{
+//  UIImage * screenShot = [[self view] createImageFromView];
+//  screenShot = [screenShot applyDarkEffect];
+  OKInfoViewController *vc = [[OKInfoViewController alloc] initWithNibName:@"OKInfoViewController" bundle:nil];
+//  vc.screenShot = screenShot;
+  [vc setPageIndex:OKResultsPage];
+//  vc.pageIndex = 1;
+  //  [vc setModalPresentationStyle:UIModalPresentationFullScreen];
+  //  [vc setModalTransitionStyle:UIModalTransitionStyleFlipHorizontal];
+  [self presentViewController:vc animated:NO completion:nil];
 }
 
 #pragma mark - Table view data source

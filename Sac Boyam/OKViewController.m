@@ -18,7 +18,7 @@
 #import "OKSonuclarViewController.h"
 #import "OKProductJsonType.h"
 #import "OKAppDelegate.h"
-#import "OKTutorialViewController.h"
+#import "OKInfoViewController.h"
 
 struct pixel {
   unsigned char r,g,b,a;
@@ -46,11 +46,21 @@ struct pixel {
   [super viewDidLoad];
   self.userCanceledRequest = NO;
   
-  UIBarButtonItem *camBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCamera target:self action:@selector(SelectNewImage:)];
-  UIBarButtonItem *btn2 = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedStringFromTable(@"settings", okStringsTableName, nil) style:UIBarButtonItemStylePlain target:self action:@selector(settingsButtonTap:)];
-  self.navigationItem.rightBarButtonItem = btn2;
+  UIBarButtonItem *camBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCamera
+                                                                          target:self
+                                                                          action:@selector(SelectNewImage:)];
+
+  UIBarButtonItem *settingsBtn = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"settings_navBar"]
+                                                                  style:UIBarButtonItemStylePlain
+                                                                 target:self
+                                                                 action:@selector(settingsButtonTap:)];
+
+  UIBarButtonItem *infoBtn = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"infoMark_navBar"]
+                                                                  style:UIBarButtonItemStylePlain
+                                                                 target:self
+                                                                 action:@selector(showTutorial)];
+  self.navigationItem.rightBarButtonItems = @[settingsBtn, infoBtn];
   self.navigationItem.leftBarButtonItem = camBtn;
-//  self.navigationItem.rightBarButtonItems = @[btn2, camBtn];
   
   self.lblRenkKodu.adjustsFontSizeToFitWidth = YES;
   self.lblRenkKodu.text = NSLocalizedStringFromTable(@"averageColorLableString", okStringsTableName, nil);
@@ -133,14 +143,28 @@ struct pixel {
   self.previewImageBound = self.selectedImage.bounds;
   
   if ([[[NSUserDefaults standardUserDefaults] objectForKey:showTutorialKey] boolValue]) {
-    [self performSegueWithIdentifier:@"tutorialSegue" sender:self];
+    [self showTutorial];
   }
   [super viewDidAppear:animated];
 }
 
 - (void)showTutorial
 {
-  [self performSegueWithIdentifier:@"tutorialSegue" sender:self];
+  UIImage * screenShot = [[self view] createImageFromView];
+  screenShot = [screenShot applyDarkEffect];
+  OKInfoViewController *vc = [[OKInfoViewController alloc] initWithNibName:@"OKInfoViewController" bundle:nil];
+  vc.screenShot = screenShot;
+//  vc.pageIndex = OKSelectColorPage;
+  [vc setPageIndex:OKSelectColorPage];
+//  [vc setModalPresentationStyle:UIModalPresentationFullScreen];
+//  [vc setModalTransitionStyle:UIModalTransitionStyleFlipHorizontal];
+  [self presentViewController:vc animated:NO completion:nil];
+  
+//  [self performSegueWithIdentifier:@"tutorialSegue" sender:self];
+  if ([[[NSUserDefaults standardUserDefaults] objectForKey:showTutorialKey] boolValue]) {
+    [[NSUserDefaults standardUserDefaults] setObject:@NO forKey:showTutorialKey];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+  }
 }
 
 - (IBAction)SelectNewImage:(id)sender {
@@ -367,8 +391,11 @@ struct pixel {
   } else if ([[segue identifier] isEqualToString:@"tutorialSegue"]) {
     UIImage * screenShot = [[self view] createImageFromView];
     screenShot = [screenShot applyDarkEffect];
-    OKTutorialViewController *vc = segue.destinationViewController;
-    [vc initWithMainImage:screenShot andText:@"Hede Hodo"];
+    OKInfoViewController *vc = segue.destinationViewController;
+    vc.screenShot = screenShot;
+    [vc setPageIndex:OKSelectColorPage];
+//    vc.pageIndex = 0;
+//    [vc initWithMainImage:screenShot andText:@"Hede Hodo"];
   }
 }
 

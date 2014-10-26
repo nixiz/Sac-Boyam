@@ -13,5 +13,5 @@ static NSString * const okStringsTableName = @"localized";
 @interface OKAppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
-
+- (void)showTutorialForViewController:(UIViewController *)controller andPageIndex:(NSInteger)pageNumber;
 @end
