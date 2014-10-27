@@ -7,11 +7,14 @@
 //
 
 #import "OKInfoViewController.h"
+#import "OKTutorialBaseViewController.h"
 #import "OKInfoChildViewController.h"
+#import "OKWelcomeViewController.h"
+
 
 @interface OKInfoViewController () <OKInfoChildViewControllerDelegate>
 @property (strong, nonatomic) UIPageViewController *pageController;
-
+@property NSInteger presentationCount;
 @end
 
 @implementation OKInfoViewController
@@ -25,9 +28,15 @@
   [self.pageController.view setFrame:self.view.bounds];
   
   if (!self.pageIndex) {
-    self.pageIndex = 0;
+    self.pageIndex = 0; //set page index to welcome presentation
   }
-  OKInfoChildViewController *child = [self viewControllerAtIndex:self.pageIndex];
+  
+  //eger program ilk acildiysa welcome ekrani icin bir fazla presentasyon goster!
+  self.presentationCount = 5;
+  if (self.pageIndex == OKWelcomeScreenPage) {
+    self.presentationCount = 6;
+  }
+  OKTutorialBaseViewController *child = [self viewControllerAtIndex:self.pageIndex];
   NSArray *childViewControllers = @[child];
   
   [self.pageController setViewControllers:childViewControllers
@@ -43,12 +52,17 @@
   // Dispose of any resources that can be recreated.
 }
 
-- (OKInfoChildViewController *)viewControllerAtIndex:(NSUInteger)index {
-  
-  OKInfoChildViewController *childViewController = [[OKInfoChildViewController alloc] initWithNibName:@"OKInfoChildViewController" bundle:nil];
-  childViewController.text = [NSString stringWithFormat:@"Screen %lu", (unsigned long)index];
+- (OKTutorialBaseViewController *)viewControllerAtIndex:(NSUInteger)index {
+  OKTutorialBaseViewController *childViewController = nil;
+  switch (index) {
+    case OKWelcomeScreenPage:
+      childViewController = [[OKWelcomeViewController alloc] initWithNibName:@"OKWelcomeViewController" bundle:nil];
+      break;
+    default:
+      childViewController = [[OKInfoChildViewController alloc] initWithNibName:@"OKInfoChildViewController" bundle:nil];
+      break;
+  }
   childViewController.pageIndex = index;
-  childViewController.image = self.screenShot;
   childViewController.delegate = self;
   
   return childViewController;
@@ -58,7 +72,7 @@
 
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerBeforeViewController:(UIViewController *)viewController
 {
-  NSInteger index = [(OKInfoChildViewController *)viewController pageIndex];
+  NSInteger index = [(OKTutorialBaseViewController *)viewController pageIndex];
   if (index == 0) {
     return nil;
   }
@@ -67,9 +81,9 @@
 
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerAfterViewController:(UIViewController *)viewController
 {
-  NSInteger index = [(OKInfoChildViewController *)viewController pageIndex];
+  NSInteger index = [(OKTutorialBaseViewController *)viewController pageIndex];
   index += 1;
-  if (index == 5) {
+  if (index == self.presentationCount) {
     return nil;
   }
   return [self viewControllerAtIndex:index];
@@ -77,11 +91,14 @@
 
 - (NSInteger)presentationCountForPageViewController:(UIPageViewController *)pageViewController
 {
-  return 5;
+  return self.presentationCount;
 }
 
 - (NSInteger)presentationIndexForPageViewController:(UIPageViewController *)pageViewController
 {
+//  if (self.presentationCount == 5) {
+//    return self.pageIndex - 1;
+//  }
   return self.pageIndex;
 }
 
@@ -89,8 +106,8 @@
 
 - (void)skipButtonTapped
 {
-  self.pageIndex = 4;
-  OKInfoChildViewController *child = [self viewControllerAtIndex:self.pageIndex];
+  self.pageIndex = self.presentationCount - 1;
+  OKTutorialBaseViewController *child = [self viewControllerAtIndex:self.pageIndex];
   NSArray *childViewControllers = @[child];
   
   [self.pageController setViewControllers:childViewControllers

@@ -400,7 +400,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" indicatorStyle="black" dataMode="prototypes" style="plain" allowsSelectionDuringEditing="YES" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Ue3-MA-l3Z">
-                                <rect key="frame" x="8" y="267" width="304" height="213"/>
+                                <rect key="frame" x="0.0" y="267" width="320" height="213"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="separatorColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <inset key="separatorInset" minX="15" minY="0.0" maxX="30" maxY="0.0"/>
@@ -444,7 +444,7 @@
                         <constraints>
                             <constraint firstItem="yQf-gF-Bgc" firstAttribute="top" secondItem="6GK-hU-plx" secondAttribute="bottom" constant="8" id="267-8Q-g9d"/>
                             <constraint firstItem="jgm-R7-906" firstAttribute="leading" secondItem="pF5-oz-6DR" secondAttribute="leading" constant="20" id="3d5-L2-ILe"/>
-                            <constraint firstItem="Ue3-MA-l3Z" firstAttribute="leading" secondItem="pF5-oz-6DR" secondAttribute="leading" constant="8" id="3t2-VA-pfu"/>
+                            <constraint firstItem="Ue3-MA-l3Z" firstAttribute="leading" secondItem="pF5-oz-6DR" secondAttribute="leading" id="3t2-VA-pfu"/>
                             <constraint firstAttribute="trailing" secondItem="6GK-hU-plx" secondAttribute="trailing" constant="20" id="3xy-YM-qcu"/>
                             <constraint firstItem="6GK-hU-plx" firstAttribute="top" secondItem="wDU-Wq-9dS" secondAttribute="bottom" constant="8" id="4Kl-84-eov"/>
                             <constraint firstAttribute="trailing" secondItem="QrC-AU-v1f" secondAttribute="trailing" constant="20" id="4qV-Ku-zjb"/>
@@ -452,7 +452,7 @@
                             <constraint firstItem="QrC-AU-v1f" firstAttribute="leading" secondItem="zZm-wr-P2q" secondAttribute="trailing" constant="8" id="69z-0m-LD9"/>
                             <constraint firstItem="zZm-wr-P2q" firstAttribute="leading" secondItem="pF5-oz-6DR" secondAttribute="leading" constant="20" id="829-OM-Sye"/>
                             <constraint firstItem="zZm-wr-P2q" firstAttribute="centerY" secondItem="QrC-AU-v1f" secondAttribute="centerY" id="9xQ-EC-TAA"/>
-                            <constraint firstAttribute="trailing" secondItem="Ue3-MA-l3Z" secondAttribute="trailing" constant="8" id="F2p-7d-MQx"/>
+                            <constraint firstAttribute="trailing" secondItem="Ue3-MA-l3Z" secondAttribute="trailing" id="F2p-7d-MQx"/>
                             <constraint firstItem="HIN-6m-Xph" firstAttribute="leading" secondItem="pF5-oz-6DR" secondAttribute="leading" constant="20" id="GAb-FA-ER6"/>
                             <constraint firstItem="zZm-wr-P2q" firstAttribute="top" secondItem="9Hu-Ub-Ocv" secondAttribute="bottom" constant="25" id="JOs-is-Vzj"/>
                             <constraint firstItem="wDU-Wq-9dS" firstAttribute="top" secondItem="Wge-CS-dY9" secondAttribute="bottom" constant="8" symbolic="YES" id="T2E-NX-vpj"/>
@@ -520,6 +520,6 @@
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="6hn-DS-btT"/>
-        <segue reference="IpZ-Zf-ZaL"/>
+        <segue reference="Jjn-5H-yyJ"/>
     </inferredMetricsTieBreakers>
 </document>

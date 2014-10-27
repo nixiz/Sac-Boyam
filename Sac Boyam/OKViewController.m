@@ -143,19 +143,24 @@ struct pixel {
   self.previewImageBound = self.selectedImage.bounds;
   
   if ([[[NSUserDefaults standardUserDefaults] objectForKey:showTutorialKey] boolValue]) {
-    [self showTutorial];
+    [self showTutorialWithWelcomeScreen:YES];
   }
   [super viewDidAppear:animated];
 }
 
 - (void)showTutorial
 {
-  UIImage * screenShot = [[self view] createImageFromView];
-  screenShot = [screenShot applyDarkEffect];
+  [self showTutorialWithWelcomeScreen:NO];
+}
+
+- (void)showTutorialWithWelcomeScreen:(BOOL)showWelcomeScreen
+{
   OKInfoViewController *vc = [[OKInfoViewController alloc] initWithNibName:@"OKInfoViewController" bundle:nil];
-  vc.screenShot = screenShot;
-//  vc.pageIndex = OKSelectColorPage;
-  [vc setPageIndex:OKSelectColorPage];
+  if (showWelcomeScreen) {
+    [vc setPageIndex:OKWelcomeScreenPage];
+  } else {
+    [vc setPageIndex:OKSelectColorPage];
+  }
 //  [vc setModalPresentationStyle:UIModalPresentationFullScreen];
 //  [vc setModalTransitionStyle:UIModalTransitionStyleFlipHorizontal];
   [self presentViewController:vc animated:NO completion:nil];

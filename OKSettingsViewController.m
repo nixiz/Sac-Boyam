@@ -15,6 +15,7 @@
 #import "OKAppDelegate.h"
 #import "Sac Boyam/UIView+CreateImage.h"
 #import "OKInfoViewController.h"
+#import "UIImage+AverageColor.h"
 
 @interface OKSettingsViewController () <UITableViewDataSource, UITableViewDelegate, UIAlertViewDelegate>
 @property (strong, nonatomic) NSDictionary *settingsMap;
@@ -423,7 +424,22 @@
   cell.detailTextLabel.adjustsFontSizeToFitWidth = YES;
   [cell.detailTextLabel setTextColor:[UIColor colorWithWhite:1.0 alpha:0.8]];
   cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ : %@", NSLocalizedStringFromTable(@"recordTime", okStringsTableName, nil), [OKUtils dateToString:record.recordDate]];
-//  [cell setSelectionStyle:UITableViewCellSelectionStyleBlue];
+  
+  CGRect contentRect = CGRectMake(0, 0, cell.contentView.bounds.size.height, cell.contentView.bounds.size.height);
+//  UIImageView *contentImageView = [[UIImageView alloc] initWithFrame:contentRect];
+  UIColor *productColor = [UIColor colorWithRed:[record.recordedColor.red floatValue]
+                                          green:[record.recordedColor.green floatValue]
+                                           blue:[record.recordedColor.blue floatValue] alpha:1.0];
+  UIImage *productImg = [UIImage imageWithColor:productColor andSize:contentRect.size];
+//  [contentImageView setImage:productImg];
+//  contentImageView.layer.cornerRadius = contentRect.size.height / 4.0;
+//  [cell.contentView addSubview:contentImageView];
+  [cell.imageView setImage:productImg];
+  cell.imageView.layer.cornerRadius = cell.bounds.size.height / 4.0;
+  cell.imageView.layer.masksToBounds = YES;
+//  [cell.contentView addSubview:(UIView *)];
+
+  //  [cell setSelectionStyle:UITableViewCellSelectionStyleBlue];
 //  ColorModel *color = [self.fetchedResultsController objectAtIndexPath:indexPath];
 //  
 //  cell.productName.lineBreakMode = NSLineBreakByWordWrapping;

@@ -6,17 +6,9 @@
 //  Copyright (c) 2014 Oguzhan Katli. All rights reserved.
 //
 
-@protocol OKInfoChildViewControllerDelegate <NSObject>
+#import "OKTutorialBaseViewController.h"
 
-- (void)skipButtonTapped;
-- (void)closeButtonTapped;
-
-@end
-
-@interface OKInfoChildViewController : UIViewController
+@interface OKInfoChildViewController : OKTutorialBaseViewController
 @property (strong, nonatomic) UIImage *image;
 @property (strong, nonatomic) NSString *text;
-@property (weak, nonatomic) id<OKInfoChildViewControllerDelegate> delegate;
-@property NSInteger pageIndex;
-@property BOOL showDoneButton;
 @end
