@@ -106,7 +106,7 @@
     //it cant be null
     assert(NO);
   }
-  self.blendAlphaValue = .64;
+  self.blendAlphaValue = .16;
   CGRect toolBarFrame = self.tryToolBar.frame;
   self.settingsViewRecoverFrame = CGRectMake(0, toolBarFrame.origin.y - 52 + 20/*size of status bar*/, toolBarFrame.size.width, 56);
   self.settingsViewHideFrame = CGRectMake(0, toolBarFrame.origin.y + 20/*size of status bar*/, toolBarFrame.size.width, 56);

@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6250" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="OKSelectColorTutorialVC">
+            <connections>
+                <outlet property="imageView1" destination="Hoc-wC-u3L" id="taV-Pv-Ity"/>
+                <outlet property="imageView2" destination="pgL-1t-ufS" id="sD4-rL-OU9"/>
+                <outlet property="imageView3" destination="PZf-Op-DhD" id="EWT-n3-pf7"/>
+                <outlet property="imageView4" destination="PQk-9A-M5l" id="kyP-HI-GGL"/>
+                <outlet property="imageView5" destination="FE8-BQ-o8a" id="RXA-DM-8Xh"/>
+                <outlet property="imageView6" destination="w7d-Q1-9Vc" id="tSQ-Rw-qVl"/>
+                <outlet property="label1" destination="p8s-sB-Yuo" id="jSC-n7-ggB"/>
+                <outlet property="label2" destination="2Lc-U5-bqD" id="Z0t-ZD-Zig"/>
+                <outlet property="label3" destination="VLL-WB-rN8" id="kez-K0-Svb"/>
+                <outlet property="label4" destination="QZM-Tb-fN3" id="dIV-Jm-LPW"/>
+                <outlet property="label5" destination="EiB-xb-mDh" id="SdO-zd-eX0"/>
+                <outlet property="label6" destination="Kkf-BB-Ss2" id="BuS-Z0-sRG"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="kamera-icon.png" translatesAutoresizingMaskIntoConstraints="NO" id="Hoc-wC-u3L">
+                    <rect key="frame" x="8" y="20" width="44" height="44"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="44" id="6g0-x0-7ZQ"/>
+                        <constraint firstAttribute="width" constant="44" id="jBc-Ap-k9Q"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ile istediğiniz bir resmi seçin veya yeni bir resim çekin" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p8s-sB-Yuo">
+                    <rect key="frame" x="60" y="33" width="532" height="18"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="15"/>
+                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="settings_navBar" translatesAutoresizingMaskIntoConstraints="NO" id="pgL-1t-ufS">
+                    <rect key="frame" x="8" y="72" width="44" height="44"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="44" id="18V-kl-mAE"/>
+                        <constraint firstAttribute="width" constant="44" id="nP0-kb-Fz1"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ile ayarlar sayfasına geçin" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Lc-U5-bqD">
+                    <rect key="frame" x="60" y="85" width="532" height="18"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="15"/>
+                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="colorToFind-icon.png" translatesAutoresizingMaskIntoConstraints="NO" id="PQk-9A-M5l">
+                    <rect key="frame" x="8" y="233" width="150" height="50"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="150" id="3dP-bm-EOc"/>
+                        <constraint firstAttribute="height" constant="50" id="aqP-jS-zGh"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Baktığınız yerde olan rengin ortalama değerini buradan görebilirsiniz" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="QZM-Tb-fN3">
+                    <rect key="frame" x="166" y="243" width="426" height="36"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="15"/>
+                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="previewImage-icon.png" translatesAutoresizingMaskIntoConstraints="NO" id="PZf-Op-DhD">
+                    <rect key="frame" x="8" y="124" width="100" height="101"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="101" id="mUe-1E-iiH"/>
+                        <constraint firstAttribute="width" constant="100" id="oIq-fK-bbk"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Aradığınız rengi bulana kadar parmağınızı resmin üzerinde gezdirin" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VLL-WB-rN8">
+                    <rect key="frame" x="116" y="166" width="476" height="18"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="15"/>
+                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="search_white_highlighted" translatesAutoresizingMaskIntoConstraints="NO" id="FE8-BQ-o8a">
+                    <rect key="frame" x="8" y="291" width="44" height="44"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="44" id="9c7-X1-1t6"/>
+                        <constraint firstAttribute="width" constant="44" id="hUg-c6-ci7"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Boyaları bulmak için buraya basmanız yeterli" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EiB-xb-mDh">
+                    <rect key="frame" x="60" y="304" width="532" height="18"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="15"/>
+                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p2L-Dz-K29">
+                    <rect key="frame" x="542" y="558" width="50" height="30"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="50" id="0ji-6J-uob"/>
+                        <constraint firstAttribute="height" constant="30" id="q7T-wx-GMv"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                    <state key="normal" title="done">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="doneButtonTapped:" destination="-1" eventType="touchUpInside" id="q9j-5q-wYG"/>
+                    </connections>
+                </button>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="list-icon.png" translatesAutoresizingMaskIntoConstraints="NO" id="w7d-Q1-9Vc">
+                    <rect key="frame" x="8" y="343" width="44" height="44"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="44" id="Mz1-Rt-wLz"/>
+                        <constraint firstAttribute="width" constant="44" id="ets-Xx-zcd"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sonuçlar aradığınız renge göre aralıklar halinde listelenecektir" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kkf-BB-Ss2">
+                    <rect key="frame" x="60" y="356" width="532" height="18"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="15"/>
+                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="FE8-BQ-o8a" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="8" id="0nz-kP-JPL"/>
+                <constraint firstItem="w7d-Q1-9Vc" firstAttribute="centerY" secondItem="Kkf-BB-Ss2" secondAttribute="centerY" id="56J-z2-caI"/>
+                <constraint firstItem="pgL-1t-ufS" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="8" id="5y3-tA-JZ2"/>
+                <constraint firstItem="PZf-Op-DhD" firstAttribute="top" secondItem="pgL-1t-ufS" secondAttribute="bottom" constant="8" id="6K9-S2-U9c"/>
+                <constraint firstItem="PZf-Op-DhD" firstAttribute="centerY" secondItem="VLL-WB-rN8" secondAttribute="centerY" id="7bX-rC-STk"/>
+                <constraint firstItem="PQk-9A-M5l" firstAttribute="centerY" secondItem="QZM-Tb-fN3" secondAttribute="centerY" constant="0.5" id="92q-Pu-3pW"/>
+                <constraint firstItem="w7d-Q1-9Vc" firstAttribute="top" secondItem="FE8-BQ-o8a" secondAttribute="bottom" constant="8" id="Cso-sn-qEL"/>
+                <constraint firstItem="FE8-BQ-o8a" firstAttribute="centerY" secondItem="EiB-xb-mDh" secondAttribute="centerY" id="Fme-mJ-loo"/>
+                <constraint firstAttribute="trailing" secondItem="2Lc-U5-bqD" secondAttribute="trailing" constant="8" id="GFe-4m-i0q"/>
+                <constraint firstItem="FE8-BQ-o8a" firstAttribute="top" secondItem="PQk-9A-M5l" secondAttribute="bottom" constant="8" id="H5v-dh-OkA"/>
+                <constraint firstItem="QZM-Tb-fN3" firstAttribute="leading" secondItem="PQk-9A-M5l" secondAttribute="trailing" constant="8" id="KSq-Ib-0C9"/>
+                <constraint firstAttribute="trailing" secondItem="p8s-sB-Yuo" secondAttribute="trailing" constant="8" id="LVd-AY-Zg2"/>
+                <constraint firstItem="PQk-9A-M5l" firstAttribute="top" secondItem="PZf-Op-DhD" secondAttribute="bottom" constant="8" id="MzR-or-MeI"/>
+                <constraint firstItem="Hoc-wC-u3L" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="20" id="NeE-dI-yHv"/>
+                <constraint firstAttribute="bottom" secondItem="p2L-Dz-K29" secondAttribute="bottom" constant="12" id="QhZ-Bc-F4z"/>
+                <constraint firstItem="VLL-WB-rN8" firstAttribute="leading" secondItem="PZf-Op-DhD" secondAttribute="trailing" constant="8" id="TJa-GF-DYH"/>
+                <constraint firstItem="EiB-xb-mDh" firstAttribute="leading" secondItem="FE8-BQ-o8a" secondAttribute="trailing" constant="8" id="WkA-Hf-ksl"/>
+                <constraint firstItem="PQk-9A-M5l" firstAttribute="centerY" secondItem="QZM-Tb-fN3" secondAttribute="centerY" constant="-15" id="Y0x-ID-Ekc"/>
+                <constraint firstAttribute="trailing" secondItem="EiB-xb-mDh" secondAttribute="trailing" constant="8" id="cNX-ff-dcf"/>
+                <constraint firstAttribute="trailing" secondItem="QZM-Tb-fN3" secondAttribute="trailing" constant="8" id="cX5-2M-Wh4"/>
+                <constraint firstItem="PQk-9A-M5l" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="8" id="e3m-ex-T44"/>
+                <constraint firstItem="w7d-Q1-9Vc" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="8" id="eHy-Bw-mai"/>
+                <constraint firstItem="Hoc-wC-u3L" firstAttribute="centerY" secondItem="p8s-sB-Yuo" secondAttribute="centerY" id="eZ6-Hb-oYy"/>
+                <constraint firstItem="p8s-sB-Yuo" firstAttribute="leading" secondItem="Hoc-wC-u3L" secondAttribute="trailing" constant="8" id="h6l-mg-t4s"/>
+                <constraint firstAttribute="trailing" secondItem="Kkf-BB-Ss2" secondAttribute="trailing" constant="8" id="l43-k2-RzO"/>
+                <constraint firstAttribute="trailing" secondItem="p2L-Dz-K29" secondAttribute="trailing" constant="8" id="l9C-8F-5hY"/>
+                <constraint firstItem="PZf-Op-DhD" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="8" id="qSf-wL-eRb"/>
+                <constraint firstItem="2Lc-U5-bqD" firstAttribute="leading" secondItem="pgL-1t-ufS" secondAttribute="trailing" constant="8" id="rdl-sF-L1o"/>
+                <constraint firstItem="pgL-1t-ufS" firstAttribute="centerY" secondItem="2Lc-U5-bqD" secondAttribute="centerY" id="ttM-2R-US4"/>
+                <constraint firstItem="PQk-9A-M5l" firstAttribute="centerY" secondItem="QZM-Tb-fN3" secondAttribute="centerY" constant="-3" id="uAi-NN-DOv"/>
+                <constraint firstItem="Hoc-wC-u3L" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="8" id="vVH-7A-KPb"/>
+                <constraint firstItem="Kkf-BB-Ss2" firstAttribute="leading" secondItem="w7d-Q1-9Vc" secondAttribute="trailing" constant="8" id="xtj-x5-ByC"/>
+                <constraint firstItem="pgL-1t-ufS" firstAttribute="top" secondItem="Hoc-wC-u3L" secondAttribute="bottom" constant="8" id="zMX-ew-gmn"/>
+                <constraint firstAttribute="trailing" secondItem="VLL-WB-rN8" secondAttribute="trailing" constant="8" id="zOf-4i-LtH"/>
+            </constraints>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="92q-Pu-3pW"/>
+                    <exclude reference="Y0x-ID-Ekc"/>
+                </mask>
+            </variation>
+            <point key="canvasLocation" x="449" y="299"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="colorToFind-icon.png" width="150" height="50"/>
+        <image name="kamera-icon.png" width="120" height="120"/>
+        <image name="list-icon.png" width="44" height="44"/>
+        <image name="previewImage-icon.png" width="100" height="101"/>
+        <image name="search_white_highlighted" width="50" height="50"/>
+        <image name="settings_navBar" width="22" height="22"/>
+    </resources>
+</document>

@@ -10,6 +10,10 @@
 #import "OKTutorialBaseViewController.h"
 #import "OKInfoChildViewController.h"
 #import "OKWelcomeViewController.h"
+#import "OKSelectColorTutorialVC.h"
+#import "OKResultsDetailTutVCViewController.h"
+#import "OKSettingsTutVC.h"
+#import "OKTryOnMeTutVC.h"
 
 
 @interface OKInfoViewController () <OKInfoChildViewControllerDelegate>
@@ -33,9 +37,9 @@
   
   //eger program ilk acildiysa welcome ekrani icin bir fazla presentasyon goster!
   self.presentationCount = 5;
-  if (self.pageIndex == OKWelcomeScreenPage) {
-    self.presentationCount = 6;
-  }
+//  if (self.pageIndex == OKWelcomeScreenPage) {
+//    self.presentationCount = 6;
+//  }
   OKTutorialBaseViewController *child = [self viewControllerAtIndex:self.pageIndex];
   NSArray *childViewControllers = @[child];
   
@@ -57,6 +61,18 @@
   switch (index) {
     case OKWelcomeScreenPage:
       childViewController = [[OKWelcomeViewController alloc] initWithNibName:@"OKWelcomeViewController" bundle:nil];
+      break;
+    case OKSelectColorPage:
+      childViewController = [[OKSelectColorTutorialVC alloc] initWithNibName:@"OKSelectColorTutorialVC" bundle:nil];
+      break;
+    case OKResultDetailPage:
+      childViewController = [[OKResultsDetailTutVCViewController alloc] initWithNibName:@"OKResultsDetailTutVCViewController" bundle:nil];
+      break;
+    case OKSettingsPage:
+      childViewController = [[OKSettingsTutVC alloc] initWithNibName:@"OKSettingsTutVC" bundle:nil];
+      break;
+    case OKTryOnMePage:
+      childViewController = [[OKTryOnMeTutVC alloc] initWithNibName:@"OKTryOnMeTutVC" bundle:nil];
       break;
     default:
       childViewController = [[OKInfoChildViewController alloc] initWithNibName:@"OKInfoChildViewController" bundle:nil];

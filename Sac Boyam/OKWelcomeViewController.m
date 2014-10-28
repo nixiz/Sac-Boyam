@@ -17,9 +17,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-  UIImage *backgroundImage = [UIImage imageNamed:@"background_sacBoyasi_6"];
-  UIColor *backColor = [UIColor colorWithPatternImage:backgroundImage];
-  self.view.backgroundColor = backColor;
     // Do any additional setup after loading the view from its nib.
 }
 

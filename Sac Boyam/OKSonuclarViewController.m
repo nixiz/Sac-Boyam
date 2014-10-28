@@ -139,7 +139,7 @@
 //  screenShot = [screenShot applyDarkEffect];
   OKInfoViewController *vc = [[OKInfoViewController alloc] initWithNibName:@"OKInfoViewController" bundle:nil];
 //  vc.screenShot = screenShot;
-  [vc setPageIndex:OKResultsPage];
+  [vc setPageIndex:OKSelectColorPage];
 //  vc.pageIndex = 1;
   //  [vc setModalPresentationStyle:UIModalPresentationFullScreen];
   //  [vc setModalTransitionStyle:UIModalTransitionStyleFlipHorizontal];

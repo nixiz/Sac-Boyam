@@ -13,12 +13,21 @@
 @end
 
 @implementation OKTutorialBaseViewController
-/*
+
 - (void)viewDidLoad {
-    [super viewDidLoad];
+  [super viewDidLoad];
+  UIImage *backgroundImage = [UIImage imageNamed:@"background_sacBoyasi_6"];
+  UIColor *backColor = [UIColor colorWithPatternImage:backgroundImage];
+  self.view.backgroundColor = backColor;
+  //  UIGraphicsBeginImageContext(self.view.bounds.size);
+  //  [backgroundImage drawInRect:self.view.bounds];
+  //  UIImage *backgroundcolor = UIGraphicsGetImageFromCurrentImageContext();
+  //  UIGraphicsEndImageContext();
+  //  backgroundImage = [backgroundImage applyBlurWithRadius:15 tintColor:[UIColor colorWithWhite:0.4 alpha:0.6] saturationDeltaFactor:1.3 maskImage:nil];
+  //  backgroundImage = [backgroundImage applyDarkEffect];
     // Do any additional setup after loading the view.
 }
-
+/*
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

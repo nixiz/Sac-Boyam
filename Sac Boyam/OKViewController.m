@@ -165,7 +165,6 @@ struct pixel {
 //  [vc setModalTransitionStyle:UIModalTransitionStyleFlipHorizontal];
   [self presentViewController:vc animated:NO completion:nil];
   
-//  [self performSegueWithIdentifier:@"tutorialSegue" sender:self];
   if ([[[NSUserDefaults standardUserDefaults] objectForKey:showTutorialKey] boolValue]) {
     [[NSUserDefaults standardUserDefaults] setObject:@NO forKey:showTutorialKey];
     [[NSUserDefaults standardUserDefaults] synchronize];

@@ -19,10 +19,10 @@ static NSString *userDefaultPhotoKey = @"userPhotoKey";
 typedef NS_ENUM(NSInteger, OKPageType) {
   OKWelcomeScreenPage = 0,
   OKSelectColorPage = 1,
-  OKResultsPage = 2,
-  OKResultDetailPage = 3,
-  OKSettingsPage = 4,
-  OKTryOnMePage = 5
+//  OKResultsPage = 2,
+  OKResultDetailPage = 2,
+  OKSettingsPage = 3,
+  OKTryOnMePage = 4
 };
 
 @interface OKUtils : NSObject

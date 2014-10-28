@@ -25,18 +25,7 @@
 
 - (void)viewDidLoad {
   [super viewDidLoad];
-//  self.view.backgroundColor = [UIColor colorWithPatternImage:self.image];
-  UIImage *backgroundImage = [UIImage imageNamed:@"background_sacBoyasi_6"];
-//  UIGraphicsBeginImageContext(self.view.bounds.size);
-//  [backgroundImage drawInRect:self.view.bounds];
-//  UIImage *backgroundcolor = UIGraphicsGetImageFromCurrentImageContext();
-//  UIGraphicsEndImageContext();
-//  backgroundImage = [backgroundImage applyBlurWithRadius:15 tintColor:[UIColor colorWithWhite:0.4 alpha:0.6] saturationDeltaFactor:1.3 maskImage:nil];
-//  backgroundImage = [backgroundImage applyDarkEffect];
-  
-  UIColor *backColor = [UIColor colorWithPatternImage:backgroundImage];
-  self.view.backgroundColor = backColor;
-  [self.doneButton setTitle:@"done" forState:UIControlStateNormal];
+//  [self.doneButton setTitle:@"done" forState:UIControlStateNormal];
 //  [self.skipButton setTitle:@"skip" forState:UIControlStateNormal];
   
 //  self.showDoneButton = YES; //always show done button!
