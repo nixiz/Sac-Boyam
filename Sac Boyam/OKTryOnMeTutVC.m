@@ -7,6 +7,7 @@
 //
 
 #import "OKTryOnMeTutVC.h"
+#import "OKAppDelegate.h"
 
 @interface OKTryOnMeTutVC ()
 @property (weak, nonatomic) IBOutlet UIImageView *imageView1;
@@ -35,7 +36,8 @@
 - (void)timerExpired:(NSTimer *)timer
 {
   static int count = 1;
-  __block NSString *imageName = [NSString stringWithFormat:@"tryonme%d-icon.png", count++ % 4 + 1];
+  //
+  __block NSString *imageName = [NSString stringWithFormat:@"tryonme-%@%d.png", NSLocalizedStringFromTable(@"lang", okStringsTableName, nil), count++ % 4 + 1];
   [UIView transitionWithView:self.imageView1
                     duration:0.2
                      options:UIViewAnimationOptionTransitionCrossDissolve
@@ -45,6 +47,7 @@
 
   if (count >= 4 * 2) {
     [timer invalidate];
+    count = 1;
   }
 }
 

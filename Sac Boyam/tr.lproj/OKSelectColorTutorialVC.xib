@@ -34,7 +34,7 @@
                         <constraint firstAttribute="width" constant="44" id="jBc-Ap-k9Q"/>
                     </constraints>
                 </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ile istediğiniz bir resmi seçin veya yeni bir resim çekin" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p8s-sB-Yuo">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="istediğiniz bir resmi seçin veya yeni bir resim çekin" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p8s-sB-Yuo">
                     <rect key="frame" x="60" y="33" width="532" height="18"/>
                     <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="15"/>
                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
@@ -47,7 +47,7 @@
                         <constraint firstAttribute="width" constant="44" id="nP0-kb-Fz1"/>
                     </constraints>
                 </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ile ayarlar sayfasına geçin" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Lc-U5-bqD">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ayarlar sayfasına geçin" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Lc-U5-bqD">
                     <rect key="frame" x="60" y="85" width="532" height="18"/>
                     <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="15"/>
                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
@@ -93,13 +93,13 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p2L-Dz-K29">
-                    <rect key="frame" x="542" y="558" width="50" height="30"/>
+                    <rect key="frame" x="537" y="558" width="55" height="30"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="50" id="0ji-6J-uob"/>
+                        <constraint firstAttribute="width" constant="55" id="0ji-6J-uob"/>
                         <constraint firstAttribute="height" constant="30" id="q7T-wx-GMv"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
-                    <state key="normal" title="done">
+                    <state key="normal" title="tamam">
                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>

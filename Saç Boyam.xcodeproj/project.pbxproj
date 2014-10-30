@@ -9,20 +9,25 @@
 /* Begin PBXBuildFile section */
 		7100615A19FF772C004A7A3C /* list-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 7100615919FF772C004A7A3C /* list-icon.png */; };
 		7100615E19FF7845004A7A3C /* OKResultsDetailTutVCViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7100615C19FF7845004A7A3C /* OKResultsDetailTutVCViewController.m */; };
-		7100615F19FF7845004A7A3C /* OKResultsDetailTutVCViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7100615D19FF7845004A7A3C /* OKResultsDetailTutVCViewController.xib */; };
 		7100616119FF791F004A7A3C /* boya-icon.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7100616019FF791F004A7A3C /* boya-icon.jpg */; };
 		7100616919FF8117004A7A3C /* OKSettingsTutVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 7100616719FF8117004A7A3C /* OKSettingsTutVC.m */; };
-		7100616A19FF8117004A7A3C /* OKSettingsTutVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7100616819FF8117004A7A3C /* OKSettingsTutVC.xib */; };
 		7100616E19FF8CE6004A7A3C /* OKTryOnMeTutVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 7100616C19FF8CE6004A7A3C /* OKTryOnMeTutVC.m */; };
-		7100616F19FF8CE6004A7A3C /* OKTryOnMeTutVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7100616D19FF8CE6004A7A3C /* OKTryOnMeTutVC.xib */; };
-		7100617419FF912E004A7A3C /* tryonme1-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 7100617019FF912E004A7A3C /* tryonme1-icon.png */; };
-		7100617519FF912E004A7A3C /* tryonme2-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 7100617119FF912E004A7A3C /* tryonme2-icon.png */; };
-		7100617619FF912E004A7A3C /* tryonme3-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 7100617219FF912E004A7A3C /* tryonme3-icon.png */; };
-		7100617719FF912E004A7A3C /* tryonme4-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 7100617319FF912E004A7A3C /* tryonme4-icon.png */; };
+		7100617A19FFA047004A7A3C /* OKSelectColorTutorialVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7100617C19FFA048004A7A3C /* OKSelectColorTutorialVC.xib */; };
+		7100617E19FFA096004A7A3C /* OKResultsDetailTutVCViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7100618019FFA096004A7A3C /* OKResultsDetailTutVCViewController.xib */; };
 		71063759196C0ED100D17D66 /* UIView+CreateImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 71063758196C0ED100D17D66 /* UIView+CreateImage.m */; };
 		710735A217C4981400484D21 /* OKSonuclarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 710735A117C4981400484D21 /* OKSonuclarViewController.m */; };
 		710735A617C49E6800484D21 /* OKSonuclarCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 710735A517C49E6800484D21 /* OKSonuclarCell.m */; };
 		710DC71419BEE7BF00306DB9 /* FDTakeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 710DC71319BEE7BF00306DB9 /* FDTakeController.m */; };
+		710E760E1A023A7200CCF755 /* tryonme-en1.png in Resources */ = {isa = PBXBuildFile; fileRef = 710E760A1A023A7200CCF755 /* tryonme-en1.png */; };
+		710E760F1A023A7200CCF755 /* tryonme-en2.png in Resources */ = {isa = PBXBuildFile; fileRef = 710E760B1A023A7200CCF755 /* tryonme-en2.png */; };
+		710E76101A023A7200CCF755 /* tryonme-en3.png in Resources */ = {isa = PBXBuildFile; fileRef = 710E760C1A023A7200CCF755 /* tryonme-en3.png */; };
+		710E76111A023A7200CCF755 /* tryonme-en4.png in Resources */ = {isa = PBXBuildFile; fileRef = 710E760D1A023A7200CCF755 /* tryonme-en4.png */; };
+		710E76161A023A9600CCF755 /* tryonme-tr1.png in Resources */ = {isa = PBXBuildFile; fileRef = 710E76121A023A9600CCF755 /* tryonme-tr1.png */; };
+		710E76171A023A9600CCF755 /* tryonme-tr2.png in Resources */ = {isa = PBXBuildFile; fileRef = 710E76131A023A9600CCF755 /* tryonme-tr2.png */; };
+		710E76181A023A9600CCF755 /* tryonme-tr3.png in Resources */ = {isa = PBXBuildFile; fileRef = 710E76141A023A9600CCF755 /* tryonme-tr3.png */; };
+		710E76191A023A9600CCF755 /* tryonme-tr4.png in Resources */ = {isa = PBXBuildFile; fileRef = 710E76151A023A9600CCF755 /* tryonme-tr4.png */; };
+		712717071A02246D0075EE23 /* OKTryOnMeTutVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 712717091A02246D0075EE23 /* OKTryOnMeTutVC.xib */; };
+		7127170B1A02247B0075EE23 /* OKSettingsTutVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7127170D1A02247B0075EE23 /* OKSettingsTutVC.xib */; };
 		71328A9617C35FD7007EE533 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71328A9517C35FD7007EE533 /* UIKit.framework */; };
 		71328A9817C35FD7007EE533 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71328A9717C35FD7007EE533 /* Foundation.framework */; };
 		71328A9A17C35FD7007EE533 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71328A9917C35FD7007EE533 /* CoreGraphics.framework */; };
@@ -79,7 +84,6 @@
 		71F9747019FE6955007F774D /* OKWelcomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 71F9747219FE6955007F774D /* OKWelcomeViewController.xib */; };
 		71F9747619FE6B05007F774D /* OKTutorialBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 71F9747519FE6B05007F774D /* OKTutorialBaseViewController.m */; };
 		71F9747B19FE75EE007F774D /* OKSelectColorTutorialVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 71F9747919FE75EE007F774D /* OKSelectColorTutorialVC.m */; };
-		71F9747C19FE75EE007F774D /* OKSelectColorTutorialVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 71F9747A19FE75EE007F774D /* OKSelectColorTutorialVC.xib */; };
 		71F9748419FE8FD2007F774D /* kamera-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 71F9748319FE8FD2007F774D /* kamera-icon.png */; };
 		71F9748819FE9308007F774D /* colorToFind-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 71F9748719FE9308007F774D /* colorToFind-icon.png */; };
 		71F9748C19FE94D9007F774D /* previewImage-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 71F9748B19FE94D9007F774D /* previewImage-icon.png */; };
@@ -89,18 +93,15 @@
 		7100615919FF772C004A7A3C /* list-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "list-icon.png"; sourceTree = "<group>"; };
 		7100615B19FF7845004A7A3C /* OKResultsDetailTutVCViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKResultsDetailTutVCViewController.h; sourceTree = "<group>"; };
 		7100615C19FF7845004A7A3C /* OKResultsDetailTutVCViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKResultsDetailTutVCViewController.m; sourceTree = "<group>"; };
-		7100615D19FF7845004A7A3C /* OKResultsDetailTutVCViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OKResultsDetailTutVCViewController.xib; sourceTree = "<group>"; };
 		7100616019FF791F004A7A3C /* boya-icon.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "boya-icon.jpg"; sourceTree = "<group>"; };
 		7100616619FF8117004A7A3C /* OKSettingsTutVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKSettingsTutVC.h; sourceTree = "<group>"; };
 		7100616719FF8117004A7A3C /* OKSettingsTutVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKSettingsTutVC.m; sourceTree = "<group>"; };
-		7100616819FF8117004A7A3C /* OKSettingsTutVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OKSettingsTutVC.xib; sourceTree = "<group>"; };
 		7100616B19FF8CE6004A7A3C /* OKTryOnMeTutVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKTryOnMeTutVC.h; sourceTree = "<group>"; };
 		7100616C19FF8CE6004A7A3C /* OKTryOnMeTutVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKTryOnMeTutVC.m; sourceTree = "<group>"; };
-		7100616D19FF8CE6004A7A3C /* OKTryOnMeTutVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OKTryOnMeTutVC.xib; sourceTree = "<group>"; };
-		7100617019FF912E004A7A3C /* tryonme1-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tryonme1-icon.png"; sourceTree = "<group>"; };
-		7100617119FF912E004A7A3C /* tryonme2-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tryonme2-icon.png"; sourceTree = "<group>"; };
-		7100617219FF912E004A7A3C /* tryonme3-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tryonme3-icon.png"; sourceTree = "<group>"; };
-		7100617319FF912E004A7A3C /* tryonme4-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tryonme4-icon.png"; sourceTree = "<group>"; };
+		7100617B19FFA048004A7A3C /* tr */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = tr; path = tr.lproj/OKSelectColorTutorialVC.xib; sourceTree = "<group>"; };
+		7100617D19FFA04D004A7A3C /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/OKSelectColorTutorialVC.xib; sourceTree = "<group>"; };
+		7100617F19FFA096004A7A3C /* tr */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = tr; path = tr.lproj/OKResultsDetailTutVCViewController.xib; sourceTree = "<group>"; };
+		7100618119FFA097004A7A3C /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/OKResultsDetailTutVCViewController.xib; sourceTree = "<group>"; };
 		71063757196C0ED100D17D66 /* UIView+CreateImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+CreateImage.h"; sourceTree = "<group>"; };
 		71063758196C0ED100D17D66 /* UIView+CreateImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+CreateImage.m"; sourceTree = "<group>"; };
 		710735A017C4981400484D21 /* OKSonuclarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKSonuclarViewController.h; sourceTree = "<group>"; };
@@ -110,6 +111,18 @@
 		710DC71119BED62400306DB9 /* tr */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = tr; path = tr.lproj/MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
 		710DC71219BEE7BF00306DB9 /* FDTakeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDTakeController.h; sourceTree = "<group>"; };
 		710DC71319BEE7BF00306DB9 /* FDTakeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDTakeController.m; sourceTree = "<group>"; };
+		710E760A1A023A7200CCF755 /* tryonme-en1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tryonme-en1.png"; sourceTree = "<group>"; };
+		710E760B1A023A7200CCF755 /* tryonme-en2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tryonme-en2.png"; sourceTree = "<group>"; };
+		710E760C1A023A7200CCF755 /* tryonme-en3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tryonme-en3.png"; sourceTree = "<group>"; };
+		710E760D1A023A7200CCF755 /* tryonme-en4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tryonme-en4.png"; sourceTree = "<group>"; };
+		710E76121A023A9600CCF755 /* tryonme-tr1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tryonme-tr1.png"; sourceTree = "<group>"; };
+		710E76131A023A9600CCF755 /* tryonme-tr2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tryonme-tr2.png"; sourceTree = "<group>"; };
+		710E76141A023A9600CCF755 /* tryonme-tr3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tryonme-tr3.png"; sourceTree = "<group>"; };
+		710E76151A023A9600CCF755 /* tryonme-tr4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tryonme-tr4.png"; sourceTree = "<group>"; };
+		712717081A02246D0075EE23 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/OKTryOnMeTutVC.xib; sourceTree = "<group>"; };
+		7127170A1A0224710075EE23 /* tr */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = tr; path = tr.lproj/OKTryOnMeTutVC.xib; sourceTree = "<group>"; };
+		7127170C1A02247B0075EE23 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/OKSettingsTutVC.xib; sourceTree = "<group>"; };
+		7127170E1A02247C0075EE23 /* tr */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = tr; path = tr.lproj/OKSettingsTutVC.xib; sourceTree = "<group>"; };
 		71328A9217C35FD7007EE533 /* Saç Boyam.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Saç Boyam.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		71328A9517C35FD7007EE533 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		71328A9717C35FD7007EE533 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -204,7 +217,6 @@
 		71F9747519FE6B05007F774D /* OKTutorialBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKTutorialBaseViewController.m; sourceTree = "<group>"; };
 		71F9747819FE75EE007F774D /* OKSelectColorTutorialVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKSelectColorTutorialVC.h; sourceTree = "<group>"; };
 		71F9747919FE75EE007F774D /* OKSelectColorTutorialVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKSelectColorTutorialVC.m; sourceTree = "<group>"; };
-		71F9747A19FE75EE007F774D /* OKSelectColorTutorialVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OKSelectColorTutorialVC.xib; sourceTree = "<group>"; };
 		71F9748319FE8FD2007F774D /* kamera-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "kamera-icon.png"; sourceTree = "<group>"; };
 		71F9748719FE9308007F774D /* colorToFind-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "colorToFind-icon.png"; sourceTree = "<group>"; };
 		71F9748B19FE94D9007F774D /* previewImage-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "previewImage-icon.png"; sourceTree = "<group>"; };
@@ -248,7 +260,7 @@
 				7100615919FF772C004A7A3C /* list-icon.png */,
 				71F9747819FE75EE007F774D /* OKSelectColorTutorialVC.h */,
 				71F9747919FE75EE007F774D /* OKSelectColorTutorialVC.m */,
-				71F9747A19FE75EE007F774D /* OKSelectColorTutorialVC.xib */,
+				7100617C19FFA048004A7A3C /* OKSelectColorTutorialVC.xib */,
 			);
 			name = "Main Screen";
 			sourceTree = "<group>";
@@ -259,7 +271,7 @@
 				7100616019FF791F004A7A3C /* boya-icon.jpg */,
 				7100615B19FF7845004A7A3C /* OKResultsDetailTutVCViewController.h */,
 				7100615C19FF7845004A7A3C /* OKResultsDetailTutVCViewController.m */,
-				7100615D19FF7845004A7A3C /* OKResultsDetailTutVCViewController.xib */,
+				7100618019FFA096004A7A3C /* OKResultsDetailTutVCViewController.xib */,
 			);
 			name = "Detail Screen";
 			sourceTree = "<group>";
@@ -284,7 +296,7 @@
 			children = (
 				7100616619FF8117004A7A3C /* OKSettingsTutVC.h */,
 				7100616719FF8117004A7A3C /* OKSettingsTutVC.m */,
-				7100616819FF8117004A7A3C /* OKSettingsTutVC.xib */,
+				7127170D1A02247B0075EE23 /* OKSettingsTutVC.xib */,
 			);
 			name = "Settings Screen";
 			sourceTree = "<group>";
@@ -292,13 +304,17 @@
 		7100617919FF97E8004A7A3C /* Try On Me Screen */ = {
 			isa = PBXGroup;
 			children = (
-				7100617019FF912E004A7A3C /* tryonme1-icon.png */,
-				7100617119FF912E004A7A3C /* tryonme2-icon.png */,
-				7100617219FF912E004A7A3C /* tryonme3-icon.png */,
-				7100617319FF912E004A7A3C /* tryonme4-icon.png */,
+				710E760A1A023A7200CCF755 /* tryonme-en1.png */,
+				710E760B1A023A7200CCF755 /* tryonme-en2.png */,
+				710E760C1A023A7200CCF755 /* tryonme-en3.png */,
+				710E760D1A023A7200CCF755 /* tryonme-en4.png */,
+				710E76121A023A9600CCF755 /* tryonme-tr1.png */,
+				710E76131A023A9600CCF755 /* tryonme-tr2.png */,
+				710E76141A023A9600CCF755 /* tryonme-tr3.png */,
+				710E76151A023A9600CCF755 /* tryonme-tr4.png */,
 				7100616B19FF8CE6004A7A3C /* OKTryOnMeTutVC.h */,
 				7100616C19FF8CE6004A7A3C /* OKTryOnMeTutVC.m */,
-				7100616D19FF8CE6004A7A3C /* OKTryOnMeTutVC.xib */,
+				712717091A02246D0075EE23 /* OKTryOnMeTutVC.xib */,
 			);
 			name = "Try On Me Screen";
 			sourceTree = "<group>";
@@ -608,30 +624,34 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7100617619FF912E004A7A3C /* tryonme3-icon.png in Resources */,
+				710E760F1A023A7200CCF755 /* tryonme-en2.png in Resources */,
 				716A8FAA19B9988A009D0E3E /* Default@2x.png in Resources */,
 				71328AA017C35FD7007EE533 /* InfoPlist.strings in Resources */,
-				71F9747C19FE75EE007F774D /* OKSelectColorTutorialVC.xib in Resources */,
-				7100617719FF912E004A7A3C /* tryonme4-icon.png in Resources */,
+				7100617A19FFA047004A7A3C /* OKSelectColorTutorialVC.xib in Resources */,
 				716A8FA919B9988A009D0E3E /* Default-568h@2x.png in Resources */,
-				7100617419FF912E004A7A3C /* tryonme1-icon.png in Resources */,
 				7193555C19654DFC0040F48D /* ImageAssets.xcassets in Resources */,
-				7100615F19FF7845004A7A3C /* OKResultsDetailTutVCViewController.xib in Resources */,
+				7100617E19FFA096004A7A3C /* OKResultsDetailTutVCViewController.xib in Resources */,
 				71840EE019B84B7800F99868 /* persistentStore in Resources */,
 				71F9748419FE8FD2007F774D /* kamera-icon.png in Resources */,
+				710E76171A023A9600CCF755 /* tryonme-tr2.png in Resources */,
 				71F9748C19FE94D9007F774D /* previewImage-icon.png in Resources */,
-				7100617519FF912E004A7A3C /* tryonme2-icon.png in Resources */,
-				7100616F19FF8CE6004A7A3C /* OKTryOnMeTutVC.xib in Resources */,
+				712717071A02246D0075EE23 /* OKTryOnMeTutVC.xib in Resources */,
 				713FBE2319FAB097009C9487 /* OKInfoChildViewController.xib in Resources */,
+				710E760E1A023A7200CCF755 /* tryonme-en1.png in Resources */,
 				7100616119FF791F004A7A3C /* boya-icon.jpg in Resources */,
-				7100616A19FF8117004A7A3C /* OKSettingsTutVC.xib in Resources */,
+				7127170B1A02247B0075EE23 /* OKSettingsTutVC.xib in Resources */,
 				71F9748819FE9308007F774D /* colorToFind-icon.png in Resources */,
 				7169530F196E64C100C988E5 /* localized.strings in Resources */,
+				710E76101A023A7200CCF755 /* tryonme-en3.png in Resources */,
 				713FBE1E19FAB080009C9487 /* OKInfoViewController.xib in Resources */,
 				718986661964592B00C26297 /* final_effect_2.png in Resources */,
+				710E76161A023A9600CCF755 /* tryonme-tr1.png in Resources */,
+				710E76111A023A7200CCF755 /* tryonme-en4.png in Resources */,
+				710E76191A023A9600CCF755 /* tryonme-tr4.png in Resources */,
 				71328AAF17C35FD7007EE533 /* MainStoryboard_iPhone.storyboard in Resources */,
 				7100615A19FF772C004A7A3C /* list-icon.png in Resources */,
 				71328ABF17C365F3007EE533 /* derpette_brown.png in Resources */,
+				710E76181A023A9600CCF755 /* tryonme-tr3.png in Resources */,
 				7169530A196E646700C988E5 /* FDTake.strings in Resources */,
 				71328AC017C365F3007EE533 /* derpette_blond.png in Resources */,
 				71F9747019FE6955007F774D /* OKWelcomeViewController.xib in Resources */,
@@ -692,6 +712,42 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		7100617C19FFA048004A7A3C /* OKSelectColorTutorialVC.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7100617B19FFA048004A7A3C /* tr */,
+				7100617D19FFA04D004A7A3C /* en */,
+			);
+			name = OKSelectColorTutorialVC.xib;
+			sourceTree = "<group>";
+		};
+		7100618019FFA096004A7A3C /* OKResultsDetailTutVCViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7100617F19FFA096004A7A3C /* tr */,
+				7100618119FFA097004A7A3C /* en */,
+			);
+			name = OKResultsDetailTutVCViewController.xib;
+			sourceTree = "<group>";
+		};
+		712717091A02246D0075EE23 /* OKTryOnMeTutVC.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				712717081A02246D0075EE23 /* en */,
+				7127170A1A0224710075EE23 /* tr */,
+			);
+			name = OKTryOnMeTutVC.xib;
+			sourceTree = "<group>";
+		};
+		7127170D1A02247B0075EE23 /* OKSettingsTutVC.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7127170C1A02247B0075EE23 /* en */,
+				7127170E1A02247C0075EE23 /* tr */,
+			);
+			name = OKSettingsTutVC.xib;
+			sourceTree = "<group>";
+		};
 		71328A9E17C35FD7007EE533 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (

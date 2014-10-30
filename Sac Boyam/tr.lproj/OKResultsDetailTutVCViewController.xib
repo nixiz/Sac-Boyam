@@ -19,13 +19,13 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a6c-qR-xgJ">
-                    <rect key="frame" x="542" y="558" width="50" height="30"/>
+                    <rect key="frame" x="539" y="558" width="53" height="30"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="50" id="a9Q-vq-EK7"/>
+                        <constraint firstAttribute="width" constant="53" id="a9Q-vq-EK7"/>
                         <constraint firstAttribute="height" constant="30" id="daW-Se-ZcM"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
-                    <state key="normal" title="done">
+                    <state key="normal" title="tamam">
                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
@@ -40,13 +40,13 @@
                         <constraint firstAttribute="height" constant="152" id="xN1-qx-u02"/>
                     </constraints>
                 </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Boyaların detaylarını görebilir, internette aratabilirsiniz" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dpc-H2-5yA">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Boyaların detaylarını görebilir, internette aratabilirsiniz" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dpc-H2-5yA">
                     <rect key="frame" x="196" y="86" width="396" height="18"/>
                     <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="15"/>
                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Beğendiğiniz boyayı kayıt edebilir, istediğiniz zaman ayarlar sayfasından tekrar bakabilirsiniz" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dxx-Ln-brP">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Beğendiğiniz boyayı kayıt edebilir, istediğiniz zaman &quot;ayarlar&quot; sayfasından tekrar bakabilirsiniz" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dxx-Ln-brP">
                     <rect key="frame" x="8" y="180" width="584" height="43"/>
                     <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="18"/>
                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>

@@ -114,6 +114,7 @@ struct pixel {
 
   self.previewImage.layer.cornerRadius = 12.0;
   self.previewImage.layer.masksToBounds = YES;
+  [self.previewImage setContentMode:UIViewContentModeRedraw];
   
   self.takeController = [[FDTakeController alloc] init];
   self.takeController.delegate = self;
@@ -150,7 +151,7 @@ struct pixel {
 
 - (void)showTutorial
 {
-  [self showTutorialWithWelcomeScreen:NO];
+  [self showTutorialWithWelcomeScreen:YES];
 }
 
 - (void)showTutorialWithWelcomeScreen:(BOOL)showWelcomeScreen
@@ -237,7 +238,7 @@ struct pixel {
   UIImage *imageToBeShow = UIGraphicsGetImageFromCurrentImageContext();
   UIGraphicsEndImageContext();
   [self.selectedImage setImage:imageToBeShow];
-  [self.selectedImage sizeToFit];
+//  [self.selectedImage sizeToFit];
 }
 
 
@@ -471,8 +472,6 @@ struct pixel {
 
     NSLog(@"File successfuly copied to folder %@", persUrl);
   }
-  
-  
   
   NSLog(@"DB path: %@", url);
   NSError *_error;

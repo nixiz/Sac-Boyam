@@ -106,7 +106,7 @@
     //it cant be null
     assert(NO);
   }
-  self.blendAlphaValue = .16;
+  self.blendAlphaValue = .24;
   CGRect toolBarFrame = self.tryToolBar.frame;
   self.settingsViewRecoverFrame = CGRectMake(0, toolBarFrame.origin.y - 52 + 20/*size of status bar*/, toolBarFrame.size.width, 56);
   self.settingsViewHideFrame = CGRectMake(0, toolBarFrame.origin.y + 20/*size of status bar*/, toolBarFrame.size.width, 56);
@@ -192,7 +192,7 @@
   UIImage *imageToBeShow = UIGraphicsGetImageFromCurrentImageContext();
   UIGraphicsEndImageContext();
   [self.previewImg setImage:imageToBeShow];
-  [self.previewImg sizeToFit];
+//  [self.previewImg sizeToFit];
   if ([[NSUserDefaults standardUserDefaults] objectForKey:userDefaultPhotoKey] == nil) {
     [self saveImageToUserDefaults];
   } else {
@@ -363,17 +363,18 @@
   UIImage *img = UIGraphicsGetImageFromCurrentImageContext();
   UIGraphicsEndImageContext();
 
-  NSLog(@"BlendValue: %f", self.blendAlphaValue);
-//  UIImage *croppedImage = [self cropImageUsingBezierPath:self.previewImg.image bezierPath:[path copy]];
-//  UIGraphicsBeginImageContext( self.previewImg.bounds.size );
+//  CGRect erct =CGRectMake(0,0,self.previewImg.bounds.size.width, self.previewImg.bounds.size.height);
+//  UIGraphicsBeginImageContext(self.previewImg.bounds.size);
 //  
-//  [croppedImage drawInRect:CGRectMake(0,0,self.previewImg.bounds.size.width, self.previewImg.bounds.size.height)];
+//  [self.previewImg.image drawInRect:erct];
+//  [img drawInRect:erct blendMode:kCGBlendModeNormal alpha:0.64];
 //  
-//  [img drawInRect:CGRectMake(0,0, self.previewImg.bounds.size.width, self.previewImg.bounds.size.height) blendMode:kCGBlendModeNormal alpha:self.blendAlphaValue];
-//  
-//  croppedImage = UIGraphicsGetImageFromCurrentImageContext();
+//  UIImage *blendImage = UIGraphicsGetImageFromCurrentImageContext();
 //  UIGraphicsEndImageContext();
+//  
+//  [self.previewImg setImage:blendImage];
   
+  NSLog(@"BlendValue: %f", self.blendAlphaValue);
   UIImage *finalImage = [self blendImages:self.previewImg.image and:img desiredSize:self.previewImg.bounds.size];
   [self.previewImg setImage:finalImage];
 }

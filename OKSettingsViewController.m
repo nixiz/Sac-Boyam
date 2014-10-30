@@ -425,29 +425,16 @@
   [cell.detailTextLabel setTextColor:[UIColor colorWithWhite:1.0 alpha:0.8]];
   cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ : %@", NSLocalizedStringFromTable(@"recordTime", okStringsTableName, nil), [OKUtils dateToString:record.recordDate]];
   
-  CGRect contentRect = CGRectMake(0, 0, cell.contentView.bounds.size.height, cell.contentView.bounds.size.height);
+//  CGRect contentRect = CGRectMake(0, 0, cell.contentView.bounds.size.height, cell.contentView.bounds.size.height);
 //  UIImageView *contentImageView = [[UIImageView alloc] initWithFrame:contentRect];
-  UIColor *productColor = [UIColor colorWithRed:[record.recordedColor.red floatValue]
-                                          green:[record.recordedColor.green floatValue]
-                                           blue:[record.recordedColor.blue floatValue] alpha:1.0];
-  UIImage *productImg = [UIImage imageWithColor:productColor andSize:contentRect.size];
-//  [contentImageView setImage:productImg];
-//  contentImageView.layer.cornerRadius = contentRect.size.height / 4.0;
-//  [cell.contentView addSubview:contentImageView];
+//  UIColor *productColor = [UIColor colorWithRed:[record.recordedColor.red floatValue]
+//                                          green:[record.recordedColor.green floatValue]
+//                                           blue:[record.recordedColor.blue floatValue] alpha:1.0];
+//  UIImage *productImg = [UIImage imageWithColor:productColor andSize:contentRect.size];
+  UIImage *productImg = [UIImage imageWithData:record.recordedColor.productImage];
   [cell.imageView setImage:productImg];
   cell.imageView.layer.cornerRadius = cell.bounds.size.height / 4.0;
   cell.imageView.layer.masksToBounds = YES;
-//  [cell.contentView addSubview:(UIView *)];
-
-  //  [cell setSelectionStyle:UITableViewCellSelectionStyleBlue];
-//  ColorModel *color = [self.fetchedResultsController objectAtIndexPath:indexPath];
-//  
-//  cell.productName.lineBreakMode = NSLineBreakByWordWrapping;
-//  cell.productName.numberOfLines = 2;
-//  cell.productName.text = color.productName;
-//  cell.priceLabel.text = [[color.price stringValue] stringByAppendingString:@" TL"];
-//  [cell.productImg setImage:[UIImage imageWithData:color.productImage]];
-//  return cell;
   
   return cell;
 }
