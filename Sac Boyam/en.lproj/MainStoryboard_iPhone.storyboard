@@ -183,14 +183,14 @@
                         <viewControllerLayoutGuide type="bottom" id="NF5-e2-htk"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="09k-Gi-qzK">
-                        <rect key="frame" x="0.0" y="64" width="320" height="480"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="s4m-dr-lbr">
-                                <rect key="frame" x="0.0" y="64" width="320" height="372"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="372"/>
                             </imageView>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" alpha="0.74999999999999978" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="v6Q-lM-38f">
-                                <rect key="frame" x="0.0" y="436" width="320" height="44"/>
+                                <rect key="frame" x="0.0" y="372" width="320" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="QdM-Ek-id7"/>
                                 </constraints>
@@ -245,6 +245,7 @@
                             <constraint firstAttribute="trailingMargin" secondItem="v6Q-lM-38f" secondAttribute="trailing" constant="-16" id="fer-iv-6Bs"/>
                         </constraints>
                     </view>
+                    <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <navigationItem key="navigationItem" title="Try On Me" id="NlB-Bg-oaD"/>
                     <connections>
                         <outlet property="previewImg" destination="s4m-dr-lbr" id="dRA-dS-56X"/>

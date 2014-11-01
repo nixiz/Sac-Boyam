@@ -30,7 +30,7 @@
                                                                       options:nil];
   self.pageController.dataSource = self;
   [self.pageController.view setFrame:self.view.bounds];
-  
+  self.pageController.view.backgroundColor = [[UIColor lightGrayColor] colorWithAlphaComponent:0.65];
   if (!self.pageIndex) {
     self.pageIndex = 0; //set page index to welcome presentation
   }

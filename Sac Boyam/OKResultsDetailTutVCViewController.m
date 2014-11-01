@@ -20,6 +20,8 @@
 
 - (void)viewDidLoad {
   [super viewDidLoad];
+  self.imageView1.layer.cornerRadius = 4.0;
+  self.imageView1.layer.masksToBounds = YES;
   self.viewCollection = @[self.imageView1, self.label1, self.label2];
   [self.viewCollection enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
     [(UIView *)obj setHidden:YES];
@@ -80,6 +82,7 @@
 
 -(void)viewDidDisappear:(BOOL)animated
 {
+  [super viewDidDisappear:animated];
   [self.viewCollection enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
     [(UIView *)obj setHidden:YES];
   }];

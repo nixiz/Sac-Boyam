@@ -45,6 +45,7 @@
 
 -(void)viewDidDisappear:(BOOL)animated
 {
+  [super viewDidDisappear:animated];
   [self.viewObj1 setOn:NO animated:NO];
   [self.viewObj2 setOn:NO animated:NO];
   [self.viewObj3 setOn:NO animated:NO];

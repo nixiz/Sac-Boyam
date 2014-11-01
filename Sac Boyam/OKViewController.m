@@ -151,7 +151,7 @@ struct pixel {
 
 - (void)showTutorial
 {
-  [self showTutorialWithWelcomeScreen:YES];
+  [self showTutorialWithWelcomeScreen:NO];
 }
 
 - (void)showTutorialWithWelcomeScreen:(BOOL)showWelcomeScreen
@@ -259,13 +259,13 @@ struct pixel {
     CGImageRelease(imageRef);
 
     // calculate average color for next steps
-    UIColor *color = [tmp_img averageColor];
+    self.color = [tmp_img averageColor];
     
     // show average color for user interaction.
     CGRect rect = self.previewImage.bounds;
     UIGraphicsBeginImageContext(rect.size);
     CGContextRef context = UIGraphicsGetCurrentContext();
-    CGContextSetFillColorWithColor(context, [color CGColor]);
+    CGContextSetFillColorWithColor(context, [self.color CGColor]);
     CGContextFillRect(context, rect);
     UIImage *img = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();

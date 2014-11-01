@@ -29,6 +29,19 @@
 
 - (void)viewDidLoad {
   [super viewDidLoad];
+  self.imageView1.layer.cornerRadius = 4.0;
+  self.imageView1.layer.masksToBounds = YES;
+  self.imageView2.layer.cornerRadius = 4.0;
+  self.imageView2.layer.masksToBounds = YES;
+  self.imageView3.layer.cornerRadius = 4.0;
+  self.imageView3.layer.masksToBounds = YES;
+  self.imageView4.layer.cornerRadius = 4.0;
+  self.imageView4.layer.masksToBounds = YES;
+  self.imageView5.layer.cornerRadius = 4.0;
+  self.imageView5.layer.masksToBounds = YES;
+  self.imageView6.layer.cornerRadius = 4.0;
+  self.imageView6.layer.masksToBounds = YES;
+
   NSArray *sequence1Arr = @[self.imageView1, self.label1];
   NSArray *sequence2Arr = @[self.imageView2, self.label2];
   NSArray *sequence3Arr = @[self.imageView3, self.label3];

@@ -145,7 +145,8 @@
   [alphaSlider setMinimumTrackImage:[maxColorImage resizableImageWithCapInsets:UIEdgeInsetsFromString(@"8")] forState:UIControlStateNormal];
   [alphaSlider addTarget:self action:@selector(alphaSliderChanged:) forControlEvents:UIControlEventValueChanged];
   [self.settingsView addSubview:alphaSlider];
-//  [self.settingsView setHidden:YES];
+  
+//  [self.tryToolBar setBackgroundColor:[UIColor blackColor]];
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -218,6 +219,16 @@
 
 #pragma mark - UIGestureRecognizerDelegate
 
+-(BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch
+{
+  // test if our control subview is on-screen
+  if ([touch.view isDescendantOfView:self.tryToolBar]) {
+    // we touched our control surface
+    return NO; // ignore the touch
+  }
+  return YES; // handle the touch
+}
+
 -(void)tapped:(UITapGestureRecognizer *)gesture {
   // eger settings ekrani gozukuyorsa diger islemleri yapma
   if ([self.settingsView isDescendantOfView:self.view]) return;
@@ -238,9 +249,10 @@
     
     [self.graphView.interpolationPoints addObject:[NSValue valueWithBytes:&touchedPt objCType:encoding]];
     [self.graphView setNeedsDisplay];
+
+    CGPoint touchedPtForImage = [gesture locationOfTouch:0 inView:self.previewImg];
+    [self.bezierPoints addObject:[NSValue valueWithBytes:&touchedPtForImage objCType:encoding]];
   }
-  CGPoint touchedPtForImage = [gesture locationOfTouch:0 inView:self.previewImg];
-  [self.bezierPoints addObject:[NSValue valueWithBytes:&touchedPtForImage objCType:encoding]];
 }
 
 - (IBAction)editButtonsTapped:(id)sender {
