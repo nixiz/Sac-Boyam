@@ -146,7 +146,19 @@
   [alphaSlider addTarget:self action:@selector(alphaSliderChanged:) forControlEvents:UIControlEventValueChanged];
   [self.settingsView addSubview:alphaSlider];
   
-//  [self.tryToolBar setBackgroundColor:[UIColor blackColor]];
+  
+  UIImage *backgroundImage = [UIImage imageNamed:@"background_sacBoyasi_5"];
+  UIGraphicsBeginImageContext(self.view.bounds.size);
+  [backgroundImage drawInRect:self.tryToolBar.bounds];
+  UIImage *backgroundcolor = UIGraphicsGetImageFromCurrentImageContext();
+  UIGraphicsEndImageContext();
+  
+  UIColor *cl = [backgroundcolor averageColor];
+  
+  backgroundcolor = [backgroundcolor applyBlurWithRadius:15 tintColor:[cl colorWithAlphaComponent:0.6] saturationDeltaFactor:1.3 maskImage:nil];
+  [self.tryToolBar setBackgroundColor:[UIColor colorWithPatternImage:backgroundcolor]];
+  
+//  [self.tryToolBar setBackgroundColor:[self.view getBackgroundColor]];
 }
 
 -(void)viewDidAppear:(BOOL)animated

@@ -191,41 +191,42 @@
                             </imageView>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" alpha="0.74999999999999978" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="v6Q-lM-38f">
                                 <rect key="frame" x="0.0" y="372" width="320" height="44"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="QdM-Ek-id7"/>
                                 </constraints>
                                 <items>
                                     <barButtonItem width="8" style="plain" systemItem="fixedSpace" id="aBx-D1-gYI"/>
                                     <barButtonItem tag="10" systemItem="trash" id="8aH-RG-tdO">
-                                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <connections>
                                             <action selector="editButtonsTapped:" destination="eig-Hp-jeq" id="qXr-zS-Kax"/>
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem width="8" style="plain" systemItem="fixedSpace" id="4Hb-eb-mSp"/>
                                     <barButtonItem tag="11" systemItem="reply" id="iSt-PH-W72">
-                                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <connections>
                                             <action selector="editButtonsTapped:" destination="eig-Hp-jeq" id="IFv-5Q-8Fb"/>
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="3Sn-uu-MFQ"/>
                                     <barButtonItem tag="14" systemItem="action" id="gEO-nZ-HfJ">
-                                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <connections>
                                             <action selector="editButtonsTapped:" destination="eig-Hp-jeq" id="cyp-U7-k4s"/>
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="llg-5P-B65"/>
                                     <barButtonItem tag="13" title="Clear" id="lvh-gD-1CZ">
-                                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <connections>
                                             <action selector="editButtonsTapped:" destination="eig-Hp-jeq" id="CFZ-p5-o1Z"/>
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem width="12" style="plain" systemItem="fixedSpace" id="RGu-oB-h9V"/>
                                     <barButtonItem tag="12" title="Try" id="ahp-ik-kCT">
-                                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <connections>
                                             <action selector="editButtonsTapped:" destination="eig-Hp-jeq" id="6zT-qb-uSx"/>
                                         </connections>

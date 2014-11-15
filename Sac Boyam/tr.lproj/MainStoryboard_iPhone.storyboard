@@ -444,41 +444,42 @@
                             </imageView>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" alpha="0.75" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7sr-MM-lFg">
                                 <rect key="frame" x="0.0" y="460" width="320" height="44"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="bGo-Xv-x2j"/>
                                 </constraints>
                                 <items>
                                     <barButtonItem width="8" style="plain" systemItem="fixedSpace" id="GsL-sU-9ba"/>
                                     <barButtonItem tag="10" systemItem="trash" id="9N3-72-dCB">
-                                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <connections>
                                             <action selector="editButtonsTapped:" destination="taC-HU-yWr" id="Yex-th-3G7"/>
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem width="8" style="plain" systemItem="fixedSpace" id="fpr-C6-sX9"/>
                                     <barButtonItem tag="11" systemItem="reply" id="2bV-le-Zfh">
-                                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <connections>
                                             <action selector="editButtonsTapped:" destination="taC-HU-yWr" id="kaj-Oi-Xlw"/>
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="7tr-78-1Ri"/>
                                     <barButtonItem tag="14" systemItem="action" id="1OL-Wn-dHF">
-                                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <connections>
                                             <action selector="editButtonsTapped:" destination="taC-HU-yWr" id="AnO-GE-heE"/>
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="FfY-le-k5F"/>
                                     <barButtonItem tag="13" title="Temizle" id="wS6-YP-8al">
-                                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <connections>
                                             <action selector="editButtonsTapped:" destination="taC-HU-yWr" id="8Sq-W3-bOo"/>
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem width="8" style="plain" systemItem="fixedSpace" id="oC2-6H-jiI"/>
                                     <barButtonItem tag="12" title="Dene" id="ePn-Ii-mvk">
-                                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <connections>
                                             <action selector="editButtonsTapped:" destination="taC-HU-yWr" id="XGt-i0-2qX"/>
                                         </connections>
