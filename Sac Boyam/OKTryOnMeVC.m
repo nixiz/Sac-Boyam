@@ -22,6 +22,7 @@
 #import "OKInfoViewController.h"
 
 @interface OKTryOnMeVC () <FDTakeDelegate, UIAlertViewDelegate, UIGestureRecognizerDelegate>
+@property (strong, nonatomic) UIImage *defaultImage;
 @property (weak, nonatomic) IBOutlet UIImageView *previewImg;
 @property FDTakeController *takeController;
 
@@ -39,6 +40,8 @@
 @property (weak, nonatomic) IBOutlet UIToolbar *tryToolBar;
 @property CGRect settingsViewRecoverFrame;
 @property CGRect settingsViewHideFrame;
+
+@property (strong, nonatomic) UIBezierPath *currentImagePath;
 @end
 
 @implementation OKTryOnMeVC
@@ -84,6 +87,7 @@
   UIImage *userPhoto = [UIImage imageWithData:[[NSUserDefaults standardUserDefaults] objectForKey:userDefaultPhotoKey]];
   if (userPhoto) {
     [self.previewImg setImage:userPhoto];
+    self.defaultImage = userPhoto;
   } else {
     NSString *imageOverlayString = NSLocalizedStringFromTable(@"imageOverlay", okStringsTableName, nil);
     self.takePicBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
@@ -136,6 +140,7 @@
   [alphaSlider setMaximumValue:1.0];
   [alphaSlider setMinimumValue:0.0];
   [alphaSlider setValue:self.blendAlphaValue animated:NO];
+  [alphaSlider setContinuous:NO];
 //  [sliderFPS setMinimumTrackImage:[[UIImage imageNamed:@"camera_slider_empty.png"] resizableImageWithCapInsets:UIEdgeInsetsFromString(@"8")]
 //                         forState:UIControlStateNormal];
 //  [sliderFPS setMaximumTrackImage:[[UIImage imageNamed:@"camera_slider_full.png"] resizableImageWithCapInsets:UIEdgeInsetsFromString(@"8")]
@@ -286,7 +291,7 @@
   CGRect toolBarFrame = self.tryToolBar.frame;
   self.settingsViewRecoverFrame = CGRectMake(0, toolBarFrame.origin.y - 56, toolBarFrame.size.width, 56);
   self.settingsViewHideFrame = CGRectMake(0, toolBarFrame.origin.y, toolBarFrame.size.width, 56);
-  if ([self.settingsView isDescendantOfView:self.view]) {
+  if ([self isSettingsViewShowing]) {
     [UIView transitionWithView:self.settingsView
                       duration:0.4
                        options:UIViewAnimationOptionShowHideTransitionViews | UIViewAnimationOptionCurveLinear
@@ -321,6 +326,11 @@
                       }
                     }];
   }
+}
+
+- (BOOL)isSettingsViewShowing
+{
+  return [self.settingsView isDescendantOfView:self.view];
 }
 
 - (void)removeLastTapView
@@ -362,32 +372,32 @@
   }
 }
 
+#pragma mark Create Mask Image & Paint
 - (void)createMaskImageFromBezierPaths
 {
 //  [self.graphView setIsClosed:YES];
   UIBezierPath *path = [UIBezierPath interpolateCGPointsWithHermite:self.bezierPoints closed:YES];
   [self removeallTapViews];
-  
+  self.currentImagePath = path;
+
+  //eger alpha slider gosterilmiyorsa goster
+//  if (![self isSettingsViewShowing]) {
+//    [self showHideSettingsPage];
+//  }
+  [self applyNewColorToImage:[path copy]];
+}
+
+- (void)applyNewColorToImage:(UIBezierPath *)path
+{
+  NSLog(@"BlendValue: %f", self.blendAlphaValue);
   UIGraphicsBeginImageContext(self.previewImg.bounds.size);
   CGContextRef context = UIGraphicsGetCurrentContext();
-  CGContextSetFillColorWithColor(context, [self.color CGColor]);
+  CGContextSetFillColorWithColor(context, [[self.color colorWithAlphaComponent:self.blendAlphaValue] CGColor]);
   [path fill];
   UIImage *img = UIGraphicsGetImageFromCurrentImageContext();
   UIGraphicsEndImageContext();
-
-//  CGRect erct =CGRectMake(0,0,self.previewImg.bounds.size.width, self.previewImg.bounds.size.height);
-//  UIGraphicsBeginImageContext(self.previewImg.bounds.size);
-//  
-//  [self.previewImg.image drawInRect:erct];
-//  [img drawInRect:erct blendMode:kCGBlendModeNormal alpha:0.64];
-//  
-//  UIImage *blendImage = UIGraphicsGetImageFromCurrentImageContext();
-//  UIGraphicsEndImageContext();
-//  
-//  [self.previewImg setImage:blendImage];
   
-  NSLog(@"BlendValue: %f", self.blendAlphaValue);
-  UIImage *finalImage = [self blendImages:self.previewImg.image and:img desiredSize:self.previewImg.bounds.size];
+  UIImage *finalImage = [self blendImagesUsingCIHueBlendMode:self.previewImg.image and:img desiredSize:self.previewImg.bounds.size];
   [self.previewImg setImage:finalImage];
 }
 
@@ -411,7 +421,13 @@
   return croppedImage;
 }
 
-- (UIImage *)blendImages:(UIImage *)sourceImage withBezierPath:(UIBezierPath *)path andColorToBurn:(UIColor *)color;
+//- (void)testMethod:(UIImage *)image bezierPath:(UIBezierPath *)path
+//{
+//  UIImage *imageToProccessed = [self cropImageUsingBezierPath:image bezierPath:[path copy]];
+//  
+//}
+
+- (UIImage *)blendImages:(UIImage *)sourceImage withBezierPath:(UIBezierPath *)path andColorToBurn:(UIColor *)color
 {
   UIImage *blendImage = nil;
   CGFloat hue, sat, brigh, alpa;
@@ -433,7 +449,7 @@
   return blendImage;
 }
 
-- (UIImage *)blendImages:(UIImage *)firstImage and:(UIImage *)secondImage desiredSize:(CGSize)size;
+- (UIImage *)blendImages:(UIImage *)firstImage and:(UIImage *)secondImage desiredSize:(CGSize)size
 {
   UIImage *blendImage = nil;
   
@@ -448,6 +464,23 @@
   blendImage = UIGraphicsGetImageFromCurrentImageContext();
   UIGraphicsEndImageContext();
   return blendImage;
+}
+
+- (UIImage *)blendImagesUsingCIHueBlendMode:(UIImage *)firstImage and:(UIImage *)secondImage desiredSize:(CGSize)size
+{
+  CIImage *inputImg = [CIImage imageWithCGImage:[secondImage CGImage]];
+  CIImage *inputBckImg = [CIImage imageWithCGImage:[firstImage CGImage]];
+  CIContext *context = [CIContext contextWithOptions:nil];               // 1
+  CIFilter* composite = [CIFilter filterWithName:@"CIHueBlendMode"];
+  [composite setValue:inputImg forKey:@"inputImage"];
+  [composite setValue:inputBckImg forKey:@"inputBackgroundImage"];
+  
+  CIImage *outputImage = [composite outputImage];
+  CGImageRef cgimg = [context createCGImage:outputImage fromRect:[outputImage extent]];
+  UIImage *rtrnImg = [UIImage imageWithCGImage:cgimg];
+  CGImageRelease(cgimg);
+  
+  return rtrnImg;
 }
 
 - (CGRect)getRectangleFromPoint:(CGPoint)point
@@ -469,7 +502,10 @@
 - (void)alphaSliderChanged:(id)sender
 {
   self.blendAlphaValue = ((UISlider *)sender).value;
-//  [self reloadOriginalImage];
+  //TODO: should i copy bezierpath for every time??
+//  if (![self.currentImagePath isEmpty] && self.currentImagePath) {
+//    [self applyNewColorToImage:[self.currentImagePath copy]];
+//  }
 }
 
 - (CGRect)statusBarFrameViewRect:(UIView*)view
