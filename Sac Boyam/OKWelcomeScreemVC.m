@@ -29,6 +29,9 @@
 - (void)viewDidLoad {
   [super viewDidLoad];
   
+//  __weak OKWelcomeScreemVC *weakSelf = self;
+//  self.navigationController.interactivePopGestureRecognizer.delegate = weakSelf;
+
 //  UIImage *backgroundImage = [UIImage imageNamed:@"background_sacBoyasi_5"];
 //  UIGraphicsBeginImageContext(CGSizeMake(320, self.navigationController.navigationBar.bounds.size.height + 20));
 //  [backgroundImage drawInRect:self.view.bounds];
@@ -106,6 +109,8 @@
   [imagePickerController setSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
   [imagePickerController setAllowsEditing:YES];
   imagePickerController.delegate = self;
+//  [imagePickerController.navigationBar setBarStyle:UIBarStyleBlackOpaque];
+  [imagePickerController.navigationBar setTintColor:[[UIColor blackColor] colorWithAlphaComponent:.8]];
   
   [self presentViewController:imagePickerController animated:YES completion:^{
     [self.view setUserInteractionEnabled:NO];
@@ -141,6 +146,9 @@
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+//  self.navigationItem.backBarButtonItem =
+//  [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"home-icon.png"] style:UIBarButtonItemStyleBordered target:nil action:nil];
+
   if ([[segue identifier] isEqualToString:@"SelectColorSegue"]) {
     OKSelectColorVC *vc = [segue destinationViewController];
     [vc setSelectedPicture:self.pickedImage];

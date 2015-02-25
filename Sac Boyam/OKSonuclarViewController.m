@@ -187,9 +187,10 @@
     cell = [[OKSonuclarCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
   }
   ColorModel *color = [self.fetchedResultsController objectAtIndexPath:indexPath];
-  UIImage *cellImage = [UIImage imageNamed:@"resultsTableCell"];
-  cell.backgroundColor = [UIColor colorWithPatternImage:cellImage];
-//  cell.productName.adjustsFontSizeToFitWidth = YES;
+//  UIImage *cellImage = [UIImage imageNamed:@"resultsTableCell"];
+//  cell.backgroundColor = [UIColor colorWithPatternImage:cellImage];
+
+  //  cell.productName.adjustsFontSizeToFitWidth = YES;
   cell.productName.lineBreakMode = NSLineBreakByWordWrapping;
   cell.productName.numberOfLines = 2;
   cell.productName.text = color.productName;

@@ -96,8 +96,11 @@
   
   self.settingsMap = [[NSUserDefaults standardUserDefaults] dictionaryRepresentation];
   [self.savePhotosSwitch setOn:[self.settingsMap[savePhotosKey] boolValue] animated:YES];
+  [self.savePhotosSwitch setOnTintColor:[[UIColor blackColor] colorWithAlphaComponent:.85]];
   [self.editPhotosSwitch setOn:[self.settingsMap[editPhotosKey] boolValue] animated:YES];
+  [self.editPhotosSwitch setOnTintColor:[[UIColor blackColor] colorWithAlphaComponent:.85]];
   [self.takeRecordsSwitch setOn:[self.settingsMap[takeRecordKey] boolValue] animated:YES];
+  [self.takeRecordsSwitch setOnTintColor:[[UIColor blackColor] colorWithAlphaComponent:.85]];
   [self.resultDensitySlider setValue:[self.settingsMap[resultDensityKey] floatValue] animated:YES];
   
   self.recordsTableView.backgroundColor = [UIColor clearColor];
@@ -418,11 +421,11 @@
 //  [cell.textLabel setFont:[UIFont systemFontOfSize:14]];
 //  cell.textLabel.numberOfLines = 2;
 //  cell.textLabel.lineBreakMode = NSLineBreakByWordWrapping;
-  [cell.textLabel setTextColor:[UIColor whiteColor]];
+  [cell.textLabel setTextColor:[UIColor blackColor]];
   cell.textLabel.text = record.recordName;
 
   cell.detailTextLabel.adjustsFontSizeToFitWidth = YES;
-  [cell.detailTextLabel setTextColor:[UIColor colorWithWhite:1.0 alpha:0.8]];
+  [cell.detailTextLabel setTextColor:[UIColor colorWithWhite:0.0 alpha:0.8]];
   cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ : %@", NSLocalizedStringFromTable(@"recordTime", okStringsTableName, nil), [OKUtils dateToString:record.recordDate]];
   
 //  CGRect contentRect = CGRectMake(0, 0, cell.contentView.bounds.size.height, cell.contentView.bounds.size.height);

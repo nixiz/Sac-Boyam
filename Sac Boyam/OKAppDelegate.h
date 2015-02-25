@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 static NSString * const okStringsTableName = @"localized";
+static NSString * const appID = @"id921525192";
 
 @interface OKAppDelegate : UIResponder <UIApplicationDelegate>
 

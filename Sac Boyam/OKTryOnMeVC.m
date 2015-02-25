@@ -7,24 +7,21 @@
 //
 #import "OKAppDelegate.h"
 #import "OKTryOnMeVC.h"
-#import "FDTakeController.h"
-#import "MyCutomView.h"
 #import "UIColor+GrayScale.h"
 #import "UIImage+AverageColor.h"
 #import "UIImage+ImageEffects.h"
 #import "OKUtils.h"
 #import "OKZoomView.h"
 #import "UIView+CreateImage.h"
-#import "UIView+draggable.h"
 #import "UIBezierPath+Interpolation.h"
 #import "CRVINTERGraphicsView.h"
 #import "TapToPointView.h"
 #import "OKInfoViewController.h"
 
-@interface OKTryOnMeVC () <FDTakeDelegate, UIAlertViewDelegate, UIGestureRecognizerDelegate>
+@interface OKTryOnMeVC () <UIAlertViewDelegate, UIGestureRecognizerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 @property (strong, nonatomic) UIImage *defaultImage;
 @property (weak, nonatomic) IBOutlet UIImageView *previewImg;
-@property FDTakeController *takeController;
+//@property FDTakeController *takeController;
 
 @property CGRect previewImageBound;
 @property (strong) UIColor *color;
@@ -80,9 +77,9 @@
   self.gestureRecognizer.numberOfTouchesRequired = 1;
   [self.view addGestureRecognizer:self.gestureRecognizer];
 
-  self.takeController = [[FDTakeController alloc] init];
-  self.takeController.delegate = self;
-  self.takeController.allowsEditingPhoto = [[[NSUserDefaults standardUserDefaults] objectForKey:editPhotosKey] boolValue];
+//  self.takeController = [[FDTakeController alloc] init];
+//  self.takeController.delegate = self;
+//  self.takeController.allowsEditingPhoto = [[[NSUserDefaults standardUserDefaults] objectForKey:editPhotosKey] boolValue];
 
   UIImage *userPhoto = [UIImage imageWithData:[[NSUserDefaults standardUserDefaults] objectForKey:userDefaultPhotoKey]];
   if (userPhoto) {
@@ -95,7 +92,7 @@
     [self.takePicBtn setFrame:buttonFrame];
     [self.takePicBtn addTarget:self action:@selector(SelectNewImage:) forControlEvents:UIControlEventTouchUpInside];
     [self.takePicBtn setTitle:imageOverlayString forState:UIControlStateNormal];
-    [self.takePicBtn setTitleColor:[[UIColor whiteColor] colorWithAlphaComponent:0.8] forState:UIControlStateNormal];
+    [self.takePicBtn setTitleColor:[[UIColor blackColor] colorWithAlphaComponent:0.8] forState:UIControlStateNormal];
     [self.takePicBtn.titleLabel setFont:[UIFont fontWithName:@"Helvetica Neue" size:24]];
     
     [self.view addSubview:self.takePicBtn];
@@ -116,7 +113,8 @@
   self.settingsViewHideFrame = CGRectMake(0, toolBarFrame.origin.y + 20/*size of status bar*/, toolBarFrame.size.width, 56);
   self.settingsView = [[UIView alloc] initWithFrame:self.settingsViewHideFrame];
 //  self.settingsView.backgroundColor = [UIColor colorWithWhite:0.8 alpha:0.82];
-  self.settingsView.backgroundColor = [[self.view getBackgroundColor] colorWithAlphaComponent:0.82];
+  self.settingsView.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0.7];
+//  self.settingsView.backgroundColor = [[self.view getBackgroundColor] colorWithAlphaComponent:0.82];
   
   self.settingsView.layer.cornerRadius = 4.0;
   /*******
@@ -130,7 +128,7 @@
   [sliderExplanationLabel setFrame:CGRectMake(0, 0, self.view.bounds.size.width, 20)];
   [sliderExplanationLabel setText:NSLocalizedStringFromTable(@"tryOnMeSliderLabelText", okStringsTableName, nil)];
   [sliderExplanationLabel setFont:[UIFont fontWithName:@"Helvetica Neue" size:14.0]];
-  [sliderExplanationLabel setTextColor:[[UIColor whiteColor] colorWithAlphaComponent:0.85]];
+  [sliderExplanationLabel setTextColor:[[UIColor blackColor] colorWithAlphaComponent:0.85]];
   [sliderExplanationLabel setTextAlignment:NSTextAlignmentCenter];
   //  [sliderExplanationLabel setAdjustsFontSizeToFitWidth:YES];
   [self.settingsView addSubview:sliderExplanationLabel];
@@ -145,7 +143,7 @@
 //                         forState:UIControlStateNormal];
 //  [sliderFPS setMaximumTrackImage:[[UIImage imageNamed:@"camera_slider_full.png"] resizableImageWithCapInsets:UIEdgeInsetsFromString(@"8")]
   UIImage *maxColorImage = [UIImage imageWithColor:self.color andSize:CGSizeMake(8, 8)];
-  UIImage *minColorImage = [UIImage imageWithColor:[[UIColor colorWithWhite:0.8 alpha:0.32] colorWithAlphaComponent:0.32] andSize:CGSizeMake(8, 8)];
+  UIImage *minColorImage = [UIImage imageWithColor:[[UIColor colorWithWhite:0.2 alpha:0.32] colorWithAlphaComponent:0.32] andSize:CGSizeMake(8, 8)];
   [alphaSlider setMaximumTrackImage:[minColorImage resizableImageWithCapInsets:UIEdgeInsetsFromString(@"8")] forState:UIControlStateNormal];
   [alphaSlider setMinimumTrackImage:[maxColorImage resizableImageWithCapInsets:UIEdgeInsetsFromString(@"8")] forState:UIControlStateNormal];
   [alphaSlider addTarget:self action:@selector(alphaSliderChanged:) forControlEvents:UIControlEventValueChanged];
@@ -166,7 +164,17 @@
 }
 
 - (void)SelectNewImage:(id)sender {
-  [self.takeController takePhotoOrChooseFromLibrary];
+//  [self.takeController takePhotoOrChooseFromLibrary];
+  UIImagePickerController *imagePickerController = [UIImagePickerController new];
+  [imagePickerController setSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
+  [imagePickerController setAllowsEditing:[[[NSUserDefaults standardUserDefaults] objectForKey:editPhotosKey] boolValue]];
+  imagePickerController.delegate = self;
+  [imagePickerController.navigationBar setTintColor:[[UIColor blackColor] colorWithAlphaComponent:.8]];
+
+  [self presentViewController:imagePickerController animated:YES completion:^{
+    [self.view setUserInteractionEnabled:NO];
+  }];
+
 }
 
 - (void)saveImageToUserDefaults
@@ -185,8 +193,58 @@
   [self presentViewController:vc animated:NO completion:nil];
 }
 
-#pragma mark - FDTakeDelegate
+#pragma mark - Image Pick
 
+-(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+{
+  UIImage *photo = nil;
+  UIImage *editedImage = (UIImage *) [info objectForKey:UIImagePickerControllerEditedImage];
+  UIImage *originalImage = (UIImage *) [info objectForKey:UIImagePickerControllerOriginalImage];
+  if (editedImage) {
+    photo = editedImage;
+  } else if (originalImage) {
+    photo = originalImage;
+  } else {
+    photo = nil;
+    NSLog(@"asdasdasd!");
+  }
+  
+  if ([self.takePicBtn isDescendantOfView:self.view]) {
+    [self.takePicBtn removeFromSuperview];
+  }
+  NSLog(@"Image Size:   %@", NSStringFromCGSize(photo.size));
+  UIGraphicsBeginImageContext(self.previewImageBound.size);
+  [photo drawInRect:self.previewImageBound];
+  UIImage *imageToBeShow = UIGraphicsGetImageFromCurrentImageContext();
+  UIGraphicsEndImageContext();
+  [self.previewImg setImage:imageToBeShow];
+  //  [self.previewImg sizeToFit];
+  if ([[NSUserDefaults standardUserDefaults] objectForKey:userDefaultPhotoKey] == nil) {
+    [self saveImageToUserDefaults];
+  } else {
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil
+                                                        message:NSLocalizedStringFromTable(@"shouldSaveUserDefaultPhoto", okStringsTableName, nil)
+                                                       delegate:self
+                                              cancelButtonTitle:NSLocalizedStringFromTable(@"cancelButtonForURLReq", okStringsTableName, nil)
+                                              otherButtonTitles:NSLocalizedStringFromTable(@"OKButtonTitle", okStringsTableName, nil), nil];
+    [alertView show];
+  }
+  
+  
+  [picker dismissViewControllerAnimated:NO completion:^{
+    [self.view setUserInteractionEnabled:YES];
+//    [self performSegueWithIdentifier:@"SelectColorSegue" sender:nil];
+  }];
+}
+
+-(void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
+{
+  [picker dismissViewControllerAnimated:YES completion:^{
+    [self.view setUserInteractionEnabled:YES];
+  }];
+}
+
+/*
 - (void)takeController:(FDTakeController *)controller gotPhoto:(UIImage *)photo withInfo:(NSDictionary *)info
 {
   if ([self.takePicBtn isDescendantOfView:self.view]) {
@@ -210,6 +268,7 @@
     [alertView show];
   }
 }
+*/
 
 #pragma mark - UIAlertViewDelegate
 

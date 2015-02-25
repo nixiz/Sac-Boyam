@@ -201,6 +201,7 @@ static void * SessionRunningAndDeviceAuthorizedContext = &SessionRunningAndDevic
 
 -(void)viewWillAppear:(BOOL)animated
 {
+  [super viewWillAppear:animated];
   dispatch_async([self sessionQueue], ^{
     [self addObserver:self forKeyPath:@"sessionRunningAndDeviceAuthorized" options:(NSKeyValueObservingOptionOld | NSKeyValueObservingOptionNew) context:SessionRunningAndDeviceAuthorizedContext];
     [self addObserver:self forKeyPath:@"stillImageOutput.capturingStillImage" options:(NSKeyValueObservingOptionOld | NSKeyValueObservingOptionNew) context:CapturingStillImageContext];
@@ -660,6 +661,11 @@ static void * SessionRunningAndDeviceAuthorizedContext = &SessionRunningAndDevic
     
   });
 }
+
+//- (void)backtoRootController
+//{
+//  [self.navigationController popToRootViewControllerAnimated:YES];
+//}
 
 #pragma mark - Navigation
 

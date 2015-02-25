@@ -40,14 +40,15 @@
 
 -(UIColor *) getBackgroundColor
 {
-  UIImage *backgroundImage = [UIImage imageNamed:@"background_sacBoyasi_5"];
-  UIGraphicsBeginImageContext(self.bounds.size);
-  [backgroundImage drawInRect:self.bounds];
-  UIImage *backgroundcolor = UIGraphicsGetImageFromCurrentImageContext();
-  UIGraphicsEndImageContext();
-  
-  backgroundcolor = [backgroundcolor applyBlurWithRadius:15 tintColor:[UIColor colorWithWhite:0.8 alpha:0.2] saturationDeltaFactor:1.3 maskImage:nil];
-  return [UIColor colorWithPatternImage:backgroundcolor];
+  return [UIColor whiteColor];
+//  UIImage *backgroundImage = [UIImage imageNamed:@"background_sacBoyasi_5"];
+//  UIGraphicsBeginImageContext(self.bounds.size);
+//  [backgroundImage drawInRect:self.bounds];
+//  UIImage *backgroundcolor = UIGraphicsGetImageFromCurrentImageContext();
+//  UIGraphicsEndImageContext();
+//  
+//  backgroundcolor = [backgroundcolor applyBlurWithRadius:15 tintColor:[UIColor colorWithWhite:0.8 alpha:0.2] saturationDeltaFactor:1.3 maskImage:nil];
+//  return [UIColor colorWithPatternImage:backgroundcolor];
 }
 
 
