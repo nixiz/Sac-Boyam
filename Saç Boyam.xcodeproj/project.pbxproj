@@ -28,6 +28,16 @@
 		710E76191A023A9600CCF755 /* tryonme-tr4.png in Resources */ = {isa = PBXBuildFile; fileRef = 710E76151A023A9600CCF755 /* tryonme-tr4.png */; };
 		712717071A02246D0075EE23 /* OKTryOnMeTutVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 712717091A02246D0075EE23 /* OKTryOnMeTutVC.xib */; };
 		7127170B1A02247B0075EE23 /* OKSettingsTutVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7127170D1A02247B0075EE23 /* OKSettingsTutVC.xib */; };
+		7128469C1A9CC0BE00E39958 /* OKCamViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 712846961A9CC0BE00E39958 /* OKCamViewController.m */; };
+		7128469D1A9CC0BE00E39958 /* AVCamPreviewView.m in Sources */ = {isa = PBXBuildFile; fileRef = 712846981A9CC0BE00E39958 /* AVCamPreviewView.m */; };
+		7128469E1A9CC0BE00E39958 /* switch_camera_white.png in Resources */ = {isa = PBXBuildFile; fileRef = 712846991A9CC0BE00E39958 /* switch_camera_white.png */; };
+		7128469F1A9CC0BE00E39958 /* Untitled-1.png in Resources */ = {isa = PBXBuildFile; fileRef = 7128469A1A9CC0BE00E39958 /* Untitled-1.png */; };
+		712846A01A9CC0BE00E39958 /* overlaygraphic.png in Resources */ = {isa = PBXBuildFile; fileRef = 7128469B1A9CC0BE00E39958 /* overlaygraphic.png */; };
+		712846A21A9CC18200E39958 /* switch_camera.png in Resources */ = {isa = PBXBuildFile; fileRef = 712846A11A9CC18200E39958 /* switch_camera.png */; };
+		712846A41A9CC20400E39958 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 712846A31A9CC20400E39958 /* AVFoundation.framework */; };
+		712846A81A9CC91400E39958 /* UIColor+HexTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 712846A71A9CC91400E39958 /* UIColor+HexTool.m */; };
+		712846AA1A9CCDF700E39958 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 712846A91A9CCDF700E39958 /* CoreVideo.framework */; };
+		712846AC1A9CCF4200E39958 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 712846AB1A9CCF4200E39958 /* CoreMedia.framework */; };
 		71328A9617C35FD7007EE533 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71328A9517C35FD7007EE533 /* UIKit.framework */; };
 		71328A9817C35FD7007EE533 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71328A9717C35FD7007EE533 /* Foundation.framework */; };
 		71328A9A17C35FD7007EE533 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71328A9917C35FD7007EE533 /* CoreGraphics.framework */; };
@@ -71,12 +81,16 @@
 		718986581964186500C26297 /* UIImage+ImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = 718986571964186500C26297 /* UIImage+ImageEffects.m */; };
 		7189865A196419C100C26297 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71898659196419C100C26297 /* Accelerate.framework */; };
 		718986661964592B00C26297 /* final_effect_2.png in Resources */ = {isa = PBXBuildFile; fileRef = 718986651964592B00C26297 /* final_effect_2.png */; };
+		71899FF61A971C4200150EEF /* OKWelcomeScreemVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 71899FF51A971C4200150EEF /* OKWelcomeScreemVC.m */; };
 		7193555C19654DFC0040F48D /* ImageAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7193555B19654DFC0040F48D /* ImageAssets.xcassets */; };
 		719BCE8C1966F0E9005F575C /* OKSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 719BCE8B1966F0E9005F575C /* OKSettingsViewController.m */; };
 		719C30DD19F7A9C300E938BA /* CRVINTERGraphicsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 719C30D819F7A9C300E938BA /* CRVINTERGraphicsView.m */; };
 		719C30DE19F7A9C300E938BA /* CGPointExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 719C30DA19F7A9C300E938BA /* CGPointExtension.m */; };
 		719C30DF19F7A9C300E938BA /* UIBezierPath+Interpolation.m in Sources */ = {isa = PBXBuildFile; fileRef = 719C30DC19F7A9C300E938BA /* UIBezierPath+Interpolation.m */; };
 		719C30E319F7ACE300E938BA /* TapToPointView.m in Sources */ = {isa = PBXBuildFile; fileRef = 719C30E219F7ACE300E938BA /* TapToPointView.m */; };
+		71D002F61A9727AC00E9FDCE /* OKSelectColorVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 71D002F51A9727AB00E9FDCE /* OKSelectColorVC.m */; };
+		71D002F81A97740800E9FDCE /* search_white_navbar.png in Resources */ = {isa = PBXBuildFile; fileRef = 71D002F71A97740800E9FDCE /* search_white_navbar.png */; };
+		71D002FB1A97807B00E9FDCE /* UIView+AutoDissmissAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = 71D002FA1A97807B00E9FDCE /* UIView+AutoDissmissAlert.m */; };
 		71D5795C19E5104800E6E2AF /* OKTryOnMeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 71D5795B19E5104800E6E2AF /* OKTryOnMeVC.m */; };
 		71ECEF95195AC2A600872EBC /* UIImage+AverageColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 71ECEF94195AC2A600872EBC /* UIImage+AverageColor.m */; };
 		71F93DEC19EEAE1200048A9B /* UIView+draggable.m in Sources */ = {isa = PBXBuildFile; fileRef = 71F93DEB19EEAE1200048A9B /* UIView+draggable.m */; };
@@ -108,7 +122,6 @@
 		710735A117C4981400484D21 /* OKSonuclarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKSonuclarViewController.m; sourceTree = "<group>"; };
 		710735A417C49E6800484D21 /* OKSonuclarCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKSonuclarCell.h; sourceTree = "<group>"; };
 		710735A517C49E6800484D21 /* OKSonuclarCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKSonuclarCell.m; sourceTree = "<group>"; };
-		710DC71119BED62400306DB9 /* tr */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = tr; path = tr.lproj/MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
 		710DC71219BEE7BF00306DB9 /* FDTakeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDTakeController.h; sourceTree = "<group>"; };
 		710DC71319BEE7BF00306DB9 /* FDTakeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDTakeController.m; sourceTree = "<group>"; };
 		710E760A1A023A7200CCF755 /* tryonme-en1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tryonme-en1.png"; sourceTree = "<group>"; };
@@ -123,6 +136,19 @@
 		7127170A1A0224710075EE23 /* tr */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = tr; path = tr.lproj/OKTryOnMeTutVC.xib; sourceTree = "<group>"; };
 		7127170C1A02247B0075EE23 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/OKSettingsTutVC.xib; sourceTree = "<group>"; };
 		7127170E1A02247C0075EE23 /* tr */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = tr; path = tr.lproj/OKSettingsTutVC.xib; sourceTree = "<group>"; };
+		712846951A9CC0BE00E39958 /* OKCamViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKCamViewController.h; sourceTree = "<group>"; };
+		712846961A9CC0BE00E39958 /* OKCamViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKCamViewController.m; sourceTree = "<group>"; };
+		712846971A9CC0BE00E39958 /* AVCamPreviewView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVCamPreviewView.h; sourceTree = "<group>"; };
+		712846981A9CC0BE00E39958 /* AVCamPreviewView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVCamPreviewView.m; sourceTree = "<group>"; };
+		712846991A9CC0BE00E39958 /* switch_camera_white.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = switch_camera_white.png; sourceTree = "<group>"; };
+		7128469A1A9CC0BE00E39958 /* Untitled-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Untitled-1.png"; sourceTree = "<group>"; };
+		7128469B1A9CC0BE00E39958 /* overlaygraphic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = overlaygraphic.png; sourceTree = "<group>"; };
+		712846A11A9CC18200E39958 /* switch_camera.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = switch_camera.png; sourceTree = "<group>"; };
+		712846A31A9CC20400E39958 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		712846A61A9CC91400E39958 /* UIColor+HexTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+HexTool.h"; sourceTree = "<group>"; };
+		712846A71A9CC91400E39958 /* UIColor+HexTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+HexTool.m"; sourceTree = "<group>"; };
+		712846A91A9CCDF700E39958 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
+		712846AB1A9CCF4200E39958 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		71328A9217C35FD7007EE533 /* Saç Boyam.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Saç Boyam.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		71328A9517C35FD7007EE533 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		71328A9717C35FD7007EE533 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -192,6 +218,8 @@
 		718986571964186500C26297 /* UIImage+ImageEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ImageEffects.m"; sourceTree = "<group>"; };
 		71898659196419C100C26297 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		718986651964592B00C26297 /* final_effect_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = final_effect_2.png; sourceTree = "<group>"; };
+		71899FF41A971C4200150EEF /* OKWelcomeScreemVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKWelcomeScreemVC.h; sourceTree = "<group>"; };
+		71899FF51A971C4200150EEF /* OKWelcomeScreemVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKWelcomeScreemVC.m; sourceTree = "<group>"; };
 		7193555B19654DFC0040F48D /* ImageAssets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = ImageAssets.xcassets; path = ../ImageAssets.xcassets; sourceTree = "<group>"; };
 		719BCE8A1966F0E9005F575C /* OKSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OKSettingsViewController.h; path = ../OKSettingsViewController.h; sourceTree = "<group>"; };
 		719BCE8B1966F0E9005F575C /* OKSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OKSettingsViewController.m; path = ../OKSettingsViewController.m; sourceTree = "<group>"; };
@@ -203,6 +231,11 @@
 		719C30DC19F7A9C300E938BA /* UIBezierPath+Interpolation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBezierPath+Interpolation.m"; sourceTree = "<group>"; };
 		719C30E119F7ACE300E938BA /* TapToPointView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TapToPointView.h; sourceTree = "<group>"; };
 		719C30E219F7ACE300E938BA /* TapToPointView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TapToPointView.m; sourceTree = "<group>"; };
+		71D002F41A9727AB00E9FDCE /* OKSelectColorVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKSelectColorVC.h; sourceTree = "<group>"; };
+		71D002F51A9727AB00E9FDCE /* OKSelectColorVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKSelectColorVC.m; sourceTree = "<group>"; };
+		71D002F71A97740800E9FDCE /* search_white_navbar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = search_white_navbar.png; sourceTree = "<group>"; };
+		71D002F91A97807B00E9FDCE /* UIView+AutoDissmissAlert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+AutoDissmissAlert.h"; sourceTree = "<group>"; };
+		71D002FA1A97807B00E9FDCE /* UIView+AutoDissmissAlert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+AutoDissmissAlert.m"; sourceTree = "<group>"; };
 		71D5795A19E5104800E6E2AF /* OKTryOnMeVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKTryOnMeVC.h; sourceTree = "<group>"; };
 		71D5795B19E5104800E6E2AF /* OKTryOnMeVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKTryOnMeVC.m; sourceTree = "<group>"; };
 		71ECEF93195AC2A600872EBC /* UIImage+AverageColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+AverageColor.h"; sourceTree = "<group>"; };
@@ -227,6 +260,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				712846AC1A9CCF4200E39958 /* CoreMedia.framework in Frameworks */,
+				712846AA1A9CCDF700E39958 /* CoreVideo.framework in Frameworks */,
+				712846A41A9CC20400E39958 /* AVFoundation.framework in Frameworks */,
 				7134B73019A3C27200BFE754 /* CoreData.framework in Frameworks */,
 				7189865A196419C100C26297 /* Accelerate.framework in Frameworks */,
 				71364338195C3B93006EF824 /* QuartzCore.framework in Frameworks */,
@@ -332,6 +368,21 @@
 			name = ResultsPage;
 			sourceTree = "<group>";
 		};
+		712846A51A9CC25300E39958 /* Camera Controller */ = {
+			isa = PBXGroup;
+			children = (
+				712846951A9CC0BE00E39958 /* OKCamViewController.h */,
+				712846961A9CC0BE00E39958 /* OKCamViewController.m */,
+				712846971A9CC0BE00E39958 /* AVCamPreviewView.h */,
+				712846981A9CC0BE00E39958 /* AVCamPreviewView.m */,
+				712846991A9CC0BE00E39958 /* switch_camera_white.png */,
+				712846A11A9CC18200E39958 /* switch_camera.png */,
+				7128469A1A9CC0BE00E39958 /* Untitled-1.png */,
+				7128469B1A9CC0BE00E39958 /* overlaygraphic.png */,
+			);
+			name = "Camera Controller";
+			sourceTree = "<group>";
+		};
 		71328A8917C35FD7007EE533 = {
 			isa = PBXGroup;
 			children = (
@@ -352,6 +403,9 @@
 		71328A9417C35FD7007EE533 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				712846AB1A9CCF4200E39958 /* CoreMedia.framework */,
+				712846A91A9CCDF700E39958 /* CoreVideo.framework */,
+				712846A31A9CC20400E39958 /* AVFoundation.framework */,
 				7134B72F19A3C27200BFE754 /* CoreData.framework */,
 				71898659196419C100C26297 /* Accelerate.framework */,
 				71364337195C3B93006EF824 /* QuartzCore.framework */,
@@ -378,6 +432,12 @@
 				71F9747719FE6F76007F774D /* Tutorial Screens */,
 				71328AA417C35FD7007EE533 /* OKAppDelegate.h */,
 				71328AA517C35FD7007EE533 /* OKAppDelegate.m */,
+				71899FF41A971C4200150EEF /* OKWelcomeScreemVC.h */,
+				71899FF51A971C4200150EEF /* OKWelcomeScreemVC.m */,
+				71D002F41A9727AB00E9FDCE /* OKSelectColorVC.h */,
+				71D002F51A9727AB00E9FDCE /* OKSelectColorVC.m */,
+				71D002F71A97740800E9FDCE /* search_white_navbar.png */,
+				712846A51A9CC25300E39958 /* Camera Controller */,
 				71328AAD17C35FD7007EE533 /* MainStoryboard_iPhone.storyboard */,
 				7193555B19654DFC0040F48D /* ImageAssets.xcassets */,
 				71328AC117C365F7007EE533 /* images */,
@@ -486,6 +546,8 @@
 				719C30E019F7A9C800E938BA /* Bezier Interpolation */,
 				7136433B195C5E08006EF824 /* OKUtils.h */,
 				7136433C195C5E08006EF824 /* OKUtils.m */,
+				712846A61A9CC91400E39958 /* UIColor+HexTool.h */,
+				712846A71A9CC91400E39958 /* UIColor+HexTool.m */,
 				7134B73119A3C8F900BFE754 /* UIColor+GrayScale.h */,
 				7134B73219A3C8F900BFE754 /* UIColor+GrayScale.m */,
 				718986561964186500C26297 /* UIImage+ImageEffects.h */,
@@ -494,6 +556,8 @@
 				71ECEF94195AC2A600872EBC /* UIImage+AverageColor.m */,
 				71063757196C0ED100D17D66 /* UIView+CreateImage.h */,
 				71063758196C0ED100D17D66 /* UIView+CreateImage.m */,
+				71D002F91A97807B00E9FDCE /* UIView+AutoDissmissAlert.h */,
+				71D002FA1A97807B00E9FDCE /* UIView+AutoDissmissAlert.m */,
 				7152CB50197557640080898F /* OKProductJsonType.h */,
 				7152CB51197557640080898F /* OKProductJsonType.m */,
 			);
@@ -627,6 +691,7 @@
 				710E760F1A023A7200CCF755 /* tryonme-en2.png in Resources */,
 				716A8FAA19B9988A009D0E3E /* Default@2x.png in Resources */,
 				71328AA017C35FD7007EE533 /* InfoPlist.strings in Resources */,
+				71D002F81A97740800E9FDCE /* search_white_navbar.png in Resources */,
 				7100617A19FFA047004A7A3C /* OKSelectColorTutorialVC.xib in Resources */,
 				716A8FA919B9988A009D0E3E /* Default-568h@2x.png in Resources */,
 				7193555C19654DFC0040F48D /* ImageAssets.xcassets in Resources */,
@@ -639,8 +704,10 @@
 				713FBE2319FAB097009C9487 /* OKInfoChildViewController.xib in Resources */,
 				710E760E1A023A7200CCF755 /* tryonme-en1.png in Resources */,
 				7100616119FF791F004A7A3C /* boya-icon.jpg in Resources */,
+				7128469F1A9CC0BE00E39958 /* Untitled-1.png in Resources */,
 				7127170B1A02247B0075EE23 /* OKSettingsTutVC.xib in Resources */,
 				71F9748819FE9308007F774D /* colorToFind-icon.png in Resources */,
+				712846A21A9CC18200E39958 /* switch_camera.png in Resources */,
 				7169530F196E64C100C988E5 /* localized.strings in Resources */,
 				710E76101A023A7200CCF755 /* tryonme-en3.png in Resources */,
 				713FBE1E19FAB080009C9487 /* OKInfoViewController.xib in Resources */,
@@ -651,8 +718,10 @@
 				71328AAF17C35FD7007EE533 /* MainStoryboard_iPhone.storyboard in Resources */,
 				7100615A19FF772C004A7A3C /* list-icon.png in Resources */,
 				71328ABF17C365F3007EE533 /* derpette_brown.png in Resources */,
+				712846A01A9CC0BE00E39958 /* overlaygraphic.png in Resources */,
 				710E76181A023A9600CCF755 /* tryonme-tr3.png in Resources */,
 				7169530A196E646700C988E5 /* FDTake.strings in Resources */,
+				7128469E1A9CC0BE00E39958 /* switch_camera_white.png in Resources */,
 				71328AC017C365F3007EE533 /* derpette_blond.png in Resources */,
 				71F9747019FE6955007F774D /* OKWelcomeViewController.xib in Resources */,
 				7136433A195C4E3F006EF824 /* sacli.png in Resources */,
@@ -669,18 +738,22 @@
 				719C30DD19F7A9C300E938BA /* CRVINTERGraphicsView.m in Sources */,
 				7100616E19FF8CE6004A7A3C /* OKTryOnMeTutVC.m in Sources */,
 				71F9747619FE6B05007F774D /* OKTutorialBaseViewController.m in Sources */,
+				71D002FB1A97807B00E9FDCE /* UIView+AutoDissmissAlert.m in Sources */,
 				71F9746E19FE6480007F774D /* OKWelcomeViewController.m in Sources */,
 				718986551963E59400C26297 /* OKZoomView.m in Sources */,
 				71D5795C19E5104800E6E2AF /* OKTryOnMeVC.m in Sources */,
 				7134B72219A3B3F800BFE754 /* OKProductType.m in Sources */,
 				7134B72419A3B3F800BFE754 /* BrandModel+Create.m in Sources */,
+				71899FF61A971C4200150EEF /* OKWelcomeScreemVC.m in Sources */,
 				719C30DE19F7A9C300E938BA /* CGPointExtension.m in Sources */,
+				71D002F61A9727AC00E9FDCE /* OKSelectColorVC.m in Sources */,
 				71F9747B19FE75EE007F774D /* OKSelectColorTutorialVC.m in Sources */,
 				7100616919FF8117004A7A3C /* OKSettingsTutVC.m in Sources */,
 				71840EDE19B8454800F99868 /* UserRecordModel.m in Sources */,
 				71840ED819B8454600F99868 /* BrandModel.m in Sources */,
 				719BCE8C1966F0E9005F575C /* OKSettingsViewController.m in Sources */,
 				71328AF817C38BA5007EE533 /* MyCutomView.m in Sources */,
+				7128469C1A9CC0BE00E39958 /* OKCamViewController.m in Sources */,
 				713733B619B5E61100542E86 /* UserRecordModel+Create.m in Sources */,
 				71328AA217C35FD7007EE533 /* main.m in Sources */,
 				710DC71419BEE7BF00306DB9 /* FDTakeController.m in Sources */,
@@ -691,6 +764,7 @@
 				7152CB52197557640080898F /* OKProductJsonType.m in Sources */,
 				7136433D195C5E08006EF824 /* OKUtils.m in Sources */,
 				71328AA617C35FD7007EE533 /* OKAppDelegate.m in Sources */,
+				7128469D1A9CC0BE00E39958 /* AVCamPreviewView.m in Sources */,
 				713FBE2219FAB097009C9487 /* OKInfoChildViewController.m in Sources */,
 				71328AB517C35FD7007EE533 /* OKViewController.m in Sources */,
 				719C30E319F7ACE300E938BA /* TapToPointView.m in Sources */,
@@ -706,6 +780,7 @@
 				710735A217C4981400484D21 /* OKSonuclarViewController.m in Sources */,
 				710735A617C49E6800484D21 /* OKSonuclarCell.m in Sources */,
 				7152CB4F19741B330080898F /* OKWaitForResultsVC.m in Sources */,
+				712846A81A9CC91400E39958 /* UIColor+HexTool.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -761,7 +836,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				7150A55E19B4A1AB00597373 /* en */,
-				710DC71119BED62400306DB9 /* tr */,
 			);
 			name = MainStoryboard_iPhone.storyboard;
 			sourceTree = "<group>";

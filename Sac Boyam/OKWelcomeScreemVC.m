@@ -13,6 +13,7 @@
 #import "OKInfoViewController.h"
 #import "OKSelectColorVC.h"
 #import "OKSettingsViewController.h"
+#import "OKCamViewController.h"
 
 @interface OKWelcomeScreemVC () <UIImagePickerControllerDelegate, UINavigationControllerDelegate, OKSettingsDelegate, UIAlertViewDelegate>
 - (IBAction)selectPicFromLibrary:(id)sender;
@@ -147,6 +148,9 @@
   } else if ([[segue identifier] isEqualToString:@"settingsSegue"]) {
     OKSettingsViewController *vc = [segue destinationViewController];
     [vc setDelegate:self];
+    [vc setManagedObjectContext:self.managedObjectContext];
+  } else if ([[segue identifier] isEqualToString:@"cameraSegue"]) {
+    OKCamViewController *vc = [segue destinationViewController];
     [vc setManagedObjectContext:self.managedObjectContext];
   }
 }

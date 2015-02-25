@@ -7,6 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <AVFoundation/AVFoundation.h>
+#import <CoreVideo/CoreVideo.h>
 
 @interface UIImage (AverageColor)
 - (UIColor *)averageColor;
@@ -17,4 +19,8 @@
 - (UIImage *)cropImageWithRect:(CGRect)rect withBound:(CGRect)bound;
 
 +(UIImage *)imageWithColor:(UIColor *)color andSize:(CGSize )size;
+
++(UIImage *)imageWithCMSampleBuffer:(CMSampleBufferRef)sampleBuffer;
+
+- (UIImage *)fixOrientation;
 @end

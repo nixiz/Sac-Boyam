@@ -22,7 +22,6 @@
 @property (strong, nonatomic) OKZoomView *myView;
 @property (strong) UIColor *color;
 
-
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @property (strong, nonatomic) UIButton *findButton;
 @end
@@ -56,7 +55,7 @@
   [self.findButton setTitleColor:[UIColor colorWithWhite:0.0 alpha:0.8] forState:UIControlStateNormal];
 //  [self.findButton setTintColor:[UIColor colorWithWhite:0.0 alpha:0.8]];
 
-  UIImage *img = [UIImage imageWithColor:[[UIColor clearColor] colorWithAlphaComponent:0.75] andSize:CGSizeMake(22, 22)];
+  UIImage *img = [UIImage imageWithColor:[[UIColor clearColor] colorWithAlphaComponent:0.35] andSize:CGSizeMake(30, 30)];
 //  cell.imageView.layer.cornerRadius = cell.bounds.size.height / 4.0;
 //  cell.imageView.layer.masksToBounds = YES;
   [self.findButton setImage:img  forState:UIControlStateNormal];
@@ -76,8 +75,8 @@
   UIBarButtonItem *fixedBtnItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
   fixedBtnItem.width = -16;
   
-  self.navigationItem.rightBarButtonItem = searchBtn;
-//  self.navigationItem.rightBarButtonItems = @[fixedBtnItem, searchBtn, infoBtn];
+//  self.navigationItem.rightBarButtonItem = searchBtn;
+  self.navigationItem.rightBarButtonItems = @[fixedBtnItem, searchBtn];
 //  self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:tools];
 //  self.view.backgroundColor = [self.view getBackgroundColor];
   
@@ -191,6 +190,7 @@
     // calculate average color for next steps
     self.color = [tmp_img averageColor];
     
+    [self.findButton setImage:[UIImage imageWithColor:self.color andSize:CGSizeMake(30, 30)]  forState:UIControlStateNormal];
     self.myView.previewImage = [UIImage imageWithColor:self.color andSize:self.myView.imageView.bounds.size];
 //    self.myView.previewImage = tmp_img;
     self.myView.newPoint = point;
@@ -223,7 +223,7 @@
     // calculate average color for next steps
     self.color = [tmp_img averageColor];
     
-    [self.findButton setImage:[UIImage imageWithColor:self.color andSize:CGSizeMake(22, 22)]  forState:UIControlStateNormal];
+    [self.findButton setImage:[UIImage imageWithColor:self.color andSize:CGSizeMake(30, 30)]  forState:UIControlStateNormal];
 
     self.myView.previewImage = [UIImage imageWithColor:self.color andSize:self.myView.imageView.bounds.size];
 //    self.myView.previewImage = tmp_img;
