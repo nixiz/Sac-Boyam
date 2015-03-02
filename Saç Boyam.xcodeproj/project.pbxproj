@@ -82,9 +82,9 @@
 		71A7FF8E1A9E0178005097DC /* home-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 71A7FF8D1A9E0178005097DC /* home-icon.png */; };
 		71D002F61A9727AC00E9FDCE /* OKSelectColorVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 71D002F51A9727AB00E9FDCE /* OKSelectColorVC.m */; };
 		71D002F81A97740800E9FDCE /* search_white_navbar.png in Resources */ = {isa = PBXBuildFile; fileRef = 71D002F71A97740800E9FDCE /* search_white_navbar.png */; };
-		71D002FB1A97807B00E9FDCE /* UIView+AutoDissmissAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = 71D002FA1A97807B00E9FDCE /* UIView+AutoDissmissAlert.m */; };
 		71D5795C19E5104800E6E2AF /* OKTryOnMeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 71D5795B19E5104800E6E2AF /* OKTryOnMeVC.m */; };
 		71ECEF95195AC2A600872EBC /* UIImage+AverageColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 71ECEF94195AC2A600872EBC /* UIImage+AverageColor.m */; };
+		71F5E2441AA4A5C7006E87CF /* UIViewController+AutoDissmissAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = 71F5E2431AA4A5C7006E87CF /* UIViewController+AutoDissmissAlert.m */; };
 		71F9746E19FE6480007F774D /* OKWelcomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 71F9746C19FE6480007F774D /* OKWelcomeViewController.m */; };
 		71F9747019FE6955007F774D /* OKWelcomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 71F9747219FE6955007F774D /* OKWelcomeViewController.xib */; };
 		71F9747619FE6B05007F774D /* OKTutorialBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 71F9747519FE6B05007F774D /* OKTutorialBaseViewController.m */; };
@@ -213,12 +213,12 @@
 		71D002F41A9727AB00E9FDCE /* OKSelectColorVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKSelectColorVC.h; sourceTree = "<group>"; };
 		71D002F51A9727AB00E9FDCE /* OKSelectColorVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKSelectColorVC.m; sourceTree = "<group>"; };
 		71D002F71A97740800E9FDCE /* search_white_navbar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = search_white_navbar.png; sourceTree = "<group>"; };
-		71D002F91A97807B00E9FDCE /* UIView+AutoDissmissAlert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+AutoDissmissAlert.h"; sourceTree = "<group>"; };
-		71D002FA1A97807B00E9FDCE /* UIView+AutoDissmissAlert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+AutoDissmissAlert.m"; sourceTree = "<group>"; };
 		71D5795A19E5104800E6E2AF /* OKTryOnMeVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKTryOnMeVC.h; sourceTree = "<group>"; };
 		71D5795B19E5104800E6E2AF /* OKTryOnMeVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKTryOnMeVC.m; sourceTree = "<group>"; };
 		71ECEF93195AC2A600872EBC /* UIImage+AverageColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+AverageColor.h"; sourceTree = "<group>"; };
 		71ECEF94195AC2A600872EBC /* UIImage+AverageColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+AverageColor.m"; sourceTree = "<group>"; };
+		71F5E2421AA4A5C7006E87CF /* UIViewController+AutoDissmissAlert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+AutoDissmissAlert.h"; sourceTree = "<group>"; };
+		71F5E2431AA4A5C7006E87CF /* UIViewController+AutoDissmissAlert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+AutoDissmissAlert.m"; sourceTree = "<group>"; };
 		71F9746B19FE6480007F774D /* OKWelcomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKWelcomeViewController.h; sourceTree = "<group>"; };
 		71F9746C19FE6480007F774D /* OKWelcomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKWelcomeViewController.m; sourceTree = "<group>"; };
 		71F9747119FE6955007F774D /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/OKWelcomeViewController.xib; sourceTree = "<group>"; };
@@ -511,8 +511,8 @@
 				71ECEF94195AC2A600872EBC /* UIImage+AverageColor.m */,
 				71063757196C0ED100D17D66 /* UIView+CreateImage.h */,
 				71063758196C0ED100D17D66 /* UIView+CreateImage.m */,
-				71D002F91A97807B00E9FDCE /* UIView+AutoDissmissAlert.h */,
-				71D002FA1A97807B00E9FDCE /* UIView+AutoDissmissAlert.m */,
+				71F5E2421AA4A5C7006E87CF /* UIViewController+AutoDissmissAlert.h */,
+				71F5E2431AA4A5C7006E87CF /* UIViewController+AutoDissmissAlert.m */,
 				7152CB50197557640080898F /* OKProductJsonType.h */,
 				7152CB51197557640080898F /* OKProductJsonType.m */,
 			);
@@ -665,7 +665,6 @@
 				719C30DD19F7A9C300E938BA /* CRVINTERGraphicsView.m in Sources */,
 				7100616E19FF8CE6004A7A3C /* OKTryOnMeTutVC.m in Sources */,
 				71F9747619FE6B05007F774D /* OKTutorialBaseViewController.m in Sources */,
-				71D002FB1A97807B00E9FDCE /* UIView+AutoDissmissAlert.m in Sources */,
 				71F9746E19FE6480007F774D /* OKWelcomeViewController.m in Sources */,
 				718986551963E59400C26297 /* OKZoomView.m in Sources */,
 				71D5795C19E5104800E6E2AF /* OKTryOnMeVC.m in Sources */,
@@ -690,6 +689,7 @@
 				7136433D195C5E08006EF824 /* OKUtils.m in Sources */,
 				71328AA617C35FD7007EE533 /* OKAppDelegate.m in Sources */,
 				7128469D1A9CC0BE00E39958 /* AVCamPreviewView.m in Sources */,
+				71F5E2441AA4A5C7006E87CF /* UIViewController+AutoDissmissAlert.m in Sources */,
 				713FBE2219FAB097009C9487 /* OKInfoChildViewController.m in Sources */,
 				719C30E319F7ACE300E938BA /* TapToPointView.m in Sources */,
 				7134B72319A3B3F800BFE754 /* ColorModel+Create.m in Sources */,

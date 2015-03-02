@@ -21,7 +21,6 @@
 @property (strong, nonatomic) UIManagedDocument *document;
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
 @property (nonatomic, strong) NSDictionary *filesDictionary;
-
 @end
 
 @implementation OKWelcomeScreemVC
@@ -60,7 +59,8 @@
                                                               style:UIBarButtonItemStylePlain
                                                              target:self
                                                              action:@selector(showTutorial)];
-  self.navigationItem.rightBarButtonItems = @[settingsBtn, infoBtn];
+//  self.navigationItem.rightBarButtonItems = @[settingsBtn, infoBtn];
+  self.navigationItem.rightBarButtonItem = settingsBtn;
 
   if (!self.managedObjectContext) [self initManagedDocument];
 }
@@ -165,11 +165,11 @@
 
 #pragma mark - OKSettingsDelegate
 
-- (void)acceptChangedSetings
-{
-//  self.takeController.allowsEditingPhoto = [[[NSUserDefaults standardUserDefaults] objectForKey:editPhotosKey] boolValue];
-//  self.savePhoto = [[[NSUserDefaults standardUserDefaults] objectForKey:savePhotosKey] boolValue];
-}
+//- (void)acceptChangedSetings
+//{
+////  self.takeController.allowsEditingPhoto = [[[NSUserDefaults standardUserDefaults] objectForKey:editPhotosKey] boolValue];
+////  self.savePhoto = [[[NSUserDefaults standardUserDefaults] objectForKey:savePhotosKey] boolValue];
+//}
 
 #pragma mark - CoreData Initialization
 

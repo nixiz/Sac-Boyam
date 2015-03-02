@@ -17,6 +17,7 @@
 #import "CRVINTERGraphicsView.h"
 #import "TapToPointView.h"
 #import "OKInfoViewController.h"
+#import "OKMainViewController.h"
 
 @interface OKTryOnMeVC () <UIAlertViewDelegate, UIGestureRecognizerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 @property (strong, nonatomic) UIImage *defaultImage;
@@ -577,4 +578,17 @@
   
   return statusBarViewRect;
 }
+/*
+#pragma mark - Navigation
+
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+  if ([[segue identifier] isEqualToString:@"tryOnMeSegue"]) {
+    OKMainViewController *vc = [segue destinationViewController];
+    [vc setColorModel:self.colorModel];
+    [vc setManagedObjectContext:self.managedObjectContext];
+    vc.lookingFromFavList = NO;
+  }
+}
+*/
 @end

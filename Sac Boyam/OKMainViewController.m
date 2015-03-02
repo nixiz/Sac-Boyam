@@ -50,18 +50,21 @@
                                                               style:UIBarButtonItemStylePlain
                                                              target:self
                                                              action:@selector(showTutorial)];
-  if (self.lookingFromFavList == NO) {
+  if (self.lookingFromFavList == NO)
+  {
     UIBarButtonItem *savebtn = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedStringFromTable(@"saveButtonName", okStringsTableName, nil) style:UIBarButtonItemStylePlain target:self action:@selector(addRemoveFav:)];
     
     BOOL takeRecord = [[[NSUserDefaults standardUserDefaults] objectForKey:takeRecordKey] boolValue];
     if (!takeRecord) {
       [savebtn setEnabled:NO];
-//      [savebtn setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
     }
-    self.navigationItem.rightBarButtonItems = @[savebtn, infoBtn];
-  } else {
-    self.navigationItem.rightBarButtonItem = infoBtn;
+//    self.navigationItem.rightBarButtonItems = @[savebtn, infoBtn];
+    self.navigationItem.rightBarButtonItem = savebtn;
   }
+//  else
+//  {
+//    self.navigationItem.rightBarButtonItem = infoBtn;
+//  }
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -83,17 +86,8 @@
   [self presentViewController:vc animated:NO completion:nil];
 }
 
-- (IBAction)lookForInternet:(id)sender {
-  
-//  UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Warning"
-//                                                    message:@"Uygulamadan cikilacak! "
-//                                                   delegate:self
-//                                          cancelButtonTitle:@"Hayir"
-//                                          otherButtonTitles:@"Tamam", nil];
-//  [message show];
-  
-  
-  
+- (IBAction)lookForInternet:(id)sender
+{
   NSMutableString *searchText = [[NSMutableString alloc] initWithString:@"https://www.google.com/search?q="];
   [searchText appendString:[self.colorModel.productName stringByReplacingOccurrencesOfString:@" " withString:@"+"]];
   
@@ -190,8 +184,8 @@
 //    [self.favButton setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
   }
 }
-//tryOnMeSegue
 
+/*
 #pragma mark - Navigation
  
 // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -204,5 +198,5 @@
  // Pass the selected object to the new view controller.
 
 }
-
+*/
 @end

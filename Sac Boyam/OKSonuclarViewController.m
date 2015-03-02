@@ -18,6 +18,7 @@
 #import "UIView+CreateImage.h"
 #import "UIImage+ImageEffects.h"
 #import "OKInfoViewController.h"
+#import "OKTryOnMeVC.h"
 
 #define ARC4RANDOM_MAX	0x100000000
 #define indexForProductName   0
@@ -157,7 +158,7 @@
 {
   CGRect headerViewRect = CGRectMake(0, 0, self.view.bounds.size.width, 70);
   UIView *headerView = [[UIView alloc] initWithFrame:headerViewRect];
-  headerView.backgroundColor = [[UIColor lightGrayColor] colorWithAlphaComponent:0.65];
+  headerView.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0.95];
   //TODO: Get product Logo from productName value.
   NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:section];
   ColorModel *color = [self.fetchedResultsController objectAtIndexPath:indexPath];
@@ -170,11 +171,17 @@
   [headerView addSubview:productLogo];
     
   UILabel *productName = [[UILabel alloc] initWithFrame:CGRectMake(80, 0, self.view.bounds.size.width - 70, 70)];
+  [productName setFont:[UIFont boldSystemFontOfSize:15.0]];
   productName.text = color.brand.brandName;
   productName.backgroundColor = [UIColor clearColor];
   [headerView addSubview:productName];
     
   return headerView;
+}
+
+-(void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
+{
+  [self performSegueWithIdentifier:@"resultDetailSegue" sender:indexPath];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -187,12 +194,13 @@
     cell = [[OKSonuclarCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
   }
   ColorModel *color = [self.fetchedResultsController objectAtIndexPath:indexPath];
+  [cell setTintColor:[UIColor blackColor]];
 //  UIImage *cellImage = [UIImage imageNamed:@"resultsTableCell"];
 //  cell.backgroundColor = [UIColor colorWithPatternImage:cellImage];
 
   //  cell.productName.adjustsFontSizeToFitWidth = YES;
-  cell.productName.lineBreakMode = NSLineBreakByWordWrapping;
-  cell.productName.numberOfLines = 2;
+//  cell.productName.lineBreakMode = NSLineBreakByWordWrapping;
+//  cell.productName.numberOfLines = 2;
   cell.productName.text = color.productName;
 //  cell.priceLabel.text = [[color.price stringValue] stringByAppendingString:@" TL"];
   cell.priceLabel.text = @"";
@@ -259,9 +267,10 @@
 {
   //resultDetailSegue
   if ([[segue identifier] isEqualToString:@"resultDetailSegue"]) {
-    NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
+    NSIndexPath *indexPath = (NSIndexPath *)sender;
     ColorModel *color = [self.fetchedResultsController objectAtIndexPath:indexPath];
     OKMainViewController *vc = [segue destinationViewController];
+    
     //TODO: share color model to to destination view controller
     [vc setColorModel:color];
     [vc setManagedObjectContext:self.managedObjectContext];
@@ -269,7 +278,22 @@
   } else if ([[segue identifier] isEqualToString:@"settingSegueFromResults"]) {
     OKSettingsViewController *vc = [segue destinationViewController];
     [vc setManagedObjectContext:self.managedObjectContext];
+  } else if ([[segue identifier] isEqualToString:@"tryOnMeSegue"]) {
+//    CGPoint btnPoint = [sender convertPoint:CGPointZero toView:self.tableView];
+//    NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:btnPoint];
+
+//    UITableViewCell *clickedCell = (UITableViewCell *)[[sender superview] superview];
+//    NSIndexPath *indexPath = [self.tableView indexPathForCell:clickedCell];
+
+//    NSIndexPath *indexPath = (NSIndexPath *)sender;
+    NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
+
+    ColorModel *color = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    OKTryOnMeVC *vc = [segue destinationViewController];
+    [vc setColorModel:color];
+    [vc setManagedObjectContext:self.managedObjectContext];
   }
+
 }
 
 @end

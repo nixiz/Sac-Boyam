@@ -1,14 +1,14 @@
 //
-//  UIView+AutoDissmissAlert.m
+//  UIViewController+AutoDissmissAlert.m
 //  Saç Boyam
 //
-//  Created by Oguzhan Katli on 20/02/15.
+//  Created by Oguzhan Katli on 02/03/15.
 //  Copyright (c) 2015 Oguzhan Katli. All rights reserved.
 //
 
-#import "UIView+AutoDissmissAlert.h"
+#import "UIViewController+AutoDissmissAlert.h"
 
-@implementation UIView (AutoDissmissAlert)
+@implementation UIViewController (AutoDissmissAlert)
 
 - (void)dismissAlertView:(UIAlertView *)alertView
 {

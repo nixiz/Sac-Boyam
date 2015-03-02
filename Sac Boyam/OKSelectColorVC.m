@@ -67,7 +67,7 @@
   [self.findButton setTitleEdgeInsets:UIEdgeInsetsMake(0.0, - imageSize.width*2 , 0.0, 0.0)];
   CGSize titleSize = [self.findButton.titleLabel.text sizeWithAttributes:@{NSFontAttributeName: self.findButton.titleLabel.font}];
   [self.findButton setImageEdgeInsets:UIEdgeInsetsMake(0.0, 0.0, 0.0, -titleSize.width*2 - 6)];
-  
+  [self.findButton setEnabled:NO];
   
   UIBarButtonItem *searchBtn = [[UIBarButtonItem alloc] initWithCustomView:self.findButton];
   [tools setItems:@[infoBtn, searchBtn] animated:NO];
@@ -137,7 +137,19 @@
 
 - (void)findForSelectedColor
 {
-  [self performSegueWithIdentifier:@"resultsSegue" sender:self];
+  if (self.color) {
+    [self performSegueWithIdentifier:@"resultsSegue" sender:self];
+  } else {
+//    UIPopoverController *popVc = [[UIPopoverController alloc] initWithContentViewController:self];
+//    popVc.delegate = self;
+//    UIBarButtonItem *barBtnItm = (UIBarButtonItem *)[self.findButton superview];
+//    assert(barBtnItm);
+//    [popVc presentPopoverFromBarButtonItem:barBtnItm permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
+//    dispatch_async(dispatch_get_main_queue(), ^{
+//      [NSThread sleepForTimeInterval:.5];
+//      [popVc dismissPopoverAnimated:YES];
+//    });
+  }
 }
 
 #pragma mark - OKSettingsDelegate
@@ -154,7 +166,7 @@
   if (self.imageView.image == nil) return;
   UITouch *touch = [[touches allObjects] objectAtIndex:0];
   CGPoint point = [touch locationInView:self.view];
-  
+
   /* 
      Eger imageview uzerine eklenmis image'in size i imageview in kendi size i ile
      ayni degil ise, (yani image in size i imageview in size indan daha buyukse gibi)
@@ -187,6 +199,9 @@
     UIImage *tmp_img = [UIImage imageWithCGImage:imageRef];
     CGImageRelease(imageRef);
     
+    if (self.color == nil) {
+      [self.findButton setEnabled:YES];
+    }
     // calculate average color for next steps
     self.color = [tmp_img averageColor];
     
@@ -265,7 +280,7 @@
 
 
 #pragma mark - Navigation
-
+/*
 -(BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender
 {
   if ([identifier isEqualToString:@"resultsSegue"]) {
@@ -281,7 +296,7 @@
   }
   return YES;
 }
-
+*/
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
   

@@ -12,5 +12,6 @@
 
 @interface OKTryOnMeVC : UIViewController
 @property (nonatomic, retain) ColorModel *colorModel;
+@property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
 
 @end

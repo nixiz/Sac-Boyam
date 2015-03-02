@@ -10,7 +10,7 @@
 #import <CoreData/CoreData.h>
 
 @protocol OKSettingsDelegate <NSObject>
-
+@optional
 - (void)acceptChangedSetings;
 
 @end
