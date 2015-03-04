@@ -29,7 +29,9 @@ static void * SessionRunningAndDeviceAuthorizedContext = &SessionRunningAndDevic
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 - (IBAction)captureImage:(id)sender;
 - (IBAction)switchCameraMode:(id)sender;
+- (IBAction)focusAndExposeTap:(UITapGestureRecognizer *)sender;
 @property (strong, nonatomic) IBOutletCollection(UIView) NSArray *transformableOutlets;
+@property (strong, nonatomic) IBOutlet UITapGestureRecognizer *tapGesture;
 - (IBAction)switchValueChanged:(id)sender;
 @property (weak, nonatomic) IBOutlet UISwitch *autoModeSwitch;
 @property (weak, nonatomic) IBOutlet UILabel *switchLabel;
@@ -111,12 +113,10 @@ static void * SessionRunningAndDeviceAuthorizedContext = &SessionRunningAndDevic
   // In general it is not safe to mutate an AVCaptureSession or any of its inputs, outputs, or connections from multiple threads at the same time.
   // Why not do all of this on the main queue?
   // -[AVCaptureSession startRunning] is a blocking call which can take a long time. We dispatch session setup to the sessionQueue so that the main queue isn't blocked (which keeps the UI responsive).
-  
   dispatch_queue_t sessionQueue = dispatch_queue_create("session queue", DISPATCH_QUEUE_SERIAL);
   [self setSessionQueue:sessionQueue];
   
   dispatch_async(sessionQueue, ^{
-//    [self setBackgroundRecordingID:UIBackgroundTaskInvalid];
     
     NSError *error = nil;
     
@@ -144,31 +144,6 @@ static void * SessionRunningAndDeviceAuthorizedContext = &SessionRunningAndDevic
       });
     }
     
-//    AVCaptureDevice *audioDevice = [[AVCaptureDevice devicesWithMediaType:AVMediaTypeAudio] firstObject];
-//    AVCaptureDeviceInput *audioDeviceInput = [AVCaptureDeviceInput deviceInputWithDevice:audioDevice error:&error];
-//    
-//    if (error)
-//    {
-//      NSLog(@"%@", error);
-//    }
-//    
-//    if ([session canAddInput:audioDeviceInput])
-//    {
-//      [session addInput:audioDeviceInput];
-//    }
-//    
-//    AVCaptureMovieFileOutput *movieFileOutput = [[AVCaptureMovieFileOutput alloc] init];
-//    if ([session canAddOutput:movieFileOutput])
-//    {
-//      [session addOutput:movieFileOutput];
-//      AVCaptureConnection *connection = [movieFileOutput connectionWithMediaType:AVMediaTypeVideo];
-//      if ([connection isVideoStabilizationSupported]) {
-//        [connection setEnablesVideoStabilizationWhenAvailable:YES];
-////        [connection setPreferredVideoStabilizationMode:AVCaptureVideoStabilizationModeStandard];
-//      }
-//      [self setMovieFileOutput:movieFileOutput];
-//    }
-    
     AVCaptureStillImageOutput *stillImageOutput = [[AVCaptureStillImageOutput alloc] init];
     if ([session canAddOutput:stillImageOutput])
     {
@@ -193,7 +168,7 @@ static void * SessionRunningAndDeviceAuthorizedContext = &SessionRunningAndDevic
     
     // If you wish to cap the frame rate to a known value, such as 15 fps, set
     // minFrameDuration.
-    output.minFrameDuration = CMTimeMake(1, 15);
+//    output.minFrameDuration = CMTimeMake(1, 15);
     
     
   });
@@ -202,10 +177,15 @@ static void * SessionRunningAndDeviceAuthorizedContext = &SessionRunningAndDevic
 -(void)viewWillAppear:(BOOL)animated
 {
   [super viewWillAppear:animated];
+  if ([self isAutoModeActivated]) {
+    [self.tapGesture setEnabled:NO];
+  } else {
+    [self.tapGesture setEnabled:YES];
+  }
+  
   dispatch_async([self sessionQueue], ^{
-    [self addObserver:self forKeyPath:@"sessionRunningAndDeviceAuthorized" options:(NSKeyValueObservingOptionOld | NSKeyValueObservingOptionNew) context:SessionRunningAndDeviceAuthorizedContext];
+//    [self addObserver:self forKeyPath:@"sessionRunningAndDeviceAuthorized" options:(NSKeyValueObservingOptionOld | NSKeyValueObservingOptionNew) context:SessionRunningAndDeviceAuthorizedContext];
     [self addObserver:self forKeyPath:@"stillImageOutput.capturingStillImage" options:(NSKeyValueObservingOptionOld | NSKeyValueObservingOptionNew) context:CapturingStillImageContext];
-//    [self addObserver:self forKeyPath:@"movieFileOutput.recording" options:(NSKeyValueObservingOptionOld | NSKeyValueObservingOptionNew) context:RecordingContext];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(subjectAreaDidChange:) name:AVCaptureDeviceSubjectAreaDidChangeNotification object:[[self videoDeviceInput] device]];
     
     __weak OKCamViewController *weakSelf = self;
@@ -214,20 +194,12 @@ static void * SessionRunningAndDeviceAuthorizedContext = &SessionRunningAndDevic
       dispatch_async([strongSelf sessionQueue], ^{
         // Manually restarting the session since it must have been stopped due to an error.
         [[strongSelf session] startRunning];
-//        [[strongSelf recordButton] setTitle:NSLocalizedString(@"Record", @"Recording button record title") forState:UIControlStateNormal];
       });
     }]];
     [[self session] startRunning];
   });
 
 }
-
-//-(void)viewDidAppear:(BOOL)animated
-//{
-//  [super viewDidAppear:animated];
-//  OKCameraViewController *vc = [[OKCameraViewController alloc] initWithNibName:@"OKCameraViewController" bundle:nil];
-//  [self presentViewController:vc animated:NO completion:nil];
-//}
 
 -(void)viewWillDisappear:(BOOL)animated
 {
@@ -238,45 +210,20 @@ static void * SessionRunningAndDeviceAuthorizedContext = &SessionRunningAndDevic
     [[NSNotificationCenter defaultCenter] removeObserver:self name:AVCaptureDeviceSubjectAreaDidChangeNotification object:[[self videoDeviceInput] device]];
     [[NSNotificationCenter defaultCenter] removeObserver:[self runtimeErrorHandlingObserver]];
     
-    [self removeObserver:self forKeyPath:@"sessionRunningAndDeviceAuthorized" context:SessionRunningAndDeviceAuthorizedContext];
+//    [self removeObserver:self forKeyPath:@"sessionRunningAndDeviceAuthorized" context:SessionRunningAndDeviceAuthorizedContext];
     [self removeObserver:self forKeyPath:@"stillImageOutput.capturingStillImage" context:CapturingStillImageContext];
-    //    [self removeObserver:self forKeyPath:@"movieFileOutput.recording" context:RecordingContext];
   });
 }
-
-//-(void)viewDidDisappear:(BOOL)animated
-//{
-//  dispatch_async([self sessionQueue], ^{
-//    [[self session] stopRunning];
-//    
-//    [[NSNotificationCenter defaultCenter] removeObserver:self name:AVCaptureDeviceSubjectAreaDidChangeNotification object:[[self videoDeviceInput] device]];
-//    [[NSNotificationCenter defaultCenter] removeObserver:[self runtimeErrorHandlingObserver]];
-//    
-//    [self removeObserver:self forKeyPath:@"sessionRunningAndDeviceAuthorized" context:SessionRunningAndDeviceAuthorizedContext];
-//    [self removeObserver:self forKeyPath:@"stillImageOutput.capturingStillImage" context:CapturingStillImageContext];
-////    [self removeObserver:self forKeyPath:@"movieFileOutput.recording" context:RecordingContext];
-//  });
-//}
 
 - (void)didReceiveMemoryWarning {
   [super didReceiveMemoryWarning];
   // Dispose of any resources that can be recreated.
 }
 
-//- (BOOL)prefersStatusBarHidden
-//{
-//  return YES;
-//}
-
 - (NSUInteger)supportedInterfaceOrientations
 {
   return UIInterfaceOrientationMaskPortrait/*UIInterfaceOrientationPortrait*/;
 }
-
-//-(BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
-//{
-//  return (toInterfaceOrientation == UIInterfaceOrientationPortrait);
-//}
 
 - (void)deviceDidRotate:(NSNotification *)notification
 {
@@ -307,7 +254,6 @@ static void * SessionRunningAndDeviceAuthorizedContext = &SessionRunningAndDevic
   }
   CGAffineTransform transform = CGAffineTransformMakeRotation(rotation);
   [UIView animateWithDuration:0.4 delay:0.0 options:UIViewAnimationOptionBeginFromCurrentState animations:^{
-//    [[(AVCaptureVideoPreviewLayer *)[[self previewView] layer] connection] setVideoOrientation:(AVCaptureVideoOrientation)statusBarOrientation];
     [self.transformableOutlets enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
       [(UIView *)obj setTransform:transform];
     }];
@@ -316,7 +262,6 @@ static void * SessionRunningAndDeviceAuthorizedContext = &SessionRunningAndDevic
     } else {
       [self.switchLabel setHidden:NO];
     }
-//    [self.imageView setTransform:transform];
     [[UIApplication sharedApplication] setStatusBarOrientation:statusBarOrientation];
   } completion:nil];
 }
@@ -338,25 +283,25 @@ static void * SessionRunningAndDeviceAuthorizedContext = &SessionRunningAndDevic
       [self runStillImageCaptureAnimation];
     }
   }
-  else if (context == SessionRunningAndDeviceAuthorizedContext)
-  {
-    BOOL isRunning = [change[NSKeyValueChangeNewKey] boolValue];
-    
-    dispatch_async(dispatch_get_main_queue(), ^{
-      if (isRunning)
-      {
+//  else if (context == SessionRunningAndDeviceAuthorizedContext)
+//  {
+//    BOOL isRunning = [change[NSKeyValueChangeNewKey] boolValue];
+//    
+//    dispatch_async(dispatch_get_main_queue(), ^{
+//      if (isRunning)
+//      {
 //        [[self cameraButton] setEnabled:YES];
 //        [[self recordButton] setEnabled:YES];
 //        [[self stillButton] setEnabled:YES];
-      }
-      else
-      {
+//      }
+//      else
+//      {
 //        [[self cameraButton] setEnabled:NO];
 //        [[self recordButton] setEnabled:NO];
 //        [[self stillButton] setEnabled:NO];
-      }
-    });
-  }
+//      }
+//    });
+//  }
   else
   {
     [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
@@ -367,7 +312,6 @@ static void * SessionRunningAndDeviceAuthorizedContext = &SessionRunningAndDevic
 
 - (IBAction)captureImage:(id)sender
 {
-//  [self.captureButton setUserInteractionEnabled:NO];
   [self.captureButton setEnabled:NO];
   dispatch_async([self sessionQueue], ^{
     // Update the orientation on the still image output video connection before capturing.
@@ -376,7 +320,7 @@ static void * SessionRunningAndDeviceAuthorizedContext = &SessionRunningAndDevic
     [[[self stillImageOutput] connectionWithMediaType:AVMediaTypeVideo] setVideoOrientation:(AVCaptureVideoOrientation)currentOrientation];
     
     // Flash set to Auto for Still Capture
-    [OKCamViewController setFlashMode:AVCaptureFlashModeAuto forDevice:[[self videoDeviceInput] device]];
+    [OKCamViewController setFlashMode:AVCaptureFlashModeOff forDevice:[[self videoDeviceInput] device]];
     
     // Capture a still image.
     [[self stillImageOutput] captureStillImageAsynchronouslyFromConnection:[[self stillImageOutput] connectionWithMediaType:AVMediaTypeVideo] completionHandler:^(CMSampleBufferRef imageDataSampleBuffer, NSError *error) {
@@ -385,9 +329,6 @@ static void * SessionRunningAndDeviceAuthorizedContext = &SessionRunningAndDevic
       {
         NSData *imageData = [AVCaptureStillImageOutput jpegStillImageNSDataRepresentation:imageDataSampleBuffer];
         UIImage *image = [[UIImage alloc] initWithData:imageData];
-//        image = [UIImage imageWithCGImage:[image CGImage]
-//                                    scale:1.0
-//                              orientation:UIImageOrientationUp];
 
         self.pickedImage = image;
 
@@ -403,13 +344,10 @@ static void * SessionRunningAndDeviceAuthorizedContext = &SessionRunningAndDevic
           } else {
             NSLog(@"Upps!");
             //TODO: burasi olmamali ama olursa da image dan color bul ve find
-            
           }
-        } else {
-          
+        } else
+        {
           [self performSegueWithIdentifier:@"SelectColorSegueFromCam" sender:self];
-          //TODO: show select color VC
-          
         }
 //        [[[ALAssetsLibrary alloc] init] writeImageToSavedPhotosAlbum:[image CGImage] orientation:(ALAssetOrientation)[image imageOrientation] completionBlock:nil];
       }
@@ -421,9 +359,6 @@ static void * SessionRunningAndDeviceAuthorizedContext = &SessionRunningAndDevic
 }
 
 - (IBAction)switchCameraMode:(id)sender {
-//  [[self cameraButton] setEnabled:NO];
-//  [[self recordButton] setEnabled:NO];
-//  [[self stillButton] setEnabled:NO];
   [self.buttonOutlets enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
     if ([obj isKindOfClass:[UISwitch class]]) {
       [(UISwitch *)obj setEnabled:NO];
@@ -460,7 +395,7 @@ static void * SessionRunningAndDeviceAuthorizedContext = &SessionRunningAndDevic
     {
       [[NSNotificationCenter defaultCenter] removeObserver:self name:AVCaptureDeviceSubjectAreaDidChangeNotification object:currentVideoDevice];
       
-      [OKCamViewController setFlashMode:AVCaptureFlashModeAuto forDevice:videoDevice];
+      [OKCamViewController setFlashMode:AVCaptureFlashModeOff forDevice:videoDevice];
       [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(subjectAreaDidChange:) name:AVCaptureDeviceSubjectAreaDidChangeNotification object:videoDevice];
       
       [[self session] addInput:videoDeviceInput];
@@ -485,15 +420,10 @@ static void * SessionRunningAndDeviceAuthorizedContext = &SessionRunningAndDevic
   });
 }
 
-//- (BOOL)isSessionRunningAndDeviceAuthorized
-//{
-//  return [[self session] isRunning] && [self isDeviceAuthorized];
-//}
-
-//+ (NSSet *)keyPathsForValuesAffectingSessionRunningAndDeviceAuthorized
-//{
-//  return [NSSet setWithObjects:@"session.running", @"deviceAuthorized", nil];
-//}
+- (IBAction)focusAndExposeTap:(UITapGestureRecognizer *)sender {
+  CGPoint devicePoint = [(AVCaptureVideoPreviewLayer *)[[self previewView] layer] captureDevicePointOfInterestForPoint:[sender locationInView:[sender view]]];
+  [self focusWithMode:AVCaptureFocusModeLocked exposeWithMode:AVCaptureExposureModeContinuousAutoExposure atDevicePoint:devicePoint monitorSubjectAreaChange:YES];
+}
 
 - (void)subjectAreaDidChange:(NSNotification *)notification
 {
@@ -604,7 +534,7 @@ static void * SessionRunningAndDeviceAuthorizedContext = &SessionRunningAndDevic
 - (IBAction)switchValueChanged:(id)sender {
   BOOL switchState = [(UISwitch *)sender isOn];
   self.autoModeActive = switchState;
-  [UIView transitionWithView:self.switchLabel duration:0.4 options:UIViewAnimationOptionCurveEaseInOut | UIViewAnimationOptionTransitionCrossDissolve animations:^{
+  [UIView animateWithDuration:.4 delay:0.0 options:UIViewAnimationOptionBeginFromCurrentState | UIViewAnimationOptionTransitionCrossDissolve | UIViewAnimationOptionCurveEaseInOut animations:^{
     if (switchState) {
       [self.switchLabel setText:@"Auto"];
       [self.calculatedColorBtn setHidden:NO];
@@ -614,7 +544,30 @@ static void * SessionRunningAndDeviceAuthorizedContext = &SessionRunningAndDevic
       [self.calculatedColorBtn setHidden:YES];
       [self.imageView setHidden:YES];
     }
-  } completion:nil];
+  } completion:^(BOOL finished) {
+    if (switchState) {
+      [self.tapGesture setEnabled:NO];
+    } else {
+      [self.tapGesture setEnabled:YES];
+    }
+  }];
+//  [UIView transitionWithView:self.switchLabel duration:0.4 options:UIViewAnimationOptionCurveEaseInOut | UIViewAnimationOptionTransitionCrossDissolve animations:^{
+//    if (switchState) {
+//      [self.switchLabel setText:@"Auto"];
+//      [self.calculatedColorBtn setHidden:NO];
+//      [self.imageView setHidden:NO];
+//    } else {
+//      [self.switchLabel setText:@"Manual"];
+//      [self.calculatedColorBtn setHidden:YES];
+//      [self.imageView setHidden:YES];
+//    }
+//  } completion:^(BOOL finished) {
+//    if (switchState) {
+//      [self.tapGesture setEnabled:NO];
+//    } else {
+//      [self.tapGesture setEnabled:YES];
+//    }
+//  }];
 }
 
 -(BOOL)isAutoModeActivated
@@ -661,11 +614,6 @@ static void * SessionRunningAndDeviceAuthorizedContext = &SessionRunningAndDevic
     
   });
 }
-
-//- (void)backtoRootController
-//{
-//  [self.navigationController popToRootViewControllerAnimated:YES];
-//}
 
 #pragma mark - Navigation
 

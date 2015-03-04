@@ -633,6 +633,7 @@
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="WRv-xh-2Cq" firstAttribute="top" secondItem="rok-hJ-fp7" secondAttribute="bottom" id="0AG-pM-9Ol"/>
                             <constraint firstAttribute="centerX" secondItem="b83-Mu-66t" secondAttribute="centerX" id="3sX-IH-ufi"/>
@@ -665,6 +666,9 @@
                                 <exclude reference="nn6-sr-LKh"/>
                             </mask>
                         </variation>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="lP0-qn-ilQ" appends="YES" id="Yp2-Mv-Og9"/>
+                        </connections>
                     </view>
                     <navigationItem key="navigationItem" id="puO-Mn-whe"/>
                     <connections>
@@ -673,6 +677,7 @@
                         <outlet property="imageView" destination="b83-Mu-66t" id="Mbv-nM-yst"/>
                         <outlet property="previewView" destination="6Xm-kB-T9j" id="fao-8o-gK9"/>
                         <outlet property="switchLabel" destination="WRv-xh-2Cq" id="3Zs-Zb-QS9"/>
+                        <outlet property="tapGesture" destination="lP0-qn-ilQ" id="iEg-1S-Ss3"/>
                         <outletCollection property="transformableOutlets" destination="VeP-8G-Ds8" id="bPU-6E-nLY"/>
                         <outletCollection property="transformableOutlets" destination="wWG-7O-OAb" id="ySl-dx-uWV"/>
                         <outletCollection property="transformableOutlets" destination="WRv-xh-2Cq" id="2jY-ou-vt4"/>
@@ -686,6 +691,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3rx-SD-L0n" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="lP0-qn-ilQ">
+                    <connections>
+                        <action selector="focusAndExposeTap:" destination="UMw-6r-DQJ" id="n0c-QL-VsU"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="-4" y="456"/>
         </scene>
