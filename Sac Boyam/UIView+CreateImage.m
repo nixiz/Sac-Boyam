@@ -11,13 +11,18 @@
 
 @implementation UIView (CreateImage)
 
-- (UIImage *)createImageFromView
+- (UIImage *)createImageFromViewAfterScreenUpdates:(BOOL)afterUpdate
 {
   UIGraphicsBeginImageContextWithOptions(self.bounds.size, NO, [UIScreen mainScreen].scale);
-  [self drawViewHierarchyInRect:self.bounds afterScreenUpdates:YES];
+  [self drawViewHierarchyInRect:self.bounds afterScreenUpdates:afterUpdate];
   UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
   UIGraphicsEndImageContext();
   return image;
+}
+
+- (UIImage *)createImageFromView
+{
+  return [self createImageFromViewAfterScreenUpdates:YES];
 }
 
 - (UIImage*) maskImage:(UIImage *)image withMask:(UIImage *)maskImage

@@ -19,6 +19,7 @@
 //@property (weak, nonatomic) IBOutlet UIImageView *averageColorImageView;
 @property (weak, nonatomic) IBOutlet UILabel *productDetailsLabel;
 @property (weak, nonatomic) IBOutlet UIButton *favButton;
+@property (weak, nonatomic) IBOutlet UIButton *tryBtn;
 - (IBAction)lookForInternet:(id)sender;
 - (IBAction)addRemoveFav:(id)sender;
 @end
@@ -60,6 +61,11 @@
     }
 //    self.navigationItem.rightBarButtonItems = @[savebtn, infoBtn];
     self.navigationItem.rightBarButtonItem = savebtn;
+    [self.tryBtn setHidden:YES];
+  }
+  else
+  {
+    [self.tryBtn setHidden:NO];
   }
 //  else
 //  {
@@ -185,7 +191,7 @@
   }
 }
 
-/*
+
 #pragma mark - Navigation
  
 // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -194,9 +200,6 @@
     OKTryOnMeVC *vc = [segue destinationViewController];
     [vc setColorModel:self.colorModel];
   }
- // Get the new view controller using [segue destinationViewController].
- // Pass the selected object to the new view controller.
-
 }
-*/
+
 @end

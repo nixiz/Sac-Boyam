@@ -32,4 +32,10 @@
 "saveButtonName" = "Kaydet";
 "shouldSaveUserDefaultPhoto" = "Öngörülen Fotoğraf olarak kayıt edilsin mi?";
 "tryOnMeSliderLabelText" = "Saça uygulanan oksidasyon yoğunluğunu ayarlar";
+"tap-to-cont" = "Ekran üstünde dokunarak devam ediniz.";
+"settings-item-1-exp" = "Çektiğiniz resimleri fotoğraflarınıza kayıt eder";
+"settings-item-2-exp" = "Kullanılacak resim, kullanılmadan önce tekrar boyutlandırmaya olanak sağlar";
+"settings-item-3-exp" = "Bulunan boyaların kayıt edilmesine olanak sağlar.\nKayıt etmeyi deaktive ederseniz, kayıtlı olan bütün boyalarınız listeden silinecektir!";
+"settings-item-4-exp" = "Bulunacak sonuç sayısını buradan arttırabilir veya azaltabilirsiniz";
+"settings-item-5-exp" = "Kayıtlı olan boyalarınız burada yer alır";
 "lang" = "tr";

@@ -80,6 +80,7 @@
 		719C30DF19F7A9C300E938BA /* UIBezierPath+Interpolation.m in Sources */ = {isa = PBXBuildFile; fileRef = 719C30DC19F7A9C300E938BA /* UIBezierPath+Interpolation.m */; };
 		719C30E319F7ACE300E938BA /* TapToPointView.m in Sources */ = {isa = PBXBuildFile; fileRef = 719C30E219F7ACE300E938BA /* TapToPointView.m */; };
 		71A7FF8E1A9E0178005097DC /* home-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 71A7FF8D1A9E0178005097DC /* home-icon.png */; };
+		71AE822C1AA5985A009AA806 /* OKSettingsTutorialVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 71AE822B1AA5985A009AA806 /* OKSettingsTutorialVC.m */; };
 		71D002F61A9727AC00E9FDCE /* OKSelectColorVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 71D002F51A9727AB00E9FDCE /* OKSelectColorVC.m */; };
 		71D002F81A97740800E9FDCE /* search_white_navbar.png in Resources */ = {isa = PBXBuildFile; fileRef = 71D002F71A97740800E9FDCE /* search_white_navbar.png */; };
 		71D5795C19E5104800E6E2AF /* OKTryOnMeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 71D5795B19E5104800E6E2AF /* OKTryOnMeVC.m */; };
@@ -210,6 +211,8 @@
 		719C30E119F7ACE300E938BA /* TapToPointView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TapToPointView.h; sourceTree = "<group>"; };
 		719C30E219F7ACE300E938BA /* TapToPointView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TapToPointView.m; sourceTree = "<group>"; };
 		71A7FF8D1A9E0178005097DC /* home-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home-icon.png"; sourceTree = "<group>"; };
+		71AE822A1AA5985A009AA806 /* OKSettingsTutorialVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKSettingsTutorialVC.h; sourceTree = "<group>"; };
+		71AE822B1AA5985A009AA806 /* OKSettingsTutorialVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKSettingsTutorialVC.m; sourceTree = "<group>"; };
 		71D002F41A9727AB00E9FDCE /* OKSelectColorVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKSelectColorVC.h; sourceTree = "<group>"; };
 		71D002F51A9727AB00E9FDCE /* OKSelectColorVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKSelectColorVC.m; sourceTree = "<group>"; };
 		71D002F71A97740800E9FDCE /* search_white_navbar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = search_white_navbar.png; sourceTree = "<group>"; };
@@ -482,6 +485,8 @@
 			children = (
 				719BCE8A1966F0E9005F575C /* OKSettingsViewController.h */,
 				719BCE8B1966F0E9005F575C /* OKSettingsViewController.m */,
+				71AE822A1AA5985A009AA806 /* OKSettingsTutorialVC.h */,
+				71AE822B1AA5985A009AA806 /* OKSettingsTutorialVC.m */,
 			);
 			name = "Settings Page";
 			sourceTree = "<group>";
@@ -670,6 +675,7 @@
 				71D5795C19E5104800E6E2AF /* OKTryOnMeVC.m in Sources */,
 				7134B72219A3B3F800BFE754 /* OKProductType.m in Sources */,
 				7134B72419A3B3F800BFE754 /* BrandModel+Create.m in Sources */,
+				71AE822C1AA5985A009AA806 /* OKSettingsTutorialVC.m in Sources */,
 				71899FF61A971C4200150EEF /* OKWelcomeScreemVC.m in Sources */,
 				719C30DE19F7A9C300E938BA /* CGPointExtension.m in Sources */,
 				71D002F61A9727AC00E9FDCE /* OKSelectColorVC.m in Sources */,

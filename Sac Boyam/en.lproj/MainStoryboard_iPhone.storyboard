@@ -74,7 +74,7 @@
             </objects>
             <point key="canvasLocation" x="1023" y="453"/>
         </scene>
-        <!--Product Detail-->
+        <!--Main View Controller-->
         <scene sceneID="JvE-Wc-u0e">
             <objects>
                 <viewController id="m2b-IW-TYE" customClass="OKMainViewController" sceneMemberID="viewController">
@@ -115,10 +115,26 @@
                                     <action selector="lookForInternet:" destination="m2b-IW-TYE" eventType="touchUpInside" id="0kd-8L-4ZD"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kTX-M0-23X">
+                                <rect key="frame" x="467" y="130" width="125" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="9dU-Az-8EV"/>
+                                    <constraint firstAttribute="width" constant="125" id="XT3-LF-M7T"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="15"/>
+                                <state key="normal" title="Try">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="eig-Hp-jeq" kind="show" identifier="tryOnMeSegue" id="wtE-o7-qLs"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="BF5-Bn-Xof" firstAttribute="leading" secondItem="pD4-LV-tFB" secondAttribute="leading" constant="8" id="GXp-Dc-kcA"/>
+                            <constraint firstItem="kTX-M0-23X" firstAttribute="top" secondItem="zju-Qa-qaf" secondAttribute="bottom" constant="8" id="Gnb-AD-NbV"/>
                             <constraint firstItem="xmk-vq-WEp" firstAttribute="top" secondItem="BF5-Bn-Xof" secondAttribute="bottom" constant="8" id="Hif-qL-ygb"/>
                             <constraint firstItem="zju-Qa-qaf" firstAttribute="top" secondItem="t4O-8H-fdP" secondAttribute="bottom" constant="8" id="Mgh-g3-Hh0"/>
                             <constraint firstItem="BF5-Bn-Xof" firstAttribute="top" secondItem="zju-Qa-qaf" secondAttribute="bottom" constant="8" id="Nur-VR-m0b"/>
@@ -127,12 +143,15 @@
                             <constraint firstItem="xmk-vq-WEp" firstAttribute="leading" secondItem="pD4-LV-tFB" secondAttribute="leading" id="bK0-NL-P9z"/>
                             <constraint firstAttribute="trailing" secondItem="zju-Qa-qaf" secondAttribute="trailing" constant="8" id="onX-l6-1ZS"/>
                             <constraint firstItem="zju-Qa-qaf" firstAttribute="leading" secondItem="pD4-LV-tFB" secondAttribute="leading" constant="8" id="ouw-GN-caY"/>
+                            <constraint firstItem="xmk-vq-WEp" firstAttribute="top" secondItem="kTX-M0-23X" secondAttribute="bottom" constant="8" id="pbI-eo-fhr"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="kTX-M0-23X" secondAttribute="trailing" constant="-8" id="y3n-QP-uQj"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Product Detail" id="JJC-0C-NwP"/>
+                    <navigationItem key="navigationItem" id="JJC-0C-NwP"/>
                     <connections>
                         <outlet property="productDetailsLabel" destination="zju-Qa-qaf" id="rDJ-Qr-kd0"/>
                         <outlet property="productImageView" destination="xmk-vq-WEp" id="Axn-cc-G1w"/>
+                        <outlet property="tryBtn" destination="kTX-M0-23X" id="Azt-FO-Yhj"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="A78-mP-Pyh" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -359,12 +378,40 @@
                         <outlet property="savePhotosSwitch" destination="QrC-AU-v1f" id="hf2-WR-DH2"/>
                         <outlet property="takeRecordsSwitch" destination="wDU-Wq-9dS" id="MO4-H9-gRm"/>
                         <segue destination="Y46-d0-bXP" kind="unwind" identifier="unwindToResultsSegue" unwindAction="unwindToResults:" id="o57-pA-3lK"/>
+                        <segue destination="RHB-b9-Mk3" kind="presentation" identifier="SettingsTutorialSegue" modalPresentationStyle="fullScreen" id="Xsf-rW-boP"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lhz-UA-x5g" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="Y46-d0-bXP" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1023" y="1423"/>
+        </scene>
+        <!--Settings TutorialVC-->
+        <scene sceneID="Nm2-2z-0WD">
+            <objects>
+                <viewController storyboardIdentifier="OKSettingsTutorial" useStoryboardIdentifierAsRestorationIdentifier="YES" id="RHB-b9-Mk3" customClass="OKSettingsTutorialVC" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="X9m-fy-67F"/>
+                        <viewControllerLayoutGuide type="bottom" id="SFZ-Th-ckt"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="E1S-2P-kgu">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="zb3-1E-hea" appends="YES" id="H1f-BC-5PR"/>
+                        </connections>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fzC-wq-u0h" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="zb3-1E-hea">
+                    <connections>
+                        <action selector="tapped:" destination="RHB-b9-Mk3" id="UdZ-Op-qNW"/>
+                    </connections>
+                </tapGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="1023" y="2364"/>
         </scene>
         <!--Saç Boyam-->
         <scene sceneID="3fN-Wt-NuE">
@@ -578,8 +625,8 @@
                                     <constraint firstAttribute="width" constant="120" id="y1s-WX-9jM"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Manual" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="WRv-xh-2Cq">
-                                <rect key="frame" x="24" y="555" width="57" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Manual" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="WRv-xh-2Cq">
+                                <rect key="frame" x="24" y="555" width="58" height="21"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                 <color key="textColor" red="0.92173820279999996" green="0.92851533360000005" blue="0.94884672619999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -651,9 +698,10 @@
         <image name="take_a_pic" width="458" height="458"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="kW2-4f-NGf"/>
-        <segue reference="QDn-4B-G21"/>
-        <segue reference="zx2-8U-gp4"/>
-        <segue reference="ge7-pk-JdY"/>
+        <segue reference="7Fj-1j-qZg"/>
+        <segue reference="gNL-Ht-CVb"/>
+        <segue reference="Wkz-lT-Tp2"/>
+        <segue reference="Jjn-5H-yyJ"/>
+        <segue reference="wtE-o7-qLs"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -32,4 +32,10 @@
 "saveButtonName" = "Save";
 "shouldSaveUserDefaultPhoto" = "Should be saved as your default photo?";
 "tryOnMeSliderLabelText" = "Value of oxidation density";
+"tap-to-cont" = "Tap to continue..";
+"settings-item-1-exp" = "Saves your recently taken photographs to your photo album";
+"settings-item-2-exp" = "Allows you to edit selected or taken photos before using them to find hair color";
+"settings-item-3-exp" = "You can save your found hair colors and see them anytime you want\nIf you close this option, it deletes all recorded data!";
+"settings-item-4-exp" = "Bulunacak sonuc sayisini buradan arttirabilir veya azaltabilirsiniz";
+"settings-item-5-exp" = "Shows saved hair dyes";
 "lang" = "en";

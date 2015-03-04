@@ -16,6 +16,7 @@
 #import "Sac Boyam/UIView+CreateImage.h"
 #import "OKInfoViewController.h"
 #import "UIImage+AverageColor.h"
+#import "OKSettingsTutorialVC.h"
 
 @interface OKSettingsViewController () <UITableViewDataSource, UITableViewDelegate, UIAlertViewDelegate>
 @property (strong, nonatomic) NSDictionary *settingsMap;
@@ -136,10 +137,12 @@
 
 - (void)showTutorial
 {
-  OKInfoViewController *vc = [[OKInfoViewController alloc] initWithNibName:@"OKInfoViewController" bundle:nil];
-//  vc.pageIndex = 3;
-  [vc setPageIndex:OKSettingsPage];
-  [self presentViewController:vc animated:NO completion:nil];
+  [self performSegueWithIdentifier:@"SettingsTutorialSegue" sender:nil];
+  
+//  OKInfoViewController *vc = [[OKInfoViewController alloc] initWithNibName:@"OKInfoViewController" bundle:nil];
+////  vc.pageIndex = 3;
+//  [vc setPageIndex:OKSettingsPage];
+//  [self presentViewController:vc animated:NO completion:nil];
 }
 
 - (IBAction)switchValueChanged:(id)sender {
@@ -471,6 +474,20 @@
     [vc setManagedObjectContext:self.managedObjectContext];
     vc.lookingFromFavList = YES;
     [vc.navigationItem setTitle:record.recordName];
+  } else if ([[segue identifier] isEqualToString:@"SettingsTutorialSegue"]) {
+    UIImage *screenShot = [self.view createImageFromViewAfterScreenUpdates:NO];
+    NSLog(@"Frame %@  Bound %@", NSStringFromCGRect(self.savePhotosSwitch.frame) , NSStringFromCGRect(self.savePhotosSwitch.bounds));
+    NSLog(@"Frame %@  Bound %@", NSStringFromCGRect(self.takeRecordsSwitch.frame) , NSStringFromCGRect(self.takeRecordsSwitch.bounds));
+    NSLog(@"Frame %@  Bound %@", NSStringFromCGRect(self.recordsTableView.frame) , NSStringFromCGRect(self.recordsTableView.bounds));
+    
+    NSDictionary *pointDict = @{@"item-1": [NSValue valueWithCGRect:self.savePhotosSwitch.frame],
+                                @"item-2": [NSValue valueWithCGRect:self.editPhotosSwitch.frame],
+                                @"item-3": [NSValue valueWithCGRect:self.takeRecordsSwitch.frame],
+                                @"item-4": [NSValue valueWithCGRect:self.resultDensitySlider.frame],
+                                @"item-5": [NSValue valueWithCGRect:self.recordsTableView.frame]};
+    
+    OKSettingsTutorialVC *vc = [segue destinationViewController];
+    [vc initiateTutorialControllerWithBgImg:screenShot andContentPoints:pointDict];
   }
 }
 

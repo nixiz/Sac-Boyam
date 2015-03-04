@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface UIView (CreateImage)
+- (UIImage *)createImageFromViewAfterScreenUpdates:(BOOL)afterUpdate;
 - (UIImage *)createImageFromView;
 - (UIImage*) maskImage:(UIImage *)image withMask:(UIImage *)maskImage;
 -(UIColor *) getBackgroundColor;
