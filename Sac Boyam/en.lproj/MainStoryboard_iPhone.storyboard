@@ -68,6 +68,7 @@
                     <connections>
                         <segue destination="2x7-Wg-qUg" kind="show" identifier="settingSegueFromResults" id="Wkz-lT-Tp2"/>
                         <segue destination="m2b-IW-TYE" kind="show" identifier="resultDetailSegue" id="ge7-pk-JdY"/>
+                        <segue destination="RHB-b9-Mk3" kind="presentation" identifier="ResultsTutorialSegue" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="6XR-YP-iso"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1QL-Eh-mJr" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -156,9 +157,9 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="A78-mP-Pyh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1891" y="1423"/>
+            <point key="canvasLocation" x="1023" y="1639"/>
         </scene>
-        <!--Try On Me-->
+        <!--Try On MeVC-->
         <scene sceneID="tx1-Ku-by8">
             <objects>
                 <viewController id="eig-Hp-jeq" customClass="OKTryOnMeVC" sceneMemberID="viewController">
@@ -225,15 +226,16 @@
                             <constraint firstAttribute="trailingMargin" secondItem="v6Q-lM-38f" secondAttribute="trailing" constant="-16" id="fer-iv-6Bs"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Try On Me" id="NlB-Bg-oaD"/>
+                    <navigationItem key="navigationItem" id="NlB-Bg-oaD"/>
                     <connections>
                         <outlet property="previewImg" destination="s4m-dr-lbr" id="dRA-dS-56X"/>
                         <outlet property="tryToolBar" destination="v6Q-lM-38f" id="LO1-X3-7Es"/>
+                        <segue destination="RHB-b9-Mk3" kind="presentation" identifier="TryTutorialSegue" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="Ojo-QA-Euz"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mp5-D3-Ydu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2144" y="456"/>
+            <point key="canvasLocation" x="1756" y="1370"/>
         </scene>
         <!--Settings-->
         <scene sceneID="eT0-4L-rCk">
@@ -378,18 +380,18 @@
                         <outlet property="savePhotosSwitch" destination="QrC-AU-v1f" id="hf2-WR-DH2"/>
                         <outlet property="takeRecordsSwitch" destination="wDU-Wq-9dS" id="MO4-H9-gRm"/>
                         <segue destination="Y46-d0-bXP" kind="unwind" identifier="unwindToResultsSegue" unwindAction="unwindToResults:" id="o57-pA-3lK"/>
-                        <segue destination="RHB-b9-Mk3" kind="presentation" identifier="SettingsTutorialSegue" modalPresentationStyle="fullScreen" id="Xsf-rW-boP"/>
+                        <segue destination="RHB-b9-Mk3" kind="presentation" identifier="SettingsTutorialSegue" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="Xsf-rW-boP"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lhz-UA-x5g" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="Y46-d0-bXP" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1023" y="1423"/>
+            <point key="canvasLocation" x="-4" y="1639"/>
         </scene>
         <!--Settings TutorialVC-->
         <scene sceneID="Nm2-2z-0WD">
             <objects>
-                <viewController storyboardIdentifier="OKSettingsTutorial" useStoryboardIdentifierAsRestorationIdentifier="YES" id="RHB-b9-Mk3" customClass="OKSettingsTutorialVC" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="OKSettingsTutorial" wantsFullScreenLayout="YES" useStoryboardIdentifierAsRestorationIdentifier="YES" id="RHB-b9-Mk3" customClass="OKSettingsTutorialVC" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="X9m-fy-67F"/>
                         <viewControllerLayoutGuide type="bottom" id="SFZ-Th-ckt"/>
@@ -411,7 +413,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1023" y="2364"/>
+            <point key="canvasLocation" x="1756" y="570"/>
         </scene>
         <!--Saç Boyam-->
         <scene sceneID="3fN-Wt-NuE">
@@ -549,7 +551,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ea5-qq-CWW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-4" y="1423"/>
+            <point key="canvasLocation" x="-941" y="1639"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Elw-It-FJs">
@@ -708,10 +710,11 @@
         <image name="take_a_pic" width="458" height="458"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="7Fj-1j-qZg"/>
         <segue reference="gNL-Ht-CVb"/>
-        <segue reference="Wkz-lT-Tp2"/>
+        <segue reference="kW2-4f-NGf"/>
+        <segue reference="zx2-8U-gp4"/>
         <segue reference="Jjn-5H-yyJ"/>
-        <segue reference="wtE-o7-qLs"/>
+        <segue reference="Xsf-rW-boP"/>
+        <segue reference="PsG-cU-U5X"/>
     </inferredMetricsTieBreakers>
 </document>

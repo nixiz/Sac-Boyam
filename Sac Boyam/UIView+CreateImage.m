@@ -13,10 +13,11 @@
 
 - (UIImage *)createImageFromViewAfterScreenUpdates:(BOOL)afterUpdate
 {
-  UIGraphicsBeginImageContextWithOptions(self.bounds.size, NO, [UIScreen mainScreen].scale);
+  UIGraphicsBeginImageContextWithOptions(self.bounds.size, NO, 0.0);
   [self drawViewHierarchyInRect:self.bounds afterScreenUpdates:afterUpdate];
   UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
   UIGraphicsEndImageContext();
+  NSLog(@"Captured Image Size %@", NSStringFromCGSize([image size]));
   return image;
 }
 

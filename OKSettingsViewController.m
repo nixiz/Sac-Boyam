@@ -326,7 +326,8 @@
 
 - (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView
 {
-  return [self.fetchedResultsController sectionIndexTitles];
+//  return [self.fetchedResultsController sectionIndexTitles];
+  return nil;
 }
 
 #pragma mark - NSFetchedResultsControllerDelegate
@@ -488,6 +489,8 @@
     
     OKSettingsTutorialVC *vc = [segue destinationViewController];
     [vc initiateTutorialControllerWithBgImg:screenShot andContentPoints:pointDict];
+//    [vc setShowExplanationBelowView:NO];
+//    [vc setHeightOfExplanationView:50];
   }
 }
 

@@ -21,47 +21,27 @@
 @property (strong, nonatomic) UIManagedDocument *document;
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
 @property (nonatomic, strong) NSDictionary *filesDictionary;
+@property (nonatomic, strong) UIImagePickerController *imagePickerController;
 @end
 
 @implementation OKWelcomeScreemVC
 
 - (void)viewDidLoad {
   [super viewDidLoad];
-  
-//  __weak OKWelcomeScreemVC *weakSelf = self;
-//  self.navigationController.interactivePopGestureRecognizer.delegate = weakSelf;
-
-//  UIImage *backgroundImage = [UIImage imageNamed:@"background_sacBoyasi_5"];
-//  UIGraphicsBeginImageContext(CGSizeMake(320, self.navigationController.navigationBar.bounds.size.height + 20));
-//  [backgroundImage drawInRect:self.view.bounds];
-//  UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
-//  UIGraphicsEndImageContext();
-//  image = [image applyBlurWithRadius:20 tintColor:[UIColor colorWithWhite:1.0 alpha:0.2] saturationDeltaFactor:1.3 maskImage:nil];
-//  
-//  UIGraphicsBeginImageContext(self.view.bounds.size);
-//  [backgroundImage drawInRect:self.view.bounds];
-//  UIImage *redrawedBckgroundImage = UIGraphicsGetImageFromCurrentImageContext();
-//  UIGraphicsEndImageContext();
-//  
-//  redrawedBckgroundImage = [redrawedBckgroundImage applyBlurWithRadius:15 tintColor:[UIColor colorWithWhite:0.8 alpha:0.2] saturationDeltaFactor:1.3 maskImage:nil];
-//  self.view.backgroundColor = [UIColor colorWithPatternImage:redrawedBckgroundImage];
-//  
   [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor blackColor]}];
-//  self.navigationController.navigationBar.barTintColor = [UIColor colorWithPatternImage:image];
   self.navigationController.navigationBar.tintColor = [UIColor colorWithWhite:0.0 alpha:0.80];
-//  self.navigationController.navigationBar.translucent = NO;
-
   UIBarButtonItem *settingsBtn = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"settings_navBar"]
                                                                   style:UIBarButtonItemStylePlain
                                                                  target:self
                                                                  action:@selector(settingsButtonTap:)];
-  UIBarButtonItem *infoBtn = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"infoMark_navBar"]
-                                                              style:UIBarButtonItemStylePlain
-                                                             target:self
-                                                             action:@selector(showTutorial)];
-//  self.navigationItem.rightBarButtonItems = @[settingsBtn, infoBtn];
   self.navigationItem.rightBarButtonItem = settingsBtn;
-
+  
+  self.imagePickerController = [UIImagePickerController new];
+  self.imagePickerController.delegate = self;
+  [self.imagePickerController setSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
+  [self.imagePickerController.navigationBar setTintColor:[[UIColor blackColor] colorWithAlphaComponent:.8]];
+  [self.imagePickerController setModalTransitionStyle:UIModalTransitionStyleCrossDissolve];
+  
   if (!self.managedObjectContext) [self initManagedDocument];
 }
 
@@ -105,14 +85,10 @@
 #pragma mark - Image Pick
 
 - (IBAction)selectPicFromLibrary:(id)sender {
-  UIImagePickerController *imagePickerController = [UIImagePickerController new];
-  [imagePickerController setSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
-  [imagePickerController setAllowsEditing:YES];
-  imagePickerController.delegate = self;
-//  [imagePickerController.navigationBar setBarStyle:UIBarStyleBlackOpaque];
-  [imagePickerController.navigationBar setTintColor:[[UIColor blackColor] colorWithAlphaComponent:.8]];
-  
-  [self presentViewController:imagePickerController animated:YES completion:^{
+//  [self.imagePickerController isBeingPresented]
+  [self.imagePickerController setAllowsEditing:[[[NSUserDefaults standardUserDefaults] objectForKey:editPhotosKey] boolValue]];
+
+  [self presentViewController:self.imagePickerController animated:YES completion:^{
     [self.view setUserInteractionEnabled:NO];
   }];
 }

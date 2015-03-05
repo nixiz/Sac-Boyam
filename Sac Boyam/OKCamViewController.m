@@ -70,7 +70,7 @@ static void * SessionRunningAndDeviceAuthorizedContext = &SessionRunningAndDevic
   [self.toolbar setTranslucent:YES];
   
   self.calculatedColorBtn = [[UIButton alloc] initWithFrame:frameRect];
-  [self.calculatedColorBtn setTitle:@"Color: " forState:UIControlStateNormal];
+  [self.calculatedColorBtn setTitle:@"Color" forState:UIControlStateNormal];
   [self.calculatedColorBtn setTitleColor:[[UIColor blackColor] colorWithAlphaComponent:0.8] forState:UIControlStateNormal];
   [self.calculatedColorBtn setImage:[UIImage imageWithColor:[UIColor brownColor] andSize:CGSizeMake(44, 44)] forState:UIControlStateNormal];
   CGSize imageSize = self.calculatedColorBtn.imageView.image.size;

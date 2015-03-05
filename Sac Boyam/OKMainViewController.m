@@ -47,13 +47,14 @@
     self.productDetailsLabel.numberOfLines = 0;
     self.productDetailsLabel.text = [NSString stringWithFormat:@"%@: %@\n%@: %@", NSLocalizedStringFromTable(@"brand", okStringsTableName, nil), self.colorModel.brand.brandName, NSLocalizedStringFromTable(@"product", okStringsTableName, nil), self.colorModel.productName];
   }
-  UIBarButtonItem *infoBtn = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"infoMark_navBar"]
-                                                              style:UIBarButtonItemStylePlain
-                                                             target:self
-                                                             action:@selector(showTutorial)];
+//  UIBarButtonItem *infoBtn = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"infoMark_navBar"]
+//                                                              style:UIBarButtonItemStylePlain
+//                                                             target:self
+//                                                             action:@selector(showTutorial)];
   if (self.lookingFromFavList == NO)
   {
-    UIBarButtonItem *savebtn = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedStringFromTable(@"saveButtonName", okStringsTableName, nil) style:UIBarButtonItemStylePlain target:self action:@selector(addRemoveFav:)];
+    UIBarButtonItem *savebtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addRemoveFav:)];
+//    UIBarButtonItem *savebtn = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedStringFromTable(@"saveButtonName", okStringsTableName, nil) style:UIBarButtonItemStylePlain target:self action:@selector(addRemoveFav:)];
     
     BOOL takeRecord = [[[NSUserDefaults standardUserDefaults] objectForKey:takeRecordKey] boolValue];
     if (!takeRecord) {
@@ -183,7 +184,7 @@
     [alertView show];
     [self performSelector:@selector(dismissAlertView:) withObject:alertView afterDelay:0.6];
 
-    [self.navigationItem.rightBarButtonItem setTitle:NSLocalizedStringFromTable(@"saved", okStringsTableName, nil)];
+//    [self.navigationItem.rightBarButtonItem setTitle:NSLocalizedStringFromTable(@"saved", okStringsTableName, nil)];
     [self.navigationItem.rightBarButtonItem setEnabled:NO];
 //    [self.favButton setTitle:NSLocalizedStringFromTable(@"saved", okStringsTableName, nil) forState:UIControlStateNormal];
 //    [self.favButton setEnabled:NO];

@@ -8,6 +8,18 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol OKTutorialControllerDelegate <NSObject>
+@optional
+- (BOOL)showExplanationViewBelowForItem:(NSString *)item;
+- (CGRect)getImageMaskRectForItem:(NSString *)item;
+- (CGRect)getFrameForItem:(NSString *)item;
+@end
+
 @interface OKSettingsTutorialVC : UIViewController
+@property (weak, nonatomic) id<OKTutorialControllerDelegate> delegate;
+@property (nonatomic) BOOL showExplanationBelowView;
+@property (nonatomic) NSInteger heightOfExplanationView;
+//- (void)initiateTutorialControllerWithBgImg:(UIImage *)image andItemNames:(NSArray *)contentPointsDict;
 - (void)initiateTutorialControllerWithBgImg:(UIImage *)image andContentPoints:(NSDictionary *)contentPointsDict;
+- (void)initiateTutorialControllerWithBgImg:(UIImage *)image andContentPoints:(NSDictionary *)contentPointsDict WithExplanationDescriptors:(NSDictionary *)explDescriptorDict;
 @end

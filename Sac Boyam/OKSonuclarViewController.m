@@ -19,6 +19,7 @@
 #import "UIImage+ImageEffects.h"
 #import "OKInfoViewController.h"
 #import "OKTryOnMeVC.h"
+#import "OKSettingsTutorialVC.h"
 
 #define ARC4RANDOM_MAX	0x100000000
 #define indexForProductName   0
@@ -35,6 +36,9 @@
 //- (IBAction)handleLongPress:(id)sender;
 @property (nonatomic, strong) NSString *stringToBeSearceh;
 @property CGFloat grayScale;
+
+@property (strong, nonatomic) NSDictionary *framesDictionary;
+@property (strong, nonatomic) NSDictionary *explanationsDictionary;
 
 @end
 
@@ -91,6 +95,7 @@
   
   self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:request managedObjectContext:context sectionNameKeyPath:@"brand.brandName" cacheName:nil];
   self.fetchedResultsController.delegate = self;
+//  [self.fetchedResultsController performFetch:nil];
 }
 
 -(void)setManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
@@ -126,6 +131,8 @@
                                                              action:@selector(showTutorial)];
   self.navigationItem.rightBarButtonItems = @[settingsBtn, infoBtn];
   self.view.backgroundColor = [self.view getBackgroundColor];
+//  self.tableView.sectionIndexTrackingBackgroundColor = [UIColor clearColor];
+  self.tableView.sectionIndexBackgroundColor = [UIColor clearColor];
 }
 
 - (void)didReceiveMemoryWarning
@@ -134,6 +141,65 @@
   // Dispose of any resources that can be recreated.
 }
 
+- (void)showAlertViewForNoResultsFound
+{
+  UIAlertView *message = [[UIAlertView alloc] initWithTitle:@""
+                                                    message:NSLocalizedStringFromTable(@"no-results-found-msg", okStringsTableName, nil)
+                                                   delegate:self
+                                          cancelButtonTitle:NSLocalizedStringFromTable(@"cancelButtonForURLReq", okStringsTableName, nil)
+                                          otherButtonTitles:NSLocalizedStringFromTable(@"OKButtonTitle", okStringsTableName, nil), nil];
+  [message show];
+}
+
+- (void)showTutorial
+{
+  BOOL tableContainsResult = [[self.tableView visibleCells] count] > 0;
+  if (!tableContainsResult) {
+    [self showAlertViewForNoResultsFound];
+    //TODO: show alert view and suggest to increase search threshold in settings page
+    return;
+  }
+  [UIView animateWithDuration:0.4 animations:^{
+    [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:NO];
+  } completion:^(BOOL finished) {
+    if (!finished) {
+      NSAssert(NO, @"Sen hayirdir!!");
+    }
+    OKSonuclarCell *cellView = (OKSonuclarCell *)[[self.tableView visibleCells] firstObject];
+    //  NSIndexPath *indexPathOfCell = [self.tableView indexPathForCell:cellView];
+    
+    CGRect cellViewFrame  = [cellView frame];
+    //  CGRect frameInView = [self.view convertRect:cellViewFrame toView:cellView];
+    //  CGRect fromView = [self.view convertRect:cellViewFrame fromView:cellView];
+    CGRect toView = [cellView convertRect:[self.view convertRect:cellViewFrame toView:cellView] toView:nil];
+    cellViewFrame = toView;
+    
+    CGRect cellImageViewFrame = [cellView.productImg frame];
+    cellImageViewFrame = [cellView.productImg convertRect:cellImageViewFrame toView:nil];
+    //  cellImageViewFrame = [self.view convertRect:cellImageViewFrame fromView:cellView];
+    //  cellImageViewFrame = [self.view convertRect:cellImageViewFrame toView:nil];
+    
+    CGRect cellTextViewFrame  = [[cellView productName] frame];
+    cellTextViewFrame = [cellView.productName convertRect:cellTextViewFrame toView:nil];
+    //  cellTextViewFrame = [self.view convertRect:cellTextViewFrame fromView:cellView];
+    //  cellTextViewFrame = [self.view convertRect:cellTextViewFrame toView:nil];
+    
+    CGRect sectionFrame = CGRectMake(cellViewFrame.origin.x, cellViewFrame.origin.y - 70.0, cellViewFrame.size.width, 70.0);
+    
+    self.framesDictionary = @{@"item-1": [NSValue valueWithCGRect:sectionFrame],
+                              @"item-2": [NSValue valueWithCGRect:cellViewFrame],
+                              @"item-3": [NSValue valueWithCGRect:cellImageViewFrame],
+                              @"item-4": [NSValue valueWithCGRect:cellTextViewFrame]};
+    
+    self.explanationsDictionary = @{@"item-1": @"results-item-1-exp",
+                                    @"item-2": @"results-item-2-exp",
+                                    @"item-3": @"results-item-3-exp",
+                                    @"item-4": @"results-item-4-exp"};
+    
+    [self performSegueWithIdentifier:@"ResultsTutorialSegue" sender:nil];
+  }];
+}
+/*
 - (void)showTutorial
 {
 //  UIImage * screenShot = [[self view] createImageFromView];
@@ -146,8 +212,13 @@
   //  [vc setModalTransitionStyle:UIModalTransitionStyleFlipHorizontal];
   [self presentViewController:vc animated:NO completion:nil];
 }
-
+*/
 #pragma mark - Table view data source
+
+//- (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView
+//{
+//  return nil;
+//}
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
@@ -230,6 +301,7 @@
     }
   }
 }
+*/
 
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
 {
@@ -237,18 +309,10 @@
   if ([title isEqualToString:@"Hayir"]) {
     return;
   }
-  NSMutableString *searchText = [[NSMutableString alloc] initWithString:@"https://www.google.com/search?q="];
-  [searchText appendString:[self.stringToBeSearceh stringByReplacingOccurrencesOfString:@" " withString:@"+"]];
-
-  NSString *urlStr = [searchText stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-  NSURL *url = [NSURL URLWithString:urlStr];
-  BOOL success = [[UIApplication sharedApplication] openURL:url];
   
-  if (!success) {
-    NSLog(@"Failed to open url: %@", [url description]);
-  }
+  [self settingsFromResultsTap:nil];
 }
-*/
+
 -(IBAction)unwindToResults:(UIStoryboardSegue *)segue
 {
   UIViewController *vc = segue.sourceViewController;
@@ -262,6 +326,25 @@
 {
   [self performSegueWithIdentifier:@"settingSegueFromResults" sender:sender];
 }
+
+#pragma mark - OKTutorialControllerDelegate
+
+//- (BOOL)showExplanationViewBelowForItem:(NSString *)item
+//{
+//  return YES;
+//}
+
+- (CGRect)getImageMaskRectForItem:(NSString *)item
+{
+  return CGRectZero;
+}
+
+- (CGRect)getFrameForItem:(NSString *)item
+{
+  return CGRectZero;
+}
+
+#pragma mark - Navigation
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
@@ -292,6 +375,12 @@
     OKTryOnMeVC *vc = [segue destinationViewController];
     [vc setColorModel:color];
     [vc setManagedObjectContext:self.managedObjectContext];
+  } else if ([[segue identifier] isEqualToString:@"ResultsTutorialSegue"]) {    
+    UIImage *screenShot = [self.tableView.superview createImageFromViewAfterScreenUpdates:NO];
+    OKSettingsTutorialVC *vc = [segue destinationViewController];
+    [vc initiateTutorialControllerWithBgImg:screenShot andContentPoints:self.framesDictionary WithExplanationDescriptors:self.explanationsDictionary];
+    [vc setShowExplanationBelowView:YES];
+    [vc setHeightOfExplanationView:90];
   }
 
 }

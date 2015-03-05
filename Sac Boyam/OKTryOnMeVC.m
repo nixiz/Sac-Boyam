@@ -19,6 +19,8 @@
 #import "OKInfoViewController.h"
 #import "OKMainViewController.h"
 
+#import "OKSettingsTutorialVC.h"
+
 @interface OKTryOnMeVC () <UIAlertViewDelegate, UIGestureRecognizerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 @property (strong, nonatomic) UIImage *defaultImage;
 @property (weak, nonatomic) IBOutlet UIImageView *previewImg;
@@ -40,6 +42,9 @@
 @property CGRect settingsViewHideFrame;
 
 @property (strong, nonatomic) UIBezierPath *currentImagePath;
+
+@property (nonatomic) NSDictionary *framesDictionary;
+@property (nonatomic) NSDictionary *explanationsDictionary;
 @end
 
 @implementation OKTryOnMeVC
@@ -56,7 +61,6 @@
                                                               style:UIBarButtonItemStylePlain
                                                              target:self
                                                              action:@selector(showTutorial)];
-  
   
   self.navigationItem.rightBarButtonItems = @[camBtn, infoBtn];
   self.view.backgroundColor = [self.view getBackgroundColor];
@@ -157,6 +161,20 @@
 {
   [super viewDidAppear:animated];
   self.previewImageBound = self.previewImg.bounds;
+  
+  self.framesDictionary = @{@"item-1": [NSValue valueWithCGRect:self.previewImg.frame],
+                            @"item-2": [NSValue valueWithCGRect:self.previewImg.frame],
+                            @"item-3": [NSValue valueWithCGRect:self.previewImg.frame],
+                            @"item-4": [NSValue valueWithCGRect:self.tryToolBar.frame],
+                            @"item-5": [NSValue valueWithCGRect:self.tryToolBar.frame],
+                            @"item-6": [NSValue valueWithCGRect:self.tryToolBar.frame]};
+  
+  self.explanationsDictionary = @{@"item-1": @"try-item-1-exp",
+                                  @"item-2": @"try-item-2-exp",
+                                  @"item-3": @"try-item-3-exp",
+                                  @"item-4": @"try-item-4-exp",
+                                  @"item-5": @"try-item-5-exp",
+                                  @"item-6": @"try-item-6-exp"};
 }
 
 - (void)didReceiveMemoryWarning {
@@ -188,12 +206,18 @@
 
 - (void)showTutorial
 {
+  [self performSegueWithIdentifier:@"TryTutorialSegue" sender:nil];
+}
+
+/*
+- (void)showTutorial
+{
   OKInfoViewController *vc = [[OKInfoViewController alloc] initWithNibName:@"OKInfoViewController" bundle:nil];
   [vc setPageIndex:OKTryOnMePage];
 //  vc.pageIndex = 4;
   [self presentViewController:vc animated:NO completion:nil];
 }
-
+*/
 #pragma mark - Image Pick
 
 -(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
@@ -578,17 +602,18 @@
   
   return statusBarViewRect;
 }
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-  if ([[segue identifier] isEqualToString:@"tryOnMeSegue"]) {
-    OKMainViewController *vc = [segue destinationViewController];
-    [vc setColorModel:self.colorModel];
-    [vc setManagedObjectContext:self.managedObjectContext];
-    vc.lookingFromFavList = NO;
+  if ([[segue identifier] isEqualToString:@"TryTutorialSegue"]) {
+    UIImage *screenShot = [self.view createImageFromViewAfterScreenUpdates:NO];
+    OKSettingsTutorialVC *vc = [segue destinationViewController];
+    [vc initiateTutorialControllerWithBgImg:screenShot andContentPoints:self.framesDictionary WithExplanationDescriptors:self.explanationsDictionary];
+    [vc setShowExplanationBelowView:NO];
+    [vc setHeightOfExplanationView:44];
   }
 }
-*/
+
 @end
