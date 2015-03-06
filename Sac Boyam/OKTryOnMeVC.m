@@ -16,7 +16,6 @@
 #import "UIBezierPath+Interpolation.h"
 #import "CRVINTERGraphicsView.h"
 #import "TapToPointView.h"
-#import "OKInfoViewController.h"
 #import "OKMainViewController.h"
 
 #import "OKSettingsTutorialVC.h"
@@ -25,7 +24,6 @@
 @interface OKTryOnMeVC () <UIAlertViewDelegate, UIGestureRecognizerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 @property (strong, nonatomic) UIImage *defaultImage;
 @property (weak, nonatomic) IBOutlet UIImageView *previewImg;
-//@property FDTakeController *takeController;
 
 @property CGRect previewImageBound;
 @property (strong) UIColor *color;
@@ -54,11 +52,6 @@
 - (void)viewDidLoad {
   [super viewDidLoad];  
   UIBarButtonItem *camBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCamera target:self action:@selector(SelectNewImage:)];
-//  UIBarButtonItem *settings2Btn = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"settings-2_navBar"] style:UIBarButtonItemStylePlain target:nil action:nil];
-//  UIBarButtonItem *infoMarkBtn = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"infoMark_navBar"] style:UIBarButtonItemStylePlain target:nil action:nil];
-//  UIBarButtonItem *fixedSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
-//  fixedSpace.width = 8.0;
-
   UIBarButtonItem *infoBtn = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"infoMark_navBar"]
                                                               style:UIBarButtonItemStylePlain
                                                              target:self
@@ -83,10 +76,6 @@
   self.gestureRecognizer.numberOfTapsRequired = 1;
   self.gestureRecognizer.numberOfTouchesRequired = 1;
   [self.view addGestureRecognizer:self.gestureRecognizer];
-
-//  self.takeController = [[FDTakeController alloc] init];
-//  self.takeController.delegate = self;
-//  self.takeController.allowsEditingPhoto = [[[NSUserDefaults standardUserDefaults] objectForKey:editPhotosKey] boolValue];
 
   UIImage *userPhoto = [UIImage imageWithData:[[NSUserDefaults standardUserDefaults] objectForKey:userDefaultPhotoKey]];
   if (userPhoto) {
@@ -119,9 +108,7 @@
   self.settingsViewRecoverFrame = CGRectMake(0, toolBarFrame.origin.y - 52 + 20/*size of status bar*/, toolBarFrame.size.width, 56);
   self.settingsViewHideFrame = CGRectMake(0, toolBarFrame.origin.y + 20/*size of status bar*/, toolBarFrame.size.width, 56);
   self.settingsView = [[UIView alloc] initWithFrame:self.settingsViewHideFrame];
-//  self.settingsView.backgroundColor = [UIColor colorWithWhite:0.8 alpha:0.82];
   self.settingsView.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0.7];
-//  self.settingsView.backgroundColor = [[self.view getBackgroundColor] colorWithAlphaComponent:0.82];
   
   self.settingsView.layer.cornerRadius = 4.0;
   /*******
@@ -157,6 +144,7 @@
   [self.settingsView addSubview:alphaSlider];
   
   [self.tryToolBar setBackgroundColor:[self.view getBackgroundColor]];
+  [self.tryToolBar setTintColor:[[UIColor blackColor] colorWithAlphaComponent:0.8]];
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -211,15 +199,6 @@
   [self performSegueWithIdentifier:@"TryTutorialSegue" sender:nil];
 }
 
-/*
-- (void)showTutorial
-{
-  OKInfoViewController *vc = [[OKInfoViewController alloc] initWithNibName:@"OKInfoViewController" bundle:nil];
-  [vc setPageIndex:OKTryOnMePage];
-//  vc.pageIndex = 4;
-  [self presentViewController:vc animated:NO completion:nil];
-}
-*/
 #pragma mark - Image Pick
 
 -(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
@@ -270,32 +249,6 @@
     [self.view setUserInteractionEnabled:YES];
   }];
 }
-
-/*
-- (void)takeController:(FDTakeController *)controller gotPhoto:(UIImage *)photo withInfo:(NSDictionary *)info
-{
-  if ([self.takePicBtn isDescendantOfView:self.view]) {
-    [self.takePicBtn removeFromSuperview];
-  }
-  NSLog(@"Image Size:   %@", NSStringFromCGSize(photo.size));
-  UIGraphicsBeginImageContext(self.previewImageBound.size);
-  [photo drawInRect:self.previewImageBound];
-  UIImage *imageToBeShow = UIGraphicsGetImageFromCurrentImageContext();
-  UIGraphicsEndImageContext();
-  [self.previewImg setImage:imageToBeShow];
-//  [self.previewImg sizeToFit];
-  if ([[NSUserDefaults standardUserDefaults] objectForKey:userDefaultPhotoKey] == nil) {
-    [self saveImageToUserDefaults];
-  } else {
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil
-                                                        message:NSLocalizedStringFromTable(@"shouldSaveUserDefaultPhoto", okStringsTableName, nil)
-                                                       delegate:self
-                                              cancelButtonTitle:NSLocalizedStringFromTable(@"cancelButtonForURLReq", okStringsTableName, nil)
-                                              otherButtonTitles:NSLocalizedStringFromTable(@"OKButtonTitle", okStringsTableName, nil), nil];
-    [alertView show];
-  }
-}
-*/
 
 #pragma mark - UIAlertViewDelegate
 
@@ -534,12 +487,6 @@
   return croppedImage;
 }
 
-//- (void)testMethod:(UIImage *)image bezierPath:(UIBezierPath *)path
-//{
-//  UIImage *imageToProccessed = [self cropImageUsingBezierPath:image bezierPath:[path copy]];
-//  
-//}
-
 - (UIImage *)blendImages:(UIImage *)sourceImage withBezierPath:(UIBezierPath *)path andColorToBurn:(UIColor *)color
 {
   UIImage *blendImage = nil;
@@ -615,20 +562,13 @@
 - (void)alphaSliderChanged:(id)sender
 {
   self.blendAlphaValue = ((UISlider *)sender).value;
-  //TODO: should i copy bezierpath for every time??
-//  if (![self.currentImagePath isEmpty] && self.currentImagePath) {
-//    [self applyNewColorToImage:[self.currentImagePath copy]];
-//  }
 }
 
 - (CGRect)statusBarFrameViewRect:(UIView*)view
 {
   CGRect statusBarFrame = [[UIApplication sharedApplication] statusBarFrame];
-  
   CGRect statusBarWindowRect = [view.window convertRect:statusBarFrame fromWindow: nil];
-  
   CGRect statusBarViewRect = [view convertRect:statusBarWindowRect fromView: nil];
-  
   return statusBarViewRect;
 }
 

@@ -11,7 +11,6 @@
 #import "UIImage+AverageColor.h"
 #import "UIImage+ImageEffects.h"
 #import "UIColor+GrayScale.h"
-#import "OKInfoViewController.h"
 #import "OKUtils.h"
 #import "OKZoomView.h"
 #import "OKSettingsViewController.h"
@@ -30,34 +29,22 @@
 
 - (void)viewDidLoad {
   [super viewDidLoad];
-//  UIBarButtonItem *searchBtn = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"search_white_navbar.png"]
-//                                                                style:UIBarButtonItemStylePlain
-//                                                               target:self
-//                                                               action:@selector(findForSelectedColor)];
-
-//  UIBarButtonItem *searchBtn = [[UIBarButtonItem alloc] initWithTitle:@"Find"
-//                                                                style:UIBarButtonItemStylePlain
-//                                                               target:self
-//                                                               action:@selector(findForSelectedColor)];
-  UIToolbar *tools = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, 120, 44)];
-  [tools setTintColor:[UIColor clearColor]];
-  [tools setTranslucent:YES];
+//  UIToolbar *tools = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, 120, 44)];
+//  [tools setTintColor:[UIColor clearColor]];
+//  [tools setTranslucent:YES];
   
-  UIBarButtonItem *infoBtn = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"infoMark_navBar"]
-                                                              style:UIBarButtonItemStylePlain
-                                                             target:self
-                                                             action:@selector(showTutorial)];
+//  UIBarButtonItem *infoBtn = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"infoMark_navBar"]
+//                                                              style:UIBarButtonItemStylePlain
+//                                                             target:self
+//                                                             action:@selector(showTutorial)];
   
   self.findButton = [UIButton buttonWithType:UIButtonTypeCustom];
   [self.findButton setFrame:CGRectMake(0, 0, 88, 30)];
   
   [self.findButton setTitle:NSLocalizedStringFromTable(@"find", okStringsTableName, nil) forState:UIControlStateNormal];
   [self.findButton setTitleColor:[UIColor colorWithWhite:0.0 alpha:0.8] forState:UIControlStateNormal];
-//  [self.findButton setTintColor:[UIColor colorWithWhite:0.0 alpha:0.8]];
 
   UIImage *img = [UIImage imageWithColor:[[UIColor clearColor] colorWithAlphaComponent:0.35] andSize:CGSizeMake(30, 30)];
-//  cell.imageView.layer.cornerRadius = cell.bounds.size.height / 4.0;
-//  cell.imageView.layer.masksToBounds = YES;
   [self.findButton setImage:img  forState:UIControlStateNormal];
   [self.findButton addTarget:self action:@selector(findForSelectedColor) forControlEvents:UIControlEventTouchUpInside];
   CGSize imageSize = self.findButton.imageView.image.size;
@@ -70,19 +57,12 @@
   [self.findButton setEnabled:NO];
   
   UIBarButtonItem *searchBtn = [[UIBarButtonItem alloc] initWithCustomView:self.findButton];
-  [tools setItems:@[infoBtn, searchBtn] animated:NO];
+//  [tools setItems:@[infoBtn, searchBtn] animated:NO];
   
   UIBarButtonItem *fixedBtnItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
   fixedBtnItem.width = -16;
   
-//  self.navigationItem.rightBarButtonItem = searchBtn;
   self.navigationItem.rightBarButtonItems = @[fixedBtnItem, searchBtn];
-//  self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:tools];
-//  self.view.backgroundColor = [self.view getBackgroundColor];
-  
-//  if (self.selectedPicture) {
-//    [self.imageView setImage:self.selectedPicture];
-//  }
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -121,13 +101,13 @@
 
 - (void)showTutorialWithWelcomeScreen:(BOOL)showWelcomeScreen
 {
-  OKInfoViewController *vc = [[OKInfoViewController alloc] initWithNibName:@"OKInfoViewController" bundle:nil];
-  if (showWelcomeScreen) {
-    [vc setPageIndex:OKWelcomeScreenPage];
-  } else {
-    [vc setPageIndex:OKSelectColorPage];
-  }
-  [self presentViewController:vc animated:YES completion:nil];
+//  OKInfoViewController *vc = [[OKInfoViewController alloc] initWithNibName:@"OKInfoViewController" bundle:nil];
+//  if (showWelcomeScreen) {
+//    [vc setPageIndex:OKWelcomeScreenPage];
+//  } else {
+//    [vc setPageIndex:OKSelectColorPage];
+//  }
+//  [self presentViewController:vc animated:YES completion:nil];
   
   if ([[[NSUserDefaults standardUserDefaults] objectForKey:showTutorialKey] boolValue]) {
     [[NSUserDefaults standardUserDefaults] setObject:@NO forKey:showTutorialKey];
@@ -280,23 +260,7 @@
 
 
 #pragma mark - Navigation
-/*
--(BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender
-{
-  if ([identifier isEqualToString:@"resultsSegue"]) {
-    if (self.imageView.image == nil) {
-      UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil
-                                                          message:NSLocalizedStringFromTable(@"noImageToFound", okStringsTableName, nil)
-                                                         delegate:nil
-                                                cancelButtonTitle:NSLocalizedStringFromTable(@"OKButtonTitle", okStringsTableName, nil)
-                                                otherButtonTitles: nil];
-      [alertView show];
-      return NO;
-    }
-  }
-  return YES;
-}
-*/
+
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
   

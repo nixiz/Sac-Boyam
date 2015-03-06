@@ -63,7 +63,6 @@ static void * SessionRunningAndDeviceAuthorizedContext = &SessionRunningAndDevic
 - (void)viewDidLoad {
   [super viewDidLoad];
   
-  
   CGRect frameRect = CGRectMake(0, 0, 80, 44);
   self.toolbar = [[UIToolbar alloc] initWithFrame:frameRect];
   [self.toolbar setTintColor:[UIColor clearColor]];
@@ -286,25 +285,6 @@ static void * SessionRunningAndDeviceAuthorizedContext = &SessionRunningAndDevic
       [self runStillImageCaptureAnimation];
     }
   }
-//  else if (context == SessionRunningAndDeviceAuthorizedContext)
-//  {
-//    BOOL isRunning = [change[NSKeyValueChangeNewKey] boolValue];
-//    
-//    dispatch_async(dispatch_get_main_queue(), ^{
-//      if (isRunning)
-//      {
-//        [[self cameraButton] setEnabled:YES];
-//        [[self recordButton] setEnabled:YES];
-//        [[self stillButton] setEnabled:YES];
-//      }
-//      else
-//      {
-//        [[self cameraButton] setEnabled:NO];
-//        [[self recordButton] setEnabled:NO];
-//        [[self stillButton] setEnabled:NO];
-//      }
-//    });
-//  }
   else
   {
     [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
@@ -554,23 +534,6 @@ static void * SessionRunningAndDeviceAuthorizedContext = &SessionRunningAndDevic
       [self.tapGesture setEnabled:YES];
     }
   }];
-//  [UIView transitionWithView:self.switchLabel duration:0.4 options:UIViewAnimationOptionCurveEaseInOut | UIViewAnimationOptionTransitionCrossDissolve animations:^{
-//    if (switchState) {
-//      [self.switchLabel setText:@"Auto"];
-//      [self.calculatedColorBtn setHidden:NO];
-//      [self.imageView setHidden:NO];
-//    } else {
-//      [self.switchLabel setText:@"Manual"];
-//      [self.calculatedColorBtn setHidden:YES];
-//      [self.imageView setHidden:YES];
-//    }
-//  } completion:^(BOOL finished) {
-//    if (switchState) {
-//      [self.tapGesture setEnabled:NO];
-//    } else {
-//      [self.tapGesture setEnabled:YES];
-//    }
-//  }];
 }
 
 -(BOOL)isAutoModeActivated
@@ -590,7 +553,6 @@ static void * SessionRunningAndDeviceAuthorizedContext = &SessionRunningAndDevic
   [UIImage imageWithCGImage:[outputImg CGImage]
                       scale:1.0
                 orientation: UIImageOrientationRight];
-//  outputImg = [outputImg fixOrientation];
   
   UIGraphicsBeginImageContext(self.view.bounds.size);
   [outputImg drawInRect:self.view.bounds];

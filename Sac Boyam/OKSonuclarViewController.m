@@ -17,7 +17,6 @@
 #import "OKSettingsViewController.h"
 #import "UIView+CreateImage.h"
 #import "UIImage+ImageEffects.h"
-#import "OKInfoViewController.h"
 #import "OKTryOnMeVC.h"
 #import "OKSettingsTutorialVC.h"
 
@@ -118,9 +117,6 @@
 {
   [super viewDidLoad];
   [self.navigationItem setTitle:NSLocalizedStringFromTable(@"resultsTitle", okStringsTableName, nil)];
-//  UIBarButtonItem *btn2 = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedStringFromTable(@"settings", okStringsTableName, nil)
-//                                                           style:UIBarButtonItemStylePlain
-//                                                          target:self action:@selector(settingsFromResultsTap:)];
   UIBarButtonItem *settingsBtn = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"settings_navBar"]
                                                                   style:UIBarButtonItemStylePlain
                                                                  target:self
@@ -131,7 +127,6 @@
                                                              action:@selector(showTutorial)];
   self.navigationItem.rightBarButtonItems = @[settingsBtn, infoBtn];
   self.view.backgroundColor = [self.view getBackgroundColor];
-//  self.tableView.sectionIndexTrackingBackgroundColor = [UIColor clearColor];
   self.tableView.sectionIndexBackgroundColor = [UIColor clearColor];
 }
 
@@ -199,26 +194,8 @@
     [self performSegueWithIdentifier:@"ResultsTutorialSegue" sender:nil];
   }];
 }
-/*
-- (void)showTutorial
-{
-//  UIImage * screenShot = [[self view] createImageFromView];
-//  screenShot = [screenShot applyDarkEffect];
-  OKInfoViewController *vc = [[OKInfoViewController alloc] initWithNibName:@"OKInfoViewController" bundle:nil];
-//  vc.screenShot = screenShot;
-  [vc setPageIndex:OKSelectColorPage];
-//  vc.pageIndex = 1;
-  //  [vc setModalPresentationStyle:UIModalPresentationFullScreen];
-  //  [vc setModalTransitionStyle:UIModalTransitionStyleFlipHorizontal];
-  [self presentViewController:vc animated:NO completion:nil];
-}
-*/
-#pragma mark - Table view data source
 
-//- (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView
-//{
-//  return nil;
-//}
+#pragma mark - Table view data source
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
@@ -266,42 +243,11 @@
   }
   ColorModel *color = [self.fetchedResultsController objectAtIndexPath:indexPath];
   [cell setTintColor:[UIColor blackColor]];
-//  UIImage *cellImage = [UIImage imageNamed:@"resultsTableCell"];
-//  cell.backgroundColor = [UIColor colorWithPatternImage:cellImage];
-
-  //  cell.productName.adjustsFontSizeToFitWidth = YES;
-//  cell.productName.lineBreakMode = NSLineBreakByWordWrapping;
-//  cell.productName.numberOfLines = 2;
   cell.productName.text = color.productName;
-//  cell.priceLabel.text = [[color.price stringValue] stringByAppendingString:@" TL"];
-  cell.priceLabel.text = @"";
+//  cell.priceLabel.text = @"";
   [cell.productImg setImage:[UIImage imageWithData:color.productImage]];
   return cell;
 }
-
-/*
-- (void)handleLongPress:(UILongPressGestureRecognizer *)gestureRecognizer {
-//  UILongPressGestureRecognizer *gestureRecognizer = (UILongPressGestureRecognizer *)sender;
-  if (gestureRecognizer.state == UIGestureRecognizerStateBegan) {
-    CGPoint tapPoint = [gestureRecognizer locationInView:self.tableView];
-    
-    NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:tapPoint];
-    if (indexPath != nil) {
-      //    OKSonuclarCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
-      ColorModel *color = [self.fetchedResultsController objectAtIndexPath:indexPath];
-      self.stringToBeSearceh = color.productName;
-      NSLog(@"Tapped Cell product is %@", self.stringToBeSearceh);
-      
-      UIAlertView *message = [[UIAlertView alloc] initWithTitle:@""
-                                                        message:[NSString stringWithFormat:@"%@ icin internete bakilsin mi?", self.stringToBeSearceh]
-                                                       delegate:self
-                                              cancelButtonTitle:@"Hayir"
-                                              otherButtonTitles:@"Tamam", nil];
-      [message show];
-    }
-  }
-}
-*/
 
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
 {
@@ -329,11 +275,6 @@
 
 #pragma mark - OKTutorialControllerDelegate
 
-//- (BOOL)showExplanationViewBelowForItem:(NSString *)item
-//{
-//  return YES;
-//}
-
 - (CGRect)getImageMaskRectForItem:(NSString *)item
 {
   return CGRectZero;
@@ -353,8 +294,6 @@
     NSIndexPath *indexPath = (NSIndexPath *)sender;
     ColorModel *color = [self.fetchedResultsController objectAtIndexPath:indexPath];
     OKMainViewController *vc = [segue destinationViewController];
-    
-    //TODO: share color model to to destination view controller
     [vc setColorModel:color];
     [vc setManagedObjectContext:self.managedObjectContext];
     vc.lookingFromFavList = NO;
@@ -362,15 +301,7 @@
     OKSettingsViewController *vc = [segue destinationViewController];
     [vc setManagedObjectContext:self.managedObjectContext];
   } else if ([[segue identifier] isEqualToString:@"tryOnMeSegue"]) {
-//    CGPoint btnPoint = [sender convertPoint:CGPointZero toView:self.tableView];
-//    NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:btnPoint];
-
-//    UITableViewCell *clickedCell = (UITableViewCell *)[[sender superview] superview];
-//    NSIndexPath *indexPath = [self.tableView indexPathForCell:clickedCell];
-
-//    NSIndexPath *indexPath = (NSIndexPath *)sender;
     NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
-
     ColorModel *color = [self.fetchedResultsController objectAtIndexPath:indexPath];
     OKTryOnMeVC *vc = [segue destinationViewController];
     [vc setColorModel:color];
@@ -382,7 +313,6 @@
     [vc setShowExplanationBelowView:YES];
     [vc setHeightOfExplanationView:90];
   }
-
 }
 
 @end

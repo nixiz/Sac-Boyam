@@ -14,7 +14,6 @@
 #import "Sac Boyam/OKMainViewController.h"
 #import "OKAppDelegate.h"
 #import "Sac Boyam/UIView+CreateImage.h"
-#import "OKInfoViewController.h"
 #import "UIImage+AverageColor.h"
 #import "OKSettingsTutorialVC.h"
 
@@ -82,16 +81,7 @@
 {
   [super viewDidLoad];
 
-//  UIImage *backgroundImage = [UIImage imageNamed:@"background_sacBoyasi_4"];
-//  UIGraphicsBeginImageContext(self.view.bounds.size);
-//  [backgroundImage drawInRect:self.view.bounds];
-//  UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
-//  UIGraphicsEndImageContext();
-//  image = [image applyBlurWithRadius:15 tintColor:[UIColor colorWithWhite:0.8 alpha:0.2] saturationDeltaFactor:1.3 maskImage:nil];
-//  image = [image applyLightEffect];
-
   self.view.backgroundColor = [self.view getBackgroundColor];
-//  self.view.backgroundColor = [OKUtils getBackgroundColor];
 
   self.fetchedResultsController.delegate = self;
   
@@ -105,22 +95,14 @@
   [self.resultDensitySlider setValue:[self.settingsMap[resultDensityKey] floatValue] animated:YES];
   
   self.recordsTableView.backgroundColor = [UIColor clearColor];
-//  UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 15)];
-//  UILabel *titleLabel = [UILabel new];
-//  [titleLabel setFrame:CGRectMake(12, 0, self.view.bounds.size.width, 15)];
-//  [titleLabel setFont:[UIFont fontWithName:@"HelveticaNeue-Medium" size:14.0]];
-//  [titleLabel setTextColor:[UIColor whiteColor]];
-//  [titleLabel setText:@"Kayitlar"];
-//  [headerView addSubview:titleLabel];
-//  self.recordsTableView.tableHeaderView = headerView;
   UIBarButtonItem *infoBtn = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"infoMark_navBar"]
                                                               style:UIBarButtonItemStylePlain
                                                              target:self
                                                              action:@selector(showTutorial)];
 
   [self.navigationItem setTitle:NSLocalizedStringFromTable(@"settingsTitle", okStringsTableName, nil)];
+  //eger result sayfasi tarafindan acilmissa!
   if (self.delegate == nil) {
-    //eger result sayfasi tarafindan acilmissa!
     UIBarButtonItem *unwindButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(performUnwindSegue:)];
     self.navigationItem.rightBarButtonItems = @[unwindButton, infoBtn];
     self.navigationItem.hidesBackButton = YES;
@@ -138,11 +120,6 @@
 - (void)showTutorial
 {
   [self performSegueWithIdentifier:@"SettingsTutorialSegue" sender:nil];
-  
-//  OKInfoViewController *vc = [[OKInfoViewController alloc] initWithNibName:@"OKInfoViewController" bundle:nil];
-////  vc.pageIndex = 3;
-//  [vc setPageIndex:OKSettingsPage];
-//  [self presentViewController:vc animated:NO completion:nil];
 }
 
 - (IBAction)switchValueChanged:(id)sender {
@@ -152,15 +129,12 @@
   switch (_switch.tag) {
     case 0:
       keyString = savePhotosKey;
-//      [self.settingsMap setObject:[NSNumber numberWithBool:_switch.on] forKey:@"SavePhotos"];
       break;
     case 1:
       keyString = editPhotosKey;
-//      [self.settingsMap setObject:[NSNumber numberWithBool:_switch.on] forKey:@"EditPhotos"];
       break;
     case 2:
       keyString = takeRecordKey;
-//      [self.settingsMap setObject:[NSNumber numberWithBool:_switch.on] forKey:@"TakeRecord"];
       break;
     default: //default'ta zaten degisen olmayacagi icin asagidaki if dongusunde sikinti olmamasi icin herhangi biri olabilir
       keyString = editPhotosKey;
@@ -186,17 +160,13 @@
 }
 
 - (IBAction)resultsDensityChanged:(id)sender {
-  
   [[NSUserDefaults standardUserDefaults] setObject:@(self.resultDensitySlider.value) forKey:resultDensityKey];
-  
 }
 
 -(void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
 {
   NSString *str = [alertView buttonTitleAtIndex:buttonIndex];
   if ([str isEqualToString:NSLocalizedStringFromTable(@"OKButtonTitle", okStringsTableName, nil)]) {
-    //TODO: clear all records
-//    [self performSelectorInBackground:@selector(deleteAllEntries) withObject:nil];
     [self deleteAllEntries];
   } else {
     [self.takeRecordsSwitch setOn:YES animated:YES];
@@ -206,28 +176,6 @@
 
 -(void)deleteAllEntries
 {
-//  NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"UserRecordModel"];
-//  request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"recordDate" ascending:YES]];
-//  request.predicate = nil; //get all records
-//
-//  NSError *error;
-//  NSArray *matches = [self.managedObjectContext executeFetchRequest:request error:&error];
-//
-//  
-//  if (error) {
-//    //handle error
-//    NSLog(@"An error occured %@", [error userInfo]);
-//  } else { //boyle bir brand varsa olani donder
-//    
-//    for (UserRecordModel *record in matches) {
-//      [self.managedObjectContext deleteObject:record];
-//      [self.managedObjectContext save:&error];
-//      if (error) {
-//        NSLog(@"An error occured when saving. %@", [error userInfo]);
-//      }
-//    }
-//  }
-  
   NSError *error;
   for (UserRecordModel *record in [self.fetchedResultsController fetchedObjects]) {
     [self.managedObjectContext deleteObject:record];
@@ -239,7 +187,6 @@
   [[NSUserDefaults standardUserDefaults] setObject:@(self.takeRecordsSwitch.on) forKey:takeRecordKey];
 
   [self.recordsTableView reloadData];
-//  [self.recordsTableView setHidden:YES];
 }
 
 -(void)performUnwindSegue:(id)sender
@@ -422,9 +369,6 @@
   UserRecordModel *record = [self.fetchedResultsController objectAtIndexPath:indexPath];
 
   cell.textLabel.adjustsFontSizeToFitWidth = YES;
-//  [cell.textLabel setFont:[UIFont systemFontOfSize:14]];
-//  cell.textLabel.numberOfLines = 2;
-//  cell.textLabel.lineBreakMode = NSLineBreakByWordWrapping;
   [cell.textLabel setTextColor:[UIColor blackColor]];
   cell.textLabel.text = record.recordName;
 
@@ -432,12 +376,6 @@
   [cell.detailTextLabel setTextColor:[UIColor colorWithWhite:0.0 alpha:0.8]];
   cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ : %@", NSLocalizedStringFromTable(@"recordTime", okStringsTableName, nil), [OKUtils dateToString:record.recordDate]];
   
-//  CGRect contentRect = CGRectMake(0, 0, cell.contentView.bounds.size.height, cell.contentView.bounds.size.height);
-//  UIImageView *contentImageView = [[UIImageView alloc] initWithFrame:contentRect];
-//  UIColor *productColor = [UIColor colorWithRed:[record.recordedColor.red floatValue]
-//                                          green:[record.recordedColor.green floatValue]
-//                                           blue:[record.recordedColor.blue floatValue] alpha:1.0];
-//  UIImage *productImg = [UIImage imageWithColor:productColor andSize:contentRect.size];
   UIImage *productImg = [UIImage imageWithData:record.recordedColor.productImage];
   [cell.imageView setImage:productImg];
   cell.imageView.layer.cornerRadius = cell.bounds.size.height / 4.0;
@@ -456,7 +394,6 @@
   if (editingStyle == UITableViewCellEditingStyleDelete) {
     UserRecordModel *mob = [self.fetchedResultsController objectAtIndexPath:indexPath];
     [self.fetchedResultsController.managedObjectContext deleteObject:mob];
-//    [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
   }
   
 }
@@ -465,12 +402,10 @@
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-  //resultDetailSegue
   if ([[segue identifier] isEqualToString:@"favDetailSegue"]) {
     NSIndexPath *indexPath = [self.recordsTableView indexPathForCell:sender];
     UserRecordModel *record = [self.fetchedResultsController objectAtIndexPath:indexPath];
     OKMainViewController *vc = [segue destinationViewController];
-    //TODO: share color model to to destination view controller
     [vc setColorModel:record.recordedColor];
     [vc setManagedObjectContext:self.managedObjectContext];
     vc.lookingFromFavList = YES;
@@ -489,8 +424,6 @@
     
     OKSettingsTutorialVC *vc = [segue destinationViewController];
     [vc initiateTutorialControllerWithBgImg:screenShot andContentPoints:pointDict];
-//    [vc setShowExplanationBelowView:NO];
-//    [vc setHeightOfExplanationView:50];
   }
 }
 

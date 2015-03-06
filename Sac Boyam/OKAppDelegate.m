@@ -10,26 +10,26 @@
 #import "OKUtils.h"
 #import "UIView+CreateImage.h"
 #import "UIImage+ImageEffects.h"
-#import "OKInfoViewController.h"
+//#import "OKInfoViewController.h"
 
 @implementation OKAppDelegate
 
-- (void)showTutorialForViewController:(UIViewController *)controller andPageIndex:(NSInteger)pageNumber
-{
-  UIImage * screenShot = [[controller view] createImageFromView];
-  screenShot = [screenShot applyDarkEffect];
-  OKInfoViewController *vc = [[OKInfoViewController alloc] initWithNibName:@"OKInfoViewController" bundle:nil];
-  vc.screenShot = screenShot;
-  vc.pageIndex = 0;
-  //  [vc setModalPresentationStyle:UIModalPresentationFullScreen];
-  //  [vc setModalTransitionStyle:UIModalTransitionStyleFlipHorizontal];
-  [controller presentViewController:vc animated:NO completion:nil];
-  
-  if ([[[NSUserDefaults standardUserDefaults] objectForKey:showTutorialKey] boolValue]) {
-    [[NSUserDefaults standardUserDefaults] setObject:@NO forKey:showTutorialKey];
-    [[NSUserDefaults standardUserDefaults] synchronize];
-  }
-}
+//- (void)showTutorialForViewController:(UIViewController *)controller andPageIndex:(NSInteger)pageNumber
+//{
+//  UIImage * screenShot = [[controller view] createImageFromView];
+//  screenShot = [screenShot applyDarkEffect];
+//  OKInfoViewController *vc = [[OKInfoViewController alloc] initWithNibName:@"OKInfoViewController" bundle:nil];
+//  vc.screenShot = screenShot;
+//  vc.pageIndex = 0;
+//  //  [vc setModalPresentationStyle:UIModalPresentationFullScreen];
+//  //  [vc setModalTransitionStyle:UIModalTransitionStyleFlipHorizontal];
+//  [controller presentViewController:vc animated:NO completion:nil];
+//  
+//  if ([[[NSUserDefaults standardUserDefaults] objectForKey:showTutorialKey] boolValue]) {
+//    [[NSUserDefaults standardUserDefaults] setObject:@NO forKey:showTutorialKey];
+//    [[NSUserDefaults standardUserDefaults] synchronize];
+//  }
+//}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {

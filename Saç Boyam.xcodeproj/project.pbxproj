@@ -7,26 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		7100615A19FF772C004A7A3C /* list-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 7100615919FF772C004A7A3C /* list-icon.png */; };
-		7100615E19FF7845004A7A3C /* OKResultsDetailTutVCViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7100615C19FF7845004A7A3C /* OKResultsDetailTutVCViewController.m */; };
-		7100616119FF791F004A7A3C /* boya-icon.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7100616019FF791F004A7A3C /* boya-icon.jpg */; };
-		7100616919FF8117004A7A3C /* OKSettingsTutVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 7100616719FF8117004A7A3C /* OKSettingsTutVC.m */; };
-		7100616E19FF8CE6004A7A3C /* OKTryOnMeTutVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 7100616C19FF8CE6004A7A3C /* OKTryOnMeTutVC.m */; };
-		7100617A19FFA047004A7A3C /* OKSelectColorTutorialVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7100617C19FFA048004A7A3C /* OKSelectColorTutorialVC.xib */; };
-		7100617E19FFA096004A7A3C /* OKResultsDetailTutVCViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7100618019FFA096004A7A3C /* OKResultsDetailTutVCViewController.xib */; };
 		71063759196C0ED100D17D66 /* UIView+CreateImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 71063758196C0ED100D17D66 /* UIView+CreateImage.m */; };
 		710735A217C4981400484D21 /* OKSonuclarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 710735A117C4981400484D21 /* OKSonuclarViewController.m */; };
 		710735A617C49E6800484D21 /* OKSonuclarCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 710735A517C49E6800484D21 /* OKSonuclarCell.m */; };
-		710E760E1A023A7200CCF755 /* tryonme-en1.png in Resources */ = {isa = PBXBuildFile; fileRef = 710E760A1A023A7200CCF755 /* tryonme-en1.png */; };
-		710E760F1A023A7200CCF755 /* tryonme-en2.png in Resources */ = {isa = PBXBuildFile; fileRef = 710E760B1A023A7200CCF755 /* tryonme-en2.png */; };
-		710E76101A023A7200CCF755 /* tryonme-en3.png in Resources */ = {isa = PBXBuildFile; fileRef = 710E760C1A023A7200CCF755 /* tryonme-en3.png */; };
-		710E76111A023A7200CCF755 /* tryonme-en4.png in Resources */ = {isa = PBXBuildFile; fileRef = 710E760D1A023A7200CCF755 /* tryonme-en4.png */; };
-		710E76161A023A9600CCF755 /* tryonme-tr1.png in Resources */ = {isa = PBXBuildFile; fileRef = 710E76121A023A9600CCF755 /* tryonme-tr1.png */; };
-		710E76171A023A9600CCF755 /* tryonme-tr2.png in Resources */ = {isa = PBXBuildFile; fileRef = 710E76131A023A9600CCF755 /* tryonme-tr2.png */; };
-		710E76181A023A9600CCF755 /* tryonme-tr3.png in Resources */ = {isa = PBXBuildFile; fileRef = 710E76141A023A9600CCF755 /* tryonme-tr3.png */; };
-		710E76191A023A9600CCF755 /* tryonme-tr4.png in Resources */ = {isa = PBXBuildFile; fileRef = 710E76151A023A9600CCF755 /* tryonme-tr4.png */; };
-		712717071A02246D0075EE23 /* OKTryOnMeTutVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 712717091A02246D0075EE23 /* OKTryOnMeTutVC.xib */; };
-		7127170B1A02247B0075EE23 /* OKSettingsTutVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7127170D1A02247B0075EE23 /* OKSettingsTutVC.xib */; };
 		7128469C1A9CC0BE00E39958 /* OKCamViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 712846961A9CC0BE00E39958 /* OKCamViewController.m */; };
 		7128469D1A9CC0BE00E39958 /* AVCamPreviewView.m in Sources */ = {isa = PBXBuildFile; fileRef = 712846981A9CC0BE00E39958 /* AVCamPreviewView.m */; };
 		7128469E1A9CC0BE00E39958 /* switch_camera_white.png in Resources */ = {isa = PBXBuildFile; fileRef = 712846991A9CC0BE00E39958 /* switch_camera_white.png */; };
@@ -57,11 +40,6 @@
 		71364338195C3B93006EF824 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71364337195C3B93006EF824 /* QuartzCore.framework */; };
 		7136433D195C5E08006EF824 /* OKUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 7136433C195C5E08006EF824 /* OKUtils.m */; };
 		713733B619B5E61100542E86 /* UserRecordModel+Create.m in Sources */ = {isa = PBXBuildFile; fileRef = 713733B519B5E61100542E86 /* UserRecordModel+Create.m */; };
-		713FBE1D19FAB080009C9487 /* OKInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 713FBE1B19FAB080009C9487 /* OKInfoViewController.m */; };
-		713FBE1E19FAB080009C9487 /* OKInfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 713FBE1C19FAB080009C9487 /* OKInfoViewController.xib */; };
-		713FBE2219FAB097009C9487 /* OKInfoChildViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 713FBE2019FAB097009C9487 /* OKInfoChildViewController.m */; };
-		713FBE2319FAB097009C9487 /* OKInfoChildViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 713FBE2119FAB097009C9487 /* OKInfoChildViewController.xib */; };
-		7152CB4F19741B330080898F /* OKWaitForResultsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 7152CB4E19741B330080898F /* OKWaitForResultsVC.m */; };
 		7152CB52197557640080898F /* OKProductJsonType.m in Sources */ = {isa = PBXBuildFile; fileRef = 7152CB51197557640080898F /* OKProductJsonType.m */; };
 		7169530F196E64C100C988E5 /* localized.strings in Resources */ = {isa = PBXBuildFile; fileRef = 71695311196E64C100C988E5 /* localized.strings */; };
 		71840ED819B8454600F99868 /* BrandModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 71840ED719B8454600F99868 /* BrandModel.m */; };
@@ -86,46 +64,15 @@
 		71D5795C19E5104800E6E2AF /* OKTryOnMeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 71D5795B19E5104800E6E2AF /* OKTryOnMeVC.m */; };
 		71ECEF95195AC2A600872EBC /* UIImage+AverageColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 71ECEF94195AC2A600872EBC /* UIImage+AverageColor.m */; };
 		71F5E2441AA4A5C7006E87CF /* UIViewController+AutoDissmissAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = 71F5E2431AA4A5C7006E87CF /* UIViewController+AutoDissmissAlert.m */; };
-		71F9746E19FE6480007F774D /* OKWelcomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 71F9746C19FE6480007F774D /* OKWelcomeViewController.m */; };
-		71F9747019FE6955007F774D /* OKWelcomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 71F9747219FE6955007F774D /* OKWelcomeViewController.xib */; };
-		71F9747619FE6B05007F774D /* OKTutorialBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 71F9747519FE6B05007F774D /* OKTutorialBaseViewController.m */; };
-		71F9747B19FE75EE007F774D /* OKSelectColorTutorialVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 71F9747919FE75EE007F774D /* OKSelectColorTutorialVC.m */; };
-		71F9748419FE8FD2007F774D /* kamera-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 71F9748319FE8FD2007F774D /* kamera-icon.png */; };
-		71F9748819FE9308007F774D /* colorToFind-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 71F9748719FE9308007F774D /* colorToFind-icon.png */; };
-		71F9748C19FE94D9007F774D /* previewImage-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 71F9748B19FE94D9007F774D /* previewImage-icon.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		7100615919FF772C004A7A3C /* list-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "list-icon.png"; sourceTree = "<group>"; };
-		7100615B19FF7845004A7A3C /* OKResultsDetailTutVCViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKResultsDetailTutVCViewController.h; sourceTree = "<group>"; };
-		7100615C19FF7845004A7A3C /* OKResultsDetailTutVCViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKResultsDetailTutVCViewController.m; sourceTree = "<group>"; };
-		7100616019FF791F004A7A3C /* boya-icon.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "boya-icon.jpg"; sourceTree = "<group>"; };
-		7100616619FF8117004A7A3C /* OKSettingsTutVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKSettingsTutVC.h; sourceTree = "<group>"; };
-		7100616719FF8117004A7A3C /* OKSettingsTutVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKSettingsTutVC.m; sourceTree = "<group>"; };
-		7100616B19FF8CE6004A7A3C /* OKTryOnMeTutVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKTryOnMeTutVC.h; sourceTree = "<group>"; };
-		7100616C19FF8CE6004A7A3C /* OKTryOnMeTutVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKTryOnMeTutVC.m; sourceTree = "<group>"; };
-		7100617B19FFA048004A7A3C /* tr */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = tr; path = tr.lproj/OKSelectColorTutorialVC.xib; sourceTree = "<group>"; };
-		7100617D19FFA04D004A7A3C /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/OKSelectColorTutorialVC.xib; sourceTree = "<group>"; };
-		7100617F19FFA096004A7A3C /* tr */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = tr; path = tr.lproj/OKResultsDetailTutVCViewController.xib; sourceTree = "<group>"; };
-		7100618119FFA097004A7A3C /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/OKResultsDetailTutVCViewController.xib; sourceTree = "<group>"; };
 		71063757196C0ED100D17D66 /* UIView+CreateImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+CreateImage.h"; sourceTree = "<group>"; };
 		71063758196C0ED100D17D66 /* UIView+CreateImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+CreateImage.m"; sourceTree = "<group>"; };
 		710735A017C4981400484D21 /* OKSonuclarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKSonuclarViewController.h; sourceTree = "<group>"; };
 		710735A117C4981400484D21 /* OKSonuclarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKSonuclarViewController.m; sourceTree = "<group>"; };
 		710735A417C49E6800484D21 /* OKSonuclarCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKSonuclarCell.h; sourceTree = "<group>"; };
 		710735A517C49E6800484D21 /* OKSonuclarCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKSonuclarCell.m; sourceTree = "<group>"; };
-		710E760A1A023A7200CCF755 /* tryonme-en1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tryonme-en1.png"; sourceTree = "<group>"; };
-		710E760B1A023A7200CCF755 /* tryonme-en2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tryonme-en2.png"; sourceTree = "<group>"; };
-		710E760C1A023A7200CCF755 /* tryonme-en3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tryonme-en3.png"; sourceTree = "<group>"; };
-		710E760D1A023A7200CCF755 /* tryonme-en4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tryonme-en4.png"; sourceTree = "<group>"; };
-		710E76121A023A9600CCF755 /* tryonme-tr1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tryonme-tr1.png"; sourceTree = "<group>"; };
-		710E76131A023A9600CCF755 /* tryonme-tr2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tryonme-tr2.png"; sourceTree = "<group>"; };
-		710E76141A023A9600CCF755 /* tryonme-tr3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tryonme-tr3.png"; sourceTree = "<group>"; };
-		710E76151A023A9600CCF755 /* tryonme-tr4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tryonme-tr4.png"; sourceTree = "<group>"; };
-		712717081A02246D0075EE23 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/OKTryOnMeTutVC.xib; sourceTree = "<group>"; };
-		7127170A1A0224710075EE23 /* tr */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = tr; path = tr.lproj/OKTryOnMeTutVC.xib; sourceTree = "<group>"; };
-		7127170C1A02247B0075EE23 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/OKSettingsTutVC.xib; sourceTree = "<group>"; };
-		7127170E1A02247C0075EE23 /* tr */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = tr; path = tr.lproj/OKSettingsTutVC.xib; sourceTree = "<group>"; };
 		712846951A9CC0BE00E39958 /* OKCamViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKCamViewController.h; sourceTree = "<group>"; };
 		712846961A9CC0BE00E39958 /* OKCamViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKCamViewController.m; sourceTree = "<group>"; };
 		712846971A9CC0BE00E39958 /* AVCamPreviewView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVCamPreviewView.h; sourceTree = "<group>"; };
@@ -172,15 +119,7 @@
 		713733B519B5E61100542E86 /* UserRecordModel+Create.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UserRecordModel+Create.m"; sourceTree = "<group>"; };
 		713733ED19B70F0500542E86 /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		713733EE19B70F0500542E86 /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/localized.strings; sourceTree = "<group>"; };
-		713FBE1A19FAB080009C9487 /* OKInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKInfoViewController.h; sourceTree = "<group>"; };
-		713FBE1B19FAB080009C9487 /* OKInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKInfoViewController.m; sourceTree = "<group>"; };
-		713FBE1C19FAB080009C9487 /* OKInfoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OKInfoViewController.xib; sourceTree = "<group>"; };
-		713FBE1F19FAB097009C9487 /* OKInfoChildViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKInfoChildViewController.h; sourceTree = "<group>"; };
-		713FBE2019FAB097009C9487 /* OKInfoChildViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKInfoChildViewController.m; sourceTree = "<group>"; };
-		713FBE2119FAB097009C9487 /* OKInfoChildViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OKInfoChildViewController.xib; sourceTree = "<group>"; };
 		7150A55E19B4A1AB00597373 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
-		7152CB4D19741B330080898F /* OKWaitForResultsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKWaitForResultsVC.h; sourceTree = "<group>"; };
-		7152CB4E19741B330080898F /* OKWaitForResultsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKWaitForResultsVC.m; sourceTree = "<group>"; };
 		7152CB50197557640080898F /* OKProductJsonType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKProductJsonType.h; sourceTree = "<group>"; };
 		7152CB51197557640080898F /* OKProductJsonType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKProductJsonType.m; sourceTree = "<group>"; };
 		71695310196E64C100C988E5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/localized.strings; sourceTree = "<group>"; };
@@ -222,17 +161,6 @@
 		71ECEF94195AC2A600872EBC /* UIImage+AverageColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+AverageColor.m"; sourceTree = "<group>"; };
 		71F5E2421AA4A5C7006E87CF /* UIViewController+AutoDissmissAlert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+AutoDissmissAlert.h"; sourceTree = "<group>"; };
 		71F5E2431AA4A5C7006E87CF /* UIViewController+AutoDissmissAlert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+AutoDissmissAlert.m"; sourceTree = "<group>"; };
-		71F9746B19FE6480007F774D /* OKWelcomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKWelcomeViewController.h; sourceTree = "<group>"; };
-		71F9746C19FE6480007F774D /* OKWelcomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKWelcomeViewController.m; sourceTree = "<group>"; };
-		71F9747119FE6955007F774D /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/OKWelcomeViewController.xib; sourceTree = "<group>"; };
-		71F9747319FE695A007F774D /* tr */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = tr; path = tr.lproj/OKWelcomeViewController.xib; sourceTree = "<group>"; };
-		71F9747419FE6B05007F774D /* OKTutorialBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKTutorialBaseViewController.h; sourceTree = "<group>"; };
-		71F9747519FE6B05007F774D /* OKTutorialBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKTutorialBaseViewController.m; sourceTree = "<group>"; };
-		71F9747819FE75EE007F774D /* OKSelectColorTutorialVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKSelectColorTutorialVC.h; sourceTree = "<group>"; };
-		71F9747919FE75EE007F774D /* OKSelectColorTutorialVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKSelectColorTutorialVC.m; sourceTree = "<group>"; };
-		71F9748319FE8FD2007F774D /* kamera-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "kamera-icon.png"; sourceTree = "<group>"; };
-		71F9748719FE9308007F774D /* colorToFind-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "colorToFind-icon.png"; sourceTree = "<group>"; };
-		71F9748B19FE94D9007F774D /* previewImage-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "previewImage-icon.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -257,84 +185,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		7100616219FF80B8004A7A3C /* Welcome Screen */ = {
-			isa = PBXGroup;
-			children = (
-				71F9746B19FE6480007F774D /* OKWelcomeViewController.h */,
-				71F9746C19FE6480007F774D /* OKWelcomeViewController.m */,
-				71F9747219FE6955007F774D /* OKWelcomeViewController.xib */,
-			);
-			name = "Welcome Screen";
-			sourceTree = "<group>";
-		};
-		7100616319FF80C5004A7A3C /* Main Screen */ = {
-			isa = PBXGroup;
-			children = (
-				71F9748319FE8FD2007F774D /* kamera-icon.png */,
-				71F9748719FE9308007F774D /* colorToFind-icon.png */,
-				71F9748B19FE94D9007F774D /* previewImage-icon.png */,
-				7100615919FF772C004A7A3C /* list-icon.png */,
-				71F9747819FE75EE007F774D /* OKSelectColorTutorialVC.h */,
-				71F9747919FE75EE007F774D /* OKSelectColorTutorialVC.m */,
-				7100617C19FFA048004A7A3C /* OKSelectColorTutorialVC.xib */,
-			);
-			name = "Main Screen";
-			sourceTree = "<group>";
-		};
-		7100616419FF80D3004A7A3C /* Detail Screen */ = {
-			isa = PBXGroup;
-			children = (
-				7100616019FF791F004A7A3C /* boya-icon.jpg */,
-				7100615B19FF7845004A7A3C /* OKResultsDetailTutVCViewController.h */,
-				7100615C19FF7845004A7A3C /* OKResultsDetailTutVCViewController.m */,
-				7100618019FFA096004A7A3C /* OKResultsDetailTutVCViewController.xib */,
-			);
-			name = "Detail Screen";
-			sourceTree = "<group>";
-		};
-		7100616519FF80E9004A7A3C /* Base Controllers */ = {
-			isa = PBXGroup;
-			children = (
-				71F9747419FE6B05007F774D /* OKTutorialBaseViewController.h */,
-				71F9747519FE6B05007F774D /* OKTutorialBaseViewController.m */,
-				713FBE1A19FAB080009C9487 /* OKInfoViewController.h */,
-				713FBE1B19FAB080009C9487 /* OKInfoViewController.m */,
-				713FBE1C19FAB080009C9487 /* OKInfoViewController.xib */,
-				713FBE1F19FAB097009C9487 /* OKInfoChildViewController.h */,
-				713FBE2019FAB097009C9487 /* OKInfoChildViewController.m */,
-				713FBE2119FAB097009C9487 /* OKInfoChildViewController.xib */,
-			);
-			name = "Base Controllers";
-			sourceTree = "<group>";
-		};
-		7100617819FF97D0004A7A3C /* Settings Screen */ = {
-			isa = PBXGroup;
-			children = (
-				7100616619FF8117004A7A3C /* OKSettingsTutVC.h */,
-				7100616719FF8117004A7A3C /* OKSettingsTutVC.m */,
-				7127170D1A02247B0075EE23 /* OKSettingsTutVC.xib */,
-			);
-			name = "Settings Screen";
-			sourceTree = "<group>";
-		};
-		7100617919FF97E8004A7A3C /* Try On Me Screen */ = {
-			isa = PBXGroup;
-			children = (
-				710E760A1A023A7200CCF755 /* tryonme-en1.png */,
-				710E760B1A023A7200CCF755 /* tryonme-en2.png */,
-				710E760C1A023A7200CCF755 /* tryonme-en3.png */,
-				710E760D1A023A7200CCF755 /* tryonme-en4.png */,
-				710E76121A023A9600CCF755 /* tryonme-tr1.png */,
-				710E76131A023A9600CCF755 /* tryonme-tr2.png */,
-				710E76141A023A9600CCF755 /* tryonme-tr3.png */,
-				710E76151A023A9600CCF755 /* tryonme-tr4.png */,
-				7100616B19FF8CE6004A7A3C /* OKTryOnMeTutVC.h */,
-				7100616C19FF8CE6004A7A3C /* OKTryOnMeTutVC.m */,
-				712717091A02246D0075EE23 /* OKTryOnMeTutVC.xib */,
-			);
-			name = "Try On Me Screen";
-			sourceTree = "<group>";
-		};
 		710735A317C49E4200484D21 /* ResultsPage */ = {
 			isa = PBXGroup;
 			children = (
@@ -409,7 +259,6 @@
 				713733E819B603FF00542E86 /* Results Detail */,
 				713733AA19B5DB4000542E86 /* Settings Page */,
 				71EC0EA019F8D13B00A34D2C /* Try On Me Page */,
-				71F9747719FE6F76007F774D /* Tutorial Screens */,
 				71328AA417C35FD7007EE533 /* OKAppDelegate.h */,
 				71328AA517C35FD7007EE533 /* OKAppDelegate.m */,
 				71899FF41A971C4200150EEF /* OKWelcomeScreemVC.h */,
@@ -419,8 +268,6 @@
 				71328AC117C365F7007EE533 /* images */,
 				71328A9C17C35FD7007EE533 /* Supporting Files */,
 				71695311196E64C100C988E5 /* localized.strings */,
-				7152CB4D19741B330080898F /* OKWaitForResultsVC.h */,
-				7152CB4E19741B330080898F /* OKWaitForResultsVC.m */,
 			);
 			path = "Sac Boyam";
 			sourceTree = "<group>";
@@ -548,19 +395,6 @@
 			name = "Try On Me Page";
 			sourceTree = "<group>";
 		};
-		71F9747719FE6F76007F774D /* Tutorial Screens */ = {
-			isa = PBXGroup;
-			children = (
-				7100616519FF80E9004A7A3C /* Base Controllers */,
-				7100616219FF80B8004A7A3C /* Welcome Screen */,
-				7100616319FF80C5004A7A3C /* Main Screen */,
-				7100616419FF80D3004A7A3C /* Detail Screen */,
-				7100617819FF97D0004A7A3C /* Settings Screen */,
-				7100617919FF97E8004A7A3C /* Try On Me Screen */,
-			);
-			name = "Tutorial Screens";
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -625,37 +459,17 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				710E760F1A023A7200CCF755 /* tryonme-en2.png in Resources */,
 				71328AA017C35FD7007EE533 /* InfoPlist.strings in Resources */,
 				71D002F81A97740800E9FDCE /* search_white_navbar.png in Resources */,
-				7100617A19FFA047004A7A3C /* OKSelectColorTutorialVC.xib in Resources */,
 				7193555C19654DFC0040F48D /* ImageAssets.xcassets in Resources */,
-				7100617E19FFA096004A7A3C /* OKResultsDetailTutVCViewController.xib in Resources */,
 				71840EE019B84B7800F99868 /* persistentStore in Resources */,
-				71F9748419FE8FD2007F774D /* kamera-icon.png in Resources */,
-				710E76171A023A9600CCF755 /* tryonme-tr2.png in Resources */,
-				71F9748C19FE94D9007F774D /* previewImage-icon.png in Resources */,
-				712717071A02246D0075EE23 /* OKTryOnMeTutVC.xib in Resources */,
-				713FBE2319FAB097009C9487 /* OKInfoChildViewController.xib in Resources */,
-				710E760E1A023A7200CCF755 /* tryonme-en1.png in Resources */,
-				7100616119FF791F004A7A3C /* boya-icon.jpg in Resources */,
 				7128469F1A9CC0BE00E39958 /* Untitled-1.png in Resources */,
-				7127170B1A02247B0075EE23 /* OKSettingsTutVC.xib in Resources */,
-				71F9748819FE9308007F774D /* colorToFind-icon.png in Resources */,
 				712846A21A9CC18200E39958 /* switch_camera.png in Resources */,
 				7169530F196E64C100C988E5 /* localized.strings in Resources */,
-				710E76101A023A7200CCF755 /* tryonme-en3.png in Resources */,
-				713FBE1E19FAB080009C9487 /* OKInfoViewController.xib in Resources */,
 				718986661964592B00C26297 /* final_effect_2.png in Resources */,
-				710E76161A023A9600CCF755 /* tryonme-tr1.png in Resources */,
-				710E76111A023A7200CCF755 /* tryonme-en4.png in Resources */,
-				710E76191A023A9600CCF755 /* tryonme-tr4.png in Resources */,
 				71328AAF17C35FD7007EE533 /* MainStoryboard_iPhone.storyboard in Resources */,
-				7100615A19FF772C004A7A3C /* list-icon.png in Resources */,
 				712846A01A9CC0BE00E39958 /* overlaygraphic.png in Resources */,
-				710E76181A023A9600CCF755 /* tryonme-tr3.png in Resources */,
 				7128469E1A9CC0BE00E39958 /* switch_camera_white.png in Resources */,
-				71F9747019FE6955007F774D /* OKWelcomeViewController.xib in Resources */,
 				71A7FF8E1A9E0178005097DC /* home-icon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -668,9 +482,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				719C30DD19F7A9C300E938BA /* CRVINTERGraphicsView.m in Sources */,
-				7100616E19FF8CE6004A7A3C /* OKTryOnMeTutVC.m in Sources */,
-				71F9747619FE6B05007F774D /* OKTutorialBaseViewController.m in Sources */,
-				71F9746E19FE6480007F774D /* OKWelcomeViewController.m in Sources */,
 				718986551963E59400C26297 /* OKZoomView.m in Sources */,
 				71D5795C19E5104800E6E2AF /* OKTryOnMeVC.m in Sources */,
 				7134B72219A3B3F800BFE754 /* OKProductType.m in Sources */,
@@ -679,8 +490,6 @@
 				71899FF61A971C4200150EEF /* OKWelcomeScreemVC.m in Sources */,
 				719C30DE19F7A9C300E938BA /* CGPointExtension.m in Sources */,
 				71D002F61A9727AC00E9FDCE /* OKSelectColorVC.m in Sources */,
-				71F9747B19FE75EE007F774D /* OKSelectColorTutorialVC.m in Sources */,
-				7100616919FF8117004A7A3C /* OKSettingsTutVC.m in Sources */,
 				71840EDE19B8454800F99868 /* UserRecordModel.m in Sources */,
 				71840ED819B8454600F99868 /* BrandModel.m in Sources */,
 				719BCE8C1966F0E9005F575C /* OKSettingsViewController.m in Sources */,
@@ -690,25 +499,21 @@
 				7134B71319A3B3A800BFE754 /* CoreDataTableViewController.m in Sources */,
 				7134B73319A3C8F900BFE754 /* UIColor+GrayScale.m in Sources */,
 				71840EDB19B8454800F99868 /* ColorModel.m in Sources */,
-				7100615E19FF7845004A7A3C /* OKResultsDetailTutVCViewController.m in Sources */,
 				7152CB52197557640080898F /* OKProductJsonType.m in Sources */,
 				7136433D195C5E08006EF824 /* OKUtils.m in Sources */,
 				71328AA617C35FD7007EE533 /* OKAppDelegate.m in Sources */,
 				7128469D1A9CC0BE00E39958 /* AVCamPreviewView.m in Sources */,
 				71F5E2441AA4A5C7006E87CF /* UIViewController+AutoDissmissAlert.m in Sources */,
-				713FBE2219FAB097009C9487 /* OKInfoChildViewController.m in Sources */,
 				719C30E319F7ACE300E938BA /* TapToPointView.m in Sources */,
 				7134B72319A3B3F800BFE754 /* ColorModel+Create.m in Sources */,
 				719C30DF19F7A9C300E938BA /* UIBezierPath+Interpolation.m in Sources */,
 				71328AF417C38162007EE533 /* OKMainViewController.m in Sources */,
 				718986581964186500C26297 /* UIImage+ImageEffects.m in Sources */,
-				713FBE1D19FAB080009C9487 /* OKInfoViewController.m in Sources */,
 				71063759196C0ED100D17D66 /* UIView+CreateImage.m in Sources */,
 				71ECEF95195AC2A600872EBC /* UIImage+AverageColor.m in Sources */,
 				7134B71F19A3B3F800BFE754 /* ColorDataModel.xcdatamodel in Sources */,
 				710735A217C4981400484D21 /* OKSonuclarViewController.m in Sources */,
 				710735A617C49E6800484D21 /* OKSonuclarCell.m in Sources */,
-				7152CB4F19741B330080898F /* OKWaitForResultsVC.m in Sources */,
 				712846A81A9CC91400E39958 /* UIColor+HexTool.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -716,42 +521,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		7100617C19FFA048004A7A3C /* OKSelectColorTutorialVC.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				7100617B19FFA048004A7A3C /* tr */,
-				7100617D19FFA04D004A7A3C /* en */,
-			);
-			name = OKSelectColorTutorialVC.xib;
-			sourceTree = "<group>";
-		};
-		7100618019FFA096004A7A3C /* OKResultsDetailTutVCViewController.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				7100617F19FFA096004A7A3C /* tr */,
-				7100618119FFA097004A7A3C /* en */,
-			);
-			name = OKResultsDetailTutVCViewController.xib;
-			sourceTree = "<group>";
-		};
-		712717091A02246D0075EE23 /* OKTryOnMeTutVC.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				712717081A02246D0075EE23 /* en */,
-				7127170A1A0224710075EE23 /* tr */,
-			);
-			name = OKTryOnMeTutVC.xib;
-			sourceTree = "<group>";
-		};
-		7127170D1A02247B0075EE23 /* OKSettingsTutVC.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				7127170C1A02247B0075EE23 /* en */,
-				7127170E1A02247C0075EE23 /* tr */,
-			);
-			name = OKSettingsTutVC.xib;
-			sourceTree = "<group>";
-		};
 		71328A9E17C35FD7007EE533 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -776,15 +545,6 @@
 				713733EE19B70F0500542E86 /* tr */,
 			);
 			name = localized.strings;
-			sourceTree = "<group>";
-		};
-		71F9747219FE6955007F774D /* OKWelcomeViewController.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				71F9747119FE6955007F774D /* en */,
-				71F9747319FE695A007F774D /* tr */,
-			);
-			name = OKWelcomeViewController.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

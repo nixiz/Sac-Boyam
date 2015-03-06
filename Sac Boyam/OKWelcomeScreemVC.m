@@ -10,7 +10,7 @@
 #import "UIView+CreateImage.h"
 #import "UIImage+AverageColor.h"
 #import "UIImage+ImageEffects.h"
-#import "OKInfoViewController.h"
+#import "OKUtils.h"
 #import "OKSelectColorVC.h"
 #import "OKSettingsViewController.h"
 #import "OKCamViewController.h"
@@ -66,16 +66,11 @@
   [self performSegueWithIdentifier:@"settingsSegue" sender:sender];
 }
 
-- (void)showTutorial
-{
-  [self showTutorialWithWelcomeScreen:NO];
-}
-
 - (void)showTutorialWithWelcomeScreen:(BOOL)showWelcomeScreen
 {
-  OKInfoViewController *vc = [[OKInfoViewController alloc] initWithNibName:@"OKInfoViewController" bundle:nil];
-  [vc setPageIndex:OKWelcomeScreenPage];
-  [self presentViewController:vc animated:NO completion:nil];
+//  OKInfoViewController *vc = [[OKInfoViewController alloc] initWithNibName:@"OKInfoViewController" bundle:nil];
+//  [vc setPageIndex:OKWelcomeScreenPage];
+//  [self presentViewController:vc animated:NO completion:nil];
   
   if ([[[NSUserDefaults standardUserDefaults] objectForKey:showTutorialKey] boolValue]) {
     [[NSUserDefaults standardUserDefaults] setObject:@NO forKey:showTutorialKey];

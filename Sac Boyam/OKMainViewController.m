@@ -12,7 +12,6 @@
 #import "OKAppDelegate.h"
 #import "UIView+CreateImage.h"
 #import "OKTryOnMeVC.h"
-#import "OKInfoViewController.h"
 
 @interface OKMainViewController () <UIAlertViewDelegate>
 @property (weak, nonatomic) IBOutlet UIImageView *productImageView;
@@ -47,20 +46,14 @@
     self.productDetailsLabel.numberOfLines = 0;
     self.productDetailsLabel.text = [NSString stringWithFormat:@"%@: %@\n%@: %@", NSLocalizedStringFromTable(@"brand", okStringsTableName, nil), self.colorModel.brand.brandName, NSLocalizedStringFromTable(@"product", okStringsTableName, nil), self.colorModel.productName];
   }
-//  UIBarButtonItem *infoBtn = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"infoMark_navBar"]
-//                                                              style:UIBarButtonItemStylePlain
-//                                                             target:self
-//                                                             action:@selector(showTutorial)];
   if (self.lookingFromFavList == NO)
   {
     UIBarButtonItem *savebtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addRemoveFav:)];
-//    UIBarButtonItem *savebtn = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedStringFromTable(@"saveButtonName", okStringsTableName, nil) style:UIBarButtonItemStylePlain target:self action:@selector(addRemoveFav:)];
     
     BOOL takeRecord = [[[NSUserDefaults standardUserDefaults] objectForKey:takeRecordKey] boolValue];
     if (!takeRecord) {
       [savebtn setEnabled:NO];
     }
-//    self.navigationItem.rightBarButtonItems = @[savebtn, infoBtn];
     self.navigationItem.rightBarButtonItem = savebtn;
     [self.tryBtn setHidden:YES];
   }
@@ -68,10 +61,6 @@
   {
     [self.tryBtn setHidden:NO];
   }
-//  else
-//  {
-//    self.navigationItem.rightBarButtonItem = infoBtn;
-//  }
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -83,14 +72,6 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
-- (void)showTutorial
-{
-  OKInfoViewController *vc = [[OKInfoViewController alloc] initWithNibName:@"OKInfoViewController" bundle:nil];
-//  vc.pageIndex = 2;
-  [vc setPageIndex:OKResultDetailPage];
-  [self presentViewController:vc animated:NO completion:nil];
 }
 
 - (IBAction)lookForInternet:(id)sender
@@ -106,24 +87,6 @@
     NSLog(@"Failed to open url: %@", [url description]);
   }
 }
-
-//- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
-//{
-//  NSString *title = [alertView buttonTitleAtIndex:buttonIndex];
-//  if ([title isEqualToString:@"Hayir"]) {
-//    return;
-//  }
-//  NSMutableString *searchText = [[NSMutableString alloc] initWithString:@"https://www.google.com/search?q="];
-//  [searchText appendString:[self.stringToBeSearceh stringByReplacingOccurrencesOfString:@" " withString:@"+"]];
-//  
-//  NSString *urlStr = [searchText stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-//  NSURL *url = [NSURL URLWithString:urlStr];
-//  BOOL success = [[UIApplication sharedApplication] openURL:url];
-//  
-//  if (!success) {
-//    NSLog(@"Failed to open url: %@", [url description]);
-//  }
-//}
 
 - (IBAction)addRemoveFav:(id)sender {
   BOOL takeRecord = [[[NSUserDefaults standardUserDefaults] objectForKey:takeRecordKey] boolValue];
@@ -184,11 +147,7 @@
     [alertView show];
     [self performSelector:@selector(dismissAlertView:) withObject:alertView afterDelay:0.6];
 
-//    [self.navigationItem.rightBarButtonItem setTitle:NSLocalizedStringFromTable(@"saved", okStringsTableName, nil)];
     [self.navigationItem.rightBarButtonItem setEnabled:NO];
-//    [self.favButton setTitle:NSLocalizedStringFromTable(@"saved", okStringsTableName, nil) forState:UIControlStateNormal];
-//    [self.favButton setEnabled:NO];
-//    [self.favButton setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
   }
 }
 
