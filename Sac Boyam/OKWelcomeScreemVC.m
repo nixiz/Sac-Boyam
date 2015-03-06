@@ -43,6 +43,7 @@
   [self.imagePickerController setModalTransitionStyle:UIModalTransitionStyleCrossDissolve];
   
   if (!self.managedObjectContext) [self initManagedDocument];
+  
 }
 
 -(void)viewDidAppear:(BOOL)animated

@@ -51,7 +51,7 @@
   self.findButton = [UIButton buttonWithType:UIButtonTypeCustom];
   [self.findButton setFrame:CGRectMake(0, 0, 88, 30)];
   
-  [self.findButton setTitle:@"Find" forState:UIControlStateNormal];
+  [self.findButton setTitle:NSLocalizedStringFromTable(@"find", okStringsTableName, nil) forState:UIControlStateNormal];
   [self.findButton setTitleColor:[UIColor colorWithWhite:0.0 alpha:0.8] forState:UIControlStateNormal];
 //  [self.findButton setTintColor:[UIColor colorWithWhite:0.0 alpha:0.8]];
 

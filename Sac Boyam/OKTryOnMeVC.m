@@ -20,6 +20,7 @@
 #import "OKMainViewController.h"
 
 #import "OKSettingsTutorialVC.h"
+#import "UIViewController+AutoDissmissAlert.h"
 
 @interface OKTryOnMeVC () <UIAlertViewDelegate, UIGestureRecognizerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 @property (strong, nonatomic) UIImage *defaultImage;
@@ -45,6 +46,7 @@
 
 @property (nonatomic) NSDictionary *framesDictionary;
 @property (nonatomic) NSDictionary *explanationsDictionary;
+@property (nonatomic) BOOL imageChanged;
 @end
 
 @implementation OKTryOnMeVC
@@ -351,8 +353,9 @@
     case 11: //undo last button (B1)
       [self removeLastTapView];
       break;
-    case 10: //clear button     (B2)
-      [self removeallTapViews];
+    case 10: //save button     (B2)
+//      [self removeallTapViews];
+      [self saveImageToAlbum];
       break;
     case 12: //done button      (B3)
       [self createMaskImageFromBezierPaths];
@@ -434,6 +437,29 @@
   }
 }
 
+- (void)saveImageToAlbum
+{
+  if (!self.imageChanged) {
+    return;
+  }
+  [self.view setUserInteractionEnabled:NO];
+  UIImageWriteToSavedPhotosAlbum(self.previewImg.image, self, @selector(image:didFinishSavingWithError:contextInfo:), nil);
+}
+
+- (void)               image: (UIImage *) image
+    didFinishSavingWithError: (NSError *) error
+                 contextInfo: (void *) contextInfo
+{
+  [self.view setUserInteractionEnabled:YES];
+  if (error) {
+    NSLog(@"An Error Occured while saving image %@", [error debugDescription]);
+//    [self showAutoDismissedAlertWithMessage:NSLocalizedStringFromTable(@"imageSavedSuccessfully", okStringsTableName, nil) withTitle:nil afterDelay:0.6];
+  } else {
+    [self showAutoDismissedAlertWithMessage:NSLocalizedStringFromTable(@"imageSavedSuccessfully", okStringsTableName, nil) withTitle:nil afterDelay:1.2];
+  }
+  self.imageChanged = NO;
+}
+
 - (void)removeallTapViews
 {
   for (UIView *v in [self.view subviews]) {
@@ -459,6 +485,9 @@
 #pragma mark Create Mask Image & Paint
 - (void)createMaskImageFromBezierPaths
 {
+  if (!self.imageChanged) {
+    self.imageChanged = YES;
+  }
 //  [self.graphView setIsClosed:YES];
   UIBezierPath *path = [UIBezierPath interpolateCGPointsWithHermite:self.bezierPoints closed:YES];
   [self removeallTapViews];

@@ -70,7 +70,7 @@ static void * SessionRunningAndDeviceAuthorizedContext = &SessionRunningAndDevic
   [self.toolbar setTranslucent:YES];
   
   self.calculatedColorBtn = [[UIButton alloc] initWithFrame:frameRect];
-  [self.calculatedColorBtn setTitle:@"Color" forState:UIControlStateNormal];
+  [self.calculatedColorBtn setTitle:NSLocalizedStringFromTable(@"color", okStringsTableName, nil) forState:UIControlStateNormal];
   [self.calculatedColorBtn setTitleColor:[[UIColor blackColor] colorWithAlphaComponent:0.8] forState:UIControlStateNormal];
   [self.calculatedColorBtn setImage:[UIImage imageWithColor:[UIColor brownColor] andSize:CGSizeMake(44, 44)] forState:UIControlStateNormal];
   CGSize imageSize = self.calculatedColorBtn.imageView.image.size;
@@ -101,9 +101,12 @@ static void * SessionRunningAndDeviceAuthorizedContext = &SessionRunningAndDevic
   // Create the AVCaptureSession
   AVCaptureSession *session = [AVCaptureSession new];
   [self setSession:session];
-  if ([session canSetSessionPreset:AVCaptureSessionPreset640x480]) {
-    [session setSessionPreset:AVCaptureSessionPreset640x480];
+  if ([session canSetSessionPreset:AVCaptureSessionPresetMedium]) {
+    [session setSessionPreset:AVCaptureSessionPresetMedium];
   }
+//  if ([session canSetSessionPreset:AVCaptureSessionPreset640x480]) {
+//    [session setSessionPreset:AVCaptureSessionPreset640x480];
+//  }
   // Setup the preview view
   [[self previewView] setSession:session];
   

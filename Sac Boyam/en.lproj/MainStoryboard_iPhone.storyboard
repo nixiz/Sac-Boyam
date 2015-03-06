@@ -181,14 +181,12 @@
                                     <constraint firstAttribute="height" constant="44" id="QdM-Ek-id7"/>
                                 </constraints>
                                 <items>
-                                    <barButtonItem width="8" style="plain" systemItem="fixedSpace" id="aBx-D1-gYI"/>
-                                    <barButtonItem tag="10" systemItem="trash" id="8aH-RG-tdO">
+                                    <barButtonItem tag="10" systemItem="save" id="8aH-RG-tdO">
                                         <connections>
                                             <action selector="editButtonsTapped:" destination="eig-Hp-jeq" id="qXr-zS-Kax"/>
                                         </connections>
                                     </barButtonItem>
-                                    <barButtonItem width="8" style="plain" systemItem="fixedSpace" id="4Hb-eb-mSp"/>
-                                    <barButtonItem tag="11" systemItem="reply" id="iSt-PH-W72">
+                                    <barButtonItem tag="11" systemItem="undo" id="iSt-PH-W72">
                                         <connections>
                                             <action selector="editButtonsTapped:" destination="eig-Hp-jeq" id="IFv-5Q-8Fb"/>
                                         </connections>
@@ -205,13 +203,11 @@
                                             <action selector="editButtonsTapped:" destination="eig-Hp-jeq" id="CFZ-p5-o1Z"/>
                                         </connections>
                                     </barButtonItem>
-                                    <barButtonItem width="12" style="plain" systemItem="fixedSpace" id="RGu-oB-h9V"/>
                                     <barButtonItem tag="12" title="Try" id="ahp-ik-kCT">
                                         <connections>
                                             <action selector="editButtonsTapped:" destination="eig-Hp-jeq" id="6zT-qb-uSx"/>
                                         </connections>
                                     </barButtonItem>
-                                    <barButtonItem width="8" style="plain" systemItem="fixedSpace" id="gQO-Qa-XqH"/>
                                 </items>
                             </toolbar>
                         </subviews>
@@ -443,7 +439,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dnA-yJ-2H8">
-                                <rect key="frame" x="240" y="138" width="120" height="120"/>
+                                <rect key="frame" x="240" y="143" width="120" height="120"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="120" id="NxQ-vV-Yil"/>
                                     <constraint firstAttribute="height" constant="120" id="fvh-IW-VRy"/>
@@ -457,20 +453,20 @@
                             </button>
                             <view alpha="0.74999999999999978" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NAp-qR-bH3">
                                 <rect key="frame" x="0.0" y="299" width="600" height="2"/>
-                                <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="2" id="waO-h1-r93"/>
                                 </constraints>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select From Library" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="ggj-2P-whR">
-                                <rect key="frame" x="240" y="441" width="120" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select From Library" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ggj-2P-whR">
+                                <rect key="frame" x="240" y="441" width="120" height="16"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Take a Picture" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="8K3-Sa-FFd">
-                                <rect key="frame" x="240" y="258" width="120" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Take a Picture" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8K3-Sa-FFd">
+                                <rect key="frame" x="240" y="263" width="120" height="16"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -710,11 +706,11 @@
         <image name="take_a_pic" width="458" height="458"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="gNL-Ht-CVb"/>
-        <segue reference="kW2-4f-NGf"/>
+        <segue reference="QDn-4B-G21"/>
+        <segue reference="ZxE-aj-47i"/>
         <segue reference="zx2-8U-gp4"/>
-        <segue reference="Jjn-5H-yyJ"/>
-        <segue reference="Xsf-rW-boP"/>
         <segue reference="PsG-cU-U5X"/>
+        <segue reference="Ojo-QA-Euz"/>
+        <segue reference="Jjn-5H-yyJ"/>
     </inferredMetricsTieBreakers>
 </document>
