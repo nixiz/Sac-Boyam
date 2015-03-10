@@ -26,6 +26,7 @@
 - (IBAction)resultsDensityChanged:(id)sender;
 @property (weak, nonatomic) IBOutlet UISlider *resultDensitySlider;
 @property (weak, nonatomic) IBOutlet UITableView *recordsTableView;
+@property (weak, nonatomic) IBOutlet UISwitch *findOnTapSwitch;
 
 // The controller (this class fetches nothing if this is not set).
 @property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
@@ -92,6 +93,8 @@
   [self.editPhotosSwitch setOnTintColor:[[UIColor blackColor] colorWithAlphaComponent:.85]];
   [self.takeRecordsSwitch setOn:[self.settingsMap[takeRecordKey] boolValue] animated:YES];
   [self.takeRecordsSwitch setOnTintColor:[[UIColor blackColor] colorWithAlphaComponent:.85]];
+  [self.findOnTapSwitch setOn:[self.settingsMap[findOnTapKey] boolValue] animated:YES];
+  [self.findOnTapSwitch setOnTintColor:[[UIColor blackColor] colorWithAlphaComponent:.85]];
   [self.resultDensitySlider setValue:[self.settingsMap[resultDensityKey] floatValue] animated:YES];
   
   self.recordsTableView.backgroundColor = [UIColor clearColor];
@@ -135,6 +138,9 @@
       break;
     case 2:
       keyString = takeRecordKey;
+      break;
+    case 3:
+      keyString = findOnTapKey;
       break;
     default: //default'ta zaten degisen olmayacagi icin asagidaki if dongusunde sikinti olmamasi icin herhangi biri olabilir
       keyString = editPhotosKey;
@@ -412,18 +418,26 @@
     [vc.navigationItem setTitle:record.recordName];
   } else if ([[segue identifier] isEqualToString:@"SettingsTutorialSegue"]) {
     UIImage *screenShot = [self.view createImageFromViewAfterScreenUpdates:NO];
-    NSLog(@"Frame %@  Bound %@", NSStringFromCGRect(self.savePhotosSwitch.frame) , NSStringFromCGRect(self.savePhotosSwitch.bounds));
-    NSLog(@"Frame %@  Bound %@", NSStringFromCGRect(self.takeRecordsSwitch.frame) , NSStringFromCGRect(self.takeRecordsSwitch.bounds));
-    NSLog(@"Frame %@  Bound %@", NSStringFromCGRect(self.recordsTableView.frame) , NSStringFromCGRect(self.recordsTableView.bounds));
+//    NSLog(@"Frame %@  Bound %@", NSStringFromCGRect(self.savePhotosSwitch.frame) , NSStringFromCGRect(self.savePhotosSwitch.bounds));
+//    NSLog(@"Frame %@  Bound %@", NSStringFromCGRect(self.takeRecordsSwitch.frame) , NSStringFromCGRect(self.takeRecordsSwitch.bounds));
+//    NSLog(@"Frame %@  Bound %@", NSStringFromCGRect(self.recordsTableView.frame) , NSStringFromCGRect(self.recordsTableView.bounds));
     
     NSDictionary *pointDict = @{@"item-1": [NSValue valueWithCGRect:self.savePhotosSwitch.frame],
                                 @"item-2": [NSValue valueWithCGRect:self.editPhotosSwitch.frame],
-                                @"item-3": [NSValue valueWithCGRect:self.takeRecordsSwitch.frame],
-                                @"item-4": [NSValue valueWithCGRect:self.resultDensitySlider.frame],
-                                @"item-5": [NSValue valueWithCGRect:self.recordsTableView.frame]};
-    
+                                @"item-4": [NSValue valueWithCGRect:self.takeRecordsSwitch.frame],
+                                @"item-3": [NSValue valueWithCGRect:self.findOnTapSwitch.frame],
+                                @"item-5": [NSValue valueWithCGRect:self.resultDensitySlider.frame],
+                                @"item-6": [NSValue valueWithCGRect:self.recordsTableView.frame]};
+
+    NSDictionary *dict = @{@"item-1": @"settings-item-1-exp",
+                           @"item-2": @"settings-item-2-exp",
+                           @"item-3": @"settings-item-3-exp",
+                           @"item-4": @"settings-item-4-exp",
+                           @"item-5": @"settings-item-5-exp",
+                           @"item-6": @"settings-item-6-exp"};
+
     OKSettingsTutorialVC *vc = [segue destinationViewController];
-    [vc initiateTutorialControllerWithBgImg:screenShot andContentPoints:pointDict];
+    [vc initiateTutorialControllerWithBgImg:screenShot andContentPoints:pointDict WithExplanationDescriptors:dict];
   }
 }
 

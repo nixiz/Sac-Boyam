@@ -37,9 +37,10 @@
 "tap-to-cont" = "Dokunarak devam ediniz..";
 "settings-item-1-exp" = "Çektiğiniz resimleri fotoğraflarınıza kayıt eder";
 "settings-item-2-exp" = "Kullanılacak resim, kullanılmadan önce tekrar boyutlandırmaya olanak sağlar";
-"settings-item-3-exp" = "Bulunan boyaların kayıt edilmesine olanak sağlar.\nKayıt etmeyi deaktive ederseniz, kayıtlı olan bütün boyalarınız listeden silinecektir!";
-"settings-item-4-exp" = "Bulunacak sonuç sayısını buradan arttırabilir veya azaltabilirsiniz";
-"settings-item-5-exp" = "Kayıtlı olan boyalarınız burada yer alır";
+"settings-item-3-exp" = "Aradiginiz rengi parmaginizla dokunarak otomatik olarak bulabilir veya isterseniz bula tiklayarak bu islemi yapabilirsiniz";
+"settings-item-4-exp" = "Bulunan boyaların kayıt edilmesine olanak sağlar.\nKayıt etmeyi deaktive ederseniz, kayıtlı olan bütün boyalarınız listeden silinecektir!";
+"settings-item-5-exp" = "Bulunacak sonuç sayısını buradan arttırabilir veya azaltabilirsiniz";
+"settings-item-6-exp" = "Kayıtlı olan boyalarınız burada yer alır";
 "results-item-1-exp" = "Hangi markaya ait boyaların bulunduğunu gösterir.\nEğer bulunan boya sayısı, size az veya çok geldiyse, ayarlardan bulunacak boya yoğunluğunu ayarlayabilirsiniz.";
 "results-item-2-exp" = "Boyanın küçük görseli, adı ve diğer bilgileri burada yer alır";
 "results-item-3-exp" = "ⓘ ile boyanın detaylarına bakabilir, dilerseniz favorilerinize kayıt edebilirsiniz";
@@ -51,4 +52,7 @@
 "try-item-5-exp" = "Renk oksidasyonu burada ortada bulunan simgeden yapılır";
 "try-item-6-exp" = "Denediğiniz resmi isterseniz kayıt edebilirsiniz";
 "no-results-found-msg" = "Daha fazla sonuç bulmak için ayarlardan değişiklik yapabilirsin\nAyarlara Gidilsin mi?";
+"askForFindOnTapMsg" = "Isterseniz ayarlardan Otomatik Bul'u ektinlestirebilirsiniz";
+"welcome" = "Welcome!";
+"firstTimeOnColorSelectMsg" = "Ekranin ustune dokunarak istediginiz rengi bulabilirsiniz. Iyi kullanmalar";
 "lang" = "tr";

@@ -42,16 +42,12 @@
   [self.imagePickerController.navigationBar setTintColor:[[UIColor blackColor] colorWithAlphaComponent:.8]];
   [self.imagePickerController setModalTransitionStyle:UIModalTransitionStyleCrossDissolve];
   
-  if (!self.managedObjectContext) [self initManagedDocument];
-  
+  if (!self.managedObjectContext) [self initManagedDocument];  
 }
 
 -(void)viewDidAppear:(BOOL)animated
 {
   [super viewDidAppear:animated];
-  if ([[[NSUserDefaults standardUserDefaults] objectForKey:showTutorialKey] boolValue]) {
-    [self showTutorialWithWelcomeScreen:YES];
-  }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -64,18 +60,6 @@
 -(void)settingsButtonTap:(id)sender
 {
   [self performSegueWithIdentifier:@"settingsSegue" sender:sender];
-}
-
-- (void)showTutorialWithWelcomeScreen:(BOOL)showWelcomeScreen
-{
-//  OKInfoViewController *vc = [[OKInfoViewController alloc] initWithNibName:@"OKInfoViewController" bundle:nil];
-//  [vc setPageIndex:OKWelcomeScreenPage];
-//  [self presentViewController:vc animated:NO completion:nil];
-  
-  if ([[[NSUserDefaults standardUserDefaults] objectForKey:showTutorialKey] boolValue]) {
-    [[NSUserDefaults standardUserDefaults] setObject:@NO forKey:showTutorialKey];
-    [[NSUserDefaults standardUserDefaults] synchronize];
-  }
 }
 
 #pragma mark - Image Pick

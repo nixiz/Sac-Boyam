@@ -396,7 +396,13 @@
     return;
   }
   [self.view setUserInteractionEnabled:NO];
-  UIImageWriteToSavedPhotosAlbum(self.previewImg.image, self, @selector(image:didFinishSavingWithError:contextInfo:), nil);
+//  CGImageRef imgRef = [self.previewImg.image CGImage];
+//  
+//  UIImage *imgToSave = [UIImage imageWithCGImage:imgRef];
+//  
+////  CGImageRelease(imgRef);
+  UIImage *imgToSave = [UIImage imageWithCGImage:self.previewImg.image.CGImage];
+  UIImageWriteToSavedPhotosAlbum(imgToSave, self, @selector(image:didFinishSavingWithError:contextInfo:), nil);
 }
 
 - (void)               image: (UIImage *) image

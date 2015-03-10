@@ -38,7 +38,7 @@
 //  self.navigationController.navigationBar.shadowImage = [UIImage new];
 //  self.navigationController.navigationBar.translucent = YES;
 //  [NSMutableDictionary dictionaryWithObjectsAndKeys:@NO, @"SavePhotos", @YES, @"EditPhotos", @NO, @"TakeRecord", nil];
-  NSDictionary *userDefaults = @{savePhotosKey: @NO, editPhotosKey: @YES, takeRecordKey: @YES, resultDensityKey: @7, showTutorialKey: @YES};
+  NSDictionary *userDefaults = @{savePhotosKey: @NO, editPhotosKey: @YES, takeRecordKey: @YES, resultDensityKey: @7, showTutorialKey: @YES, findOnTapKey: @NO};
   [[NSUserDefaults standardUserDefaults] registerDefaults:userDefaults];
     // Override point for customization after application launch.
     return YES;

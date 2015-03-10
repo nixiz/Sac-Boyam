@@ -16,6 +16,9 @@
 #import "OKSettingsViewController.h"
 #import "OKSonuclarViewController.h"
 #import "OKAppDelegate.h"
+#import "UIViewController+AutoDissmissAlert.h"
+
+#define MaximumAllowedNonFoundTapCount 6
 
 @interface OKSelectColorVC () <OKSettingsDelegate, UIAlertViewDelegate>
 @property (strong, nonatomic) OKZoomView *myView;
@@ -23,6 +26,9 @@
 
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @property (strong, nonatomic) UIButton *findButton;
+@property (nonatomic) BOOL findOnTap;
+@property (nonatomic) BOOL cameFirstTime;
+@property (nonatomic) NSInteger nonFoundTapCount;
 @end
 
 @implementation OKSelectColorVC
@@ -37,7 +43,7 @@
 //                                                              style:UIBarButtonItemStylePlain
 //                                                             target:self
 //                                                             action:@selector(showTutorial)];
-  
+
   self.findButton = [UIButton buttonWithType:UIButtonTypeCustom];
   [self.findButton setFrame:CGRectMake(0, 0, 88, 30)];
   
@@ -63,6 +69,7 @@
   fixedBtnItem.width = -16;
   
   self.navigationItem.rightBarButtonItems = @[fixedBtnItem, searchBtn];
+  self.cameFirstTime = NO;
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -70,6 +77,13 @@
   [super viewDidAppear:animated];
   self.myView = [[OKZoomView alloc] initWithFrame:self.imageView.bounds andStartPoint:self.imageView.bounds.origin];
   self.myView.backgroundColor = [UIColor clearColor];
+  self.findOnTap = [[[NSUserDefaults standardUserDefaults] objectForKey:findOnTapKey] boolValue];
+
+  if ([[[NSUserDefaults standardUserDefaults] objectForKey:showTutorialKey] boolValue]) {
+    self.cameFirstTime = YES;
+    [self showTutorialWithWelcomeScreen:YES];
+  }
+
 }
 
 -(void)viewDidLayoutSubviews
@@ -101,14 +115,18 @@
 
 - (void)showTutorialWithWelcomeScreen:(BOOL)showWelcomeScreen
 {
-//  OKInfoViewController *vc = [[OKInfoViewController alloc] initWithNibName:@"OKInfoViewController" bundle:nil];
-//  if (showWelcomeScreen) {
-//    [vc setPageIndex:OKWelcomeScreenPage];
-//  } else {
-//    [vc setPageIndex:OKSelectColorPage];
-//  }
-//  [self presentViewController:vc animated:YES completion:nil];
-  
+//  [self showAutoDismissedAlertWithMessage:NSLocalizedStringFromTable(@"firstTimeOnColorSelectMsg", okStringsTableName, nil) withTitle:nil afterDelay:2.0];
+
+  UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedStringFromTable(@"welcome", okStringsTableName, nil)
+                                                      message:NSLocalizedStringFromTable(@"firstTimeOnColorSelectMsg", okStringsTableName, nil)
+                                                     delegate:self
+                                            cancelButtonTitle:nil
+                                            otherButtonTitles:NSLocalizedStringFromTable(@"OKButtonTitle", okStringsTableName, nil), nil];
+  [alertView setBackgroundColor:[[UIColor darkGrayColor] colorWithAlphaComponent:0.73]];
+  [alertView setTag:10];
+  [alertView show];
+  [self performSelector:@selector(dismissAlertView:) withObject:alertView afterDelay:2.0];
+
   if ([[[NSUserDefaults standardUserDefaults] objectForKey:showTutorialKey] boolValue]) {
     [[NSUserDefaults standardUserDefaults] setObject:@NO forKey:showTutorialKey];
     [[NSUserDefaults standardUserDefaults] synchronize];
@@ -136,8 +154,20 @@
 
 - (void)acceptChangedSetings
 {
-  //  self.takeController.allowsEditingPhoto = [[[NSUserDefaults standardUserDefaults] objectForKey:editPhotosKey] boolValue];
-  //  self.savePhoto = [[[NSUserDefaults standardUserDefaults] objectForKey:savePhotosKey] boolValue];
+  self.findOnTap = [[[NSUserDefaults standardUserDefaults] objectForKey:findOnTapKey] boolValue];
+}
+
+#pragma mark - UIAlertViewDelegate
+
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+  //ignore if alertview is auto dismissable
+  if (alertView.tag == 10) return;
+  NSString *title = [alertView buttonTitleAtIndex:buttonIndex];
+  if ([title isEqualToString:NSLocalizedStringFromTable(@"cancelButtonForURLReq", okStringsTableName, nil)]) {
+    return;
+  }
+  [self performSegueWithIdentifier:@"settingSegueFromSelect" sender:nil];
 }
 
 #pragma mark - Touch Handles
@@ -230,7 +260,24 @@
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
   [self.myView removeFromSuperview];
+  self.nonFoundTapCount += 1;
   [super touchesEnded:touches withEvent:event];
+  if (self.findOnTap && !self.cameFirstTime) {
+    [self performSegueWithIdentifier:@"resultsSegue" sender:nil];
+  }
+  if (self.cameFirstTime || self.nonFoundTapCount >= MaximumAllowedNonFoundTapCount) {
+    self.cameFirstTime = NO;
+    if (!self.findOnTap) {
+      UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil
+                                                          message:NSLocalizedStringFromTable(@"askForFindOnTapMsg", okStringsTableName, nil)
+                                                         delegate:self
+                                                cancelButtonTitle:NSLocalizedStringFromTable(@"cancelButtonForURLReq", okStringsTableName, nil)
+                                                otherButtonTitles:NSLocalizedStringFromTable(@"OKButtonTitle", okStringsTableName, nil), nil];
+//      [alertView setBackgroundColor:[[UIColor darkGrayColor] colorWithAlphaComponent:0.73]];
+      [alertView setTag:11];
+      [alertView show];
+    }
+  }
 }
 
 - (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event {
@@ -257,14 +304,13 @@
   return CGRectMake(point.x - dx, point.y - dy, capturePixelSize, capturePixelSize);
 }
 
-
-
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
   
   if ([[segue identifier] isEqualToString:@"resultsSegue"]) {
+    self.nonFoundTapCount = 0; //reset counter
     CGFloat grayScaleValueOfColor = [self.color grayScaleColor];
     OKSonuclarViewController *vc = [segue destinationViewController];
     [vc initResultsWithGrayScaleValue:grayScaleValueOfColor forManagedObjectContext:self.managedObjectContext];
