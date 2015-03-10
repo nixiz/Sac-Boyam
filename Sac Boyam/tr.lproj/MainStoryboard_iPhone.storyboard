@@ -7,7 +7,7 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--Results-->
+        <!--Sonuçlar-->
         <scene sceneID="8RI-hd-FV6">
             <objects>
                 <tableViewController storyboardIdentifier="sonuclarViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="QEN-JS-ZP7" customClass="OKSonuclarViewController" sceneMemberID="viewController">
@@ -64,7 +64,7 @@
                             <outlet property="delegate" destination="QEN-JS-ZP7" id="Bxc-5E-Kdn"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Results" id="AJs-D0-fkM"/>
+                    <navigationItem key="navigationItem" title="Sonuçlar" id="AJs-D0-fkM"/>
                     <connections>
                         <segue destination="2x7-Wg-qUg" kind="show" identifier="settingSegueFromResults" id="Wkz-lT-Tp2"/>
                         <segue destination="m2b-IW-TYE" kind="show" identifier="resultDetailSegue" id="ge7-pk-JdY"/>
@@ -108,7 +108,7 @@
                                     <constraint firstAttribute="width" constant="125" id="RZE-pb-PT4"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="15"/>
-                                <state key="normal" title="Look For Web">
+                                <state key="normal" title="Web'te Ara">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -123,7 +123,7 @@
                                     <constraint firstAttribute="width" constant="125" id="XT3-LF-M7T"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="15"/>
-                                <state key="normal" title="Try">
+                                <state key="normal" title="Dene">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -198,12 +198,12 @@
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="llg-5P-B65"/>
-                                    <barButtonItem tag="13" title="Clear" id="lvh-gD-1CZ">
+                                    <barButtonItem tag="13" title="Temizle" id="lvh-gD-1CZ">
                                         <connections>
                                             <action selector="editButtonsTapped:" destination="eig-Hp-jeq" id="CFZ-p5-o1Z"/>
                                         </connections>
                                     </barButtonItem>
-                                    <barButtonItem tag="12" title="Try" id="ahp-ik-kCT">
+                                    <barButtonItem tag="12" title="Dene" id="ahp-ik-kCT">
                                         <connections>
                                             <action selector="editButtonsTapped:" destination="eig-Hp-jeq" id="6zT-qb-uSx"/>
                                         </connections>
@@ -233,7 +233,7 @@
             </objects>
             <point key="canvasLocation" x="1756" y="1370"/>
         </scene>
-        <!--Settings-->
+        <!--Ayarlar-->
         <scene sceneID="eT0-4L-rCk">
             <objects>
                 <viewController id="2x7-Wg-qUg" customClass="OKSettingsViewController" sceneMemberID="viewController">
@@ -252,7 +252,7 @@
                                     <action selector="switchValueChanged:" destination="2x7-Wg-qUg" eventType="valueChanged" id="Icb-Ug-3rQ"/>
                                 </connections>
                             </switch>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Save New Photos" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zZm-wr-P2q">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Yeni Fotoğrafarı Kaydet" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zZm-wr-P2q">
                                 <rect key="frame" x="20" y="89" width="503" height="21"/>
                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -268,7 +268,7 @@
                                     <action selector="switchValueChanged:" destination="2x7-Wg-qUg" eventType="valueChanged" id="zG7-tz-cG9"/>
                                 </connections>
                             </switch>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Edit Selected Photo" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HIN-6m-Xph">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Fotoğrafla Oynama Yapabilme" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HIN-6m-Xph">
                                 <rect key="frame" x="20" y="128" width="503" height="21"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="16"/>
                                 <nil key="highlightedColor"/>
@@ -280,7 +280,7 @@
                                     <action selector="resultsDensityChanged:" destination="2x7-Wg-qUg" eventType="valueChanged" id="hki-Hn-tvF"/>
                                 </connections>
                             </slider>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Product Search Resolution" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6GK-hU-plx">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bulunacak Sonuç Sayısı" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6GK-hU-plx">
                                 <rect key="frame" x="20" y="240" width="560" height="20"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="16"/>
                                 <nil key="highlightedColor"/>
@@ -331,7 +331,7 @@
                                     <action selector="switchValueChanged:" destination="2x7-Wg-qUg" eventType="valueChanged" id="o14-gL-3K1"/>
                                 </connections>
                             </switch>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Find On Tap" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fwp-3K-sMl">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Otomatik Bulma" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fwp-3K-sMl">
                                 <rect key="frame" x="20" y="167" width="503" height="21"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="16"/>
                                 <nil key="highlightedColor"/>
@@ -343,7 +343,7 @@
                                     <action selector="switchValueChanged:" destination="2x7-Wg-qUg" eventType="valueChanged" id="OQ7-0W-tEi"/>
                                 </connections>
                             </switch>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Take Records" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jgm-R7-906">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Kayıt Tutma" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jgm-R7-906">
                                 <rect key="frame" x="20" y="207" width="503" height="20"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="16"/>
                                 <nil key="highlightedColor"/>
@@ -387,7 +387,7 @@
                             <constraint firstAttribute="trailing" secondItem="yQf-gF-Bgc" secondAttribute="trailing" constant="20" id="yn2-o2-6Ut"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Settings" id="Yi0-EG-oD6"/>
+                    <navigationItem key="navigationItem" title="Ayarlar" id="Yi0-EG-oD6"/>
                     <connections>
                         <outlet property="editPhotosSwitch" destination="Wge-CS-dY9" id="h6r-wO-cXD"/>
                         <outlet property="findOnTapSwitch" destination="AkT-aw-ExD" id="sMz-2U-LaK"/>
@@ -444,10 +444,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gvq-9V-CJ9">
-                                <rect key="frame" x="235" y="321" width="130" height="130"/>
+                                <rect key="frame" x="233" y="321" width="135" height="135"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="130" id="FEc-dc-dWS"/>
-                                    <constraint firstAttribute="height" constant="130" id="mpB-9A-JHC"/>
+                                    <constraint firstAttribute="width" constant="135" id="FEc-dc-dWS"/>
+                                    <constraint firstAttribute="height" constant="135" id="mpB-9A-JHC"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <state key="normal" image="select_from_library">
@@ -478,13 +478,13 @@
                                     <constraint firstAttribute="height" constant="2" id="waO-h1-r93"/>
                                 </constraints>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select From Library" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ggj-2P-whR">
-                                <rect key="frame" x="235" y="451" width="130" height="17"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bir Resim Seç" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ggj-2P-whR">
+                                <rect key="frame" x="233" y="456" width="135" height="17"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Take a Picture" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8K3-Sa-FFd">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Yeni Resim Çek" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8K3-Sa-FFd">
                                 <rect key="frame" x="233" y="272" width="135" height="17"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -726,11 +726,11 @@
         <image name="take_a_pic" width="458" height="458"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="QDn-4B-G21"/>
-        <segue reference="ZxE-aj-47i"/>
-        <segue reference="7Fj-1j-qZg"/>
-        <segue reference="PsG-cU-U5X"/>
-        <segue reference="Xsf-rW-boP"/>
+        <segue reference="wtE-o7-qLs"/>
         <segue reference="Jjn-5H-yyJ"/>
+        <segue reference="ZxE-aj-47i"/>
+        <segue reference="QDn-4B-G21"/>
+        <segue reference="7Fj-1j-qZg"/>
+        <segue reference="Ojo-QA-Euz"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -65,7 +65,7 @@
 
   self.graphView = [[CRVINTERGraphicsView alloc] initWithFrame:self.view.frame];
   self.graphView.backgroundColor = [UIColor clearColor];
-  [self.graphView setIsClosed:NO];
+  [self.graphView setIsClosed:YES];
   [self.graphView setUseHermite:YES];
   [self.view insertSubview:self.graphView aboveSubview:self.previewImg];
   

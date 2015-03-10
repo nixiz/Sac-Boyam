@@ -122,6 +122,7 @@
 		7150A55E19B4A1AB00597373 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
 		7152CB50197557640080898F /* OKProductJsonType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKProductJsonType.h; sourceTree = "<group>"; };
 		7152CB51197557640080898F /* OKProductJsonType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKProductJsonType.m; sourceTree = "<group>"; };
+		7163849C1AAEE8B7001AD4CF /* tr */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = tr; path = tr.lproj/MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
 		71695310196E64C100C988E5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/localized.strings; sourceTree = "<group>"; };
 		71840ED619B8454600F99868 /* BrandModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrandModel.h; sourceTree = "<group>"; };
 		71840ED719B8454600F99868 /* BrandModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrandModel.m; sourceTree = "<group>"; };
@@ -534,6 +535,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				7150A55E19B4A1AB00597373 /* en */,
+				7163849C1AAEE8B7001AD4CF /* tr */,
 			);
 			name = MainStoryboard_iPhone.storyboard;
 			sourceTree = "<group>";

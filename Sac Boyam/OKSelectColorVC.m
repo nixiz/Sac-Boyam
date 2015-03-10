@@ -271,7 +271,7 @@
       UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil
                                                           message:NSLocalizedStringFromTable(@"askForFindOnTapMsg", okStringsTableName, nil)
                                                          delegate:self
-                                                cancelButtonTitle:NSLocalizedStringFromTable(@"cancelButtonForURLReq", okStringsTableName, nil)
+                                                cancelButtonTitle:NSLocalizedStringFromTable(@"NOButonTitle", okStringsTableName, nil)
                                                 otherButtonTitles:NSLocalizedStringFromTable(@"OKButtonTitle", okStringsTableName, nil), nil];
 //      [alertView setBackgroundColor:[[UIColor darkGrayColor] colorWithAlphaComponent:0.73]];
       [alertView setTag:11];
