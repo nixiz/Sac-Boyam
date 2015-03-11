@@ -17,6 +17,7 @@
 
 @interface OKWelcomeScreemVC () <UIImagePickerControllerDelegate, UINavigationControllerDelegate, OKSettingsDelegate, UIAlertViewDelegate>
 - (IBAction)selectPicFromLibrary:(id)sender;
+@property (weak, nonatomic) IBOutlet UIButton *cameraButton;
 @property (nonatomic) UIImage *pickedImage;
 @property (strong, nonatomic) UIManagedDocument *document;
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
@@ -42,6 +43,36 @@
   [self.imagePickerController.navigationBar setTintColor:[[UIColor blackColor] colorWithAlphaComponent:.8]];
   [self.imagePickerController setModalTransitionStyle:UIModalTransitionStyleCrossDissolve];
   
+  UIImage *cameraImage = [UIImage imageNamed:@"take_a_pic"];
+  
+  CAGradientLayer *gradient = [CAGradientLayer layer];
+  gradient.frame = self.cameraButton.bounds;
+  
+  UIColor *startColor = [UIColor colorWithWhite:0.35 alpha:1.0];
+//  UIColor *centerColor = [UIColor blackColor];
+  UIColor *endColor = [UIColor blackColor];
+  gradient.startPoint = CGPointMake(0, 0);
+  gradient.endPoint = CGPointMake(1.0, 1.0);
+  
+  gradient.colors = @[(id)startColor.CGColor, (id)endColor.CGColor];
+  
+  CALayer *maskLayer = [CALayer layer];
+  maskLayer.contents = (id)cameraImage.CGImage;
+  maskLayer.frame = gradient.frame;
+  
+  gradient.mask = maskLayer;
+  
+  CABasicAnimation *anim = [CABasicAnimation animationWithKeyPath:@"colors"];
+//  anim.fromValue = @[(id)startColor.CGColor, (id)centerColor.CGColor, (id)endColor.CGColor];
+  anim.toValue = @[(id)endColor.CGColor, (id)endColor.CGColor];
+//  anim.byValue = @[(id)centerColor.CGColor, (id)startColor.CGColor, (id)endColor.CGColor];
+  anim.duration = 2.5;
+  anim.autoreverses = YES;
+  anim.repeatCount = 1e100;
+  [gradient addAnimation:anim forKey:@"colors"];
+  
+  [self.cameraButton.layer insertSublayer:gradient atIndex:0];
+    
   if (!self.managedObjectContext) [self initManagedDocument];  
 }
 
