@@ -29,6 +29,7 @@
 
 - (void)viewDidLoad {
   [super viewDidLoad];
+
   [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor blackColor]}];
   self.navigationController.navigationBar.tintColor = [UIColor colorWithWhite:0.0 alpha:0.80];
   UIBarButtonItem *settingsBtn = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"settings_navBar"]
@@ -36,6 +37,8 @@
                                                                  target:self
                                                                  action:@selector(settingsButtonTap:)];
   self.navigationItem.rightBarButtonItem = settingsBtn;
+
+  if (!self.managedObjectContext) [self initManagedDocument];
   
   self.imagePickerController = [UIImagePickerController new];
   self.imagePickerController.delegate = self;
@@ -45,40 +48,77 @@
   
   UIImage *cameraImage = [UIImage imageNamed:@"take_a_pic"];
   
+  UIColor *startColor = [UIColor colorWithWhite:0.45 alpha:1.0];
+  UIColor *endColor = [UIColor blackColor];
+  
   CAGradientLayer *gradient = [CAGradientLayer layer];
   gradient.frame = self.cameraButton.bounds;
-  
-  UIColor *startColor = [UIColor colorWithWhite:0.35 alpha:1.0];
-//  UIColor *centerColor = [UIColor blackColor];
-  UIColor *endColor = [UIColor blackColor];
-  gradient.startPoint = CGPointMake(0, 0);
+  gradient.startPoint = CGPointMake(0.1, 0.1);
   gradient.endPoint = CGPointMake(1.0, 1.0);
-  
   gradient.colors = @[(id)startColor.CGColor, (id)endColor.CGColor];
   
   CALayer *maskLayer = [CALayer layer];
   maskLayer.contents = (id)cameraImage.CGImage;
   maskLayer.frame = gradient.frame;
-  
+//  gradient.position
   gradient.mask = maskLayer;
   
   CABasicAnimation *anim = [CABasicAnimation animationWithKeyPath:@"colors"];
-//  anim.fromValue = @[(id)startColor.CGColor, (id)centerColor.CGColor, (id)endColor.CGColor];
   anim.toValue = @[(id)endColor.CGColor, (id)endColor.CGColor];
-//  anim.byValue = @[(id)centerColor.CGColor, (id)startColor.CGColor, (id)endColor.CGColor];
   anim.duration = 2.5;
   anim.autoreverses = YES;
   anim.repeatCount = 1e100;
-  [gradient addAnimation:anim forKey:@"colors"];
+  [gradient addAnimation:anim forKey:@"gradientColorAnimation"];
   
   [self.cameraButton.layer insertSublayer:gradient atIndex:0];
+  
+  NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:13.0 target:self selector:@selector(timerFireMethod:) userInfo:nil repeats:YES];
+  dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+    [timer fire];
+  });
+//  dispatch_async(dispatch_get_main_queue(), ^{
+//  });
+}
+
+- (void)timerFireMethod:(NSTimer *)timer
+{
+  if (self.view.window && self.isViewLoaded) {
+    NSLog(@"Fired!!");
+    //TODO: Add animations here
+    CABasicAnimation *bounceAnim = [CABasicAnimation animationWithKeyPath:@"transform"];
+    bounceAnim.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+    bounceAnim.duration = .1250;
+    bounceAnim.repeatCount = 2;
+    bounceAnim.autoreverses = YES;
+    bounceAnim.removedOnCompletion = YES;
+    bounceAnim.toValue = [NSValue valueWithCATransform3D:CATransform3DMakeScale(1.03, .92, 1.0)];
+    [self.cameraButton.layer addAnimation:bounceAnim forKey:@"buttonBounce"];
     
-  if (!self.managedObjectContext) [self initManagedDocument];  
+    CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"position"];
+    animation.duration = .125;
+    animation.repeatCount = 1;
+    animation.fromValue = [NSValue valueWithCGPoint:self.cameraButton.center];
+    animation.toValue = [NSValue valueWithCGPoint:CGPointMake(self.cameraButton.center.x, self.cameraButton.center.y-10)];
+    animation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut];
+    animation.autoreverses = YES;
+    animation.removedOnCompletion = YES;
+    [self.cameraButton.layer addAnimation:animation forKey:@"position"];
+  }
+//  [timer invalidate];
 }
 
 -(void)viewDidAppear:(BOOL)animated
 {
   [super viewDidAppear:animated];
+  
+//  [UIView animateWithDuration:.3 animations:^{
+//    self.cameraButton.layer.transform = CATransform3DMakeScale(1.05, .92, 1.0);
+//  } completion:^(BOOL finished) {
+//    [UIView animateWithDuration:.7 delay:0.0 usingSpringWithDamping:3.0 initialSpringVelocity:1.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+//      self.cameraButton.layer.transform = CATransform3DIdentity;
+//    } completion:nil];
+//  }];
+  
 }
 
 - (void)didReceiveMemoryWarning {
