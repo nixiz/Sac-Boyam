@@ -23,6 +23,7 @@
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
 @property (nonatomic, strong) NSDictionary *filesDictionary;
 @property (nonatomic, strong) UIImagePickerController *imagePickerController;
+@property (strong) CAGradientLayer *cameraButtonGradient;
 @end
 
 @implementation OKWelcomeScreemVC
@@ -55,6 +56,7 @@
   gradient.frame = self.cameraButton.bounds;
   gradient.startPoint = CGPointMake(0.1, 0.1);
   gradient.endPoint = CGPointMake(1.0, 1.0);
+//  gradient.position = CGPointMake(0.0, 0.0);
   gradient.colors = @[(id)startColor.CGColor, (id)endColor.CGColor];
   
   CALayer *maskLayer = [CALayer layer];
@@ -69,8 +71,9 @@
   anim.autoreverses = YES;
   anim.repeatCount = 1e100;
   [gradient addAnimation:anim forKey:@"gradientColorAnimation"];
-  
+
   [self.cameraButton.layer insertSublayer:gradient atIndex:0];
+  self.cameraButtonGradient = gradient;
   
   NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:13.0 target:self selector:@selector(timerFireMethod:) userInfo:nil repeats:YES];
   dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
@@ -110,6 +113,15 @@
 -(void)viewDidAppear:(BOOL)animated
 {
   [super viewDidAppear:animated];
+//  UIColor *endColor = [UIColor blackColor];
+  
+//  [self.cameraButtonGradient removeAnimationForKey:@"gradientColorAnimation"];
+//  CABasicAnimation *anim = [CABasicAnimation animationWithKeyPath:@"colors"];
+//  anim.toValue = @[(id)endColor.CGColor, (id)endColor.CGColor];
+//  anim.duration = 2.5;
+//  anim.autoreverses = YES;
+//  anim.repeatCount = 1e100;
+//  [self.cameraButtonGradient addAnimation:anim forKey:@"gradientColorAnimation"];
   
 //  [UIView animateWithDuration:.3 animations:^{
 //    self.cameraButton.layer.transform = CATransform3DMakeScale(1.05, .92, 1.0);

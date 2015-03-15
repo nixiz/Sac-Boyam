@@ -132,7 +132,7 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="BF5-Bn-Xof" firstAttribute="leading" secondItem="pD4-LV-tFB" secondAttribute="leading" constant="8" id="GXp-Dc-kcA"/>
                             <constraint firstItem="kTX-M0-23X" firstAttribute="top" secondItem="zju-Qa-qaf" secondAttribute="bottom" constant="8" id="Gnb-AD-NbV"/>
@@ -349,7 +349,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="yQf-gF-Bgc" firstAttribute="top" secondItem="6GK-hU-plx" secondAttribute="bottom" constant="8" id="267-8Q-g9d"/>
                             <constraint firstItem="jgm-R7-906" firstAttribute="leading" secondItem="pF5-oz-6DR" secondAttribute="leading" constant="20" id="3d5-L2-ILe"/>
@@ -362,11 +362,13 @@
                             <constraint firstItem="fwp-3K-sMl" firstAttribute="top" secondItem="HIN-6m-Xph" secondAttribute="bottom" constant="18" id="5qi-xZ-fEa"/>
                             <constraint firstItem="QrC-AU-v1f" firstAttribute="leading" secondItem="zZm-wr-P2q" secondAttribute="trailing" constant="8" id="69z-0m-LD9"/>
                             <constraint firstItem="zZm-wr-P2q" firstAttribute="leading" secondItem="pF5-oz-6DR" secondAttribute="leading" constant="20" id="829-OM-Sye"/>
+                            <constraint firstItem="fwp-3K-sMl" firstAttribute="leading" secondItem="pF5-oz-6DR" secondAttribute="leading" constant="20" id="9Mm-QZ-jAB"/>
                             <constraint firstItem="zZm-wr-P2q" firstAttribute="centerY" secondItem="QrC-AU-v1f" secondAttribute="centerY" id="9xQ-EC-TAA"/>
                             <constraint firstAttribute="trailing" secondItem="Ue3-MA-l3Z" secondAttribute="trailing" id="F2p-7d-MQx"/>
                             <constraint firstAttribute="trailingMargin" secondItem="AkT-aw-ExD" secondAttribute="trailing" constant="4" id="FaN-84-zME"/>
                             <constraint firstItem="HIN-6m-Xph" firstAttribute="leading" secondItem="pF5-oz-6DR" secondAttribute="leading" constant="20" id="GAb-FA-ER6"/>
                             <constraint firstItem="zZm-wr-P2q" firstAttribute="top" secondItem="9Hu-Ub-Ocv" secondAttribute="bottom" constant="25" id="JOs-is-Vzj"/>
+                            <constraint firstAttribute="trailing" secondItem="AkT-aw-ExD" secondAttribute="trailing" constant="20" id="SOR-Qo-9EL"/>
                             <constraint firstItem="fwp-3K-sMl" firstAttribute="leading" secondItem="pF5-oz-6DR" secondAttribute="leadingMargin" constant="4" id="TLE-FH-PQH"/>
                             <constraint firstItem="yQf-gF-Bgc" firstAttribute="leading" secondItem="pF5-oz-6DR" secondAttribute="leading" constant="20" id="Uas-Lh-Gbv"/>
                             <constraint firstItem="AkT-aw-ExD" firstAttribute="centerY" secondItem="fwp-3K-sMl" secondAttribute="centerY" id="V90-Rj-yBh"/>
@@ -386,6 +388,12 @@
                             <constraint firstItem="Wge-CS-dY9" firstAttribute="leading" secondItem="HIN-6m-Xph" secondAttribute="trailing" constant="8" id="uU2-nQ-YbV"/>
                             <constraint firstAttribute="trailing" secondItem="yQf-gF-Bgc" secondAttribute="trailing" constant="20" id="yn2-o2-6Ut"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="TLE-FH-PQH"/>
+                                <exclude reference="FaN-84-zME"/>
+                            </mask>
+                        </variation>
                     </view>
                     <navigationItem key="navigationItem" title="Settings" id="Yi0-EG-oD6"/>
                     <connections>
@@ -726,11 +734,11 @@
         <image name="switch_camera_white.png" width="128" height="128"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="QDn-4B-G21"/>
         <segue reference="ZxE-aj-47i"/>
+        <segue reference="QDn-4B-G21"/>
         <segue reference="7Fj-1j-qZg"/>
-        <segue reference="PsG-cU-U5X"/>
-        <segue reference="Xsf-rW-boP"/>
         <segue reference="Jjn-5H-yyJ"/>
+        <segue reference="Xsf-rW-boP"/>
+        <segue reference="wtE-o7-qLs"/>
     </inferredMetricsTieBreakers>
 </document>

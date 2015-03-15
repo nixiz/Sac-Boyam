@@ -9,13 +9,19 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-static NSString *savePhotosKey = @"savephotosKey";
-static NSString *editPhotosKey = @"editphotosKey";
-static NSString *takeRecordKey = @"takerecordKey";
-static NSString *findOnTapKey = @"findontapKey";
-static NSString *resultDensityKey = @"resultDensityKey";
-static NSString *showTutorialKey = @"showTutorialKey";
-static NSString *userDefaultPhotoKey = @"userPhotoKey";
+static NSString const *savePhotosKey = @"savephotosKey";
+static NSString const *editPhotosKey = @"editphotosKey";
+static NSString const *takeRecordKey = @"takerecordKey";
+static NSString const *findOnTapKey = @"findontapKey";
+static NSString const *resultDensityKey = @"resultDensityKey";
+static NSString const *showTutorialKey = @"showTutorialKey";
+static NSString const *userDefaultPhotoKey = @"userPhotoKey";
+static NSString const *appWasRatedKey          = @"appratedkey";
+static NSString const *lastRateShowDateKey     = @"lastrateshowdate";
+static NSString const *daysUntilPromtKey       = @"usesUntilPromtKey";
+static NSString const *usesUntilPromtKey       = @"usesUntilPromtKey";
+static NSString const *timesOfNotRatedUsesKey  = @"timesOfNotRatedUsesKey";
+static NSString const *canshowratekey  = @"canshowratekey";
 
 typedef NS_ENUM(NSInteger, OKPageType) {
   OKWelcomeScreenPage = 0,

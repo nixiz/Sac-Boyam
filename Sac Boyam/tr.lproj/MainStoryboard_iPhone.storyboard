@@ -132,7 +132,7 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="BF5-Bn-Xof" firstAttribute="leading" secondItem="pD4-LV-tFB" secondAttribute="leading" constant="8" id="GXp-Dc-kcA"/>
                             <constraint firstItem="kTX-M0-23X" firstAttribute="top" secondItem="zju-Qa-qaf" secondAttribute="bottom" constant="8" id="Gnb-AD-NbV"/>
@@ -349,8 +349,9 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="fwp-3K-sMl" firstAttribute="leading" secondItem="pF5-oz-6DR" secondAttribute="leadingMargin" constant="4" id="06a-5B-DxW"/>
                             <constraint firstItem="yQf-gF-Bgc" firstAttribute="top" secondItem="6GK-hU-plx" secondAttribute="bottom" constant="8" id="267-8Q-g9d"/>
                             <constraint firstItem="jgm-R7-906" firstAttribute="leading" secondItem="pF5-oz-6DR" secondAttribute="leading" constant="20" id="3d5-L2-ILe"/>
                             <constraint firstItem="Ue3-MA-l3Z" firstAttribute="leading" secondItem="pF5-oz-6DR" secondAttribute="leading" id="3t2-VA-pfu"/>
@@ -367,7 +368,9 @@
                             <constraint firstAttribute="trailingMargin" secondItem="AkT-aw-ExD" secondAttribute="trailing" constant="4" id="FaN-84-zME"/>
                             <constraint firstItem="HIN-6m-Xph" firstAttribute="leading" secondItem="pF5-oz-6DR" secondAttribute="leading" constant="20" id="GAb-FA-ER6"/>
                             <constraint firstItem="zZm-wr-P2q" firstAttribute="top" secondItem="9Hu-Ub-Ocv" secondAttribute="bottom" constant="25" id="JOs-is-Vzj"/>
+                            <constraint firstAttribute="trailing" secondItem="AkT-aw-ExD" secondAttribute="trailing" constant="20" id="KKp-hk-HQ0"/>
                             <constraint firstItem="fwp-3K-sMl" firstAttribute="leading" secondItem="pF5-oz-6DR" secondAttribute="leadingMargin" constant="4" id="TLE-FH-PQH"/>
+                            <constraint firstItem="fwp-3K-sMl" firstAttribute="leading" secondItem="pF5-oz-6DR" secondAttribute="leading" constant="20" id="UBj-i2-6Ph"/>
                             <constraint firstItem="yQf-gF-Bgc" firstAttribute="leading" secondItem="pF5-oz-6DR" secondAttribute="leading" constant="20" id="Uas-Lh-Gbv"/>
                             <constraint firstItem="AkT-aw-ExD" firstAttribute="centerY" secondItem="fwp-3K-sMl" secondAttribute="centerY" id="V90-Rj-yBh"/>
                             <constraint firstItem="ISh-hT-F0Q" firstAttribute="top" secondItem="Ue3-MA-l3Z" secondAttribute="bottom" id="XaF-GX-PH0"/>
@@ -376,6 +379,7 @@
                             <constraint firstItem="HIN-6m-Xph" firstAttribute="top" secondItem="zZm-wr-P2q" secondAttribute="bottom" constant="18" id="ZvU-5l-BpD"/>
                             <constraint firstItem="AkT-aw-ExD" firstAttribute="leading" secondItem="fwp-3K-sMl" secondAttribute="trailing" constant="8" id="cDF-a1-oFv"/>
                             <constraint firstItem="Ue3-MA-l3Z" firstAttribute="top" secondItem="yQf-gF-Bgc" secondAttribute="bottom" constant="8" id="dgU-wM-W2B"/>
+                            <constraint firstItem="fwp-3K-sMl" firstAttribute="leading" secondItem="pF5-oz-6DR" secondAttribute="leadingMargin" constant="20" id="evN-kh-lC7"/>
                             <constraint firstItem="wDU-Wq-9dS" firstAttribute="leading" secondItem="jgm-R7-906" secondAttribute="trailing" constant="8" id="hz0-1J-KNE"/>
                             <constraint firstItem="wDU-Wq-9dS" firstAttribute="top" secondItem="AkT-aw-ExD" secondAttribute="bottom" constant="8" id="iMy-J7-z7v"/>
                             <constraint firstItem="6GK-hU-plx" firstAttribute="leading" secondItem="pF5-oz-6DR" secondAttribute="leading" constant="20" id="jxv-tN-72T"/>
@@ -386,6 +390,14 @@
                             <constraint firstItem="Wge-CS-dY9" firstAttribute="leading" secondItem="HIN-6m-Xph" secondAttribute="trailing" constant="8" id="uU2-nQ-YbV"/>
                             <constraint firstAttribute="trailing" secondItem="yQf-gF-Bgc" secondAttribute="trailing" constant="20" id="yn2-o2-6Ut"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="06a-5B-DxW"/>
+                                <exclude reference="TLE-FH-PQH"/>
+                                <exclude reference="evN-kh-lC7"/>
+                                <exclude reference="FaN-84-zME"/>
+                            </mask>
+                        </variation>
                     </view>
                     <navigationItem key="navigationItem" title="Ayarlar" id="Yi0-EG-oD6"/>
                     <connections>
@@ -491,7 +503,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                         <constraints>
                             <constraint firstAttribute="centerY" secondItem="NAp-qR-bH3" secondAttribute="centerY" constant="0.5" id="6pz-nG-XCa"/>
                             <constraint firstItem="NAp-qR-bH3" firstAttribute="top" secondItem="8K3-Sa-FFd" secondAttribute="bottom" constant="10" id="6z6-oN-Q1l"/>
@@ -726,11 +738,11 @@
         <image name="switch_camera_white.png" width="128" height="128"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="wtE-o7-qLs"/>
-        <segue reference="Jjn-5H-yyJ"/>
         <segue reference="ZxE-aj-47i"/>
         <segue reference="QDn-4B-G21"/>
+        <segue reference="Jjn-5H-yyJ"/>
+        <segue reference="Xsf-rW-boP"/>
+        <segue reference="wtE-o7-qLs"/>
         <segue reference="7Fj-1j-qZg"/>
-        <segue reference="Ojo-QA-Euz"/>
     </inferredMetricsTieBreakers>
 </document>
