@@ -15,48 +15,30 @@
 
 @implementation OKAppDelegate
 
-//- (void)showTutorialForViewController:(UIViewController *)controller andPageIndex:(NSInteger)pageNumber
-//{
-//  UIImage * screenShot = [[controller view] createImageFromView];
-//  screenShot = [screenShot applyDarkEffect];
-//  OKInfoViewController *vc = [[OKInfoViewController alloc] initWithNibName:@"OKInfoViewController" bundle:nil];
-//  vc.screenShot = screenShot;
-//  vc.pageIndex = 0;
-//  //  [vc setModalPresentationStyle:UIModalPresentationFullScreen];
-//  //  [vc setModalTransitionStyle:UIModalTransitionStyleFlipHorizontal];
-//  [controller presentViewController:vc animated:NO completion:nil];
-//  
-//  if ([[[NSUserDefaults standardUserDefaults] objectForKey:showTutorialKey] boolValue]) {
-//    [[NSUserDefaults standardUserDefaults] setObject:@NO forKey:showTutorialKey];
-//    [[NSUserDefaults standardUserDefaults] synchronize];
-//  }
-//}
-
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-  //[[UINavigationBar appearance] setTintColor:[UIColor colorWithRed:7.0f/255.0f green:120.0f/255.0f blue:225.0f/255.0f alpha:1.0]];
-//  [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
-//  self.navigationController.navigationBar.shadowImage = [UIImage new];
-//  self.navigationController.navigationBar.translucent = YES;
-//  [NSMutableDictionary dictionaryWithObjectsAndKeys:@NO, @"SavePhotos", @YES, @"EditPhotos", @NO, @"TakeRecord", nil];
   NSDictionary *userDefaults = @{savePhotosKey: @NO,
                                  editPhotosKey: @YES,
                                  takeRecordKey: @YES,
                                  resultDensityKey: @7,
                                  showTutorialKey: @YES,
                                  findOnTapKey: @NO,
-                                 usesUntilPromtKey: @2,
+                                 usesUntilPromtKey: @8,
                                  timesOfNotRatedUsesKey: @-1,
-                                 showDaysUntilPromtKey:@5,
+                                 showDaysUntilPromtKey:@11,
                                  remindMeLaterDateKey:[NSDate date],
                                  remindMeLaterKey: @NO,
                                  userDidRatedKey: @NO
                                  };
   [[NSUserDefaults standardUserDefaults] registerDefaults:userDefaults];
-//  [NSUserDefaults resetStandardUserDefaults];
+#if DEBUG
+  [[NSUserDefaults standardUserDefaults] setBool:NO forKey:remindMeLaterKey];
+  [[NSUserDefaults standardUserDefaults] setBool:NO forKey:userDidRatedKey];
+  [[NSUserDefaults standardUserDefaults] setInteger:-1 forKey:showDaysUntilPromtKey];
+  [[NSUserDefaults standardUserDefaults] setInteger:-1 forKey:timesOfNotRatedUsesKey];
+#endif
   [[OKAppRater sharedInstance] initiateInstanceForAppID:appID localizationTableName:okStringsTableName];
-    // Override point for customization after application launch.
-    return YES;
+  return YES;
 }
 							
 - (void)applicationWillResignActive:(UIApplication *)application
@@ -68,7 +50,6 @@
 - (void)applicationDidEnterBackground:(UIApplication *)application
 {
   [[NSUserDefaults standardUserDefaults] synchronize];
-//  [NSUserDefaults resetStandardUserDefaults];
   // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
   // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
 }
@@ -87,7 +68,6 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application
 {
-//  [NSUserDefaults resetStandardUserDefaults];
   [[NSUserDefaults standardUserDefaults] synchronize];
   // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }

@@ -12,6 +12,7 @@
 
 @interface OKAppRater ()
 @property (strong, nonatomic) NSMutableDictionary *counterDictionary;
+@property BOOL isUserRated;
 @end
 
 @implementation OKAppRater
@@ -21,6 +22,7 @@
   self = [super init];
   if (self) {
     self.counterDictionary = [NSMutableDictionary dictionary];
+    self.isUserRated = NO;
   }
   return self;
 }
@@ -43,12 +45,14 @@
 
 - (void)increaseTimeOfUse
 {
+  if (self.isUserRated) return;
   NSInteger timesOfResultView = 1 + [[[NSUserDefaults standardUserDefaults] objectForKey:timesOfNotRatedUsesKey] integerValue];
   [[NSUserDefaults standardUserDefaults] setInteger:timesOfResultView forKey:timesOfNotRatedUsesKey];
 }
 
 - (void)decreaseTimeOfUse
 {
+  if (self.isUserRated) return;
   NSInteger timesOfResultView = [[[NSUserDefaults standardUserDefaults] objectForKey:timesOfNotRatedUsesKey] integerValue] - 1;
   [[NSUserDefaults standardUserDefaults] setInteger:timesOfResultView > 0 ? timesOfResultView : 0 forKey:timesOfNotRatedUsesKey];
 }
@@ -57,21 +61,21 @@
 {
   NSInteger timesOfResultView = [[[NSUserDefaults standardUserDefaults] objectForKey:timesOfNotRatedUsesKey] integerValue];
   NSInteger usesUntilPromt = [[[NSUserDefaults standardUserDefaults] objectForKey:usesUntilPromtKey] integerValue];
-  BOOL userDidRated = [[[NSUserDefaults standardUserDefaults] objectForKey:userDidRatedKey] boolValue];
+  self.isUserRated = [[[NSUserDefaults standardUserDefaults] objectForKey:userDidRatedKey] boolValue];
   BOOL userDidRemindMeLatered = [[[NSUserDefaults standardUserDefaults] objectForKey:remindMeLaterKey] boolValue];
   BOOL canbeshowrateview = NO;
   
-  userDidRated = NO;            //just for debug!
+//  userDidRated = NO;            //just for debug!
 //  userDidRemindMeLatered = NO;  //just for debug!
   
-  if (userDidRated) return; //return user already rated app.
+  if (self.isUserRated) return; //return user already rated app.
   
   //eger remind me later ise su an ile gecen zamana bak ve ona gore show et
   if (userDidRemindMeLatered)
   {
     NSDate *lastRemindDate = [[NSUserDefaults standardUserDefaults] objectForKey:remindMeLaterDateKey];
     NSInteger betweenDays = [OKUtils daysBetweenDate:lastRemindDate andDate:[NSDate date]];
-    NSInteger showDaysUntil = [[[NSUserDefaults standardUserDefaults] objectForKey:showDaysUntilPromtKey] integerValue];
+    NSInteger showDaysUntil = [[NSUserDefaults standardUserDefaults] integerForKey:showDaysUntilPromtKey];
     if (betweenDays - showDaysUntil > 0) {
       canbeshowrateview = YES;
     } else {
@@ -79,7 +83,7 @@
     }
   }
   
-  if (timesOfResultView > usesUntilPromt || canbeshowrateview)
+  if (timesOfResultView >= usesUntilPromt || canbeshowrateview)
   {
     UIAlertView *rateThisAppAlert = [[UIAlertView alloc] initWithTitle:@"Saç Boyam"
                                                                message:NSLocalizedStringFromTable(@"rateAppMessage", self.localizedTableName, nil)

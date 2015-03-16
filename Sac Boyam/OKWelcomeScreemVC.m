@@ -80,6 +80,18 @@
   });
 }
 
+//-(void)viewDidAppear:(BOOL)animated
+//{
+//  [super viewDidAppear:animated];
+//  AVAuthorizationStatus authStatus = [AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeVideo];
+//}
+ /*
+  AVAuthorizationStatusNotDetermined = 0,
+  AVAuthorizationStatusRestricted,
+  AVAuthorizationStatusDenied,
+  AVAuthorizationStatusAuthorized
+*/
+
 - (void)timerFireMethod:(NSTimer *)timer
 {
   if (self.view.window && self.isViewLoaded) {
@@ -106,43 +118,6 @@
   }
 //  [timer invalidate];
 }
-
-/*
--(void)viewDidAppear:(BOOL)animated
-{
-  [super viewDidAppear:animated];
-//  UIColor *endColor = [UIColor blackColor];
-  
-//  CABasicAnimation *gradientAnim = (CABasicAnimation *)[self.cameraButtonGradient animationForKey:@"gradientColorAnimation"];
-//  if (gradientAnim == nil) {
-//    UIColor *endColor = [UIColor blackColor];
-//    gradientAnim = [CABasicAnimation animationWithKeyPath:@"colors"];
-//    gradientAnim.toValue = @[(id)endColor.CGColor, (id)endColor.CGColor];
-//    gradientAnim.duration = 2.5;
-//    gradientAnim.autoreverses = YES;
-//    gradientAnim.repeatCount = 1e100;
-//    gradientAnim.removedOnCompletion = YES;
-//    [self.cameraButtonGradient addAnimation:gradientAnim forKey:@"gradientColorAnimation"];
-//  }
-  
-//  [self.cameraButtonGradient removeAnimationForKey:@"gradientColorAnimation"];
-//  CABasicAnimation *anim = [CABasicAnimation animationWithKeyPath:@"colors"];
-//  anim.toValue = @[(id)endColor.CGColor, (id)endColor.CGColor];
-//  anim.duration = 2.5;
-//  anim.autoreverses = YES;
-//  anim.repeatCount = 1e100;
-//  [self.cameraButtonGradient addAnimation:anim forKey:@"gradientColorAnimation"];
-  
-//  [UIView animateWithDuration:.3 animations:^{
-//    self.cameraButton.layer.transform = CATransform3DMakeScale(1.05, .92, 1.0);
-//  } completion:^(BOOL finished) {
-//    [UIView animateWithDuration:.7 delay:0.0 usingSpringWithDamping:3.0 initialSpringVelocity:1.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-//      self.cameraButton.layer.transform = CATransform3DIdentity;
-//    } completion:nil];
-//  }];
-  
-}
-*/
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
