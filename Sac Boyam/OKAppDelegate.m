@@ -10,6 +10,7 @@
 #import "OKUtils.h"
 #import "UIView+CreateImage.h"
 #import "UIImage+ImageEffects.h"
+#import "OKAppRater.h"
 //#import "OKInfoViewController.h"
 
 @implementation OKAppDelegate
@@ -38,23 +39,22 @@
 //  self.navigationController.navigationBar.shadowImage = [UIImage new];
 //  self.navigationController.navigationBar.translucent = YES;
 //  [NSMutableDictionary dictionaryWithObjectsAndKeys:@NO, @"SavePhotos", @YES, @"EditPhotos", @NO, @"TakeRecord", nil];
-  
   NSDictionary *userDefaults = @{savePhotosKey: @NO,
                                  editPhotosKey: @YES,
                                  takeRecordKey: @YES,
                                  resultDensityKey: @7,
                                  showTutorialKey: @YES,
                                  findOnTapKey: @NO,
-                                 appWasRatedKey: @NO,
-                                 lastRateShowDateKey: [NSDate date],
-                                 daysUntilPromtKey: @5,
-                                 usesUntilPromtKey: @4,
+                                 usesUntilPromtKey: @2,
                                  timesOfNotRatedUsesKey: @-1,
-                                 canshowratekey: @YES
+                                 showDaysUntilPromtKey:@5,
+                                 remindMeLaterDateKey:[NSDate date],
+                                 remindMeLaterKey: @NO,
+                                 userDidRatedKey: @NO
                                  };
   [[NSUserDefaults standardUserDefaults] registerDefaults:userDefaults];
-  
-  
+//  [NSUserDefaults resetStandardUserDefaults];
+  [[OKAppRater sharedInstance] initiateInstanceForAppID:appID localizationTableName:okStringsTableName];
     // Override point for customization after application launch.
     return YES;
 }
@@ -68,7 +68,8 @@
 - (void)applicationDidEnterBackground:(UIApplication *)application
 {
   [[NSUserDefaults standardUserDefaults] synchronize];
-  // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
+//  [NSUserDefaults resetStandardUserDefaults];
+  // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
   // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
 }
 
@@ -86,6 +87,7 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application
 {
+//  [NSUserDefaults resetStandardUserDefaults];
   [[NSUserDefaults standardUserDefaults] synchronize];
   // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }

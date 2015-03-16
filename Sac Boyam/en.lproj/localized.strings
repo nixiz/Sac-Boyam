@@ -56,4 +56,8 @@
 "welcome" = "Welcome!";
 "firstTimeOnColorSelectMsg" = "To find your dye, all you need to tap on the screen wherever you want. Enjoy!";
 "NOButonTitle" = "No";
+"rateAppMessage" = "If you enjoy using Saç Boyam, would you mind taking a moment to rate it? It won't take more than a minute.\nThanks for your support!";
+"rateAppCancelButton" = "No, thanks";
+"rateAppLaterButton" = "Remind me later";
+"rateAppOkButton" = "Rate Saç Boyam";
 "lang" = "en";

@@ -19,6 +19,7 @@
 #import "UIImage+ImageEffects.h"
 #import "OKTryOnMeVC.h"
 #import "OKSettingsTutorialVC.h"
+#import "OKAppRater.h"
 
 #define ARC4RANDOM_MAX	0x100000000
 #define indexForProductName   0
@@ -128,6 +129,13 @@
   self.navigationItem.rightBarButtonItems = @[settingsBtn, infoBtn];
   self.view.backgroundColor = [self.view getBackgroundColor];
   self.tableView.sectionIndexBackgroundColor = [UIColor clearColor];
+  [[OKAppRater sharedInstance] increaseTimeOfUse];
+}
+
+-(void)viewDidAppear:(BOOL)animated
+{
+  [super viewDidAppear:animated];
+  [[OKAppRater sharedInstance] showRateThisApp];
 }
 
 - (void)didReceiveMemoryWarning
@@ -273,6 +281,14 @@
   [self performSegueWithIdentifier:@"settingSegueFromResults" sender:sender];
 }
 
+- (void)updateNumberOfViewResult
+{
+  NSInteger timesOfResultView = 1 + [[[NSUserDefaults standardUserDefaults] objectForKey:timesOfNotRatedUsesKey] integerValue];
+  [[NSUserDefaults standardUserDefaults] setInteger:timesOfResultView forKey:timesOfNotRatedUsesKey];
+  BOOL isSynced = [[NSUserDefaults standardUserDefaults] synchronize];
+  NSLog(@"number of uses are synced %@", isSynced ? @"successfuly":@"unsuccessfuly");
+}
+
 #pragma mark - OKTutorialControllerDelegate
 
 - (CGRect)getImageMaskRectForItem:(NSString *)item
@@ -289,7 +305,6 @@
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-  //resultDetailSegue
   if ([[segue identifier] isEqualToString:@"resultDetailSegue"]) {
     NSIndexPath *indexPath = (NSIndexPath *)sender;
     ColorModel *color = [self.fetchedResultsController objectAtIndexPath:indexPath];
@@ -297,6 +312,7 @@
     [vc setColorModel:color];
     [vc setManagedObjectContext:self.managedObjectContext];
     vc.lookingFromFavList = NO;
+    [[OKAppRater sharedInstance] increaseTimeOfUse];
   } else if ([[segue identifier] isEqualToString:@"settingSegueFromResults"]) {
     OKSettingsViewController *vc = [segue destinationViewController];
     [vc setManagedObjectContext:self.managedObjectContext];
@@ -306,12 +322,15 @@
     OKTryOnMeVC *vc = [segue destinationViewController];
     [vc setColorModel:color];
     [vc setManagedObjectContext:self.managedObjectContext];
-  } else if ([[segue identifier] isEqualToString:@"ResultsTutorialSegue"]) {    
+    [[OKAppRater sharedInstance] decreaseTimeOfUse];
+  } else if ([[segue identifier] isEqualToString:@"ResultsTutorialSegue"]) {
     UIImage *screenShot = [self.tableView.superview createImageFromViewAfterScreenUpdates:NO];
     OKSettingsTutorialVC *vc = [segue destinationViewController];
     [vc initiateTutorialControllerWithBgImg:screenShot andContentPoints:self.framesDictionary WithExplanationDescriptors:self.explanationsDictionary];
     [vc setShowExplanationBelowView:YES];
     [vc setHeightOfExplanationView:90];
+  } else {
+    NSLog(@"Unidentified segue raised with name %@", [segue identifier]);
   }
 }
 

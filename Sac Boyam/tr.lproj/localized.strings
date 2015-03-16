@@ -56,4 +56,8 @@
 "welcome" = "Merhaba!";
 "firstTimeOnColorSelectMsg" = "Aradığınız rengi bulmak için tek yapmanız gereken, ekranda dilediğiniz yere dokunmak";
 "NOButonTitle" = "Hayır";
+"rateAppMessage" = "Saç Boyam uygulamasını kullanmaktan memnun kaldıysanız, değerlendirmek için zaman ayırabilir misiniz?\nDesteğiniz için teşekkür ederiz!";
+"rateAppCancelButton" = "Hayır, teşekkürler";
+"rateAppLaterButton" = "Daha sonra hatırlat";
+"rateAppOkButton" = "Uygulamayı değerlendir";
 "lang" = "tr";

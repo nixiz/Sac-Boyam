@@ -10,6 +10,7 @@
 		71063759196C0ED100D17D66 /* UIView+CreateImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 71063758196C0ED100D17D66 /* UIView+CreateImage.m */; };
 		710735A217C4981400484D21 /* OKSonuclarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 710735A117C4981400484D21 /* OKSonuclarViewController.m */; };
 		710735A617C49E6800484D21 /* OKSonuclarCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 710735A517C49E6800484D21 /* OKSonuclarCell.m */; };
+		711A33931AB700E60082075D /* OKAppRater.m in Sources */ = {isa = PBXBuildFile; fileRef = 711A33921AB700E60082075D /* OKAppRater.m */; };
 		7128469C1A9CC0BE00E39958 /* OKCamViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 712846961A9CC0BE00E39958 /* OKCamViewController.m */; };
 		7128469D1A9CC0BE00E39958 /* AVCamPreviewView.m in Sources */ = {isa = PBXBuildFile; fileRef = 712846981A9CC0BE00E39958 /* AVCamPreviewView.m */; };
 		7128469E1A9CC0BE00E39958 /* switch_camera_white.png in Resources */ = {isa = PBXBuildFile; fileRef = 712846991A9CC0BE00E39958 /* switch_camera_white.png */; };
@@ -73,6 +74,8 @@
 		710735A117C4981400484D21 /* OKSonuclarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKSonuclarViewController.m; sourceTree = "<group>"; };
 		710735A417C49E6800484D21 /* OKSonuclarCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKSonuclarCell.h; sourceTree = "<group>"; };
 		710735A517C49E6800484D21 /* OKSonuclarCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKSonuclarCell.m; sourceTree = "<group>"; };
+		711A33911AB700E60082075D /* OKAppRater.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKAppRater.h; sourceTree = "<group>"; };
+		711A33921AB700E60082075D /* OKAppRater.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKAppRater.m; sourceTree = "<group>"; };
 		712846951A9CC0BE00E39958 /* OKCamViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKCamViewController.h; sourceTree = "<group>"; };
 		712846961A9CC0BE00E39958 /* OKCamViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKCamViewController.m; sourceTree = "<group>"; };
 		712846971A9CC0BE00E39958 /* AVCamPreviewView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVCamPreviewView.h; sourceTree = "<group>"; };
@@ -368,6 +371,8 @@
 				71F5E2431AA4A5C7006E87CF /* UIViewController+AutoDissmissAlert.m */,
 				7152CB50197557640080898F /* OKProductJsonType.h */,
 				7152CB51197557640080898F /* OKProductJsonType.m */,
+				711A33911AB700E60082075D /* OKAppRater.h */,
+				711A33921AB700E60082075D /* OKAppRater.m */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -501,6 +506,7 @@
 				7134B73319A3C8F900BFE754 /* UIColor+GrayScale.m in Sources */,
 				71840EDB19B8454800F99868 /* ColorModel.m in Sources */,
 				7152CB52197557640080898F /* OKProductJsonType.m in Sources */,
+				711A33931AB700E60082075D /* OKAppRater.m in Sources */,
 				7136433D195C5E08006EF824 /* OKUtils.m in Sources */,
 				71328AA617C35FD7007EE533 /* OKAppDelegate.m in Sources */,
 				7128469D1A9CC0BE00E39958 /* AVCamPreviewView.m in Sources */,

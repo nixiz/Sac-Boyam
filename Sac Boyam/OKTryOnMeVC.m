@@ -12,6 +12,7 @@
 #import "UIImage+ImageEffects.h"
 #import "OKUtils.h"
 #import "OKZoomView.h"
+#import "OKAppRater.h"
 #import "UIView+CreateImage.h"
 #import "UIBezierPath+Interpolation.h"
 #import "CRVINTERGraphicsView.h"
@@ -165,12 +166,35 @@
                                   @"item-4": @"try-item-4-exp",
                                   @"item-5": @"try-item-5-exp",
                                   @"item-6": @"try-item-6-exp"};
+  [[OKAppRater sharedInstance] increaseTimeOfUse];
+  [[OKAppRater sharedInstance] showRateThisApp];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+//- (void)showRateThisApp
+//{
+//  NSInteger timesOfResultView = 1 + [[[NSUserDefaults standardUserDefaults] objectForKey:timesOfNotRatedUsesKey] integerValue];
+//  NSInteger usesUntilPromt = [[[NSUserDefaults standardUserDefaults] objectForKey:usesUntilPromtKey] integerValue];
+//  BOOL userDidRated = [[[NSUserDefaults standardUserDefaults] objectForKey:userDidRatedKey] boolValue];
+//  
+//  userDidRated = NO;
+//  if (timesOfResultView > usesUntilPromt && !userDidRated) {
+//    UIAlertView *rateThisAppAlert = [[UIAlertView alloc] initWithTitle:@"Saç Boyam"
+//                                                               message:NSLocalizedStringFromTable(@"rateAppMessage", okStringsTableName, nil)
+//                                                              delegate:self
+//                                                     cancelButtonTitle:NSLocalizedStringFromTable(@"rateAppCancelButton", okStringsTableName, nil)
+//                                                     otherButtonTitles:NSLocalizedStringFromTable(@"rateAppOkButton", okStringsTableName, nil), NSLocalizedStringFromTable(@"rateAppLaterButton", okStringsTableName, nil), nil];
+//    [rateThisAppAlert setTag:101];
+//    [rateThisAppAlert show];
+//  }
+//  [[NSUserDefaults standardUserDefaults] setInteger:timesOfResultView forKey:timesOfNotRatedUsesKey];
+//  BOOL isSynced = [[NSUserDefaults standardUserDefaults] synchronize];
+//  NSLog(@"number of uses are synced %@", isSynced ? @"successfuly":@"unsuccessfuly");
+//}
 
 - (void)SelectNewImage:(id)sender {
 //  [self.takeController takePhotoOrChooseFromLibrary];
@@ -233,6 +257,7 @@
                                                        delegate:self
                                               cancelButtonTitle:NSLocalizedStringFromTable(@"cancelButtonForURLReq", okStringsTableName, nil)
                                               otherButtonTitles:NSLocalizedStringFromTable(@"OKButtonTitle", okStringsTableName, nil), nil];
+    [alertView setTag:11];
     [alertView show];
   }
   
@@ -252,13 +277,18 @@
 
 #pragma mark - UIAlertViewDelegate
 
+//-(void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
   NSString *title = [alertView buttonTitleAtIndex:buttonIndex];
-  if ([title isEqualToString:NSLocalizedStringFromTable(@"cancelButtonForURLReq", okStringsTableName, nil)]) {
-    return;
+  if (alertView.tag == 11) {
+    if ([title isEqualToString:NSLocalizedStringFromTable(@"cancelButtonForURLReq", okStringsTableName, nil)]) {
+      return;
+    }
+    [self saveImageToUserDefaults];
+  } else {
+    NSLog(@"unknow handle for alert view!\n%@", [alertView debugDescription]);
   }
-  [self saveImageToUserDefaults];
 }
 
 #pragma mark - UIGestureRecognizerDelegate

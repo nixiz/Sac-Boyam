@@ -9,19 +9,13 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-static NSString const *savePhotosKey = @"savephotosKey";
-static NSString const *editPhotosKey = @"editphotosKey";
-static NSString const *takeRecordKey = @"takerecordKey";
-static NSString const *findOnTapKey = @"findontapKey";
-static NSString const *resultDensityKey = @"resultDensityKey";
-static NSString const *showTutorialKey = @"showTutorialKey";
-static NSString const *userDefaultPhotoKey = @"userPhotoKey";
-static NSString const *appWasRatedKey          = @"appratedkey";
-static NSString const *lastRateShowDateKey     = @"lastrateshowdate";
-static NSString const *daysUntilPromtKey       = @"usesUntilPromtKey";
-static NSString const *usesUntilPromtKey       = @"usesUntilPromtKey";
-static NSString const *timesOfNotRatedUsesKey  = @"timesOfNotRatedUsesKey";
-static NSString const *canshowratekey  = @"canshowratekey";
+static NSString *savePhotosKey = @"savephotosKey";
+static NSString *editPhotosKey = @"editphotosKey";
+static NSString *takeRecordKey = @"takerecordKey";
+static NSString *findOnTapKey = @"findontapKey";
+static NSString *resultDensityKey = @"resultDensityKey";
+static NSString *showTutorialKey = @"showTutorialKey";
+static NSString *userDefaultPhotoKey = @"userPhotoKey";
 
 typedef NS_ENUM(NSInteger, OKPageType) {
   OKWelcomeScreenPage = 0,
@@ -42,5 +36,6 @@ typedef NS_ENUM(NSInteger, OKPageType) {
 +(NSString *)dateToString:(NSDate *)date;
 
 +(UIColor *)getBackgroundColor;
++ (NSInteger)daysBetweenDate:(NSDate*)fromDateTime andDate:(NSDate*)toDateTime;
 //+(NSArray *)getNavigationBarRightSideItemsForController:(id)instance selector:(SEL)action andForPage:(OKPageType) pageType;
 @end

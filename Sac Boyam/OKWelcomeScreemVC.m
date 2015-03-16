@@ -62,14 +62,13 @@
   CALayer *maskLayer = [CALayer layer];
   maskLayer.contents = (id)cameraImage.CGImage;
   maskLayer.frame = gradient.frame;
-//  gradient.position
   gradient.mask = maskLayer;
   
   CABasicAnimation *anim = [CABasicAnimation animationWithKeyPath:@"colors"];
   anim.toValue = @[(id)endColor.CGColor, (id)endColor.CGColor];
   anim.duration = 2.5;
   anim.autoreverses = YES;
-  anim.repeatCount = 1e100;
+  anim.repeatCount = HUGE_VALF;
   [gradient addAnimation:anim forKey:@"gradientColorAnimation"];
 
   [self.cameraButton.layer insertSublayer:gradient atIndex:0];
@@ -79,8 +78,6 @@
   dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
     [timer fire];
   });
-//  dispatch_async(dispatch_get_main_queue(), ^{
-//  });
 }
 
 - (void)timerFireMethod:(NSTimer *)timer
@@ -110,10 +107,23 @@
 //  [timer invalidate];
 }
 
+/*
 -(void)viewDidAppear:(BOOL)animated
 {
   [super viewDidAppear:animated];
 //  UIColor *endColor = [UIColor blackColor];
+  
+//  CABasicAnimation *gradientAnim = (CABasicAnimation *)[self.cameraButtonGradient animationForKey:@"gradientColorAnimation"];
+//  if (gradientAnim == nil) {
+//    UIColor *endColor = [UIColor blackColor];
+//    gradientAnim = [CABasicAnimation animationWithKeyPath:@"colors"];
+//    gradientAnim.toValue = @[(id)endColor.CGColor, (id)endColor.CGColor];
+//    gradientAnim.duration = 2.5;
+//    gradientAnim.autoreverses = YES;
+//    gradientAnim.repeatCount = 1e100;
+//    gradientAnim.removedOnCompletion = YES;
+//    [self.cameraButtonGradient addAnimation:gradientAnim forKey:@"gradientColorAnimation"];
+//  }
   
 //  [self.cameraButtonGradient removeAnimationForKey:@"gradientColorAnimation"];
 //  CABasicAnimation *anim = [CABasicAnimation animationWithKeyPath:@"colors"];
@@ -132,6 +142,7 @@
 //  }];
   
 }
+*/
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
