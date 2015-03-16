@@ -31,12 +31,12 @@
                                  userDidRatedKey: @NO
                                  };
   [[NSUserDefaults standardUserDefaults] registerDefaults:userDefaults];
-#if DEBUG
-  [[NSUserDefaults standardUserDefaults] setBool:NO forKey:remindMeLaterKey];
-  [[NSUserDefaults standardUserDefaults] setBool:NO forKey:userDidRatedKey];
-  [[NSUserDefaults standardUserDefaults] setInteger:-1 forKey:showDaysUntilPromtKey];
-  [[NSUserDefaults standardUserDefaults] setInteger:-1 forKey:timesOfNotRatedUsesKey];
-#endif
+//#if DEBUG
+//  [[NSUserDefaults standardUserDefaults] setBool:NO forKey:remindMeLaterKey];
+//  [[NSUserDefaults standardUserDefaults] setBool:NO forKey:userDidRatedKey];
+//  [[NSUserDefaults standardUserDefaults] setInteger:-1 forKey:showDaysUntilPromtKey];
+//  [[NSUserDefaults standardUserDefaults] setInteger:-1 forKey:timesOfNotRatedUsesKey];
+//#endif
   [[OKAppRater sharedInstance] initiateInstanceForAppID:appID localizationTableName:okStringsTableName];
   return YES;
 }
