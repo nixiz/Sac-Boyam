@@ -60,4 +60,6 @@
 "rateAppCancelButton" = "Hayır, teşekkürler";
 "rateAppLaterButton" = "Daha sonra hatırlat";
 "rateAppOkButton" = "Uygulamayı değerlendir";
+"purchaseAppMessage" = "Uzgunum! Bedava anca bu kadar. Daha fazlasini istiyorsan satin almalisin dostum.\nHa bu arada, asagidaki reklama tiklayarak 2 hak daha kazanabilirsin ;)";
+"purchaseButton" = "Sar";
 "lang" = "tr";

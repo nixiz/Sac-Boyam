@@ -9,6 +9,7 @@
 #import "OKAppRater.h"
 #import "OKUtils.h"
 #define alertViewTagNumber 1010
+#define alertViewTagNumberForPurchase 10101
 
 @interface OKAppRater ()
 @property (strong, nonatomic) NSMutableDictionary *counterDictionary;
@@ -98,7 +99,8 @@
 -(void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
 {
   NSString *title = [alertView buttonTitleAtIndex:buttonIndex];
-  if (alertView.tag == alertViewTagNumber) {
+  if (alertView.tag == alertViewTagNumber)
+  {
     [[NSUserDefaults standardUserDefaults] setInteger:0 forKey:timesOfNotRatedUsesKey];
     if ([title isEqualToString:NSLocalizedStringFromTable(@"rateAppCancelButton", self.localizedTableName, nil)]) {
       [[NSUserDefaults standardUserDefaults] setBool:NO forKey:remindMeLaterKey];
@@ -122,9 +124,51 @@
     }
     BOOL isSynced = [[NSUserDefaults standardUserDefaults] synchronize];
     NSLog(@"default values are synced %@", isSynced ? @"successfuly":@"unsuccessfuly");
+  } else if (alertView.tag == alertViewTagNumberForPurchase) {
+    //TODO:
   } else {
     NSLog(@"unknow handle for alert view!\n%@", [alertView debugDescription]);
   }
 }
 
+//- (void)increaseColorFoundKey
+//{
+//  NSInteger timesOfUse = 1 + [[[NSUserDefaults standardUserDefaults] objectForKey:numberOfColorFoundsInOneDayKey] integerValue];
+//  [[NSUserDefaults standardUserDefaults] setInteger:timesOfUse forKey:numberOfColorFoundsInOneDayKey];
+//}
+
+- (void)resetColorFoundKey
+{
+  [[NSUserDefaults standardUserDefaults] setInteger:0 forKey:numberOfColorFoundsInOneDayKey];
+}
+
+- (void)askForPurchase
+{
+#ifdef LITE_VERSION
+  UIAlertView *rateThisAppAlert = [[UIAlertView alloc] initWithTitle:@"Saç Boyam"
+                                                             message:NSLocalizedStringFromTable(@"purchaseAppMessage", self.localizedTableName, nil)
+                                                            delegate:self
+                                                   cancelButtonTitle:NSLocalizedStringFromTable(@"rateAppCancelButton", self.localizedTableName, nil)
+                                                   otherButtonTitles:NSLocalizedStringFromTable(@"purchaseButton", self.localizedTableName, nil), nil];
+  [rateThisAppAlert setTag:alertViewTagNumberForPurchase];
+  [rateThisAppAlert show];
+#endif
+}
+
+- (BOOL)tryIncreaseAndUseForThisTime
+{
+#ifdef LITE_VERSION
+  NSInteger timesOfUse = 1 + [[[NSUserDefaults standardUserDefaults] objectForKey:numberOfColorFoundsInOneDayKey] integerValue];
+  [[NSUserDefaults standardUserDefaults] setInteger:timesOfUse forKey:numberOfColorFoundsInOneDayKey];
+  NSInteger maximumAllowedUsage = [[[NSUserDefaults standardUserDefaults] objectForKey:maximumAllowedUsageInOneDayKey] integerValue];
+  
+  if (timesOfUse >= maximumAllowedUsage)
+  {
+    [self askForPurchase];
+//    [[NSUserDefaults standardUserDefaults] setInteger:1 forKey:numberOfColorFoundsInOneDayKey];
+    return NO;
+  }
+#endif
+  return YES;
+}
 @end

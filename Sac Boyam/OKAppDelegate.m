@@ -13,10 +13,101 @@
 #import "OKAppRater.h"
 //#import "OKInfoViewController.h"
 
+NSString * const BannerViewActionWillBegin = @"BannerViewActionWillBegin";
+NSString * const BannerViewActionDidFinish = @"BannerViewActionDidFinish";
+
+@implementation BannerViewManager {
+  ADBannerView *_bannerView;
+  NSMutableSet *_bannerViewControllers;
+}
+
++ (BannerViewManager *)sharedInstance
+{
+  static BannerViewManager *sharedInstance = nil;
+  static dispatch_once_t onceToken;
+  dispatch_once(&onceToken, ^{
+    sharedInstance = [[BannerViewManager alloc] init];
+  });
+  return sharedInstance;
+}
+
+- (instancetype)init
+{
+  self = [super init];
+  if (self != nil) {
+    // On iOS 6 ADBannerView introduces a new initializer, use it when available.
+    if ([ADBannerView instancesRespondToSelector:@selector(initWithAdType:)]) {
+      _bannerView = [[ADBannerView alloc] initWithAdType:ADAdTypeBanner];
+    } else {
+      _bannerView = [[ADBannerView alloc] init];
+    }
+    _bannerView.delegate = self;
+    _bannerViewControllers = [[NSMutableSet alloc] init];
+  }
+  return self;
+}
+
+- (void)addBannerViewController:(id<BannerViewController_Delegate>) controller
+{
+  [_bannerViewControllers addObject:controller];
+}
+
+- (void)removeBannerViewController:(id<BannerViewController_Delegate>) controller
+{
+  [_bannerViewControllers removeObject:controller];
+}
+
+#pragma mark - iAdNetwork Methods
+
+- (void)bannerViewDidLoadAd:(ADBannerView *)banner
+{
+  for (id<BannerViewController_Delegate> bvc in _bannerViewControllers) {
+    [bvc updateLayout];
+  }
+}
+
+- (void)bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:(NSError *)error
+{
+  NSLog(@"An error occured while downloading iAd: %@", [error debugDescription]);
+  for (id<BannerViewController_Delegate> bvc in _bannerViewControllers) {
+    [bvc updateLayout];
+  }
+}
+
+- (BOOL)bannerViewActionShouldBegin:(ADBannerView *)banner willLeaveApplication:(BOOL)willLeave
+{
+  [[NSNotificationCenter defaultCenter] postNotificationName:BannerViewActionWillBegin object:self];
+  return YES;
+}
+
+- (void)bannerViewActionDidFinish:(ADBannerView *)banner
+{
+  [[NSNotificationCenter defaultCenter] postNotificationName:BannerViewActionDidFinish object:self];
+}
+
+@end
+
 @implementation OKAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+#ifdef LITE_VERSION
+  NSDictionary *userDefaults = @{savePhotosKey: @NO,
+                                 editPhotosKey: @YES,
+                                 takeRecordKey: @NO,
+                                 resultDensityKey: @7,
+                                 showTutorialKey: @YES,
+                                 findOnTapKey: @NO,
+                                 usesUntilPromtKey: @8,
+                                 timesOfNotRatedUsesKey: @-1,
+                                 showDaysUntilPromtKey:@11,
+                                 remindMeLaterDateKey:[NSDate date],
+                                 remindMeLaterKey: @NO,
+                                 userDidRatedKey: @NO,
+                                 numberOfColorFoundsInOneDayKey: @0,
+                                 maximumAllowedUsageInOneDayKey: @3
+                                 };
+#else
   NSDictionary *userDefaults = @{savePhotosKey: @NO,
                                  editPhotosKey: @YES,
                                  takeRecordKey: @YES,
@@ -28,9 +119,13 @@
                                  showDaysUntilPromtKey:@11,
                                  remindMeLaterDateKey:[NSDate date],
                                  remindMeLaterKey: @NO,
-                                 userDidRatedKey: @NO
+                                 userDidRatedKey: @NO,
+                                 numberOfColorFoundsInOneDayKey: @0,
+                                 maximumAllowedUsageInOneDayKey: @3
                                  };
+#endif
   [[NSUserDefaults standardUserDefaults] registerDefaults:userDefaults];
+  [[NSUserDefaults standardUserDefaults] setInteger:0 forKey:numberOfColorFoundsInOneDayKey];
 //#if DEBUG
 //  [[NSUserDefaults standardUserDefaults] setBool:NO forKey:remindMeLaterKey];
 //  [[NSUserDefaults standardUserDefaults] setBool:NO forKey:userDidRatedKey];
@@ -38,6 +133,9 @@
 //  [[NSUserDefaults standardUserDefaults] setInteger:-1 forKey:timesOfNotRatedUsesKey];
 //#endif
   [[OKAppRater sharedInstance] initiateInstanceForAppID:appID localizationTableName:okStringsTableName];
+  
+  //create dummy instance for singleton initialization.
+  BannerViewManager *bannerManager = [BannerViewManager sharedInstance];
   return YES;
 }
 							
@@ -64,6 +162,7 @@
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
   // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application

@@ -13,6 +13,9 @@ static NSString *showDaysUntilPromtKey   = @"showDaysUntilPromtKey";
 static NSString *usesUntilPromtKey       = @"usesUntilPromtKey";
 static NSString *timesOfNotRatedUsesKey  = @"timesOfNotRatedUsesKey";
 static NSString *userDidRatedKey  = @"userDidRatedKey";
+static NSString *numberOfColorFoundsInOneDayKey  = @"numberOfColorFoundsInOneDayKey";
+static NSString *maximumAllowedUsageInOneDayKey  = @"maximumAllowedUsageInOneDayKey";
+//static NSString *askedForPurchaseForToday  = @"askedForPurchaseForToday";
 
 @interface OKAppRater : NSObject <UIAlertViewDelegate>
 
@@ -22,6 +25,11 @@ static NSString *userDidRatedKey  = @"userDidRatedKey";
 - (void)initiateInstanceForAppID:(NSString *)aid localizationTableName:(NSString *)tableName;
 - (void)increaseTimeOfUse;
 - (void)decreaseTimeOfUse;
+
+//- (void)increaseColorFoundKey;
+- (void)resetColorFoundKey;
+- (void)askForPurchase;
+- (BOOL)tryIncreaseAndUseForThisTime;
 
 @property (strong, nonatomic) NSString *appID;
 @property (nonatomic, assign) NSString *localizedTableName;

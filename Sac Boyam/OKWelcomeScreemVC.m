@@ -14,8 +14,10 @@
 #import "OKSelectColorVC.h"
 #import "OKSettingsViewController.h"
 #import "OKCamViewController.h"
+#import "OKAppRater.h"
+#import "OKAppDelegate.h"
 
-@interface OKWelcomeScreemVC () <UIImagePickerControllerDelegate, UINavigationControllerDelegate, OKSettingsDelegate, UIAlertViewDelegate>
+@interface OKWelcomeScreemVC () <UIImagePickerControllerDelegate, UINavigationControllerDelegate, OKSettingsDelegate, UIAlertViewDelegate, BannerViewController_Delegate>
 - (IBAction)selectPicFromLibrary:(id)sender;
 @property (weak, nonatomic) IBOutlet UIButton *cameraButton;
 @property (nonatomic) UIImage *pickedImage;
@@ -24,13 +26,14 @@
 @property (nonatomic, strong) NSDictionary *filesDictionary;
 @property (nonatomic, strong) UIImagePickerController *imagePickerController;
 @property (strong) CAGradientLayer *cameraButtonGradient;
+@property NSInteger totalUsageForThisInstance;
 @end
 
 @implementation OKWelcomeScreemVC
 
 - (void)viewDidLoad {
   [super viewDidLoad];
-
+  self.totalUsageForThisInstance = 0;
   [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor blackColor]}];
   self.navigationController.navigationBar.tintColor = [UIColor colorWithWhite:0.0 alpha:0.80];
   UIBarButtonItem *settingsBtn = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"settings_navBar"]
@@ -40,6 +43,11 @@
   self.navigationItem.rightBarButtonItem = settingsBtn;
 
   if (!self.managedObjectContext) [self initManagedDocument];
+#ifdef LITE_VERSION
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(willBeginBannerViewActionNotification:) name:BannerViewActionWillBegin object:nil];
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didFinishBannerViewActionNotification:) name:BannerViewActionDidFinish object:nil];
+  [[BannerViewManager sharedInstance] addBannerViewController:self];
+#endif
   
   self.imagePickerController = [UIImagePickerController new];
   self.imagePickerController.delegate = self;
@@ -91,6 +99,12 @@
   AVAuthorizationStatusDenied,
   AVAuthorizationStatusAuthorized
 */
+#ifdef LITE_VERSION
+-(void)dealloc
+{
+  [[BannerViewManager sharedInstance] removeBannerViewController:self];
+}
+#endif
 
 - (void)timerFireMethod:(NSTimer *)timer
 {
@@ -133,7 +147,14 @@
 
 #pragma mark - Image Pick
 
-- (IBAction)selectPicFromLibrary:(id)sender {
+- (IBAction)selectPicFromLibrary:(id)sender
+{
+  self.totalUsageForThisInstance += 1;
+  if (self.totalUsageForThisInstance > 2) //2 times allowed to select or capture image
+  {
+    [[OKAppRater sharedInstance] askForPurchase];
+    return;
+  }
 //  [self.imagePickerController isBeingPresented]
   [self.imagePickerController setAllowsEditing:[[[NSUserDefaults standardUserDefaults] objectForKey:editPhotosKey] boolValue]];
 
@@ -162,12 +183,32 @@
 
 -(void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
 {
+#ifdef LITE_VERSION
+  self.totalUsageForThisInstance -= 1;
+#endif
   [picker dismissViewControllerAnimated:YES completion:^{
     [self.view setUserInteractionEnabled:YES];
   }];
 }
 
 #pragma mark - Navigation
+
+#ifdef LITE_VERSION
+-(BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender
+{
+  if ([identifier isEqualToString:@"settingsSegue"])
+  {
+    return YES;
+  }
+  self.totalUsageForThisInstance += 1;
+  if (self.totalUsageForThisInstance > 2) //2 times allowed to select or capture image
+  {
+    [[OKAppRater sharedInstance] askForPurchase];
+    return NO;
+  }
+  return YES;
+}
+#endif
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
@@ -189,7 +230,49 @@
 }
 
 #pragma mark - OKSettingsDelegate
+#ifdef LITE_VERSION
+-(void)viewDidLayoutSubviews
+{
+  CGRect contentFrame = self.view.bounds, bannerFrame = CGRectZero;
+  ADBannerView *bannerView = [BannerViewManager sharedInstance].bannerView;
+  bannerFrame.size = [bannerView sizeThatFits:contentFrame.size];
+  if (bannerView.bannerLoaded) {
+    contentFrame.size.height -= bannerFrame.size.height;
+    bannerFrame.origin.y = contentFrame.size.height;
+  } else {
+    bannerFrame.origin.y = contentFrame.size.height;
+  }
+  if (self.isViewLoaded && (self.view.window != nil)) {
+    [self.view addSubview:bannerView];
+    bannerView.frame = bannerFrame;
+  }
+}
 
+-(void)updateLayout
+{
+  [UIView animateWithDuration:0.25 animations:^{
+    // -viewDidLayoutSubviews will handle positioning the banner such that it is either visible
+    // or hidden depending upon whether its bannerLoaded property is YES or NO.  We just need our view
+    // to (re)lay itself out so -viewDidLayoutSubviews will be called.
+    // You must not call [self.view layoutSubviews] directly.  However, you can flag the view
+    // as requiring layout...
+    [self.view setNeedsLayout];
+    // ...then ask it to lay itself out immediately if it is flagged as requiring layout...
+    [self.view layoutIfNeeded];
+    // ...which has the same effect.
+  }];
+}
+
+- (void)willBeginBannerViewActionNotification:(NSNotification *)notification
+{
+  NSLog(@"willBeginBannerViewActionNotification");
+}
+
+- (void)didFinishBannerViewActionNotification:(NSNotification *)notification
+{
+  NSLog(@"didFinishBannerViewActionNotification");
+}
+#endif
 //- (void)acceptChangedSetings
 //{
 ////  self.takeController.allowsEditingPhoto = [[[NSUserDefaults standardUserDefaults] objectForKey:editPhotosKey] boolValue];

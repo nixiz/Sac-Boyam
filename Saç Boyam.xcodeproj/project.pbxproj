@@ -52,6 +52,65 @@
 		7189865A196419C100C26297 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71898659196419C100C26297 /* Accelerate.framework */; };
 		718986661964592B00C26297 /* final_effect_2.png in Resources */ = {isa = PBXBuildFile; fileRef = 718986651964592B00C26297 /* final_effect_2.png */; };
 		71899FF61A971C4200150EEF /* OKWelcomeScreemVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 71899FF51A971C4200150EEF /* OKWelcomeScreemVC.m */; };
+		718ABFF81ACBDD0B00000DB2 /* CRVINTERGraphicsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 719C30D819F7A9C300E938BA /* CRVINTERGraphicsView.m */; };
+		718ABFF91ACBDD0B00000DB2 /* OKZoomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 718986541963E59400C26297 /* OKZoomView.m */; };
+		718ABFFA1ACBDD0B00000DB2 /* OKTryOnMeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 71D5795B19E5104800E6E2AF /* OKTryOnMeVC.m */; };
+		718ABFFB1ACBDD0B00000DB2 /* OKProductType.m in Sources */ = {isa = PBXBuildFile; fileRef = 7134B71A19A3B3F800BFE754 /* OKProductType.m */; };
+		718ABFFC1ACBDD0B00000DB2 /* BrandModel+Create.m in Sources */ = {isa = PBXBuildFile; fileRef = 7134B71E19A3B3F800BFE754 /* BrandModel+Create.m */; };
+		718ABFFD1ACBDD0B00000DB2 /* OKSettingsTutorialVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 71AE822B1AA5985A009AA806 /* OKSettingsTutorialVC.m */; };
+		718ABFFE1ACBDD0B00000DB2 /* OKWelcomeScreemVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 71899FF51A971C4200150EEF /* OKWelcomeScreemVC.m */; };
+		718ABFFF1ACBDD0B00000DB2 /* CGPointExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 719C30DA19F7A9C300E938BA /* CGPointExtension.m */; };
+		718AC0001ACBDD0B00000DB2 /* OKSelectColorVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 71D002F51A9727AB00E9FDCE /* OKSelectColorVC.m */; };
+		718AC0011ACBDD0B00000DB2 /* UserRecordModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 71840EDD19B8454800F99868 /* UserRecordModel.m */; };
+		718AC0021ACBDD0B00000DB2 /* BrandModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 71840ED719B8454600F99868 /* BrandModel.m */; };
+		718AC0031ACBDD0B00000DB2 /* OKSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 719BCE8B1966F0E9005F575C /* OKSettingsViewController.m */; };
+		718AC0041ACBDD0B00000DB2 /* OKCamViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 712846961A9CC0BE00E39958 /* OKCamViewController.m */; };
+		718AC0051ACBDD0B00000DB2 /* UserRecordModel+Create.m in Sources */ = {isa = PBXBuildFile; fileRef = 713733B519B5E61100542E86 /* UserRecordModel+Create.m */; };
+		718AC0061ACBDD0B00000DB2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 71328AA117C35FD7007EE533 /* main.m */; };
+		718AC0071ACBDD0B00000DB2 /* CoreDataTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7134B71219A3B3A800BFE754 /* CoreDataTableViewController.m */; };
+		718AC0081ACBDD0B00000DB2 /* UIColor+GrayScale.m in Sources */ = {isa = PBXBuildFile; fileRef = 7134B73219A3C8F900BFE754 /* UIColor+GrayScale.m */; };
+		718AC0091ACBDD0B00000DB2 /* ColorModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 71840EDA19B8454800F99868 /* ColorModel.m */; };
+		718AC00A1ACBDD0B00000DB2 /* OKProductJsonType.m in Sources */ = {isa = PBXBuildFile; fileRef = 7152CB51197557640080898F /* OKProductJsonType.m */; };
+		718AC00B1ACBDD0B00000DB2 /* OKAppRater.m in Sources */ = {isa = PBXBuildFile; fileRef = 711A33921AB700E60082075D /* OKAppRater.m */; };
+		718AC00C1ACBDD0B00000DB2 /* OKUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 7136433C195C5E08006EF824 /* OKUtils.m */; };
+		718AC00D1ACBDD0B00000DB2 /* OKAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 71328AA517C35FD7007EE533 /* OKAppDelegate.m */; };
+		718AC00E1ACBDD0B00000DB2 /* AVCamPreviewView.m in Sources */ = {isa = PBXBuildFile; fileRef = 712846981A9CC0BE00E39958 /* AVCamPreviewView.m */; };
+		718AC00F1ACBDD0B00000DB2 /* UIViewController+AutoDissmissAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = 71F5E2431AA4A5C7006E87CF /* UIViewController+AutoDissmissAlert.m */; };
+		718AC0101ACBDD0B00000DB2 /* TapToPointView.m in Sources */ = {isa = PBXBuildFile; fileRef = 719C30E219F7ACE300E938BA /* TapToPointView.m */; };
+		718AC0111ACBDD0B00000DB2 /* ColorModel+Create.m in Sources */ = {isa = PBXBuildFile; fileRef = 7134B71C19A3B3F800BFE754 /* ColorModel+Create.m */; };
+		718AC0121ACBDD0B00000DB2 /* UIBezierPath+Interpolation.m in Sources */ = {isa = PBXBuildFile; fileRef = 719C30DC19F7A9C300E938BA /* UIBezierPath+Interpolation.m */; };
+		718AC0131ACBDD0B00000DB2 /* OKMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 71328AF317C38162007EE533 /* OKMainViewController.m */; };
+		718AC0141ACBDD0B00000DB2 /* UIImage+ImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = 718986571964186500C26297 /* UIImage+ImageEffects.m */; };
+		718AC0151ACBDD0B00000DB2 /* UIView+CreateImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 71063758196C0ED100D17D66 /* UIView+CreateImage.m */; };
+		718AC0161ACBDD0B00000DB2 /* UIImage+AverageColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 71ECEF94195AC2A600872EBC /* UIImage+AverageColor.m */; };
+		718AC0171ACBDD0B00000DB2 /* ColorDataModel.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 7134B71419A3B3F800BFE754 /* ColorDataModel.xcdatamodel */; };
+		718AC0181ACBDD0B00000DB2 /* OKSonuclarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 710735A117C4981400484D21 /* OKSonuclarViewController.m */; };
+		718AC0191ACBDD0B00000DB2 /* OKSonuclarCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 710735A517C49E6800484D21 /* OKSonuclarCell.m */; };
+		718AC01A1ACBDD0B00000DB2 /* UIColor+HexTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 712846A71A9CC91400E39958 /* UIColor+HexTool.m */; };
+		718AC01C1ACBDD0B00000DB2 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 712846AB1A9CCF4200E39958 /* CoreMedia.framework */; };
+		718AC01D1ACBDD0B00000DB2 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 712846A91A9CCDF700E39958 /* CoreVideo.framework */; };
+		718AC01E1ACBDD0B00000DB2 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 712846A31A9CC20400E39958 /* AVFoundation.framework */; };
+		718AC01F1ACBDD0B00000DB2 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7134B72F19A3C27200BFE754 /* CoreData.framework */; };
+		718AC0201ACBDD0B00000DB2 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71898659196419C100C26297 /* Accelerate.framework */; };
+		718AC0211ACBDD0B00000DB2 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71364337195C3B93006EF824 /* QuartzCore.framework */; };
+		718AC0221ACBDD0B00000DB2 /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71328AF917C3A5B8007EE533 /* CoreImage.framework */; };
+		718AC0231ACBDD0B00000DB2 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71328AF017C36E92007EE533 /* MobileCoreServices.framework */; };
+		718AC0241ACBDD0B00000DB2 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71328A9517C35FD7007EE533 /* UIKit.framework */; };
+		718AC0251ACBDD0B00000DB2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71328A9717C35FD7007EE533 /* Foundation.framework */; };
+		718AC0261ACBDD0B00000DB2 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71328A9917C35FD7007EE533 /* CoreGraphics.framework */; };
+		718AC0281ACBDD0B00000DB2 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 71328A9E17C35FD7007EE533 /* InfoPlist.strings */; };
+		718AC0291ACBDD0B00000DB2 /* search_white_navbar.png in Resources */ = {isa = PBXBuildFile; fileRef = 71D002F71A97740800E9FDCE /* search_white_navbar.png */; };
+		718AC02A1ACBDD0B00000DB2 /* ImageAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7193555B19654DFC0040F48D /* ImageAssets.xcassets */; };
+		718AC02B1ACBDD0B00000DB2 /* persistentStore in Resources */ = {isa = PBXBuildFile; fileRef = 71840EDF19B84B7800F99868 /* persistentStore */; };
+		718AC02C1ACBDD0B00000DB2 /* Untitled-1.png in Resources */ = {isa = PBXBuildFile; fileRef = 7128469A1A9CC0BE00E39958 /* Untitled-1.png */; };
+		718AC02D1ACBDD0B00000DB2 /* switch_camera.png in Resources */ = {isa = PBXBuildFile; fileRef = 712846A11A9CC18200E39958 /* switch_camera.png */; };
+		718AC02E1ACBDD0B00000DB2 /* localized.strings in Resources */ = {isa = PBXBuildFile; fileRef = 71695311196E64C100C988E5 /* localized.strings */; };
+		718AC02F1ACBDD0B00000DB2 /* final_effect_2.png in Resources */ = {isa = PBXBuildFile; fileRef = 718986651964592B00C26297 /* final_effect_2.png */; };
+		718AC0301ACBDD0B00000DB2 /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71328AAD17C35FD7007EE533 /* MainStoryboard_iPhone.storyboard */; };
+		718AC0311ACBDD0B00000DB2 /* overlaygraphic.png in Resources */ = {isa = PBXBuildFile; fileRef = 7128469B1A9CC0BE00E39958 /* overlaygraphic.png */; };
+		718AC0321ACBDD0B00000DB2 /* switch_camera_white.png in Resources */ = {isa = PBXBuildFile; fileRef = 712846991A9CC0BE00E39958 /* switch_camera_white.png */; };
+		718AC0331ACBDD0B00000DB2 /* home-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 71A7FF8D1A9E0178005097DC /* home-icon.png */; };
+		718AC03D1ACBE1E900000DB2 /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 718ABFF41ACBDC7900000DB2 /* iAd.framework */; };
 		7193555C19654DFC0040F48D /* ImageAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7193555B19654DFC0040F48D /* ImageAssets.xcassets */; };
 		719BCE8C1966F0E9005F575C /* OKSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 719BCE8B1966F0E9005F575C /* OKSettingsViewController.m */; };
 		719C30DD19F7A9C300E938BA /* CRVINTERGraphicsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 719C30D819F7A9C300E938BA /* CRVINTERGraphicsView.m */; };
@@ -142,6 +201,9 @@
 		718986651964592B00C26297 /* final_effect_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = final_effect_2.png; sourceTree = "<group>"; };
 		71899FF41A971C4200150EEF /* OKWelcomeScreemVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKWelcomeScreemVC.h; sourceTree = "<group>"; };
 		71899FF51A971C4200150EEF /* OKWelcomeScreemVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKWelcomeScreemVC.m; sourceTree = "<group>"; };
+		718ABFF31ACBDC0D00000DB2 /* Saç Boyam Free-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Saç Boyam Free-Info.plist"; path = "/Users/oguzhank/Dropbox/iOS-Projects/Sac Boyam/Saç Boyam Free-Info.plist"; sourceTree = "<absolute>"; };
+		718ABFF41ACBDC7900000DB2 /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
+		718AC0371ACBDD0B00000DB2 /* Saç Boyam Free.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Saç Boyam Free.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7193555B19654DFC0040F48D /* ImageAssets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = ImageAssets.xcassets; path = ../ImageAssets.xcassets; sourceTree = "<group>"; };
 		719BCE8A1966F0E9005F575C /* OKSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OKSettingsViewController.h; path = ../OKSettingsViewController.h; sourceTree = "<group>"; };
 		719BCE8B1966F0E9005F575C /* OKSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OKSettingsViewController.m; path = ../OKSettingsViewController.m; sourceTree = "<group>"; };
@@ -183,6 +245,25 @@
 				71328A9617C35FD7007EE533 /* UIKit.framework in Frameworks */,
 				71328A9817C35FD7007EE533 /* Foundation.framework in Frameworks */,
 				71328A9A17C35FD7007EE533 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		718AC01B1ACBDD0B00000DB2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				718AC03D1ACBE1E900000DB2 /* iAd.framework in Frameworks */,
+				718AC01C1ACBDD0B00000DB2 /* CoreMedia.framework in Frameworks */,
+				718AC01D1ACBDD0B00000DB2 /* CoreVideo.framework in Frameworks */,
+				718AC01E1ACBDD0B00000DB2 /* AVFoundation.framework in Frameworks */,
+				718AC01F1ACBDD0B00000DB2 /* CoreData.framework in Frameworks */,
+				718AC0201ACBDD0B00000DB2 /* Accelerate.framework in Frameworks */,
+				718AC0211ACBDD0B00000DB2 /* QuartzCore.framework in Frameworks */,
+				718AC0221ACBDD0B00000DB2 /* CoreImage.framework in Frameworks */,
+				718AC0231ACBDD0B00000DB2 /* MobileCoreServices.framework in Frameworks */,
+				718AC0241ACBDD0B00000DB2 /* UIKit.framework in Frameworks */,
+				718AC0251ACBDD0B00000DB2 /* Foundation.framework in Frameworks */,
+				718AC0261ACBDD0B00000DB2 /* CoreGraphics.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -230,6 +311,7 @@
 			isa = PBXGroup;
 			children = (
 				71328A9217C35FD7007EE533 /* Saç Boyam.app */,
+				718AC0371ACBDD0B00000DB2 /* Saç Boyam Free.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -237,6 +319,7 @@
 		71328A9417C35FD7007EE533 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				718ABFF41ACBDC7900000DB2 /* iAd.framework */,
 				712846AB1A9CCF4200E39958 /* CoreMedia.framework */,
 				712846A91A9CCDF700E39958 /* CoreVideo.framework */,
 				712846A31A9CC20400E39958 /* AVFoundation.framework */,
@@ -280,6 +363,7 @@
 			isa = PBXGroup;
 			children = (
 				71328A9D17C35FD7007EE533 /* Saç Boyam-Info.plist */,
+				718ABFF31ACBDC0D00000DB2 /* Saç Boyam Free-Info.plist */,
 				71328A9E17C35FD7007EE533 /* InfoPlist.strings */,
 				71328AA117C35FD7007EE533 /* main.m */,
 				71328AA317C35FD7007EE533 /* Saç Boyam-Prefix.pch */,
@@ -421,6 +505,23 @@
 			productReference = 71328A9217C35FD7007EE533 /* Saç Boyam.app */;
 			productType = "com.apple.product-type.application";
 		};
+		718ABFF61ACBDD0B00000DB2 /* Saç Boyam Free */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 718AC0341ACBDD0B00000DB2 /* Build configuration list for PBXNativeTarget "Saç Boyam Free" */;
+			buildPhases = (
+				718ABFF71ACBDD0B00000DB2 /* Sources */,
+				718AC01B1ACBDD0B00000DB2 /* Frameworks */,
+				718AC0271ACBDD0B00000DB2 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Saç Boyam Free";
+			productName = "Sac Boyam";
+			productReference = 718AC0371ACBDD0B00000DB2 /* Saç Boyam Free.app */;
+			productType = "com.apple.product-type.application";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -456,6 +557,7 @@
 			projectRoot = "";
 			targets = (
 				71328A9117C35FD7007EE533 /* Saç Boyam */,
+				718ABFF61ACBDD0B00000DB2 /* Saç Boyam Free */,
 			);
 		};
 /* End PBXProject section */
@@ -477,6 +579,25 @@
 				712846A01A9CC0BE00E39958 /* overlaygraphic.png in Resources */,
 				7128469E1A9CC0BE00E39958 /* switch_camera_white.png in Resources */,
 				71A7FF8E1A9E0178005097DC /* home-icon.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		718AC0271ACBDD0B00000DB2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				718AC0281ACBDD0B00000DB2 /* InfoPlist.strings in Resources */,
+				718AC0291ACBDD0B00000DB2 /* search_white_navbar.png in Resources */,
+				718AC02A1ACBDD0B00000DB2 /* ImageAssets.xcassets in Resources */,
+				718AC02B1ACBDD0B00000DB2 /* persistentStore in Resources */,
+				718AC02C1ACBDD0B00000DB2 /* Untitled-1.png in Resources */,
+				718AC02D1ACBDD0B00000DB2 /* switch_camera.png in Resources */,
+				718AC02E1ACBDD0B00000DB2 /* localized.strings in Resources */,
+				718AC02F1ACBDD0B00000DB2 /* final_effect_2.png in Resources */,
+				718AC0301ACBDD0B00000DB2 /* MainStoryboard_iPhone.storyboard in Resources */,
+				718AC0311ACBDD0B00000DB2 /* overlaygraphic.png in Resources */,
+				718AC0321ACBDD0B00000DB2 /* switch_camera_white.png in Resources */,
+				718AC0331ACBDD0B00000DB2 /* home-icon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -522,6 +643,48 @@
 				710735A217C4981400484D21 /* OKSonuclarViewController.m in Sources */,
 				710735A617C49E6800484D21 /* OKSonuclarCell.m in Sources */,
 				712846A81A9CC91400E39958 /* UIColor+HexTool.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		718ABFF71ACBDD0B00000DB2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				718ABFF81ACBDD0B00000DB2 /* CRVINTERGraphicsView.m in Sources */,
+				718ABFF91ACBDD0B00000DB2 /* OKZoomView.m in Sources */,
+				718ABFFA1ACBDD0B00000DB2 /* OKTryOnMeVC.m in Sources */,
+				718ABFFB1ACBDD0B00000DB2 /* OKProductType.m in Sources */,
+				718ABFFC1ACBDD0B00000DB2 /* BrandModel+Create.m in Sources */,
+				718ABFFD1ACBDD0B00000DB2 /* OKSettingsTutorialVC.m in Sources */,
+				718ABFFE1ACBDD0B00000DB2 /* OKWelcomeScreemVC.m in Sources */,
+				718ABFFF1ACBDD0B00000DB2 /* CGPointExtension.m in Sources */,
+				718AC0001ACBDD0B00000DB2 /* OKSelectColorVC.m in Sources */,
+				718AC0011ACBDD0B00000DB2 /* UserRecordModel.m in Sources */,
+				718AC0021ACBDD0B00000DB2 /* BrandModel.m in Sources */,
+				718AC0031ACBDD0B00000DB2 /* OKSettingsViewController.m in Sources */,
+				718AC0041ACBDD0B00000DB2 /* OKCamViewController.m in Sources */,
+				718AC0051ACBDD0B00000DB2 /* UserRecordModel+Create.m in Sources */,
+				718AC0061ACBDD0B00000DB2 /* main.m in Sources */,
+				718AC0071ACBDD0B00000DB2 /* CoreDataTableViewController.m in Sources */,
+				718AC0081ACBDD0B00000DB2 /* UIColor+GrayScale.m in Sources */,
+				718AC0091ACBDD0B00000DB2 /* ColorModel.m in Sources */,
+				718AC00A1ACBDD0B00000DB2 /* OKProductJsonType.m in Sources */,
+				718AC00B1ACBDD0B00000DB2 /* OKAppRater.m in Sources */,
+				718AC00C1ACBDD0B00000DB2 /* OKUtils.m in Sources */,
+				718AC00D1ACBDD0B00000DB2 /* OKAppDelegate.m in Sources */,
+				718AC00E1ACBDD0B00000DB2 /* AVCamPreviewView.m in Sources */,
+				718AC00F1ACBDD0B00000DB2 /* UIViewController+AutoDissmissAlert.m in Sources */,
+				718AC0101ACBDD0B00000DB2 /* TapToPointView.m in Sources */,
+				718AC0111ACBDD0B00000DB2 /* ColorModel+Create.m in Sources */,
+				718AC0121ACBDD0B00000DB2 /* UIBezierPath+Interpolation.m in Sources */,
+				718AC0131ACBDD0B00000DB2 /* OKMainViewController.m in Sources */,
+				718AC0141ACBDD0B00000DB2 /* UIImage+ImageEffects.m in Sources */,
+				718AC0151ACBDD0B00000DB2 /* UIView+CreateImage.m in Sources */,
+				718AC0161ACBDD0B00000DB2 /* UIImage+AverageColor.m in Sources */,
+				718AC0171ACBDD0B00000DB2 /* ColorDataModel.xcdatamodel in Sources */,
+				718AC0181ACBDD0B00000DB2 /* OKSonuclarViewController.m in Sources */,
+				718AC0191ACBDD0B00000DB2 /* OKSonuclarCell.m in Sources */,
+				718AC01A1ACBDD0B00000DB2 /* UIColor+HexTool.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -585,6 +748,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_CFLAGS = "";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -610,6 +774,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				"OTHER_CFLAGS[arch=*]" = "";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -652,6 +817,47 @@
 			};
 			name = Release;
 		};
+		718AC0351ACBDD0B00000DB2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-Free";
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Sac Boyam/Saç Boyam-Prefix.pch";
+				INFOPLIST_FILE = "Saç Boyam Free-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				"OTHER_CFLAGS[arch=*]" = "-DLITE_VERSION=1";
+				PRODUCT_NAME = "Saç Boyam Free";
+				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = 1;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		718AC0361ACBDD0B00000DB2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-Free";
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Sac Boyam/Saç Boyam-Prefix.pch";
+				INFOPLIST_FILE = "Saç Boyam Free-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				"OTHER_CFLAGS[arch=*]" = (
+					"-DNS_BLOCK_ASSERTIONS=1",
+					"-DLITE_VERSION=1",
+				);
+				PRODUCT_NAME = "Saç Boyam Free";
+				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = 1;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -669,6 +875,15 @@
 			buildConfigurations = (
 				71328AB917C35FD7007EE533 /* Debug */,
 				71328ABA17C35FD7007EE533 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		718AC0341ACBDD0B00000DB2 /* Build configuration list for PBXNativeTarget "Saç Boyam Free" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				718AC0351ACBDD0B00000DB2 /* Debug */,
+				718AC0361ACBDD0B00000DB2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

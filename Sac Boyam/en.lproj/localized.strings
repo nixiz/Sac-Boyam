@@ -60,4 +60,6 @@
 "rateAppCancelButton" = "No, thanks";
 "rateAppLaterButton" = "Remind me later";
 "rateAppOkButton" = "Rate Saç Boyam";
+"purchaseAppMessage" = "Uzgunum! Bedava anca bu kadar. Daha fazlasini istiyorsan satin almalisin dostum.\nHa bu arada, asagidaki reklama tiklayarak 2 hak daha kazanabilirsin ;)";
+"purchaseButton" = "Sar";
 "lang" = "en";

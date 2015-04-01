@@ -21,6 +21,7 @@
 #import "OKSettingsTutorialVC.h"
 #import "OKAppRater.h"
 
+
 #define ARC4RANDOM_MAX	0x100000000
 #define indexForProductName   0
 //#define indexForProductDetail 1
@@ -39,7 +40,6 @@
 
 @property (strong, nonatomic) NSDictionary *framesDictionary;
 @property (strong, nonatomic) NSDictionary *explanationsDictionary;
-
 @end
 
 @implementation OKSonuclarViewController
@@ -129,6 +129,7 @@
   self.navigationItem.rightBarButtonItems = @[settingsBtn, infoBtn];
   self.view.backgroundColor = [self.view getBackgroundColor];
   self.tableView.sectionIndexBackgroundColor = [UIColor clearColor];
+
   [[OKAppRater sharedInstance] increaseTimeOfUse];
 }
 
@@ -303,6 +304,18 @@
 
 #pragma mark - Navigation
 
+#ifdef LITE_VERSION
+-(BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender
+{
+  if ([identifier isEqualToString:@"tryOnMeSegue"])
+  {
+    [[OKAppRater sharedInstance] askForPurchase];
+    return NO;
+  }
+  return YES;
+}
+#endif
+
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
   if ([[segue identifier] isEqualToString:@"resultDetailSegue"]) {
@@ -333,5 +346,4 @@
     NSLog(@"Unidentified segue raised with name %@", [segue identifier]);
   }
 }
-
 @end

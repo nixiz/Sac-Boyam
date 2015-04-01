@@ -16,6 +16,7 @@
 #import "Sac Boyam/UIView+CreateImage.h"
 #import "UIImage+AverageColor.h"
 #import "OKSettingsTutorialVC.h"
+#import "OKAppRater.h"
 
 @interface OKSettingsViewController () <UITableViewDataSource, UITableViewDelegate, UIAlertViewDelegate>
 @property (strong, nonatomic) NSDictionary *settingsMap;
@@ -125,7 +126,8 @@
   [self performSegueWithIdentifier:@"SettingsTutorialSegue" sender:nil];
 }
 
-- (IBAction)switchValueChanged:(id)sender {
+- (IBAction)switchValueChanged:(id)sender
+{
   UISwitch *_switch = (UISwitch *)sender;
   NSLog(@"Switch with Tag %ld value chaged to %@", (long)_switch.tag, _switch.on == YES ? @"YES" : @"NO");
   NSString *keyString;
@@ -146,6 +148,15 @@
       keyString = editPhotosKey;
       break;
   }
+  
+#ifdef LITE_VERSION
+  if ([keyString isEqualToString:findOnTapKey] || [keyString isEqualToString:takeRecordKey]) {
+    [[OKAppRater sharedInstance] askForPurchase];
+    [_switch setOn:!_switch.on animated:YES];
+    return;
+  }
+#endif
+  
   if ([keyString isEqualToString:takeRecordKey] && !_switch.on) {
     //eger take record kapatildiysa
     //NSString *completionMessage = NSLocalizedStringFromTable(@"imageSavedSuccessfully", okStringsTableName, nil);

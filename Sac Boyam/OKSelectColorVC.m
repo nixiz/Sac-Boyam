@@ -17,10 +17,19 @@
 #import "OKSonuclarViewController.h"
 #import "OKAppDelegate.h"
 #import "UIViewController+AutoDissmissAlert.h"
+#import "OKAppRater.h"
+
+#ifdef LITE_VERSION
+#import <iAd/iAd.h>
+#endif
 
 #define MaximumAllowedNonFoundTapCount 6
 
+#ifdef LITE_VERSION
+@interface OKSelectColorVC () <OKSettingsDelegate, UIAlertViewDelegate, ADBannerViewDelegate>
+#else
 @interface OKSelectColorVC () <OKSettingsDelegate, UIAlertViewDelegate>
+#endif
 @property (strong, nonatomic) OKZoomView *myView;
 @property (strong) UIColor *color;
 
@@ -29,6 +38,9 @@
 @property (nonatomic) BOOL findOnTap;
 @property (nonatomic) BOOL cameFirstTime;
 @property (nonatomic) NSInteger nonFoundTapCount;
+#ifdef LITE_VERSION
+@property (strong, nonatomic) ADBannerView *bannerView;
+#endif
 @end
 
 @implementation OKSelectColorVC
@@ -70,6 +82,12 @@
   
   self.navigationItem.rightBarButtonItems = @[fixedBtnItem, searchBtn];
   self.cameFirstTime = NO;
+  
+#ifdef LITE_VERSION
+  self.bannerView = [[ADBannerView alloc] initWithAdType:ADAdTypeBanner];
+  self.bannerView.delegate = self;
+  [self.view addSubview:self.bannerView];
+#endif  
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -83,7 +101,10 @@
     self.cameFirstTime = YES;
     [self showTutorialWithWelcomeScreen:YES];
   }
-
+#ifdef LITE_VERSION
+  self.bannerView.delegate = self;
+#endif
+  [self layoutAnimated:NO];
 }
 
 -(void)viewDidLayoutSubviews
@@ -101,7 +122,7 @@
 //    NSLog(@"Re Scaled Image Size: %@", NSStringFromCGSize(imageToBeShow.size));
     [self.imageView setImage:imageToBeShow];
   }
- 
+  [self layoutAnimated:[UIView areAnimationsEnabled]];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -136,7 +157,9 @@
 - (void)findForSelectedColor
 {
   if (self.color) {
-    [self performSegueWithIdentifier:@"resultsSegue" sender:self];
+    if ([[OKAppRater sharedInstance] tryIncreaseAndUseForThisTime]) {
+      [self performSegueWithIdentifier:@"resultsSegue" sender:self];
+    }
   } else {
 //    UIPopoverController *popVc = [[UIPopoverController alloc] initWithContentViewController:self];
 //    popVc.delegate = self;
@@ -322,4 +345,54 @@
   }
 }
 
+#pragma mark - iAdNetwork Methods
+#ifdef LITE_VERSION
+- (void)layoutAnimated:(BOOL)animated
+{
+//  CGRect contentFrame = self.view.bounds;
+  CGRect bannerFrame = _bannerView.frame;
+  if (_bannerView.bannerLoaded) {
+//    contentFrame.size.height -= self.bannerView.frame.size.height;
+    bannerFrame.origin.y = self.view.bounds.size.height - self.bannerView.frame.size.height;
+  } else {
+    bannerFrame.origin.y = self.view.bounds.size.height;
+  }
+  
+  [UIView animateWithDuration:animated ? 0.25 : 0 animations:^{
+    [self.view layoutIfNeeded];
+    _bannerView.frame = bannerFrame;
+    [_bannerView layoutIfNeeded];
+  }];
+}
+
+- (void)bannerViewDidLoadAd:(ADBannerView *)banner
+{
+  NSLog(@"bannerViewDidLoadAd");
+  [self layoutAnimated:YES];
+}
+
+- (void)bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:(NSError *)error
+{
+  NSLog(@"bannerView:didFailToReceiveAdWithError: %@", [error debugDescription]);
+  [self layoutAnimated:YES];
+}
+
+- (BOOL)bannerViewActionShouldBegin:(ADBannerView *)banner willLeaveApplication:(BOOL)willLeave
+{
+  NSLog(@"bannerViewActionShouldBegin:willLeaveApp:%@", @(willLeave));
+  [[OKAppRater sharedInstance] resetColorFoundKey];
+  return YES;
+}
+
+- (void)bannerViewActionDidFinish:(ADBannerView *)banner
+{
+  NSLog(@"bannerViewActionDidFinish");
+//  [self startTimer];
+}
+#else
+- (void)layoutAnimated:(BOOL)animated
+{
+  //do nothing!
+}
+#endif
 @end
