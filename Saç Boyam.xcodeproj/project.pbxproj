@@ -535,6 +535,9 @@
 					71328A9117C35FD7007EE533 = {
 						DevelopmentTeam = J2YDNSCTAL;
 					};
+					718ABFF61ACBDD0B00000DB2 = {
+						DevelopmentTeam = J2YDNSCTAL;
+					};
 				};
 			};
 			buildConfigurationList = 71328A8D17C35FD7007EE533 /* Build configuration list for PBXProject "Saç Boyam" */;

@@ -15,9 +15,14 @@
 #import "OKSettingsViewController.h"
 #import "OKCamViewController.h"
 #import "OKAppRater.h"
+
 #import "OKAppDelegate.h"
 
+#ifdef LITE_VERSION
 @interface OKWelcomeScreemVC () <UIImagePickerControllerDelegate, UINavigationControllerDelegate, OKSettingsDelegate, UIAlertViewDelegate, BannerViewController_Delegate>
+#else
+@interface OKWelcomeScreemVC () <UIImagePickerControllerDelegate, UINavigationControllerDelegate, OKSettingsDelegate, UIAlertViewDelegate>
+#endif
 - (IBAction)selectPicFromLibrary:(id)sender;
 @property (weak, nonatomic) IBOutlet UIButton *cameraButton;
 @property (nonatomic) UIImage *pickedImage;
@@ -265,12 +270,18 @@
 
 - (void)willBeginBannerViewActionNotification:(NSNotification *)notification
 {
-  NSLog(@"willBeginBannerViewActionNotification");
+  if (self.isViewLoaded && (self.view.window != nil))
+  {
+    NSLog(@"willBeginBannerViewActionNotification");
+  }
 }
 
 - (void)didFinishBannerViewActionNotification:(NSNotification *)notification
 {
-  NSLog(@"didFinishBannerViewActionNotification");
+  if (self.isViewLoaded && (self.view.window != nil))
+  {
+    NSLog(@"didFinishBannerViewActionNotification");
+  }
 }
 #endif
 //- (void)acceptChangedSetings

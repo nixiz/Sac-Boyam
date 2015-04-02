@@ -13,8 +13,11 @@
 #import "OKAppRater.h"
 //#import "OKInfoViewController.h"
 
-NSString * const BannerViewActionWillBegin = @"BannerViewActionWillBegin";
-NSString * const BannerViewActionDidFinish = @"BannerViewActionDidFinish";
+#ifdef LITE_VERSION
+NSString * const BannerViewActionWillBegin    = @"BannerViewActionWillBegin";
+NSString * const BannerViewActionDidFinish    = @"BannerViewActionDidFinish";
+NSString * const BannerViewLoadedSuccessfully = @"BannerViewLoadedSuccessfully";
+NSString * const BannerViewNotLoaded          = @"BannerViewNotLoaded";
 
 @implementation BannerViewManager {
   ADBannerView *_bannerView;
@@ -61,9 +64,11 @@ NSString * const BannerViewActionDidFinish = @"BannerViewActionDidFinish";
 
 - (void)bannerViewDidLoadAd:(ADBannerView *)banner
 {
+  NSLog(@"Banner loaded successfully!");
   for (id<BannerViewController_Delegate> bvc in _bannerViewControllers) {
     [bvc updateLayout];
   }
+  [[NSNotificationCenter defaultCenter] postNotificationName:BannerViewLoadedSuccessfully object:self];
 }
 
 - (void)bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:(NSError *)error
@@ -72,6 +77,7 @@ NSString * const BannerViewActionDidFinish = @"BannerViewActionDidFinish";
   for (id<BannerViewController_Delegate> bvc in _bannerViewControllers) {
     [bvc updateLayout];
   }
+  [[NSNotificationCenter defaultCenter] postNotificationName:BannerViewNotLoaded object:self];
 }
 
 - (BOOL)bannerViewActionShouldBegin:(ADBannerView *)banner willLeaveApplication:(BOOL)willLeave
@@ -86,6 +92,7 @@ NSString * const BannerViewActionDidFinish = @"BannerViewActionDidFinish";
 }
 
 @end
+#endif
 
 @implementation OKAppDelegate
 
@@ -105,7 +112,8 @@ NSString * const BannerViewActionDidFinish = @"BannerViewActionDidFinish";
                                  remindMeLaterKey: @NO,
                                  userDidRatedKey: @NO,
                                  numberOfColorFoundsInOneDayKey: @0,
-                                 maximumAllowedUsageInOneDayKey: @3
+                                 maximumAllowedUsageInOneDayKey: @3,
+                                 lastTimeAskedForPurchaseDateKey: [NSDate date]
                                  };
 #else
   NSDictionary *userDefaults = @{savePhotosKey: @NO,
@@ -121,11 +129,11 @@ NSString * const BannerViewActionDidFinish = @"BannerViewActionDidFinish";
                                  remindMeLaterKey: @NO,
                                  userDidRatedKey: @NO,
                                  numberOfColorFoundsInOneDayKey: @0,
-                                 maximumAllowedUsageInOneDayKey: @3
+                                 maximumAllowedUsageInOneDayKey: @3,
+                                 lastTimeAskedForPurchaseDateKey: [NSDate date]
                                  };
 #endif
   [[NSUserDefaults standardUserDefaults] registerDefaults:userDefaults];
-  [[NSUserDefaults standardUserDefaults] setInteger:0 forKey:numberOfColorFoundsInOneDayKey];
 //#if DEBUG
 //  [[NSUserDefaults standardUserDefaults] setBool:NO forKey:remindMeLaterKey];
 //  [[NSUserDefaults standardUserDefaults] setBool:NO forKey:userDidRatedKey];
@@ -134,8 +142,15 @@ NSString * const BannerViewActionDidFinish = @"BannerViewActionDidFinish";
 //#endif
   [[OKAppRater sharedInstance] initiateInstanceForAppID:appID localizationTableName:okStringsTableName];
   
+#ifdef LITE_VERSION
   //create dummy instance for singleton initialization.
+  NSDate *lastRemindDate = [[NSUserDefaults standardUserDefaults] objectForKey:lastTimeAskedForPurchaseDateKey];
+  NSInteger betweenDays = [OKUtils daysBetweenDate:lastRemindDate andDate:[NSDate date]];
+  if (betweenDays) {
+    [[NSUserDefaults standardUserDefaults] setInteger:0 forKey:numberOfColorFoundsInOneDayKey];
+  }
   BannerViewManager *bannerManager = [BannerViewManager sharedInstance];
+#endif
   return YES;
 }
 							

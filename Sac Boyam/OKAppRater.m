@@ -148,10 +148,11 @@
   UIAlertView *rateThisAppAlert = [[UIAlertView alloc] initWithTitle:@"Saç Boyam"
                                                              message:NSLocalizedStringFromTable(@"purchaseAppMessage", self.localizedTableName, nil)
                                                             delegate:self
-                                                   cancelButtonTitle:NSLocalizedStringFromTable(@"rateAppCancelButton", self.localizedTableName, nil)
-                                                   otherButtonTitles:NSLocalizedStringFromTable(@"purchaseButton", self.localizedTableName, nil), nil];
+                                                   cancelButtonTitle:NSLocalizedStringFromTable(@"purchaseButton", self.localizedTableName, nil)
+                                                   otherButtonTitles:NSLocalizedStringFromTable(@"rateAppCancelButton", self.localizedTableName, nil), nil];
   [rateThisAppAlert setTag:alertViewTagNumberForPurchase];
   [rateThisAppAlert show];
+  [[NSUserDefaults standardUserDefaults] setObject:[NSDate date] forKey:lastTimeAskedForPurchaseDateKey];
 #endif
 }
 
@@ -164,8 +165,15 @@
   
   if (timesOfUse >= maximumAllowedUsage)
   {
-    [self askForPurchase];
-//    [[NSUserDefaults standardUserDefaults] setInteger:1 forKey:numberOfColorFoundsInOneDayKey];
+    NSString *purchaseMessage = [NSString stringWithFormat:@"%@\n\n%@", NSLocalizedStringFromTable(@"purchaseAppMessage", self.localizedTableName, nil), NSLocalizedStringFromTable(@"getTwoExtraShotMessage", self.localizedTableName, nil)];
+    UIAlertView *rateThisAppAlert = [[UIAlertView alloc] initWithTitle:@"Saç Boyam"
+                                                               message:purchaseMessage
+                                                              delegate:self
+                                                     cancelButtonTitle:NSLocalizedStringFromTable(@"purchaseButton", self.localizedTableName, nil)
+                                                     otherButtonTitles:NSLocalizedStringFromTable(@"rateAppCancelButton", self.localizedTableName, nil), nil];
+    [rateThisAppAlert setTag:alertViewTagNumberForPurchase];
+    [rateThisAppAlert show];
+    [[NSUserDefaults standardUserDefaults] setObject:[NSDate date] forKey:lastTimeAskedForPurchaseDateKey];
     return NO;
   }
 #endif

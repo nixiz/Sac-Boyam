@@ -7,12 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <iAd/iAd.h>
+
 
 static NSString * const okStringsTableName = @"localized";
 static NSString * const appID = @"id921525192";
+
+#ifdef LITE_VERSION
+#import <iAd/iAd.h>
 extern NSString * const BannerViewActionWillBegin;
 extern NSString * const BannerViewActionDidFinish;
+extern NSString * const BannerViewLoadedSuccessfully;
+extern NSString * const BannerViewNotLoaded;
 
 @protocol BannerViewController_Delegate <NSObject>
 -(void)updateLayout;
@@ -28,6 +33,7 @@ extern NSString * const BannerViewActionDidFinish;
 - (void)removeBannerViewController:(id<BannerViewController_Delegate>) controller;
 
 @end
+#endif
 
 @interface OKAppDelegate : UIResponder <UIApplicationDelegate>
 

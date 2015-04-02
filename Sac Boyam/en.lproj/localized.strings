@@ -60,6 +60,7 @@
 "rateAppCancelButton" = "No, thanks";
 "rateAppLaterButton" = "Remind me later";
 "rateAppOkButton" = "Rate Saç Boyam";
-"purchaseAppMessage" = "Uzgunum! Bedava anca bu kadar. Daha fazlasini istiyorsan satin almalisin dostum.\nHa bu arada, asagidaki reklama tiklayarak 2 hak daha kazanabilirsin ;)";
-"purchaseButton" = "Sar";
+"purchaseAppMessage" = "Sorry! To open all features and try dyes on your hair ability, please get the full version";
+"getTwoExtraShotMessage" = "To get 2 more attemp wait for tomorrow or just tap on advertisement at the bottom";
+"purchaseButton" = "Get Full Version!";
 "lang" = "en";

@@ -19,17 +19,17 @@
 #import "UIViewController+AutoDissmissAlert.h"
 #import "OKAppRater.h"
 
-#ifdef LITE_VERSION
-#import <iAd/iAd.h>
-#endif
+//#ifdef LITE_VERSION
+//#import <iAd/iAd.h>
+//#endif
 
 #define MaximumAllowedNonFoundTapCount 6
 
-#ifdef LITE_VERSION
-@interface OKSelectColorVC () <OKSettingsDelegate, UIAlertViewDelegate, ADBannerViewDelegate>
-#else
+//#ifdef LITE_VERSION
+//@interface OKSelectColorVC () <OKSettingsDelegate, UIAlertViewDelegate, ADBannerViewDelegate>
+//#else
 @interface OKSelectColorVC () <OKSettingsDelegate, UIAlertViewDelegate>
-#endif
+//#endif
 @property (strong, nonatomic) OKZoomView *myView;
 @property (strong) UIColor *color;
 
@@ -39,7 +39,7 @@
 @property (nonatomic) BOOL cameFirstTime;
 @property (nonatomic) NSInteger nonFoundTapCount;
 #ifdef LITE_VERSION
-@property (strong, nonatomic) ADBannerView *bannerView;
+//@property (strong, nonatomic) ADBannerView *bannerView;
 #endif
 @end
 
@@ -84,10 +84,15 @@
   self.cameFirstTime = NO;
   
 #ifdef LITE_VERSION
-  self.bannerView = [[ADBannerView alloc] initWithAdType:ADAdTypeBanner];
-  self.bannerView.delegate = self;
-  [self.view addSubview:self.bannerView];
-#endif  
+//  self.bannerView = [[ADBannerView alloc] initWithAdType:ADAdTypeBanner];
+//  self.bannerView.delegate = self;
+//  [self.view addSubview:self.bannerView];
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(willBeginBannerViewActionNotification:) name:BannerViewActionWillBegin object:nil];
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didFinishBannerViewActionNotification:) name:BannerViewActionDidFinish object:nil];
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(bannerViewLoadStateChanged:) name:BannerViewLoadedSuccessfully object:nil];
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(bannerViewLoadStateChanged:) name:BannerViewNotLoaded object:nil];
+  [self.view addSubview:[BannerViewManager sharedInstance].bannerView];
+#endif
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -102,9 +107,10 @@
     [self showTutorialWithWelcomeScreen:YES];
   }
 #ifdef LITE_VERSION
-  self.bannerView.delegate = self;
-#endif
+//  self.bannerView.delegate = self;
+  [self.view addSubview:[BannerViewManager sharedInstance].bannerView];
   [self layoutAnimated:NO];
+#endif
 }
 
 -(void)viewDidLayoutSubviews
@@ -122,7 +128,9 @@
 //    NSLog(@"Re Scaled Image Size: %@", NSStringFromCGSize(imageToBeShow.size));
     [self.imageView setImage:imageToBeShow];
   }
+#ifdef LITE_VERSION
   [self layoutAnimated:[UIView areAnimationsEnabled]];
+#endif
 }
 
 - (void)didReceiveMemoryWarning {
@@ -200,6 +208,9 @@
   UITouch *touch = [[touches allObjects] objectAtIndex:0];
   CGPoint point = [touch locationInView:self.view];
 
+  //eger banner view varsa ve basilan nokta banner ise don
+  if (CGRectContainsPoint([BannerViewManager sharedInstance].bannerView.frame, point) && [BannerViewManager sharedInstance].bannerView.bannerLoaded)
+    return;
   /* 
      Eger imageview uzerine eklenmis image'in size i imageview in kendi size i ile
      ayni degil ise, (yani image in size i imageview in size indan daha buyukse gibi)
@@ -350,49 +361,45 @@
 - (void)layoutAnimated:(BOOL)animated
 {
 //  CGRect contentFrame = self.view.bounds;
-  CGRect bannerFrame = _bannerView.frame;
-  if (_bannerView.bannerLoaded) {
+  ADBannerView *__bannerView = [BannerViewManager sharedInstance].bannerView;
+  CGRect bannerFrame = __bannerView.frame;
+  
+  if (__bannerView.bannerLoaded) {
 //    contentFrame.size.height -= self.bannerView.frame.size.height;
-    bannerFrame.origin.y = self.view.bounds.size.height - self.bannerView.frame.size.height;
+    bannerFrame.origin.y = self.view.bounds.size.height - __bannerView.frame.size.height;
   } else {
     bannerFrame.origin.y = self.view.bounds.size.height;
   }
   
   [UIView animateWithDuration:animated ? 0.25 : 0 animations:^{
     [self.view layoutIfNeeded];
-    _bannerView.frame = bannerFrame;
-    [_bannerView layoutIfNeeded];
+//    [__bannerView setNeedsLayout];
+    __bannerView.frame = bannerFrame;
+    [__bannerView layoutIfNeeded];
   }];
 }
 
-- (void)bannerViewDidLoadAd:(ADBannerView *)banner
+- (void)willBeginBannerViewActionNotification:(NSNotification *)notification
 {
-  NSLog(@"bannerViewDidLoadAd");
+  if (self.isViewLoaded && (self.view.window != nil))
+  {
+    NSLog(@"willBeginBannerViewActionNotification");
+    [[OKAppRater sharedInstance] resetColorFoundKey];
+  }
+}
+
+- (void)didFinishBannerViewActionNotification:(NSNotification *)notification
+{
+  if (self.isViewLoaded && (self.view.window != nil))
+  {
+    NSLog(@"didFinishBannerViewActionNotification");
+  }
+}
+
+- (void)bannerViewLoadStateChanged:(NSNotification *)notification
+{
   [self layoutAnimated:YES];
 }
 
-- (void)bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:(NSError *)error
-{
-  NSLog(@"bannerView:didFailToReceiveAdWithError: %@", [error debugDescription]);
-  [self layoutAnimated:YES];
-}
-
-- (BOOL)bannerViewActionShouldBegin:(ADBannerView *)banner willLeaveApplication:(BOOL)willLeave
-{
-  NSLog(@"bannerViewActionShouldBegin:willLeaveApp:%@", @(willLeave));
-  [[OKAppRater sharedInstance] resetColorFoundKey];
-  return YES;
-}
-
-- (void)bannerViewActionDidFinish:(ADBannerView *)banner
-{
-  NSLog(@"bannerViewActionDidFinish");
-//  [self startTimer];
-}
-#else
-- (void)layoutAnimated:(BOOL)animated
-{
-  //do nothing!
-}
 #endif
 @end

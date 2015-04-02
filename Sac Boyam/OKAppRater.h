@@ -15,7 +15,7 @@ static NSString *timesOfNotRatedUsesKey  = @"timesOfNotRatedUsesKey";
 static NSString *userDidRatedKey  = @"userDidRatedKey";
 static NSString *numberOfColorFoundsInOneDayKey  = @"numberOfColorFoundsInOneDayKey";
 static NSString *maximumAllowedUsageInOneDayKey  = @"maximumAllowedUsageInOneDayKey";
-//static NSString *askedForPurchaseForToday  = @"askedForPurchaseForToday";
+static NSString *lastTimeAskedForPurchaseDateKey = @"lastTimeAskedForPurchaseDateKey";
 
 @interface OKAppRater : NSObject <UIAlertViewDelegate>
 

@@ -60,6 +60,7 @@
 "rateAppCancelButton" = "Hayır, teşekkürler";
 "rateAppLaterButton" = "Daha sonra hatırlat";
 "rateAppOkButton" = "Uygulamayı değerlendir";
-"purchaseAppMessage" = "Uzgunum! Bedava anca bu kadar. Daha fazlasini istiyorsan satin almalisin dostum.\nHa bu arada, asagidaki reklama tiklayarak 2 hak daha kazanabilirsin ;)";
-"purchaseButton" = "Sar";
+"purchaseAppMessage" = "Üzgünüm! Bütün özellikleri açmak ve kendi saçınız üstünde deneyebilmek için, Full versiyonu almalısınız";
+"getTwoExtraShotMessage" = "2 ek deneme için yarını aşağıdaki reklama tıklayabilir, ya da yarını bekleyebilirsin";
+"purchaseButton" = "Full Versiyonu Al!";
 "lang" = "tr";
