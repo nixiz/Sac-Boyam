@@ -115,7 +115,8 @@
       [[NSUserDefaults standardUserDefaults] setBool:NO forKey:remindMeLaterKey];
       [[NSUserDefaults standardUserDefaults] setBool:YES forKey:userDidRatedKey];
       [[NSUserDefaults standardUserDefaults] synchronize];
-      NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://itunes.apple.com/app/%@", self.appID]];/*itms-apps://itunes.apple.com/app/%@*/
+      NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://itunes.apple.com/app/%@", self.appID]];
+      /*itms-apps://itunes.apple.com/app/%@*/
       BOOL success = [[UIApplication sharedApplication] openURL:url];
       if (!success) {
         NSLog(@"Failed to open url: %@", [url description]);
@@ -125,7 +126,20 @@
     BOOL isSynced = [[NSUserDefaults standardUserDefaults] synchronize];
     NSLog(@"default values are synced %@", isSynced ? @"successfuly":@"unsuccessfuly");
   } else if (alertView.tag == alertViewTagNumberForPurchase) {
-    //TODO:
+
+    if ([title isEqualToString:NSLocalizedStringFromTable(@"rateAppCancelButton", self.localizedTableName, nil)]) {
+
+      //do nothing
+      
+    } else if ([title isEqualToString:NSLocalizedStringFromTable(@"purchaseButton", self.localizedTableName, nil)]) {
+      NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://itunes.apple.com/app/%@", self.appID]];
+      /*itms-apps://itunes.apple.com/app/%@*/
+      BOOL success = [[UIApplication sharedApplication] openURL:url];
+      if (!success) {
+        NSLog(@"Failed to open url: %@", [url description]);
+      }
+    }
+    
   } else {
     NSLog(@"unknow handle for alert view!\n%@", [alertView debugDescription]);
   }
