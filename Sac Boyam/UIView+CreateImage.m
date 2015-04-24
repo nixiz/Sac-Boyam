@@ -46,7 +46,13 @@
 
 -(UIColor *) getBackgroundColor
 {
-  return [UIColor whiteColor];
+  UIImage *backgrounImage = [UIImage imageNamed:@"patt-4.jpg"];
+  //TODO: do vibration and blur here!
+  //  backgrounImage = [backgrounImage applyDarkEffect];
+  backgrounImage = [backgrounImage applyBlurWithRadius:1.3 tintColor:[UIColor colorWithWhite:0.8 alpha:0.2] saturationDeltaFactor:1.3 maskImage:nil];
+  UIColor *backgroundPatternColor = [UIColor colorWithPatternImage:backgrounImage];
+  return backgroundPatternColor;
+//  return [UIColor whiteColor];
 //  UIImage *backgroundImage = [UIImage imageNamed:@"background_sacBoyasi_5"];
 //  UIGraphicsBeginImageContext(self.bounds.size);
 //  [backgroundImage drawInRect:self.bounds];

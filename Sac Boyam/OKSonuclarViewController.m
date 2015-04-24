@@ -28,7 +28,7 @@
 #define indexForProductPrice  1
 #define MinMaxScale 0.07 //%15
 //#define grayScaleScanThreshold (1.0/255.0)*100.0*MinMaxScale
-#define grayScaleScanThreshold(x) ((x)/255.0)*100.0*([[[NSUserDefaults standardUserDefaults] objectForKey:resultDensityKey] floatValue]/100.0)
+#define grayScaleScanThreshold(x) ((x)/255.0f)*100.0f*([[[NSUserDefaults standardUserDefaults] objectForKey:resultDensityKey] floatValue]/100.0f)
 
 @interface OKSonuclarViewController () <UIAlertViewDelegate>
 @property UIColor *mColor;
@@ -215,7 +215,8 @@
 {
   CGRect headerViewRect = CGRectMake(0, 0, self.view.bounds.size.width, 70);
   UIView *headerView = [[UIView alloc] initWithFrame:headerViewRect];
-  headerView.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0.95];
+//  [cell setBackgroundColor:[UIColor colorWithWhite:1.0 alpha:0.70]];
+  headerView.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0.7];
   //TODO: Get product Logo from productName value.
   NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:section];
   ColorModel *color = [self.fetchedResultsController objectAtIndexPath:indexPath];
@@ -245,7 +246,9 @@
 {
   static NSString *CellIdentifier = @"SonuclarCell";
   OKSonuclarCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-  
+//  [cell setBackgroundColor:[UIColor clearColor]];
+  [cell setBackgroundColor:[UIColor colorWithWhite:1.0 alpha:0.70]];
+
   if (cell == nil)
   {
     cell = [[OKSonuclarCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];

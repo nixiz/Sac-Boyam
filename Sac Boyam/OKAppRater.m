@@ -170,6 +170,21 @@
 #endif
 }
 
+- (void)askForPurchaseWithExtraShot
+{
+#ifdef LITE_VERSION
+  NSString *purchaseMessage = [NSString stringWithFormat:@"%@\n\n%@", NSLocalizedStringFromTable(@"purchaseAppMessage", self.localizedTableName, nil), NSLocalizedStringFromTable(@"getTwoExtraShotMessage", self.localizedTableName, nil)];
+  UIAlertView *rateThisAppAlert = [[UIAlertView alloc] initWithTitle:@"Saç Boyam"
+                                                             message:purchaseMessage
+                                                            delegate:self
+                                                   cancelButtonTitle:NSLocalizedStringFromTable(@"purchaseButton", self.localizedTableName, nil)
+                                                   otherButtonTitles:NSLocalizedStringFromTable(@"rateAppCancelButton", self.localizedTableName, nil), nil];
+  [rateThisAppAlert setTag:alertViewTagNumberForPurchase];
+  [rateThisAppAlert show];
+  [[NSUserDefaults standardUserDefaults] setObject:[NSDate date] forKey:lastTimeAskedForPurchaseDateKey];
+#endif
+}
+
 - (BOOL)tryIncreaseAndUseForThisTime
 {
 #ifdef LITE_VERSION

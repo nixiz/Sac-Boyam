@@ -39,6 +39,15 @@
 - (void)viewDidLoad {
   [super viewDidLoad];
   self.totalUsageForThisInstance = 0;
+  
+//  UIImage *backgrounImage = [UIImage imageNamed:@"patt-4.jpg"];
+//  //TODO: do vibration and blur here!
+////  backgrounImage = [backgrounImage applyDarkEffect];
+//  backgrounImage = [backgrounImage applyBlurWithRadius:1.3 tintColor:[UIColor colorWithWhite:0.8 alpha:0.2] saturationDeltaFactor:1.3 maskImage:nil];
+//  
+//  UIColor *backgroundPatternColor = [UIColor colorWithPatternImage:backgrounImage];
+  self.view.backgroundColor = [self.view getBackgroundColor];
+  
   [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor blackColor]}];
   self.navigationController.navigationBar.tintColor = [UIColor colorWithWhite:0.0 alpha:0.80];
   UIBarButtonItem *settingsBtn = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"settings_navBar"]
@@ -208,7 +217,7 @@
   self.totalUsageForThisInstance += 1;
   if (self.totalUsageForThisInstance > 2) //2 times allowed to select or capture image
   {
-    [[OKAppRater sharedInstance] askForPurchase];
+    [[OKAppRater sharedInstance] askForPurchaseWithExtraShot];
     return NO;
   }
   return YES;
@@ -273,6 +282,7 @@
   if (self.isViewLoaded && (self.view.window != nil))
   {
     NSLog(@"willBeginBannerViewActionNotification");
+    self.totalUsageForThisInstance = 0;
   }
 }
 

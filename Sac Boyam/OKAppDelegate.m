@@ -112,7 +112,7 @@ NSString * const BannerViewNotLoaded          = @"BannerViewNotLoaded";
                                  remindMeLaterKey: @NO,
                                  userDidRatedKey: @NO,
                                  numberOfColorFoundsInOneDayKey: @0,
-                                 maximumAllowedUsageInOneDayKey: @3,
+                                 maximumAllowedUsageInOneDayKey: @7,
                                  lastTimeAskedForPurchaseDateKey: [NSDate date]
                                  };
 #else
@@ -129,7 +129,7 @@ NSString * const BannerViewNotLoaded          = @"BannerViewNotLoaded";
                                  remindMeLaterKey: @NO,
                                  userDidRatedKey: @NO,
                                  numberOfColorFoundsInOneDayKey: @0,
-                                 maximumAllowedUsageInOneDayKey: @3,
+                                 maximumAllowedUsageInOneDayKey: @7,
                                  lastTimeAskedForPurchaseDateKey: [NSDate date]
                                  };
 #endif

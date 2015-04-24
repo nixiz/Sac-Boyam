@@ -208,10 +208,12 @@
   UITouch *touch = [[touches allObjects] objectAtIndex:0];
   CGPoint point = [touch locationInView:self.view];
 
+#ifdef LITE_VERSION
   //eger banner view varsa ve basilan nokta banner ise don
   if (CGRectContainsPoint([BannerViewManager sharedInstance].bannerView.frame, point) && [BannerViewManager sharedInstance].bannerView.bannerLoaded)
     return;
-  /* 
+#endif
+  /*
      Eger imageview uzerine eklenmis image'in size i imageview in kendi size i ile
      ayni degil ise, (yani image in size i imageview in size indan daha buyukse gibi)
      resimin dokundugun yere tekabul eden kesimini almak icin aradaki scale farkini hesaba katmak lazim

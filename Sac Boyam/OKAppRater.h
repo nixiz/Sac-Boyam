@@ -29,6 +29,7 @@ static NSString *lastTimeAskedForPurchaseDateKey = @"lastTimeAskedForPurchaseDat
 //- (void)increaseColorFoundKey;
 - (void)resetColorFoundKey;
 - (void)askForPurchase;
+- (void)askForPurchaseWithExtraShot;
 - (BOOL)tryIncreaseAndUseForThisTime;
 
 @property (strong, nonatomic) NSString *appID;
