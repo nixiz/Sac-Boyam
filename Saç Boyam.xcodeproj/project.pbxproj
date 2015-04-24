@@ -125,6 +125,8 @@
 		71CCFB3D1AEA56A800D19710 /* patt-4.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 71CCFB341AEA56A800D19710 /* patt-4.jpg */; };
 		71CCFB3E1AEA56A800D19710 /* patt-5.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 71CCFB351AEA56A800D19710 /* patt-5.jpg */; };
 		71CCFB3F1AEA56A800D19710 /* patt-5.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 71CCFB351AEA56A800D19710 /* patt-5.jpg */; };
+		71CCFB421AEA7DFF00D19710 /* UIViewController+MotionEffect.m in Sources */ = {isa = PBXBuildFile; fileRef = 71CCFB411AEA7DFF00D19710 /* UIViewController+MotionEffect.m */; };
+		71CCFB431AEA7DFF00D19710 /* UIViewController+MotionEffect.m in Sources */ = {isa = PBXBuildFile; fileRef = 71CCFB411AEA7DFF00D19710 /* UIViewController+MotionEffect.m */; };
 		71D002F61A9727AC00E9FDCE /* OKSelectColorVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 71D002F51A9727AB00E9FDCE /* OKSelectColorVC.m */; };
 		71D002F81A97740800E9FDCE /* search_white_navbar.png in Resources */ = {isa = PBXBuildFile; fileRef = 71D002F71A97740800E9FDCE /* search_white_navbar.png */; };
 		71D5795C19E5104800E6E2AF /* OKTryOnMeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 71D5795B19E5104800E6E2AF /* OKTryOnMeVC.m */; };
@@ -227,6 +229,8 @@
 		71CCFB331AEA56A800D19710 /* patt-3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "patt-3.png"; sourceTree = "<group>"; };
 		71CCFB341AEA56A800D19710 /* patt-4.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "patt-4.jpg"; sourceTree = "<group>"; };
 		71CCFB351AEA56A800D19710 /* patt-5.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "patt-5.jpg"; sourceTree = "<group>"; };
+		71CCFB401AEA7DFF00D19710 /* UIViewController+MotionEffect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+MotionEffect.h"; sourceTree = "<group>"; };
+		71CCFB411AEA7DFF00D19710 /* UIViewController+MotionEffect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+MotionEffect.m"; sourceTree = "<group>"; };
 		71D002F41A9727AB00E9FDCE /* OKSelectColorVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKSelectColorVC.h; sourceTree = "<group>"; };
 		71D002F51A9727AB00E9FDCE /* OKSelectColorVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKSelectColorVC.m; sourceTree = "<group>"; };
 		71D002F71A97740800E9FDCE /* search_white_navbar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = search_white_navbar.png; sourceTree = "<group>"; };
@@ -469,6 +473,8 @@
 				7152CB51197557640080898F /* OKProductJsonType.m */,
 				711A33911AB700E60082075D /* OKAppRater.h */,
 				711A33921AB700E60082075D /* OKAppRater.m */,
+				71CCFB401AEA7DFF00D19710 /* UIViewController+MotionEffect.h */,
+				71CCFB411AEA7DFF00D19710 /* UIViewController+MotionEffect.m */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -654,6 +660,7 @@
 				7128469D1A9CC0BE00E39958 /* AVCamPreviewView.m in Sources */,
 				71F5E2441AA4A5C7006E87CF /* UIViewController+AutoDissmissAlert.m in Sources */,
 				719C30E319F7ACE300E938BA /* TapToPointView.m in Sources */,
+				71CCFB421AEA7DFF00D19710 /* UIViewController+MotionEffect.m in Sources */,
 				7134B72319A3B3F800BFE754 /* ColorModel+Create.m in Sources */,
 				719C30DF19F7A9C300E938BA /* UIBezierPath+Interpolation.m in Sources */,
 				71328AF417C38162007EE533 /* OKMainViewController.m in Sources */,
@@ -696,6 +703,7 @@
 				718AC00E1ACBDD0B00000DB2 /* AVCamPreviewView.m in Sources */,
 				718AC00F1ACBDD0B00000DB2 /* UIViewController+AutoDissmissAlert.m in Sources */,
 				718AC0101ACBDD0B00000DB2 /* TapToPointView.m in Sources */,
+				71CCFB431AEA7DFF00D19710 /* UIViewController+MotionEffect.m in Sources */,
 				718AC0111ACBDD0B00000DB2 /* ColorModel+Create.m in Sources */,
 				718AC0121ACBDD0B00000DB2 /* UIBezierPath+Interpolation.m in Sources */,
 				718AC0131ACBDD0B00000DB2 /* OKMainViewController.m in Sources */,

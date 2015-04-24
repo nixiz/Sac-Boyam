@@ -188,9 +188,9 @@
 - (BOOL)tryIncreaseAndUseForThisTime
 {
 #ifdef LITE_VERSION
-  NSInteger timesOfUse = 1 + [[[NSUserDefaults standardUserDefaults] objectForKey:numberOfColorFoundsInOneDayKey] integerValue];
+  NSInteger timesOfUse = 1 + [[NSUserDefaults standardUserDefaults] integerForKey:numberOfColorFoundsInOneDayKey];
   [[NSUserDefaults standardUserDefaults] setInteger:timesOfUse forKey:numberOfColorFoundsInOneDayKey];
-  NSInteger maximumAllowedUsage = [[[NSUserDefaults standardUserDefaults] objectForKey:maximumAllowedUsageInOneDayKey] integerValue];
+  NSInteger maximumAllowedUsage = [[NSUserDefaults standardUserDefaults] integerForKey:maximumAllowedUsageInOneDayKey];
   
   if (timesOfUse >= maximumAllowedUsage)
   {

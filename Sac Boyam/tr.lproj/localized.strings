@@ -61,6 +61,6 @@
 "rateAppLaterButton" = "Daha sonra hatırlat";
 "rateAppOkButton" = "Uygulamayı değerlendir";
 "purchaseAppMessage" = "Üzgünüm! Bütün özellikleri açmak ve kendi saçınız üstünde deneyebilmek için, Full versiyonu almalısınız";
-"getTwoExtraShotMessage" = "Hemen şimdi 2 kere daha deneme yapabilmek için aşağıdaki reklama tıklayabilirsin";
+"getTwoExtraShotMessage" = "Üzgünüm ama bugünlük deneme hakkınız dolmuştur. Tekrar deneyebilmek için yarını beklemelisiniz.\nYa da aşağıdaki reklama tıklayarak denemeye devam edebilirsiniz.";
 "purchaseButton" = "Full Versiyonu Al!";
 "lang" = "tr";

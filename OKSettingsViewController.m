@@ -17,6 +17,7 @@
 #import "UIImage+AverageColor.h"
 #import "OKSettingsTutorialVC.h"
 #import "OKAppRater.h"
+#import "UIViewController+MotionEffect.h"
 
 @interface OKSettingsViewController () <UITableViewDataSource, UITableViewDelegate, UIAlertViewDelegate>
 @property (strong, nonatomic) NSDictionary *settingsMap;
@@ -82,9 +83,15 @@
 - (void)viewDidLoad
 {
   [super viewDidLoad];
+//  [self addMotionEffectToView:self.view];
 
   self.view.backgroundColor = [self.view getBackgroundColor];
 
+  [self addMotionEffectToViewOnlyHorizontal:self.savePhotosSwitch];
+  [self addMotionEffectToViewOnlyHorizontal:self.editPhotosSwitch];
+  [self addMotionEffectToViewOnlyHorizontal:self.takeRecordsSwitch];
+  [self addMotionEffectToViewOnlyHorizontal:self.findOnTapSwitch];
+  
   self.fetchedResultsController.delegate = self;
   
   self.settingsMap = [[NSUserDefaults standardUserDefaults] dictionaryRepresentation];

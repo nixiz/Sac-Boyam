@@ -28,7 +28,7 @@
 #define indexForProductPrice  1
 #define MinMaxScale 0.07 //%15
 //#define grayScaleScanThreshold (1.0/255.0)*100.0*MinMaxScale
-#define grayScaleScanThreshold(x) ((x)/255.0f)*100.0f*([[[NSUserDefaults standardUserDefaults] objectForKey:resultDensityKey] floatValue]/100.0f)
+#define grayScaleScanThreshold(x) ((x)/255.0)*100.0*([[[NSUserDefaults standardUserDefaults] objectForKey:resultDensityKey] floatValue]/100.0)
 
 @interface OKSonuclarViewController () <UIAlertViewDelegate>
 @property UIColor *mColor;
@@ -87,7 +87,7 @@
 //  request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"brand.brandName" ascending:YES selector:@selector(localizedCaseInsensitiveCompare:)], customSortDesc];
   
   NSLog(@"given scale density %@", [[NSUserDefaults standardUserDefaults] objectForKey:resultDensityKey]);
-  CGFloat minval = fabsf(self.grayScale - grayScaleScanThreshold(self.grayScale));
+  CGFloat minval = fabs(self.grayScale - grayScaleScanThreshold(self.grayScale));
   CGFloat maxval = self.grayScale + grayScaleScanThreshold(self.grayScale);
   request.predicate = [NSPredicate predicateWithFormat: @"grayScale >= %@ AND grayScale <= %@", @(minval), @(maxval)];
   //between burada calismiyor. internette de bunun gibi sorunlar var. o yuzden and kullanarak yaptim.

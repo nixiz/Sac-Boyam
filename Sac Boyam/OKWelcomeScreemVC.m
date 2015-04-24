@@ -15,7 +15,7 @@
 #import "OKSettingsViewController.h"
 #import "OKCamViewController.h"
 #import "OKAppRater.h"
-
+#import "UIViewController+MotionEffect.h"
 #import "OKAppDelegate.h"
 
 #ifdef LITE_VERSION
@@ -25,20 +25,21 @@
 #endif
 - (IBAction)selectPicFromLibrary:(id)sender;
 @property (weak, nonatomic) IBOutlet UIButton *cameraButton;
+@property (weak, nonatomic) IBOutlet UIButton *picLibraryButton;
 @property (nonatomic) UIImage *pickedImage;
 @property (strong, nonatomic) UIManagedDocument *document;
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
 @property (nonatomic, strong) NSDictionary *filesDictionary;
 @property (nonatomic, strong) UIImagePickerController *imagePickerController;
 @property (strong) CAGradientLayer *cameraButtonGradient;
-@property NSInteger totalUsageForThisInstance;
+//@property NSInteger totalUsageForThisInstance;
 @end
 
 @implementation OKWelcomeScreemVC
 
 - (void)viewDidLoad {
   [super viewDidLoad];
-  self.totalUsageForThisInstance = 0;
+//  self.totalUsageForThisInstance = 0;
   
 //  UIImage *backgrounImage = [UIImage imageNamed:@"patt-4.jpg"];
 //  //TODO: do vibration and blur here!
@@ -46,6 +47,7 @@
 //  backgrounImage = [backgrounImage applyBlurWithRadius:1.3 tintColor:[UIColor colorWithWhite:0.8 alpha:0.2] saturationDeltaFactor:1.3 maskImage:nil];
 //  
 //  UIColor *backgroundPatternColor = [UIColor colorWithPatternImage:backgrounImage];
+//  [self addMotionEffectToView:self.view];
   self.view.backgroundColor = [self.view getBackgroundColor];
   
   [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor blackColor]}];
@@ -95,6 +97,9 @@
 
   [self.cameraButton.layer insertSublayer:gradient atIndex:0];
   self.cameraButtonGradient = gradient;
+  
+//  [self addMotionEffectToViewOnlyHorizontal:self.cameraButton];
+  [self addMotionEffectToView:self.picLibraryButton];
   
   NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:13.0 target:self selector:@selector(timerFireMethod:) userInfo:nil repeats:YES];
   dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
@@ -163,13 +168,12 @@
 
 - (IBAction)selectPicFromLibrary:(id)sender
 {
-  self.totalUsageForThisInstance += 1;
-  if (self.totalUsageForThisInstance > 2) //2 times allowed to select or capture image
-  {
-    [[OKAppRater sharedInstance] askForPurchase];
-    return;
-  }
-//  [self.imagePickerController isBeingPresented]
+//  self.totalUsageForThisInstance += 1;
+//  if (self.totalUsageForThisInstance > 2) //2 times allowed to select or capture image
+//  {
+//    [[OKAppRater sharedInstance] askForPurchase];
+//    return;
+//  }
   [self.imagePickerController setAllowsEditing:[[[NSUserDefaults standardUserDefaults] objectForKey:editPhotosKey] boolValue]];
 
   [self presentViewController:self.imagePickerController animated:YES completion:^{
@@ -197,9 +201,9 @@
 
 -(void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
 {
-#ifdef LITE_VERSION
-  self.totalUsageForThisInstance -= 1;
-#endif
+//#ifdef LITE_VERSION
+//  self.totalUsageForThisInstance -= 1;
+//#endif
   [picker dismissViewControllerAnimated:YES completion:^{
     [self.view setUserInteractionEnabled:YES];
   }];
@@ -214,12 +218,12 @@
   {
     return YES;
   }
-  self.totalUsageForThisInstance += 1;
-  if (self.totalUsageForThisInstance > 2) //2 times allowed to select or capture image
-  {
-    [[OKAppRater sharedInstance] askForPurchaseWithExtraShot];
-    return NO;
-  }
+//  self.totalUsageForThisInstance += 1;
+//  if (self.totalUsageForThisInstance > [[NSUserDefaults standardUserDefaults] integerForKey:maximumAllowedUsageInOneDayKey]) //2 times allowed to select or capture image
+//  {
+//    [[OKAppRater sharedInstance] askForPurchase];
+//    return NO;
+//  }
   return YES;
 }
 #endif
@@ -282,7 +286,7 @@
   if (self.isViewLoaded && (self.view.window != nil))
   {
     NSLog(@"willBeginBannerViewActionNotification");
-    self.totalUsageForThisInstance = 0;
+//    self.totalUsageForThisInstance = 0;
   }
 }
 

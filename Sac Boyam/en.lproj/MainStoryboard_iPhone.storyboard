@@ -521,6 +521,7 @@
                     <navigationItem key="navigationItem" title="Saç Boyam" id="TCG-6G-JwV"/>
                     <connections>
                         <outlet property="cameraButton" destination="dnA-yJ-2H8" id="xNh-Ps-gXu"/>
+                        <outlet property="picLibraryButton" destination="gvq-9V-CJ9" id="Yut-XW-NNt"/>
                         <segue destination="kkz-5j-Llr" kind="show" identifier="SelectColorSegue" id="QDn-4B-G21"/>
                         <segue destination="2x7-Wg-qUg" kind="show" identifier="settingsSegue" id="ZxE-aj-47i"/>
                     </connections>
@@ -737,7 +738,7 @@
         <segue reference="ge7-pk-JdY"/>
         <segue reference="7Fj-1j-qZg"/>
         <segue reference="QDn-4B-G21"/>
-        <segue reference="Wkz-lT-Tp2"/>
+        <segue reference="ZxE-aj-47i"/>
         <segue reference="PsG-cU-U5X"/>
         <segue reference="6XR-YP-iso"/>
     </inferredMetricsTieBreakers>
