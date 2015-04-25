@@ -87,10 +87,10 @@
 
   self.view.backgroundColor = [self.view getBackgroundColor];
 
-  [self addMotionEffectToViewOnlyHorizontal:self.savePhotosSwitch];
-  [self addMotionEffectToViewOnlyHorizontal:self.editPhotosSwitch];
-  [self addMotionEffectToViewOnlyHorizontal:self.takeRecordsSwitch];
-  [self addMotionEffectToViewOnlyHorizontal:self.findOnTapSwitch];
+  [self addMotionEffectToViewOnlyHorizontal:self.savePhotosSwitch  withCustomMinMaxRelativities:5];
+  [self addMotionEffectToViewOnlyHorizontal:self.editPhotosSwitch  withCustomMinMaxRelativities:7];
+  [self addMotionEffectToViewOnlyHorizontal:self.findOnTapSwitch   withCustomMinMaxRelativities:10];
+  [self addMotionEffectToViewOnlyHorizontal:self.takeRecordsSwitch withCustomMinMaxRelativities:13];
   
   self.fetchedResultsController.delegate = self;
   

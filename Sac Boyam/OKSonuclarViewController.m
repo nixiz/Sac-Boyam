@@ -19,8 +19,8 @@
 #import "UIImage+ImageEffects.h"
 #import "OKTryOnMeVC.h"
 #import "OKSettingsTutorialVC.h"
+#import "UIViewController+MotionEffect.h"
 #import "OKAppRater.h"
-
 
 #define ARC4RANDOM_MAX	0x100000000
 #define indexForProductName   0
@@ -40,6 +40,8 @@
 
 @property (strong, nonatomic) NSDictionary *framesDictionary;
 @property (strong, nonatomic) NSDictionary *explanationsDictionary;
+@property (strong, nonatomic) UIBarButtonItem *settingsBtn;
+@property (strong, nonatomic) UIBarButtonItem *infoBtn;
 @end
 
 @implementation OKSonuclarViewController
@@ -118,15 +120,18 @@
 {
   [super viewDidLoad];
   [self.navigationItem setTitle:NSLocalizedStringFromTable(@"resultsTitle", okStringsTableName, nil)];
-  UIBarButtonItem *settingsBtn = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"settings_navBar"]
+  self.settingsBtn = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"settings_navBar"]
                                                                   style:UIBarButtonItemStylePlain
                                                                  target:self
                                                                  action:@selector(settingsFromResultsTap:)];
-  UIBarButtonItem *infoBtn = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"infoMark_navBar"]
+  
+  self.infoBtn = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"infoMark_navBar"]
                                                               style:UIBarButtonItemStylePlain
                                                              target:self
                                                              action:@selector(showTutorial)];
-  self.navigationItem.rightBarButtonItems = @[settingsBtn, infoBtn];
+//  [self addMotionEffectToViewOnlyHorizontal:self.settingsBtn withCustomMinMaxRelativities:-10];
+  
+  self.navigationItem.rightBarButtonItems = @[self.settingsBtn, self.infoBtn];
   self.view.backgroundColor = [self.view getBackgroundColor];
   self.tableView.sectionIndexBackgroundColor = [UIColor clearColor];
 
