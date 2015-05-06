@@ -92,7 +92,7 @@ static void * SessionRunningAndDeviceAuthorizedContext = &SessionRunningAndDevic
   
   self.navigationItem.rightBarButtonItems = @[fixedBtnItem, barbtnItem];
   
-  [self.autoModeSwitch setOn:YES];
+  [self.autoModeSwitch setOn:NO];
   [self switchValueChanged:self.autoModeSwitch];
   
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deviceDidRotate:) name:UIDeviceOrientationDidChangeNotification object:nil];

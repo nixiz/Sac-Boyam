@@ -140,11 +140,12 @@ NSString * const BannerViewNotLoaded          = @"BannerViewNotLoaded";
 //  [[NSUserDefaults standardUserDefaults] setInteger:-1 forKey:showDaysUntilPromtKey];
 //  [[NSUserDefaults standardUserDefaults] setInteger:-1 forKey:timesOfNotRatedUsesKey];
 //#endif
-#ifdef LITE_VERSION
-  [[OKAppRater sharedInstance] initiateInstanceForAppID:@"id982014777" localizationTableName:okStringsTableName];
-#else
   [[OKAppRater sharedInstance] initiateInstanceForAppID:appID localizationTableName:okStringsTableName];
-#endif
+//#ifdef LITE_VERSION
+//  [[OKAppRater sharedInstance] initiateInstanceForAppID:@"id982014777" localizationTableName:okStringsTableName];
+//#else
+//  [[OKAppRater sharedInstance] initiateInstanceForAppID:appID localizationTableName:okStringsTableName];
+//#endif
 #ifdef LITE_VERSION
   //create dummy instance for singleton initialization.
   NSDate *lastRemindDate = [[NSUserDefaults standardUserDefaults] objectForKey:lastTimeAskedForPurchaseDateKey];

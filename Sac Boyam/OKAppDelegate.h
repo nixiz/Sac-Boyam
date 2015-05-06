@@ -10,7 +10,11 @@
 
 
 static NSString * const okStringsTableName = @"localized";
+#ifdef LITE_VERSION
+static NSString * const appID = @"id982014777";
+#else
 static NSString * const appID = @"id921525192";
+#endif
 
 #ifdef LITE_VERSION
 #import <iAd/iAd.h>

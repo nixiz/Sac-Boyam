@@ -24,7 +24,7 @@
 //#endif
 
 #define MaximumAllowedNonFoundTapCount 6
-
+#define AutoFindSuggestionAlertViewTag 11
 //#ifdef LITE_VERSION
 //@interface OKSelectColorVC () <OKSettingsDelegate, UIAlertViewDelegate, ADBannerViewDelegate>
 //#else
@@ -193,12 +193,15 @@
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
   //ignore if alertview is auto dismissable
-  if (alertView.tag == 10) return;
-  NSString *title = [alertView buttonTitleAtIndex:buttonIndex];
-  if ([title isEqualToString:NSLocalizedStringFromTable(@"cancelButtonForURLReq", okStringsTableName, nil)]) {
-    return;
+  if (alertView.tag == 10) { return; }
+  else if (alertView.tag == AutoFindSuggestionAlertViewTag) {
+    self.nonFoundTapCount = NSIntegerMin;
+    NSString *title = [alertView buttonTitleAtIndex:buttonIndex];
+    if ([title isEqualToString:NSLocalizedStringFromTable(@"NOButonTitle", okStringsTableName, nil)]) {
+      return;
+    }
+    [self performSegueWithIdentifier:@"settingSegueFromSelect" sender:nil];
   }
-  [self performSegueWithIdentifier:@"settingSegueFromSelect" sender:nil];
 }
 
 #pragma mark - Touch Handles
@@ -310,7 +313,7 @@
                                                 cancelButtonTitle:NSLocalizedStringFromTable(@"NOButonTitle", okStringsTableName, nil)
                                                 otherButtonTitles:NSLocalizedStringFromTable(@"OKButtonTitle", okStringsTableName, nil), nil];
 //      [alertView setBackgroundColor:[[UIColor darkGrayColor] colorWithAlphaComponent:0.73]];
-      [alertView setTag:11];
+      [alertView setTag:AutoFindSuggestionAlertViewTag];
       [alertView show];
     }
   }

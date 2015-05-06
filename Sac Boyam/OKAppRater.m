@@ -132,7 +132,7 @@
       //do nothing
       
     } else if ([title isEqualToString:NSLocalizedStringFromTable(@"purchaseButton", self.localizedTableName, nil)]) {
-      NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://itunes.apple.com/app/%@", self.appID]];
+      NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://itunes.apple.com/app/%@", @"id921525192"]];
       /*itms-apps://itunes.apple.com/app/%@*/
       BOOL success = [[UIApplication sharedApplication] openURL:url];
       if (!success) {

@@ -52,7 +52,7 @@
 "try-item-5-exp" = "Volume slider opens by tapping action button located in the middle";
 "try-item-6-exp" = "You can save the final image as you wish";
 "no-results-found-msg" = "If results are not enough to find your colour.\nYou can change this in settings to find more results";
-"askForFindOnTapMsg" = "If you want you can activate “Auto Find” in Settings Page";
+"askForFindOnTapMsg" = "If you want you can activate “Find on Tap” in Settings Page";
 "welcome" = "Welcome!";
 "firstTimeOnColorSelectMsg" = "To find your dye, all you need to tap on the screen wherever you want. Enjoy!";
 "NOButonTitle" = "No";

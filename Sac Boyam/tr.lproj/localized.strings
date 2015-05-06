@@ -52,7 +52,7 @@
 "try-item-5-exp" = "Renk oksidasyonu burada ortada bulunan simgeden yapılır";
 "try-item-6-exp" = "İstediğiniz zaman oynama yaptığınız resmi kayıt edebilirsiniz";
 "no-results-found-msg" = "Daha fazla sonuç bulmak için Ayarlar sayfasından değişiklik yapabilirsiniz\nAyarlara Gidilsin mi?";
-"askForFindOnTapMsg" = "İsterseniz Ayarlar sayfaından Otomatik Bul'u ektinleştirebilirsiniz";
+"askForFindOnTapMsg" = "İsterseniz Ayarlar sayfasından Otomatik Bulma'yı ektinleştirebilirsiniz";
 "welcome" = "Merhaba!";
 "firstTimeOnColorSelectMsg" = "Aradığınız rengi bulmak için tek yapmanız gereken, ekranda dilediğiniz yere dokunmak";
 "NOButonTitle" = "Hayır";
@@ -60,7 +60,7 @@
 "rateAppCancelButton" = "Hayır, teşekkürler";
 "rateAppLaterButton" = "Daha sonra hatırlat";
 "rateAppOkButton" = "Uygulamayı değerlendir";
-"purchaseAppMessage" = "Üzgünüm! Bütün özellikleri açmak ve kendi saçınız üstünde deneyebilmek için, Full versiyonu almalısınız";
-"getTwoExtraShotMessage" = "Üzgünüm ama bugünlük deneme hakkınız dolmuştur. Tekrar deneyebilmek için yarını beklemelisiniz.\nYa da aşağıdaki reklama tıklayarak denemeye devam edebilirsiniz.";
+"purchaseAppMessage" = "Üzgünüm! Bütün özellikleri açmak ve kendi saçınız üstünde deneyebilmek için full versiyonu almalısınız.";
+"getTwoExtraShotMessage" = "Bugünlük deneme hakkınız dolmuştur. Tekrar deneyebilmek için yarını beklemelisiniz.\nYa da aşağıdaki reklama tıklayarak denemeye devam edebilirsiniz.";
 "purchaseButton" = "Full Versiyonu Al!";
 "lang" = "tr";
