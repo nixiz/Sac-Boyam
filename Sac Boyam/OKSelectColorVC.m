@@ -82,6 +82,28 @@
   
   self.navigationItem.rightBarButtonItems = @[fixedBtnItem, searchBtn];
   self.cameFirstTime = NO;
+/*
+  BOOL canEditImage = [[[NSUserDefaults standardUserDefaults] objectForKey:editPhotosKey] boolValue];
+  if (canEditImage) {
+    [self.imageView setUserInteractionEnabled:YES];
+    
+    UIPinchGestureRecognizer *pinchGestureRecognizer = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(pinchGestureDetected:)];
+    [pinchGestureRecognizer setDelegate:self];
+    [self.imageView addGestureRecognizer:pinchGestureRecognizer];
+    
+    // create and configure the rotation gesture
+    UIRotationGestureRecognizer *rotationGestureRecognizer = [[UIRotationGestureRecognizer alloc] initWithTarget:self action:@selector(rotationGestureDetected:)];
+    [rotationGestureRecognizer setDelegate:self];
+    [self.imageView addGestureRecognizer:rotationGestureRecognizer];
+    
+    // creat and configure the pan gesture
+    UIPanGestureRecognizer *panGestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panGestureDetected:)];
+//    [panGestureRecognizer setMinimumNumberOfTouches:3];
+//    [panGestureRecognizer setMaximumNumberOfTouches:3];
+    [panGestureRecognizer setDelegate:self];
+    [self.imageView addGestureRecognizer:panGestureRecognizer];
+  }
+*/
   
 #ifdef LITE_VERSION
 //  self.bannerView = [[ADBannerView alloc] initWithAdType:ADAdTypeBanner];
@@ -91,7 +113,7 @@
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didFinishBannerViewActionNotification:) name:BannerViewActionDidFinish object:nil];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(bannerViewLoadStateChanged:) name:BannerViewLoadedSuccessfully object:nil];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(bannerViewLoadStateChanged:) name:BannerViewNotLoaded object:nil];
-  [self.view addSubview:[BannerViewManager sharedInstance].bannerView];
+  //[self.view addSubview:[BannerViewManager sharedInstance].bannerView];
 #endif
 }
 
@@ -121,6 +143,13 @@
   if (self.selectedPicture && !CGSizeEqualToSize(self.imageView.image.size, self.imageView.bounds.size))
   {
     CGRect boundRect = self.imageView.bounds;
+//    CGFloat ratio = MIN(boundRect.size.height / self.selectedPicture.size.height, boundRect.size.width / self.selectedPicture.size.width);
+//    boundRect.size.width  *= ratio;
+//    boundRect.size.width = ceilf(boundRect.size.width);
+//    boundRect.size.height *= ratio;
+//    boundRect.size.height = ceilf(boundRect.size.height);
+//    CGContextDrawImage(<#CGContextRef c#>, <#CGRect rect#>, <#CGImageRef image#>)
+    
     UIGraphicsBeginImageContext(boundRect.size);
     [self.selectedPicture drawInRect:boundRect];
     UIImage *imageToBeShow = UIGraphicsGetImageFromCurrentImageContext();
@@ -128,6 +157,7 @@
 //    NSLog(@"Re Scaled Image Size: %@", NSStringFromCGSize(imageToBeShow.size));
     [self.imageView setImage:imageToBeShow];
   }
+//  [self.imageView setContentMode:UIViewContentModeCenter];
 #ifdef LITE_VERSION
   [self layoutAnimated:[UIView areAnimationsEnabled]];
 #endif
@@ -208,6 +238,7 @@
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
   if (self.imageView.image == nil) return;
+//  if ([touches count] > 1) return; //if pressed for editing
   UITouch *touch = [[touches allObjects] objectAtIndex:0];
   CGPoint point = [touch locationInView:self.view];
 
@@ -266,7 +297,8 @@
 }
 
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
-  if (self.imageView.image == nil) return;
+//  if (self.imageView.image == nil) return;
+  if ([touches count] > 1) return; //if pressed for editing
   
   UITouch *touch = [[touches allObjects] objectAtIndex:0];
   CGPoint point = [touch locationInView:self.view];
@@ -342,6 +374,52 @@
   
   return CGRectMake(point.x - dx, point.y - dy, capturePixelSize, capturePixelSize);
 }
+/*
+#pragma mark - Gesture Recognizers
+
+-(BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
+{
+  return YES;
+}
+
+- (void)pinchGestureDetected:(UIPinchGestureRecognizer *)recognizer
+{
+  UIGestureRecognizerState state = [recognizer state];
+  
+  if (state == UIGestureRecognizerStateBegan || state == UIGestureRecognizerStateChanged)
+  {
+    CGFloat scale = [recognizer scale];
+//    if (scale > 1.0f && scale <= 2.5f) {
+      [recognizer.view setTransform:CGAffineTransformScale(recognizer.view.transform, scale, scale)];
+      [recognizer setScale:1.0];
+//    }
+  }
+}
+
+- (void)rotationGestureDetected:(UIRotationGestureRecognizer *)recognizer
+{
+  UIGestureRecognizerState state = [recognizer state];
+  
+  if (state == UIGestureRecognizerStateBegan || state == UIGestureRecognizerStateChanged)
+  {
+    CGFloat rotation = [recognizer rotation];
+    [recognizer.view setTransform:CGAffineTransformRotate(recognizer.view.transform, rotation)];
+    [recognizer setRotation:0];
+  }
+}
+
+- (void)panGestureDetected:(UIPanGestureRecognizer *)recognizer
+{
+  UIGestureRecognizerState state = [recognizer state];
+  
+  if (state == UIGestureRecognizerStateBegan || state == UIGestureRecognizerStateChanged)
+  {
+    CGPoint translation = [recognizer translationInView:recognizer.view];
+    [recognizer.view setTransform:CGAffineTransformTranslate(recognizer.view.transform, translation.x, translation.y)];
+    [recognizer setTranslation:CGPointZero inView:recognizer.view];
+  }
+}
+*/
 
 #pragma mark - Navigation
 

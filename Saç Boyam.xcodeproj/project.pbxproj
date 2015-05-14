@@ -42,6 +42,8 @@
 		7136433D195C5E08006EF824 /* OKUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 7136433C195C5E08006EF824 /* OKUtils.m */; };
 		713733B619B5E61100542E86 /* UserRecordModel+Create.m in Sources */ = {isa = PBXBuildFile; fileRef = 713733B519B5E61100542E86 /* UserRecordModel+Create.m */; };
 		7152CB52197557640080898F /* OKProductJsonType.m in Sources */ = {isa = PBXBuildFile; fileRef = 7152CB51197557640080898F /* OKProductJsonType.m */; };
+		7163DB751B048A51000911E1 /* OKImagePickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7163DB741B048A51000911E1 /* OKImagePickerViewController.m */; };
+		7163DB761B048A51000911E1 /* OKImagePickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7163DB741B048A51000911E1 /* OKImagePickerViewController.m */; };
 		7169530F196E64C100C988E5 /* localized.strings in Resources */ = {isa = PBXBuildFile; fileRef = 71695311196E64C100C988E5 /* localized.strings */; };
 		71840ED819B8454600F99868 /* BrandModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 71840ED719B8454600F99868 /* BrandModel.m */; };
 		71840EDB19B8454800F99868 /* ColorModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 71840EDA19B8454800F99868 /* ColorModel.m */; };
@@ -189,6 +191,8 @@
 		7152CB50197557640080898F /* OKProductJsonType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKProductJsonType.h; sourceTree = "<group>"; };
 		7152CB51197557640080898F /* OKProductJsonType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKProductJsonType.m; sourceTree = "<group>"; };
 		7163849C1AAEE8B7001AD4CF /* tr */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = tr; path = tr.lproj/MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
+		7163DB731B048A51000911E1 /* OKImagePickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKImagePickerViewController.h; sourceTree = "<group>"; };
+		7163DB741B048A51000911E1 /* OKImagePickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKImagePickerViewController.m; sourceTree = "<group>"; };
 		71695310196E64C100C988E5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/localized.strings; sourceTree = "<group>"; };
 		71840ED619B8454600F99868 /* BrandModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrandModel.h; sourceTree = "<group>"; };
 		71840ED719B8454600F99868 /* BrandModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrandModel.m; sourceTree = "<group>"; };
@@ -357,6 +361,8 @@
 				71328AA517C35FD7007EE533 /* OKAppDelegate.m */,
 				71899FF41A971C4200150EEF /* OKWelcomeScreemVC.h */,
 				71899FF51A971C4200150EEF /* OKWelcomeScreemVC.m */,
+				7163DB731B048A51000911E1 /* OKImagePickerViewController.h */,
+				7163DB741B048A51000911E1 /* OKImagePickerViewController.m */,
 				71328AAD17C35FD7007EE533 /* MainStoryboard_iPhone.storyboard */,
 				7193555B19654DFC0040F48D /* ImageAssets.xcassets */,
 				71328AC117C365F7007EE533 /* images */,
@@ -643,6 +649,7 @@
 				71840EDB19B8454800F99868 /* ColorModel.m in Sources */,
 				7152CB52197557640080898F /* OKProductJsonType.m in Sources */,
 				711A33931AB700E60082075D /* OKAppRater.m in Sources */,
+				7163DB751B048A51000911E1 /* OKImagePickerViewController.m in Sources */,
 				7136433D195C5E08006EF824 /* OKUtils.m in Sources */,
 				71328AA617C35FD7007EE533 /* OKAppDelegate.m in Sources */,
 				7128469D1A9CC0BE00E39958 /* AVCamPreviewView.m in Sources */,
@@ -686,6 +693,7 @@
 				718AC0091ACBDD0B00000DB2 /* ColorModel.m in Sources */,
 				718AC00A1ACBDD0B00000DB2 /* OKProductJsonType.m in Sources */,
 				718AC00B1ACBDD0B00000DB2 /* OKAppRater.m in Sources */,
+				7163DB761B048A51000911E1 /* OKImagePickerViewController.m in Sources */,
 				718AC00C1ACBDD0B00000DB2 /* OKUtils.m in Sources */,
 				718AC00D1ACBDD0B00000DB2 /* OKAppDelegate.m in Sources */,
 				718AC00E1ACBDD0B00000DB2 /* AVCamPreviewView.m in Sources */,

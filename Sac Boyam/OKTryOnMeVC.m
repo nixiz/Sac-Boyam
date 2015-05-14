@@ -220,7 +220,13 @@
 
 - (void)showTutorial
 {
-  [self performSegueWithIdentifier:@"TryTutorialSegue" sender:nil];
+  if ([self isSettingsViewShowing]) {
+    [self showHideSettingsPage:^(BOOL finished) {
+      [self performSegueWithIdentifier:@"TryTutorialSegue" sender:nil];
+    }];
+//    [self performSelectorOnMainThread:@selector(showHideSettingsPage) withObject:nil waitUntilDone:YES];
+  }
+//  [self performSegueWithIdentifier:@"TryTutorialSegue" sender:nil];
 }
 
 #pragma mark - Image Pick
@@ -347,14 +353,14 @@
       [self reloadOriginalImage];
       break;
     case 14:
-      [self showHideSettingsPage];
+      [self showHideSettingsPage:nil];
       break;
     default:
       break;
   }
 }
 
-- (void)showHideSettingsPage
+- (void)showHideSettingsPage:(void (^)(BOOL finished))completion
 {
   static CGFloat currentBlendValue = 0.64;
   //update frames
@@ -374,6 +380,9 @@
                         NSLog(@"asdasdas");
                       }
                       [self.settingsView removeFromSuperview];
+                      if (completion) {
+                        completion(finished);
+                      }
 //                      if (currentBlendValue != self.blendAlphaValue) {
 //                        [self reloadOriginalImage];
 //                      }
@@ -393,6 +402,9 @@
                     completion:^(BOOL finished) {
                       if (!finished) {
                         NSLog(@"asdasdas");
+                      }
+                      if (completion) {
+                        completion(finished);
                       }
                     }];
   }

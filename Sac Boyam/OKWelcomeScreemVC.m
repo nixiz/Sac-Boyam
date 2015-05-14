@@ -17,6 +17,7 @@
 #import "OKAppRater.h"
 #import "UIViewController+MotionEffect.h"
 #import "OKAppDelegate.h"
+#import "OKImagePickerViewController.h"
 
 #ifdef LITE_VERSION
 @interface OKWelcomeScreemVC () <UIImagePickerControllerDelegate, UINavigationControllerDelegate, OKSettingsDelegate, UIAlertViewDelegate, BannerViewController_Delegate>
@@ -174,8 +175,9 @@
 //    [[OKAppRater sharedInstance] askForPurchase];
 //    return;
 //  }
-  [self.imagePickerController setAllowsEditing:[[[NSUserDefaults standardUserDefaults] objectForKey:editPhotosKey] boolValue]];
 
+  [self.imagePickerController setAllowsEditing:[[[NSUserDefaults standardUserDefaults] objectForKey:editPhotosKey] boolValue]];
+//  [self.imagePickerController setAllowsEditing:NO];
   [self presentViewController:self.imagePickerController animated:YES completion:^{
     [self.view setUserInteractionEnabled:NO];
   }];
@@ -193,8 +195,10 @@
     self.pickedImage = nil;
     NSLog(@"asdasdasd!");
   }
+//  self.pickedImage = originalImage;
   [picker dismissViewControllerAnimated:NO completion:^{
     [self.view setUserInteractionEnabled:YES];
+//    [self performSegueWithIdentifier:@"ImagePickerSegue" sender:nil];
     [self performSegueWithIdentifier:@"SelectColorSegue" sender:nil];
   }];
 }
@@ -228,6 +232,15 @@
 }
 #endif
 
+- (IBAction)unwindToMainPage:(UIStoryboardSegue *)segue
+{
+  UIViewController *sourceVC = segue.sourceViewController;
+  if ([sourceVC isKindOfClass:[OKImagePickerViewController class]]) {
+//    UIImage *returnedImage = self.pickedImage;
+    [self performSegueWithIdentifier:@"SelectColorSegue" sender:nil];
+  }
+}
+
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
 //  self.navigationItem.backBarButtonItem =
@@ -244,6 +257,9 @@
   } else if ([[segue identifier] isEqualToString:@"cameraSegue"]) {
     OKCamViewController *vc = [segue destinationViewController];
     [vc setManagedObjectContext:self.managedObjectContext];
+  } else if ([[segue identifier] isEqualToString:@"ImagePickerSegue"]) {
+    OKImagePickerViewController *vc = [segue destinationViewController];
+    [vc setSelectedImage:self.pickedImage];
   }
 }
 
