@@ -175,7 +175,7 @@
 - (void)showTutorialWithWelcomeScreen:(BOOL)showWelcomeScreen
 {
 //  [self showAutoDismissedAlertWithMessage:NSLocalizedStringFromTable(@"firstTimeOnColorSelectMsg", okStringsTableName, nil) withTitle:nil afterDelay:2.0];
-
+//#ifndef LITE_VERSION
   UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedStringFromTable(@"welcome", okStringsTableName, nil)
                                                       message:NSLocalizedStringFromTable(@"firstTimeOnColorSelectMsg", okStringsTableName, nil)
                                                      delegate:self
@@ -184,8 +184,9 @@
   [alertView setBackgroundColor:[[UIColor darkGrayColor] colorWithAlphaComponent:0.73]];
   [alertView setTag:10];
   [alertView show];
-  [self performSelector:@selector(dismissAlertView:) withObject:alertView afterDelay:2.0];
-
+  [self performSelector:@selector(dismissAlertView:) withObject:alertView afterDelay:1.6];
+//#endif
+  
   if ([[[NSUserDefaults standardUserDefaults] objectForKey:showTutorialKey] boolValue]) {
     [[NSUserDefaults standardUserDefaults] setObject:@NO forKey:showTutorialKey];
     [[NSUserDefaults standardUserDefaults] synchronize];
@@ -338,7 +339,9 @@
   }
   if (self.cameFirstTime || self.nonFoundTapCount >= MaximumAllowedNonFoundTapCount) {
     self.cameFirstTime = NO;
-    if (!self.findOnTap) {
+    if (!self.findOnTap)
+    {
+#ifndef LITE_VERSION
       UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil
                                                           message:NSLocalizedStringFromTable(@"askForFindOnTapMsg", okStringsTableName, nil)
                                                          delegate:self
@@ -347,6 +350,7 @@
 //      [alertView setBackgroundColor:[[UIColor darkGrayColor] colorWithAlphaComponent:0.73]];
       [alertView setTag:AutoFindSuggestionAlertViewTag];
       [alertView show];
+#endif
     }
   }
 }
