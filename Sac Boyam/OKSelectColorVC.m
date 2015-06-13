@@ -143,21 +143,13 @@
   if (self.selectedPicture && !CGSizeEqualToSize(self.imageView.image.size, self.imageView.bounds.size))
   {
     CGRect boundRect = self.imageView.bounds;
-//    CGFloat ratio = MIN(boundRect.size.height / self.selectedPicture.size.height, boundRect.size.width / self.selectedPicture.size.width);
-//    boundRect.size.width  *= ratio;
-//    boundRect.size.width = ceilf(boundRect.size.width);
-//    boundRect.size.height *= ratio;
-//    boundRect.size.height = ceilf(boundRect.size.height);
-//    CGContextDrawImage(<#CGContextRef c#>, <#CGRect rect#>, <#CGImageRef image#>)
-    
     UIGraphicsBeginImageContext(boundRect.size);
     [self.selectedPicture drawInRect:boundRect];
     UIImage *imageToBeShow = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
-//    NSLog(@"Re Scaled Image Size: %@", NSStringFromCGSize(imageToBeShow.size));
     [self.imageView setImage:imageToBeShow];
+//    [self.imageView setImage:self.selectedPicture];
   }
-//  [self.imageView setContentMode:UIViewContentModeCenter];
 #ifdef LITE_VERSION
   [self layoutAnimated:[UIView areAnimationsEnabled]];
 #endif
@@ -184,7 +176,7 @@
   [alertView setBackgroundColor:[[UIColor darkGrayColor] colorWithAlphaComponent:0.73]];
   [alertView setTag:10];
   [alertView show];
-  [self performSelector:@selector(dismissAlertView:) withObject:alertView afterDelay:1.6];
+  [self performSelector:@selector(dismissAlertView:) withObject:alertView afterDelay:2.5];
 //#endif
   
   if ([[[NSUserDefaults standardUserDefaults] objectForKey:showTutorialKey] boolValue]) {

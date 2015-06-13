@@ -206,7 +206,7 @@
     //  cellTextViewFrame = [self.view convertRect:cellTextViewFrame fromView:cellView];
     //  cellTextViewFrame = [self.view convertRect:cellTextViewFrame toView:nil];
     
-    CGRect sectionFrame = CGRectMake(cellViewFrame.origin.x, cellViewFrame.origin.y - 70.0, cellViewFrame.size.width, 70.0);
+    CGRect sectionFrame = CGRectMake(cellViewFrame.origin.x, cellViewFrame.origin.y - tableCellHeightForNormalView, cellViewFrame.size.width, tableCellHeightForNormalView);
     
     self.framesDictionary = @{@"item-1": [NSValue valueWithCGRect:sectionFrame],
                               @"item-2": [NSValue valueWithCGRect:cellViewFrame],
@@ -234,12 +234,12 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-  return 70.0f;
+  return tableCellHeightForNormalView;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-  CGRect headerViewRect = CGRectMake(0, 0, self.view.bounds.size.width, 70);
+  CGRect headerViewRect = CGRectMake(0, 0, self.view.bounds.size.width, tableCellHeightForNormalView);
   UIView *headerView = [[UIView alloc] initWithFrame:headerViewRect];
 //  [cell setBackgroundColor:[UIColor colorWithWhite:1.0 alpha:0.70]];
   headerView.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0.7];
@@ -248,12 +248,12 @@
 
   UIImageView *productLogo = [[UIImageView alloc] initWithImage:
                               [UIImage imageWithData:color.brand.brandImage]];
-  productLogo.frame = CGRectMake(0, 0, 70, 70);
+  productLogo.frame = CGRectMake(0, 0, tableCellHeightForNormalView, tableCellHeightForNormalView);
   productLogo.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin;
     
   [headerView addSubview:productLogo];
     
-  UILabel *productName = [[UILabel alloc] initWithFrame:CGRectMake(80, 0, self.view.bounds.size.width - 70, 70)];
+  UILabel *productName = [[UILabel alloc] initWithFrame:CGRectMake(tableCellHeightForNormalView + 10, 0, self.view.bounds.size.width - tableCellHeightForNormalView, tableCellHeightForNormalView)];
   [productName setFont:[UIFont boldSystemFontOfSize:15.0]];
   productName.text = color.brand.brandName;
   productName.backgroundColor = [UIColor clearColor];

@@ -287,11 +287,13 @@
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-	return [[[self.fetchedResultsController sections] objectAtIndex:section] name];
+  return NSLocalizedStringFromTable(@"favDyes", okStringsTableName, nil);
+//	return [[[self.fetchedResultsController sections] objectAtIndex:section] name];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView sectionForSectionIndexTitle:(NSString *)title atIndex:(NSInteger)index
 {
+  //favDyes
 	return [self.fetchedResultsController sectionForSectionIndexTitle:title atIndex:index];
 }
 

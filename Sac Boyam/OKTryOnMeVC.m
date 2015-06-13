@@ -225,6 +225,8 @@
       [self performSegueWithIdentifier:@"TryTutorialSegue" sender:nil];
     }];
 //    [self performSelectorOnMainThread:@selector(showHideSettingsPage) withObject:nil waitUntilDone:YES];
+  } else {
+    [self performSegueWithIdentifier:@"TryTutorialSegue" sender:nil];
   }
 //  [self performSegueWithIdentifier:@"TryTutorialSegue" sender:nil];
 }
@@ -255,18 +257,18 @@
   UIGraphicsEndImageContext();
   [self.previewImg setImage:imageToBeShow];
   //  [self.previewImg sizeToFit];
-  if ([[NSUserDefaults standardUserDefaults] objectForKey:userDefaultPhotoKey] == nil) {
-    [self saveImageToUserDefaults];
-  } else {
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil
-                                                        message:NSLocalizedStringFromTable(@"shouldSaveUserDefaultPhoto", okStringsTableName, nil)
-                                                       delegate:self
-                                              cancelButtonTitle:NSLocalizedStringFromTable(@"cancelButtonForURLReq", okStringsTableName, nil)
-                                              otherButtonTitles:NSLocalizedStringFromTable(@"OKButtonTitle", okStringsTableName, nil), nil];
-    [alertView setTag:11];
-    [alertView show];
-  }
-  
+  [self saveImageToUserDefaults];
+//  if ([[NSUserDefaults standardUserDefaults] objectForKey:userDefaultPhotoKey] == nil) {
+//    [self saveImageToUserDefaults];
+//  } else {
+//    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil
+//                                                        message:NSLocalizedStringFromTable(@"shouldSaveUserDefaultPhoto", okStringsTableName, nil)
+//                                                       delegate:self
+//                                              cancelButtonTitle:NSLocalizedStringFromTable(@"cancelButtonForURLReq", okStringsTableName, nil)
+//                                              otherButtonTitles:NSLocalizedStringFromTable(@"OKButtonTitle", okStringsTableName, nil), nil];
+//    [alertView setTag:11];
+//    [alertView show];
+//  }
   
   [picker dismissViewControllerAnimated:NO completion:^{
     [self.view setUserInteractionEnabled:YES];
