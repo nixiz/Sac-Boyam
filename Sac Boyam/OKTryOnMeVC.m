@@ -42,10 +42,12 @@
 @property CGRect settingsViewHideFrame;
 
 @property (strong, nonatomic) UIBezierPath *currentImagePath;
+@property (strong, nonatomic) OKZoomView *myView;
 
 @property (nonatomic) NSDictionary *framesDictionary;
 @property (nonatomic) NSDictionary *explanationsDictionary;
 @property (nonatomic) BOOL imageChanged;
+@property NSInteger unsuccessTapCount;
 @end
 
 @implementation OKTryOnMeVC
@@ -61,6 +63,7 @@
   self.navigationItem.rightBarButtonItems = @[camBtn, infoBtn];
   self.view.backgroundColor = [self.view getBackgroundColor];
 
+  self.unsuccessTapCount = 1;
   self.tapCount = 0;
   self.bezierPoints = [NSMutableArray new];
 
@@ -70,13 +73,13 @@
   [self.graphView setUseHermite:YES];
   [self.view insertSubview:self.graphView aboveSubview:self.previewImg];
   
-  self.gestureRecognizer = [[UITapGestureRecognizer alloc]
-                            initWithTarget:self
-                            action:@selector(tapped:)];
-  self.gestureRecognizer.delegate = self;
-  self.gestureRecognizer.numberOfTapsRequired = 1;
-  self.gestureRecognizer.numberOfTouchesRequired = 1;
-  [self.view addGestureRecognizer:self.gestureRecognizer];
+//  self.gestureRecognizer = [[UITapGestureRecognizer alloc]
+//                            initWithTarget:self
+//                            action:@selector(tapped:)];
+//  self.gestureRecognizer.delegate = self;
+//  self.gestureRecognizer.numberOfTapsRequired = 1;
+//  self.gestureRecognizer.numberOfTouchesRequired = 1;
+//  [self.view addGestureRecognizer:self.gestureRecognizer];
 
   UIImage *userPhoto = [UIImage imageWithData:[[NSUserDefaults standardUserDefaults] objectForKey:userDefaultPhotoKey]];
   if (userPhoto) {
@@ -152,7 +155,9 @@
 {
   [super viewDidAppear:animated];
   self.previewImageBound = self.previewImg.bounds;
-  
+  self.myView = [[OKZoomView alloc] initWithFrame:self.previewImg.bounds andStartPoint:self.previewImg.bounds.origin];
+  self.myView.backgroundColor = [UIColor clearColor];
+
   self.framesDictionary = @{@"item-1": [NSValue valueWithCGRect:self.previewImg.frame],
                             @"item-2": [NSValue valueWithCGRect:self.previewImg.frame],
                             @"item-3": [NSValue valueWithCGRect:self.previewImg.frame],
@@ -337,6 +342,150 @@
   }
 }
 
+#pragma mark - Touch Handles
+
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+  if (self.previewImg.image == nil) return;
+  if ([self isSettingsViewShowing]) {
+    [self showHideSettingsPage:nil];
+  }
+  const char *encoding = @encode(CGPoint);
+
+  UITouch *touch = [[touches allObjects] objectAtIndex:0];
+  CGPoint point = [touch locationInView:self.view];
+  
+  //bu islem iki size arasinda bir farklilik olmasa dahi yapilabilir. scale 1 olacagindan degisen bir
+  //sey olmayacaktir. Ama performans acisindan fazla islem yapmamak adina, eger scale in 1 olacagindan
+  //eminsen, burayi yapmamakta fayda vardir.
+//  float scaleFactorForX = self.previewImg.image.size.width / self.previewImg.bounds.size.width;
+//  float scaleFactorForY = self.previewImg.image.size.height / self.previewImg.bounds.size.height;
+//  CGPoint touchedPointOnOriginalImage = CGPointMake(point.x * scaleFactorForX, point.y * scaleFactorForY);
+  CGPoint touchedPointOnOriginalImage = [touch locationInView:self.previewImg];
+  
+  if (CGRectContainsPoint(self.previewImg.frame, point))
+  {
+    CGRect rectForImage = [self getRectangleForTavView:point];
+    TapToPointView *v = [[TapToPointView alloc] initWithFrame:rectForImage];
+    v.point = point;
+    [v setCount:self.tapCount++];
+    
+    [self.view addSubview:v];
+    [v setNeedsDisplay];
+    
+    [self.graphView.interpolationPoints addObject:[NSValue valueWithBytes:&point objCType:encoding]];
+    [self.graphView setNeedsDisplay];
+    
+    [self.bezierPoints addObject:[NSValue valueWithBytes:&touchedPointOnOriginalImage objCType:encoding]];
+
+    // Create a rectangle (10x10) from touched touched point
+//    CGRect rect1 = [self getRectangleFromPoint:touchedPointOnOriginalImage];
+//    rect1 = CGRectOffset(rect1, -self.previewImg.frame.origin.x, -self.previewImg.frame.origin.y);
+    
+    // Crop a picture from given rectangle
+//    CGImageRef imageRef = CGImageCreateWithImageInRect([self.previewImg.image CGImage], rect1);
+//    UIImage *tmp_img = [UIImage imageWithCGImage:imageRef];
+//    CGImageRelease(imageRef);
+//    
+//    UIImage *img = [UIImage imageWithColor:[self.color colorWithAlphaComponent:self.blendAlphaValue] andSize:rect1.size];
+//    UIImage *finalImage = [self blendImagesUsingCIHueBlendMode:tmp_img and:img desiredSize:rect1.size];
+//
+//    self.myView.previewImage = finalImage;
+//    self.myView.newPoint = point;
+//    [self.view addSubview:self.myView];
+//    [self.myView setNeedsDisplay];
+  }
+  [super touchesBegan:touches withEvent:event];
+}
+
+- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
+{
+  if (self.previewImg.image == nil) return;
+  if ([touches count] > 1) return; //if pressed for editing
+  const char *encoding = @encode(CGPoint);
+  
+  UITouch *touch = [[touches allObjects] objectAtIndex:0];
+  CGPoint point = [touch locationInView:self.view];
+  
+//  float scaleFactorForX = self.previewImg.image.size.width / self.previewImg.bounds.size.width;
+//  float scaleFactorForY = self.previewImg.image.size.height / self.previewImg.bounds.size.height;
+//  CGPoint touchedPointOnOriginalImage = CGPointMake(point.x * scaleFactorForX, point.y * scaleFactorForY);
+  CGPoint touchedPointOnOriginalImage = [touch locationInView:self.previewImg];
+
+  if (CGRectContainsPoint(self.previewImg.bounds, point))
+  {
+    CGFloat dist = [self getDistanceWithPoint:[[self.bezierPoints lastObject] CGPointValue] andPoint:touchedPointOnOriginalImage];
+    NSLog(@"Distance from touch began point %f", dist);
+    if (dist > (30.0 * [self getScaleFactor]))
+    {
+      CGRect rectForImage = [self getRectangleForTavView:point];
+      TapToPointView *v = [[TapToPointView alloc] initWithFrame:rectForImage];
+      v.point = point;
+      [v setCount:self.tapCount++];
+      
+      [self.view addSubview:v];
+      [v setNeedsDisplay];
+      
+      [self.graphView.interpolationPoints addObject:[NSValue valueWithBytes:&point objCType:encoding]];
+      [self.graphView setNeedsDisplay];
+      
+      [self.bezierPoints addObject:[NSValue valueWithBytes:&touchedPointOnOriginalImage objCType:encoding]];
+    }
+//    // Create a rectangle (10x10) from touched touched point
+//    CGRect rect1 = [self getRectangleFromPoint:touchedPointOnOriginalImage];
+//    rect1 = CGRectOffset(rect1, -self.previewImg.frame.origin.x, -self.previewImg.frame.origin.y);
+//    
+//    // Crop a picture from given rectangle
+//    UIImage *tmp_img = [self.previewImg.image cropImageWithRect:rect1];
+//    
+//    // calculate average color for next steps
+//    UIImage *img = [UIImage imageWithColor:[self.color colorWithAlphaComponent:self.blendAlphaValue] andSize:rect1.size];
+//    UIImage *finalImage = [self blendImagesUsingCIHueBlendMode:tmp_img and:img desiredSize:rect1.size];
+//    self.myView.previewImage = finalImage;
+//    self.myView.newPoint = point;
+//    [self.myView setNeedsDisplay];
+  }
+  [super touchesMoved:touches withEvent:event];
+}
+
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
+  if (self.previewImg.image == nil) return;
+  if ([touches count] > 1) return; //if pressed for editing
+  const char *encoding = @encode(CGPoint);
+  
+  UITouch *touch = [[touches allObjects] objectAtIndex:0];
+  CGPoint point = [touch locationInView:self.view];
+  
+//  float scaleFactorForX = self.previewImg.image.size.width / self.previewImg.bounds.size.width;
+//  float scaleFactorForY = self.previewImg.image.size.height / self.previewImg.bounds.size.height;
+//  CGPoint touchedPointOnOriginalImage = CGPointMake(point.x * scaleFactorForX, point.y * scaleFactorForY);
+  CGPoint touchedPointOnOriginalImage = [touch locationInView:self.previewImg];
+
+  if (CGRectContainsPoint(self.previewImg.bounds, point))
+  {
+    CGFloat dist = [self getDistanceWithPoint:[[self.bezierPoints lastObject] CGPointValue] andPoint:touchedPointOnOriginalImage];
+    NSLog(@"Distance from touch began point %f", dist);
+    if (dist > (30.0 * [self getScaleFactor]))
+    {
+      CGRect rectForImage = [self getRectangleForTavView:point];
+      TapToPointView *v = [[TapToPointView alloc] initWithFrame:rectForImage];
+      v.point = point;
+      [v setCount:self.tapCount++];
+      
+      [self.view addSubview:v];
+      [v setNeedsDisplay];
+      
+      [self.graphView.interpolationPoints addObject:[NSValue valueWithBytes:&point objCType:encoding]];
+      [self.graphView setNeedsDisplay];
+      
+      [self.bezierPoints addObject:[NSValue valueWithBytes:&touchedPointOnOriginalImage objCType:encoding]];
+    }
+  }
+    //  [self.myView removeFromSuperview];
+  [super touchesEnded:touches withEvent:event];
+}
+
+#pragma mark - ToolBar Button Handles
+
 - (IBAction)editButtonsTapped:(id)sender {
   NSInteger btnTag = ((UIButton *)sender).tag;
 //  NSLog(@"Button %@ tapped", [[((UIButton *)sender) titleLabel] text]);
@@ -488,6 +637,17 @@
 #pragma mark Create Mask Image & Paint
 - (void)createMaskImageFromBezierPaths
 {
+  static BOOL youMadeIt = NO;
+  if ([self.bezierPoints count] == 0)
+  {
+    self.unsuccessTapCount += 1;
+    if (self.unsuccessTapCount > 2 && !youMadeIt) {
+      self.unsuccessTapCount = 1;
+      [self showTutorial];
+    }
+    return;
+  }
+  youMadeIt = YES;
   if (!self.imageChanged) {
     self.imageChanged = YES;
   }
@@ -593,20 +753,49 @@
   return rtrnImg;
 }
 
-- (CGRect)getRectangleFromPoint:(CGPoint)point
+- (CGFloat)getScaleFactor
 {
-  CGFloat natureSize = 3.25;
   CGFloat scaleFactor = [UIScreen mainScreen].scale;
   if ([[UIScreen mainScreen] respondsToSelector:@selector(nativeScale)]) {
     scaleFactor = [UIScreen mainScreen].nativeScale;
   }
-  natureSize = natureSize * scaleFactor;
+  return scaleFactor;
+}
 
+- (CGRect)getRectangleForTavView:(CGPoint)point
+{
+  CGFloat natureSize = 3.25;
+//  CGFloat scaleFactor = [UIScreen mainScreen].scale;
+//  if ([[UIScreen mainScreen] respondsToSelector:@selector(nativeScale)]) {
+//    scaleFactor = [UIScreen mainScreen].nativeScale;
+//  }
+  natureSize = natureSize * [self getScaleFactor];
+  
   CGFloat dx, dy;
   dx = point.x >= natureSize/2.0 ? natureSize/2.0 : 0;
   dy = point.y >= natureSize/2.0 ? natureSize/2.0 : 0;
   
   return CGRectMake(point.x - dx, point.y - dy, natureSize, natureSize);
+}
+
+- (CGRect)getRectangleFromPoint:(CGPoint)point
+{
+  CGSize drawableSize = self.previewImg.bounds.size;
+  
+//  CGFloat scaleFactor = [UIScreen mainScreen].scale;
+//  if ([[UIScreen mainScreen] respondsToSelector:@selector(nativeScale)]) {
+//    scaleFactor = [UIScreen mainScreen].nativeScale;
+//  }
+  //  CGFloat scaleFactor = self.view.window.screen.nativeScale;
+  drawableSize.width *= [self getScaleFactor];
+  CGFloat capturePixelSize = floorf(drawableSize.width * 0.1);
+//  capturePixelSize = self.myView.bounds.size.width;
+  
+  CGFloat dx,dy;
+  dx = point.x >= capturePixelSize/2.0 ? capturePixelSize/2.0 : 0;
+  dy = point.y >= capturePixelSize/2.0 ? capturePixelSize/2.0 : 0;
+  
+  return CGRectMake(point.x - dx, point.y - dy, capturePixelSize, capturePixelSize);
 }
 
 - (void)alphaSliderChanged:(id)sender
@@ -620,6 +809,13 @@
   CGRect statusBarWindowRect = [view.window convertRect:statusBarFrame fromWindow: nil];
   CGRect statusBarViewRect = [view convertRect:statusBarWindowRect fromView: nil];
   return statusBarViewRect;
+}
+
+- (CGFloat)getDistanceWithPoint:(CGPoint)point1 andPoint:(CGPoint)point2
+{
+  float dx = fabs(point1.x - point2.x);
+  float dy = fabs(point1.y - point2.y);
+  return sqrtf(dx*dx + dy*dy);
 }
 
 #pragma mark - Navigation

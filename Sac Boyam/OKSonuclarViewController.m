@@ -405,7 +405,7 @@
 #ifdef LITE_VERSION
 -(BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender
 {
-  if ([identifier isEqualToString:@"tryOnMeSegue"])
+  if ([identifier isEqualToString:@"tryOnMeSegue"] || [identifier isEqualToString:@"tryOnMeSegueNew"])
   {
     [[OKAppRater sharedInstance] askForPurchase];
     return NO;
@@ -427,7 +427,7 @@
   } else if ([[segue identifier] isEqualToString:@"settingSegueFromResults"]) {
     OKSettingsViewController *vc = [segue destinationViewController];
     [vc setManagedObjectContext:self.managedObjectContext];
-  } else if ([[segue identifier] isEqualToString:@"tryOnMeSegue"]) {
+  } else if ([[segue identifier] isEqualToString:@"tryOnMeSegue"] || [[segue identifier] isEqualToString:@"tryOnMeSegueNew"]) {
 //    NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
     ColorModel *color = [self.fetchedResultsController objectAtIndexPath:self.lastSelectedIndexPath];
     OKTryOnMeVC *vc = [segue destinationViewController];
