@@ -17,7 +17,7 @@ static NSString *numberOfColorFoundsInOneDayKey  = @"numberOfColorFoundsInOneDay
 static NSString *maximumAllowedUsageInOneDayKey  = @"maximumAllowedUsageInOneDayKey";
 static NSString *lastTimeAskedForPurchaseDateKey = @"lastTimeAskedForPurchaseDateKey";
 
-@interface OKAppRater : NSObject <UIAlertViewDelegate>
+@interface OKAppRater : NSObject
 
 + (instancetype) sharedInstance;
 

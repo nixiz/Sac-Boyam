@@ -22,7 +22,7 @@
 #import "OKSettingsTutorialVC.h"
 #import "UIViewController+AutoDissmissAlert.h"
 
-@interface OKTryOnMeVC () <UIAlertViewDelegate, UIGestureRecognizerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
+@interface OKTryOnMeVC () <UIGestureRecognizerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 @property (strong, nonatomic) UIImage *defaultImage;
 @property (weak, nonatomic) IBOutlet UIImageView *previewImg;
 
@@ -288,6 +288,7 @@
   }];
 }
 
+/* Deprecated alert view delegate removed
 #pragma mark - UIAlertViewDelegate
 
 //-(void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
@@ -303,6 +304,7 @@
     NSLog(@"unknow handle for alert view!\n%@", [alertView debugDescription]);
   }
 }
+*/
 
 #pragma mark - UIGestureRecognizerDelegate
 

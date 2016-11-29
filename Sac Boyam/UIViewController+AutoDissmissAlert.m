@@ -10,12 +10,12 @@
 
 @implementation UIViewController (AutoDissmissAlert)
 
-- (void)dismissAlertView:(UIAlertView *)alertView
-{
-  if ([alertView isVisible]) {
-    [alertView dismissWithClickedButtonIndex:0 animated:YES];
-  }
-}
+//- (void)dismissAlertView:(UIAlertView *)alertView
+//{
+//  if ([alertView isVisible]) {
+//    [alertView dismissWithClickedButtonIndex:0 animated:YES];
+//  }
+//}
 
 - (void)showAutoDismissedAlertWithMessage:(NSString *)message withTitle:(NSString *)title
 {
@@ -24,13 +24,20 @@
 
 - (void)showAutoDismissedAlertWithMessage:(NSString *)message withTitle:(NSString *)title afterDelay:(NSTimeInterval)delay
 {
-  UIAlertView *alarma = [[UIAlertView alloc] initWithTitle:title
-                                                   message:message
-                                                  delegate:self
-                                         cancelButtonTitle:@"Ok"
-                                         otherButtonTitles:nil];
-  [alarma show];
-  [self performSelector:@selector(dismissAlertView:) withObject:alarma afterDelay:delay];
+  UIAlertController *ac = [UIAlertController alertControllerWithTitle:title
+                                                              message:message
+                                                       preferredStyle:UIAlertControllerStyleAlert];
+  UIAlertAction *noAction = [UIAlertAction actionWithTitle:@"OK"
+                                                     style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+                                                     }];
+  [ac addAction:noAction];
+  
+  [self presentViewController:ac animated:YES completion:nil];
+  
+  dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * 100 * NSEC_PER_MSEC)), dispatch_get_main_queue(), ^{
+    [ac dismissViewControllerAnimated:YES completion:nil];
+  });
+
 }
 
 @end

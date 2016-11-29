@@ -140,7 +140,7 @@ static void * SessionRunningAndDeviceAuthorizedContext = &SessionRunningAndDevic
         // Because AVCaptureVideoPreviewLayer is the backing layer for AVCamPreviewView and UIView can only be manipulated on main thread.
         // Note: As an exception to the above rule, it is not necessary to serialize video orientation changes on the AVCaptureVideoPreviewLayer’s connection with other session manipulation.
         
-        [[(AVCaptureVideoPreviewLayer *)[[self previewView] layer] connection] setVideoOrientation:(AVCaptureVideoOrientation)[self interfaceOrientation]];
+        [[(AVCaptureVideoPreviewLayer *)[[self previewView] layer] connection] setVideoOrientation:(AVCaptureVideoOrientation)[[UIApplication sharedApplication] statusBarOrientation]];
         
         [(AVCaptureVideoPreviewLayer *)[[self previewView] layer] setVideoGravity:AVLayerVideoGravityResizeAspectFill];
       });
@@ -222,7 +222,7 @@ static void * SessionRunningAndDeviceAuthorizedContext = &SessionRunningAndDevic
   // Dispose of any resources that can be recreated.
 }
 
-- (NSUInteger)supportedInterfaceOrientations
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations
 {
   return UIInterfaceOrientationMaskPortrait/*UIInterfaceOrientationPortrait*/;
 }
@@ -503,12 +503,21 @@ static void * SessionRunningAndDeviceAuthorizedContext = &SessionRunningAndDevic
     {
       //Not granted access to mediaType
       dispatch_async(dispatch_get_main_queue(), ^{
-        [[[UIAlertView alloc] initWithTitle:@"AVCam!"
-                                    message:@"AVCam doesn't have permission to use Camera, please change privacy settings"
-                                   delegate:self
-                          cancelButtonTitle:@"OK"
-                          otherButtonTitles:nil] show];
+//        [[[UIAlertView alloc] initWithTitle:@"AVCam!"
+//                                    message:@"AVCam doesn't have permission to use Camera, please change privacy settings"
+//                                   delegate:self
+//                          cancelButtonTitle:@"OK"
+//                          otherButtonTitles:nil] show];
+        UIAlertController *ac = [UIAlertController alertControllerWithTitle:@"AVCam!"
+                                                                    message:@"AVCam doesn't have permission to use Camera, please change privacy settings"
+                                                             preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *noAction = [UIAlertAction actionWithTitle:@"OK"
+                                                           style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+                                                           }];
+        [ac addAction:noAction];
+        
         [self setDeviceAuthorized:NO];
+        [self presentViewController:ac animated:YES completion:nil];
       });
     }
   }];

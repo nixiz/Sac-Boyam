@@ -168,12 +168,21 @@
     //eger take record kapatildiysa
     //NSString *completionMessage = NSLocalizedStringFromTable(@"imageSavedSuccessfully", okStringsTableName, nil);
 
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedStringFromTable(@"Warning", okStringsTableName, nil)
-                                                        message:NSLocalizedStringFromTable(@"DeleteAllRecordsPromt", okStringsTableName, nil)
-                                                        delegate:self
-                                              cancelButtonTitle:NSLocalizedStringFromTable(@"cancelButtonForURLReq", okStringsTableName, nil)
-                                              otherButtonTitles:NSLocalizedStringFromTable(@"OKButtonTitle", okStringsTableName, nil), nil];
-    [alertView show];
+    UIAlertController *ac = [UIAlertController alertControllerWithTitle:NSLocalizedStringFromTable(@"Warning", okStringsTableName, nil)
+                                                                message:NSLocalizedStringFromTable(@"DeleteAllRecordsPromt", okStringsTableName, nil)
+                                                         preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:NSLocalizedStringFromTable(@"OKButtonTitle", okStringsTableName, nil)
+                                                       style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                                                         [self deleteAllEntries];
+                                                       }];
+    UIAlertAction *noAction = [UIAlertAction actionWithTitle:NSLocalizedStringFromTable(@"cancelButtonForURLReq", okStringsTableName, nil)
+                                                       style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+                                                         [self.takeRecordsSwitch setOn:YES animated:YES];
+                                                       }];
+    [ac addAction:okAction];
+    [ac addAction:noAction];
+    
+    [self presentViewController:ac animated:YES completion:nil];
   } else {
     // ayarlar degistiginde buraya girilecegi icin degistimi diye kontrol etmeye gerek yok.
     [[NSUserDefaults standardUserDefaults] setObject:@(_switch.on) forKey:keyString];
@@ -187,6 +196,7 @@
   [[NSUserDefaults standardUserDefaults] setObject:@(self.resultDensitySlider.value) forKey:resultDensityKey];
 }
 
+/*
 -(void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
 {
   NSString *str = [alertView buttonTitleAtIndex:buttonIndex];
@@ -195,8 +205,8 @@
   } else {
     [self.takeRecordsSwitch setOn:YES animated:YES];
   }
-    
 }
+*/
 
 -(void)deleteAllEntries
 {
@@ -328,6 +338,9 @@
         
       case NSFetchedResultsChangeDelete:
         [self.recordsTableView deleteSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationFade];
+        break;
+      default:
+        // Do nothing for other cases.
         break;
     }
   }

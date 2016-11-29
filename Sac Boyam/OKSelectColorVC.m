@@ -28,7 +28,7 @@
 //#ifdef LITE_VERSION
 //@interface OKSelectColorVC () <OKSettingsDelegate, UIAlertViewDelegate, ADBannerViewDelegate>
 //#else
-@interface OKSelectColorVC () <OKSettingsDelegate, UIAlertViewDelegate>
+@interface OKSelectColorVC () <OKSettingsDelegate>
 //#endif
 @property (strong, nonatomic) OKZoomView *myView;
 @property (strong) UIColor *color;
@@ -168,15 +168,19 @@
 {
 //  [self showAutoDismissedAlertWithMessage:NSLocalizedStringFromTable(@"firstTimeOnColorSelectMsg", okStringsTableName, nil) withTitle:nil afterDelay:2.0];
 //#ifndef LITE_VERSION
-  UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedStringFromTable(@"welcome", okStringsTableName, nil)
-                                                      message:NSLocalizedStringFromTable(@"firstTimeOnColorSelectMsg", okStringsTableName, nil)
-                                                     delegate:self
-                                            cancelButtonTitle:nil
-                                            otherButtonTitles:NSLocalizedStringFromTable(@"OKButtonTitle", okStringsTableName, nil), nil];
-  [alertView setBackgroundColor:[[UIColor darkGrayColor] colorWithAlphaComponent:0.73]];
-  [alertView setTag:10];
-  [alertView show];
-  [self performSelector:@selector(dismissAlertView:) withObject:alertView afterDelay:2.5];
+  UIAlertController *alertView =
+    [UIAlertController
+     alertControllerWithTitle:NSLocalizedStringFromTable(@"welcome", okStringsTableName, nil)
+     message:NSLocalizedStringFromTable(@"firstTimeOnColorSelectMsg", okStringsTableName, nil)
+     preferredStyle:UIAlertControllerStyleAlert];
+
+  [[alertView view] setBackgroundColor:[[UIColor darkGrayColor] colorWithAlphaComponent:0.73]];
+  [self presentViewController:alertView animated:YES completion:nil];
+
+  //[self performSelector:@selector(dismissAlertView:) withObject:alertView afterDelay:2.5];
+  dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+    [alertView dismissViewControllerAnimated:YES completion:nil];
+  });
 //#endif
   
   if ([[[NSUserDefaults standardUserDefaults] objectForKey:showTutorialKey] boolValue]) {
@@ -210,7 +214,7 @@
 {
   self.findOnTap = [[[NSUserDefaults standardUserDefaults] objectForKey:findOnTapKey] boolValue];
 }
-
+/*
 #pragma mark - UIAlertViewDelegate
 
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
@@ -226,6 +230,7 @@
     [self performSegueWithIdentifier:@"settingSegueFromSelect" sender:nil];
   }
 }
+*/
 
 #pragma mark - Touch Handles
 
@@ -334,14 +339,27 @@
     if (!self.findOnTap)
     {
 #ifndef LITE_VERSION
-      UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil
-                                                          message:NSLocalizedStringFromTable(@"askForFindOnTapMsg", okStringsTableName, nil)
-                                                         delegate:self
-                                                cancelButtonTitle:NSLocalizedStringFromTable(@"NOButonTitle", okStringsTableName, nil)
-                                                otherButtonTitles:NSLocalizedStringFromTable(@"OKButtonTitle", okStringsTableName, nil), nil];
+
+      UIAlertController *alertView =
+      [UIAlertController alertControllerWithTitle:nil
+                                          message:NSLocalizedStringFromTable(@"askForFindOnTapMsg", okStringsTableName, nil)
+                                   preferredStyle:UIAlertControllerStyleAlert];
+      
+      UIAlertAction *okAction = [UIAlertAction actionWithTitle:NSLocalizedStringFromTable(@"OKButtonTitle", okStringsTableName, nil)
+                                                         style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                                                           self.nonFoundTapCount = NSIntegerMin;
+                                                           [self performSegueWithIdentifier:@"settingSegueFromSelect" sender:nil];
+                                                         }];
+      UIAlertAction *noAction = [UIAlertAction actionWithTitle:NSLocalizedStringFromTable(@"NOButonTitle", okStringsTableName, nil)
+                                                         style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                                                         }];
+      
+      [alertView addAction:okAction];
+      [alertView addAction:noAction];
+      [[alertView view] setBackgroundColor:[[UIColor darkGrayColor] colorWithAlphaComponent:0.73]];
+      
+      [self presentViewController:alertView animated:YES completion:nil];
 //      [alertView setBackgroundColor:[[UIColor darkGrayColor] colorWithAlphaComponent:0.73]];
-      [alertView setTag:AutoFindSuggestionAlertViewTag];
-      [alertView show];
 #endif
     }
   }

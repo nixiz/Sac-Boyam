@@ -13,7 +13,7 @@
 #import "UIView+CreateImage.h"
 #import "OKTryOnMeVC.h"
 
-@interface OKMainViewController () <UIAlertViewDelegate>
+@interface OKMainViewController ()
 @property (weak, nonatomic) IBOutlet UIImageView *productImageView;
 //@property (weak, nonatomic) IBOutlet UIImageView *averageColorImageView;
 @property (weak, nonatomic) IBOutlet UILabel *productDetailsLabel;
@@ -79,7 +79,7 @@
   NSMutableString *searchText = [[NSMutableString alloc] initWithString:@"https://www.google.com/search?q="];
   [searchText appendString:[self.colorModel.productName stringByReplacingOccurrencesOfString:@" " withString:@"+"]];
   
-  NSString *urlStr = [searchText stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+  NSString *urlStr = [searchText stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLHostAllowedCharacterSet]];
   NSURL *url = [NSURL URLWithString:urlStr];
   BOOL success = [[UIApplication sharedApplication] openURL:url];
   
@@ -91,13 +91,11 @@
 - (IBAction)addRemoveFav:(id)sender {
   BOOL takeRecord = [[[NSUserDefaults standardUserDefaults] objectForKey:takeRecordKey] boolValue];
   if (takeRecord) {
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil
-                                                        message:NSLocalizedStringFromTable(@"takeRecordPromt", okStringsTableName, nil)
-                                                      delegate:self
-                                              cancelButtonTitle:NSLocalizedStringFromTable(@"cancelButtonForURLReq", okStringsTableName, nil)
-                                              otherButtonTitles:NSLocalizedStringFromTable(@"OKButtonTitle", okStringsTableName, nil), nil];
-    [alertView setAlertViewStyle:UIAlertViewStylePlainTextInput];
-    UITextField *textField = [alertView textFieldAtIndex:0];
+    
+    UIAlertController *ac = [UIAlertController alertControllerWithTitle:nil
+                                                                message:NSLocalizedStringFromTable(@"takeRecordPromt", okStringsTableName, nil)
+                                                         preferredStyle:UIAlertControllerStyleAlert];
+    UITextField *textField = [[ac textFields] objectAtIndex:0];
     [textField setPlaceholder:NSLocalizedStringFromTable(@"enterNameForProduct", okStringsTableName, nil)];
     [textField setClearButtonMode:UITextFieldViewModeWhileEditing];
     
@@ -105,52 +103,53 @@
     [textField setAutocapitalizationType:UITextAutocapitalizationTypeSentences];
     NSString *brandName = [NSString stringWithFormat:@"%@ ", self.colorModel.brand.brandName];
     [textField setText:brandName];
-    [alertView show];
+    
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:NSLocalizedStringFromTable(@"cancelButtonForURLReq", okStringsTableName, nil)
+                                                       style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+                                                       }];
+
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:NSLocalizedStringFromTable(@"OKButtonTitle", okStringsTableName, nil)
+                                                       style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+//                                                         NSString *recordName = [[ac textFieldAtIndex:0] text];
+                                                         NSString *recordName = brandName;
+                                                         //if record name is null or empty
+                                                         if ([recordName length] == 0) {
+                                                           UIAlertController *ac = [UIAlertController alertControllerWithTitle:NSLocalizedStringFromTable(@"error", okStringsTableName, nil)
+                                                                                                                       message:NSLocalizedStringFromTable(@"recordNotSaved", okStringsTableName, nil)
+                                                                                                                preferredStyle:UIAlertControllerStyleAlert];
+                                                           UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:NSLocalizedStringFromTable(@"OKButtonTitle", okStringsTableName, nil)
+                                                                                                                  style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+                                                                                                                  }];
+                                                           [ac addAction:cancelAction];
+                                                           
+                                                           [self presentViewController:ac animated:YES completion:nil];
+                                                           return;
+                                                         }
+                                                         UserRecordModel *record = [UserRecordModel recordModelWithDate:[NSDate date]
+                                                                                                             recordName:recordName
+                                                                                                         usedColorModel:self.colorModel
+                                                                                                 inManagedObjectContext:self.managedObjectContext];
+                                                         //  UserRecordModel *record = [UserRecordModel recordModelWithDate:[NSDate date] usedColorModel:self.colorModel inManagedObjectContext:self.managedObjectContext];
+                                                         if (record) {
+                                                           UIAlertController *ac = [UIAlertController alertControllerWithTitle:nil
+                                                                                                                       message:NSLocalizedStringFromTable(@"savedSuccessfuly", okStringsTableName, nil)
+                                                                                                                preferredStyle:UIAlertControllerStyleAlert];
+                                                           
+                                                           [self presentViewController:ac animated:YES completion:nil];
+                                                           dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(600 * NSEC_PER_MSEC)), dispatch_get_main_queue(), ^{
+                                                             [ac dismissViewControllerAnimated:YES completion:nil];
+                                                           });
+
+                                                           [self.navigationItem.rightBarButtonItem setEnabled:NO];
+                                                         }
+                                                       }];
+    [ac addAction:okAction];
+    [ac addAction:cancelAction];
+    
+    [self presentViewController:ac animated:YES completion:nil];
+    
   }
 }
-
-- (void)dismissAlertView:(UIAlertView *)alertView
-{
-  if ([alertView isVisible]) {
-    [alertView dismissWithClickedButtonIndex:0 animated:YES];
-  }
-}
-
--(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-  NSString *title = [alertView buttonTitleAtIndex:buttonIndex];
-  if ([title isEqualToString:NSLocalizedStringFromTable(@"cancelButtonForURLReq", okStringsTableName, nil)]) {
-    return;
-  }
-  NSString *recordName = [[alertView textFieldAtIndex:0] text];
-  //if record name is null or empty
-  if ([recordName length] == 0) {
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedStringFromTable(@"error", okStringsTableName, nil)
-                                                        message:NSLocalizedStringFromTable(@"recordNotSaved", okStringsTableName, nil)
-                                                       delegate:nil
-                                              cancelButtonTitle:NSLocalizedStringFromTable(@"OKButtonTitle", okStringsTableName, nil)
-                                              otherButtonTitles: nil];
-    [alertView show];
-    return;
-  }
-  UserRecordModel *record = [UserRecordModel recordModelWithDate:[NSDate date]
-                                                      recordName:recordName
-                                                  usedColorModel:self.colorModel
-                                          inManagedObjectContext:self.managedObjectContext];
-//  UserRecordModel *record = [UserRecordModel recordModelWithDate:[NSDate date] usedColorModel:self.colorModel inManagedObjectContext:self.managedObjectContext];
-  if (record) {
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil
-                                                        message:NSLocalizedStringFromTable(@"savedSuccessfuly", okStringsTableName, nil)
-                                                       delegate:nil
-                                              cancelButtonTitle:nil
-                                              otherButtonTitles: nil];
-    [alertView show];
-    [self performSelector:@selector(dismissAlertView:) withObject:alertView afterDelay:0.6];
-
-    [self.navigationItem.rightBarButtonItem setEnabled:NO];
-  }
-}
-
 
 #pragma mark - Navigation
  
