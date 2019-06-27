@@ -95,14 +95,25 @@
     UIAlertController *ac = [UIAlertController alertControllerWithTitle:nil
                                                                 message:NSLocalizedStringFromTable(@"takeRecordPromt", okStringsTableName, nil)
                                                          preferredStyle:UIAlertControllerStyleAlert];
-    UITextField *textField = [[ac textFields] objectAtIndex:0];
-    [textField setPlaceholder:NSLocalizedStringFromTable(@"enterNameForProduct", okStringsTableName, nil)];
-    [textField setClearButtonMode:UITextFieldViewModeWhileEditing];
-    
-    [textField setAutocorrectionType:UITextAutocorrectionTypeDefault];
-    [textField setAutocapitalizationType:UITextAutocapitalizationTypeSentences];
+//    UITextField *textField = [[ac textFields] objectAtIndex:0];
+//    [textField setPlaceholder:NSLocalizedStringFromTable(@"enterNameForProduct", okStringsTableName, nil)];
+//    [textField setClearButtonMode:UITextFieldViewModeWhileEditing];
+//    
+//    [textField setAutocorrectionType:UITextAutocorrectionTypeDefault];
+//    [textField setAutocapitalizationType:UITextAutocapitalizationTypeSentences];
     NSString *brandName = [NSString stringWithFormat:@"%@ ", self.colorModel.brand.brandName];
-    [textField setText:brandName];
+//    [textField setText:brandName];
+    [ac addTextFieldWithConfigurationHandler:^(UITextField *textField) {
+      textField.placeholder = NSLocalizedStringFromTable(@"enterNameForProduct", okStringsTableName, nil);
+      textField.clearButtonMode = UITextFieldViewModeWhileEditing;
+      textField.autocorrectionType = UITextAutocorrectionTypeDefault;
+      textField.autocapitalizationType = UITextAutocapitalizationTypeSentences;
+//      textField.borderStyle = UITextBorderStyleRoundedRect;
+//      NSString *brandName = [NSString stringWithFormat:@"%@ ", self.colorModel.brand.brandName];
+      [textField setText:brandName];
+    }];
+    
+    
     
     UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:NSLocalizedStringFromTable(@"cancelButtonForURLReq", okStringsTableName, nil)
                                                        style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {

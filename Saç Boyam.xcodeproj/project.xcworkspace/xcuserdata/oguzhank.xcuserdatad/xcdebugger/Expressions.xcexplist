@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VariablesViewState
+   version = "1.0">
+   <ContextStates>
+      <ContextState
+         contextName = "-[OKSonuclarViewController viewDidLoad]:OKSonuclarViewController.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.bannerView">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[OKTryOnMeVC saveImageToAlbum]:OKTryOnMeVC.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.previewImg.image">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[OKSonuclarViewController addCellToFav:]:OKSonuclarViewController.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "btn.superview">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[OKCamViewController captureOutput:didOutputSampleBuffer:fromConnection:]:OKCamViewController.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.imageView.frame">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[OKInfoChildViewController viewDidLoad]:OKInfoChildViewController.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.pageIndex">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[OKSelectColorVC alertView:clickedButtonAtIndex:]:OKSelectColorVC.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.nonFoundTapCount">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[OKSelectColorVC viewDidLayoutSubviews]:OKSelectColorVC.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.selectedPicture.size">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[OKSelectColorVC touchesEnded:withEvent:]:OKSelectColorVC.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.nonFoundTapCount">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "__31-[OKSettingsTutorialVC tapped:]_block_invoke60:OKSettingsTutorialVC.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "rectForFisrtElement">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[OKTryOnMeVC viewDidLoad]:OKTryOnMeVC.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.settingsView">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[OKTryOnMeVC createMaskImageFromBezierPaths]:OKTryOnMeVC.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.color">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[UIView(draggable) adjustAnchorPointForGestureRecognizer:]:UIView+draggable.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "piece.layer.anchorPoint">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[OKSettingsTutorialVC viewDidLoad]:OKSettingsTutorialVC.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.backgroundImage">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[OKSelectColorVC viewDidLoad]:OKSelectColorVC.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.findButton">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "__40-[OKSonuclarViewController showTutorial]_block_invoke:OKSonuclarViewController.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.lastSelectedIndexPath">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[OKTryOnMeVC viewDidAppear:]:OKTryOnMeVC.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.settingsViewRecoverFrame">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[OKTryOnMeVC touchesBegan:withEvent:]:OKTryOnMeVC.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "[self.editView frame];">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[OKTryOnMeTutVC viewDidAppear:]:OKTryOnMeTutVC.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.mTimer">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[OKSonuclarViewController viewDidAppear:]:OKSonuclarViewController.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.bannerView">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+   </ContextStates>
+</VariablesViewState>

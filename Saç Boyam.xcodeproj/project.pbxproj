@@ -562,9 +562,6 @@
 				LastUpgradeCheck = 0810;
 				ORGANIZATIONNAME = "Oguzhan Katli";
 				TargetAttributes = {
-					71328A9117C35FD7007EE533 = {
-						DevelopmentTeam = J2YDNSCTAL;
-					};
 					718ABFF61ACBDD0B00000DB2 = {
 						DevelopmentTeam = J2YDNSCTAL;
 					};
@@ -854,6 +851,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Sac Boyam/Saç Boyam-Prefix.pch";
 				INFOPLIST_FILE = "Sac Boyam/Saç Boyam-Info.plist";
@@ -873,6 +871,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Sac Boyam/Saç Boyam-Prefix.pch";
 				INFOPLIST_FILE = "Sac Boyam/Saç Boyam-Info.plist";
